@@ -1441,7 +1441,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &532515492
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1577,7 +1577,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &540536642
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2008,7 +2008,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &846136022
 GameObject:
   m_ObjectHideFlags: 0
@@ -2882,13 +2882,13 @@ MonoBehaviour:
   normalProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
   firePoint: {fileID: 1185495245}
   normalFireInterval: 1
-  mpPerShot: 10
+  mpPerShot: 20
   enemyDetectRadius: 100
   jumpForce: 10
   burstProjectile: {fileID: 0}
-  burstCount: 3
+  burstCount: 1
   burstInterval: 0.3
-  burstFireDelay: 0.1
+  burstFireDelay: 1.5
 --- !u!70 &1185495248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -2952,7 +2952,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1 &1210042731 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}

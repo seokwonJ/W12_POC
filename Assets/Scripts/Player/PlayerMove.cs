@@ -28,7 +28,6 @@ public class PlayerMove : MonoBehaviour
             moveInput.x = Input.GetAxisRaw("Horizontal");
             moveInput.y = Input.GetAxisRaw("Vertical");
             moveInput = moveInput.normalized;
-            print("대쉬!!!!!!!!!!!!!!!!!!!!" + moveInput.x + "  " + moveInput.y);
         }
 
         // 대시 쿨타임 감소

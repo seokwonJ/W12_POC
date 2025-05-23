@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Magician : MonoBehaviour
 {
@@ -71,7 +72,7 @@ public class Magician : MonoBehaviour
         for (int i = 0; i < burstCount; i++)
         {
             yield return new WaitForSeconds(burstFireDelay);
-            //FireBurstProjectiles();
+            FireBurstProjectiles();
             yield return new WaitForSeconds(burstInterval);
         }
 
@@ -80,17 +81,12 @@ public class Magician : MonoBehaviour
 
     void FireBurstProjectiles()
     {
-        int projectileCount = 10;
-        float angleStep = 360f / projectileCount;
         Vector3 startPos = transform.position;
-
-        for (int i = 0; i < projectileCount; i++)
-        {
-            float angle = i * angleStep;
-            Quaternion rotation = Quaternion.Euler(0, 0, angle);
-            GameObject proj = Instantiate(burstProjectile, startPos, rotation);
-            proj.GetComponent<MagicBall>().SetDirection(rotation * Vector2.right);
-        }
+        Transform target = FindNearestEnemy();
+        GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+        proj.GetComponent<MagicBall>().SetDirection((target.position - firePoint.position).normalized);
+        proj.GetComponent<MagicBall>().speed = 5;
+        proj.transform.localScale *= 3;
     }
 
     Transform FindNearestEnemy()
