@@ -91,6 +91,9 @@ public class Archer : MonoBehaviour
             GameObject proj = Instantiate(burstProjectile, startPos, rotation);
             proj.GetComponent<Arrow>().SetDirection(rotation * Vector2.right);
         }
+
+
+
     }
 
     Transform FindNearestEnemy()
