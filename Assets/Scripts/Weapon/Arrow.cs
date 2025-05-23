@@ -31,6 +31,7 @@ public class Arrow : MonoBehaviour
         {
             // 데미지 입히는 로직 (적 스크립트에서 받도록 설계 가능)
             Debug.Log("Hit enemy!");
+            other.GetComponent<EnemyHP>().TakeDamage(damage);
             Destroy(gameObject);
         }
     }

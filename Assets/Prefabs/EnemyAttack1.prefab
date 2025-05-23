@@ -97,8 +97,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3179981552362429370}
   - component: {fileID: 7782872291389215084}
-  - component: {fileID: 9123513545764465425}
   - component: {fileID: 4101064047448758779}
+  - component: {fileID: 7747348524335182134}
   m_Layer: 0
   m_Name: EnemyAttack1
   m_TagString: Untagged
@@ -149,21 +149,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &9123513545764465425
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7373925757434712426}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 63654bcca5e4c4247a5fb5fa7e6fd222, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 10
-  lifetime: 5
-  damage: 10
 --- !u!58 &4101064047448758779
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -194,9 +179,21 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 0.5
+--- !u!114 &7747348524335182134
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7373925757434712426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb208216bb21e444958a08a7d4e4324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

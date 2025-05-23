@@ -30,6 +30,7 @@ public class Kunai : MonoBehaviour
     {
         if (other.CompareTag("Enemy")) // 태그는 필요에 따라 설정
         {
+            other.GetComponent<EnemyHP>().TakeDamage(damage);
             // 데미지 입히는 로직 (적 스크립트에서 받도록 설계 가능)
             Debug.Log("Hit enemy!");
             Destroy(gameObject);

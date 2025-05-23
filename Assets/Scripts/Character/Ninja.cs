@@ -22,13 +22,28 @@ public class Ninja : MonoBehaviour
     public float burstFireDelay = 0.1f;
 
     private Rigidbody2D rb;
+    private FixedJoint2D fixedJoint;
     private bool isUltimateActive = false;
+
+    public float maxFallSpeed = -10f; // 음수로 설정해야 아래로 가는 속도 제한
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        fixedJoint = GetComponent<FixedJoint2D>();
         StartCoroutine(NormalAttackRoutine());
     }
+
+    void FixedUpdate()
+    {
+        // 현재 y속도가 최대 낙하 속도를 넘으면 제한
+        if (rb.linearVelocity.y < maxFallSpeed)
+        {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxFallSpeed);
+        }
+    }
+
+
 
     IEnumerator NormalAttackRoutine()
     {
@@ -54,6 +69,9 @@ public class Ninja : MonoBehaviour
             // 궁극기 발동 조건 확인
             if (currentMP >= maxMP && !isUltimateActive)
             {
+                fixedJoint.connectedBody = null;
+                fixedJoint.enabled = false;
+
                 StartCoroutine(ActivateUltimate());
             }
         }
@@ -123,5 +141,22 @@ public class Ninja : MonoBehaviour
         // 시야 범위 시각화
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, enemyDetectRadius);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            fixedJoint.enabled = true;
+            fixedJoint.connectedBody = collision.transform.GetComponent<Rigidbody2D>();
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            transform.SetParent(null); // 점프 등으로 떨어질 경우 분리
+        }
     }
 }
