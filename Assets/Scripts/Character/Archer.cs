@@ -1,11 +1,12 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Archer : MonoBehaviour
 {
     [Header("MP 시스템")]
-    public int maxMP = 100;
-    private int currentMP = 0;
+    public float maxMP = 100;
+    private float currentMP = 0;
 
     [Header("일반 공격")]
     public GameObject normalProjectile;
@@ -26,6 +27,8 @@ public class Archer : MonoBehaviour
     private bool isUltimateActive = false;
 
     public float maxFallSpeed = -10f; // 음수로 설정해야 아래로 가는 속도 제한
+    private bool isGround = true;
+    public Image mpImage;
 
     void Start()
     {
@@ -48,51 +51,61 @@ public class Archer : MonoBehaviour
         while (true)
         {
             yield return new WaitForSeconds(normalFireInterval);
-
-            // 가장 가까운 적 찾기
-            Transform target = FindNearestEnemy();
-            print("target "  + target);
-            if (target != null)
+            if (isGround)
             {
-                Vector2 direction = (target.position - firePoint.position).normalized;
+                // 가장 가까운 적 찾기
+                Transform target = FindNearestEnemy();
+                if (target != null)
+                {
+                    Vector2 direction = (target.position - firePoint.position).normalized;
 
-                GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-                proj.GetComponent<Arrow>().SetDirection(direction);
-            }
+                    GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+                    proj.GetComponent<Arrow>().SetDirection(direction);
+                }
 
-            // MP 증가
-            currentMP += mpPerShot;
-            currentMP = Mathf.Min(currentMP, maxMP);
+                // MP 증가
+                currentMP += mpPerShot;
+                mpImage.fillAmount = currentMP / maxMP;
+                currentMP = Mathf.Min(currentMP, maxMP);
 
-            // 궁극기 발동 조건 확인
-            if (currentMP >= maxMP && !isUltimateActive)
-            {
+                // 궁극기 발동 조건 확인
+                if (currentMP >= maxMP && !isUltimateActive)
+                {
 
-                fixedJoint.connectedBody = null;
-                fixedJoint.enabled = false;
+                    fixedJoint.connectedBody = null;
+                    fixedJoint.enabled = false;
 
-                StartCoroutine(ActivateUltimate());
+                    StartCoroutine(ActivateUltimate());
+                }
             }
         }
     }
 
     IEnumerator ActivateUltimate()
     {
-        isUltimateActive = true;
-        currentMP = 0;
-
-        // 점프
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
-        // 궁극기 3연사
-        for (int i = 0; i < burstCount; i++)
+        if (isGround)
         {
-            yield return new WaitForSeconds(burstFireDelay);
-            FireBurstProjectiles();
-            yield return new WaitForSeconds(burstInterval);
-        }
+            isGround = false;
+            transform.SetParent(null); // 점프 등으로 떨어질 경우 분리
+            RiderManager.Instance.RiderCountDown();
 
-        isUltimateActive = false;
+            isUltimateActive = true;
+            currentMP = 0;
+            mpImage.fillAmount = currentMP / maxMP;
+
+            // 점프
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+            // 궁극기 3연사
+            for (int i = 0; i < burstCount; i++)
+            {
+                yield return new WaitForSeconds(burstFireDelay);
+                FireBurstProjectiles();
+                yield return new WaitForSeconds(burstInterval);
+            }
+
+            isUltimateActive = false;
+        }
     }
 
     void FireBurstProjectiles()
@@ -108,10 +121,8 @@ public class Archer : MonoBehaviour
             GameObject proj = Instantiate(burstProjectile, startPos, rotation);
             proj.GetComponent<Arrow>().SetDirection(rotation * Vector2.right);
         }
-
-
-
     }
+
 
     Transform FindNearestEnemy()
     {
@@ -147,16 +158,21 @@ public class Archer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            isGround = true;
+            if (isUltimateActive) return;
+
+            RiderManager.Instance.RiderCountUp();
             fixedJoint.enabled = true;
             fixedJoint.connectedBody = collision.transform.GetComponent<Rigidbody2D>();
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            transform.SetParent(null); // 점프 등으로 떨어질 경우 분리
-        }
-    }
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        isGround = false;
+    //        transform.SetParent(null); // 점프 등으로 떨어질 경우 분리
+    //    }
+    //}
 }
