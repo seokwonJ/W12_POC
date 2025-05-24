@@ -30,6 +30,8 @@ public class Archer : MonoBehaviour
     private bool isGround = true;
     public Image mpImage;
 
+    public bool stage3;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -61,21 +63,30 @@ public class Archer : MonoBehaviour
 
                     GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
                     proj.GetComponent<Arrow>().SetDirection(direction);
-                }
 
-                // MP 증가
-                currentMP += mpPerShot;
-                mpImage.fillAmount = currentMP / maxMP;
-                currentMP = Mathf.Min(currentMP, maxMP);
+                    if (stage3 == true)
+                    {
+                        GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+                        proj2.GetComponent<Arrow>().SetDirection(direction + Vector2.up);
 
-                // 궁극기 발동 조건 확인
-                if (currentMP >= maxMP && !isUltimateActive)
-                {
+                        GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+                        proj3.GetComponent<Arrow>().SetDirection(direction + -1 * Vector2.up);
+                    }
 
-                    fixedJoint.connectedBody = null;
-                    fixedJoint.enabled = false;
+                    // MP 증가
+                    currentMP += mpPerShot;
+                    mpImage.fillAmount = currentMP / maxMP;
+                    currentMP = Mathf.Min(currentMP, maxMP);
 
-                    StartCoroutine(ActivateUltimate());
+                    // 궁극기 발동 조건 확인
+                    if (currentMP >= maxMP && !isUltimateActive)
+                    {
+
+                        fixedJoint.connectedBody = null;
+                        fixedJoint.enabled = false;
+
+                        StartCoroutine(ActivateUltimate());
+                    }
                 }
             }
         }
@@ -158,6 +169,15 @@ public class Archer : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            // 접촉면의 방향이 위쪽을 향하고 있는지 확인
+            ContactPoint2D contact = collision.contacts[0];
+            Vector2 normal = contact.normal;
+
+            // 법선 벡터가 거의 (0, 1)에 가까운 경우만 허용 (약간의 오차 허용)
+            if (Vector2.Dot(normal, Vector2.up) < 0.9f)
+                return;
+
+
             isGround = true;
             if (isUltimateActive) return;
 

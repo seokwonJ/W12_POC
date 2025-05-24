@@ -61,20 +61,20 @@ public class Magician : MonoBehaviour
 
                     GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
                     proj.GetComponent<MagicBall>().SetDirection(direction);
-                }
 
-                // MP 증가
-                currentMP += mpPerShot;
-                currentMP = Mathf.Min(currentMP, maxMP);
-                mpImage.fillAmount = currentMP / maxMP;
+                    // MP 증가
+                    currentMP += mpPerShot;
+                    currentMP = Mathf.Min(currentMP, maxMP);
+                    mpImage.fillAmount = currentMP / maxMP;
 
-                // 궁극기 발동 조건 확인
-                if (currentMP >= maxMP && !isUltimateActive)
-                {
-                    fixedJoint.connectedBody = null;
-                    fixedJoint.enabled = false;
+                    // 궁극기 발동 조건 확인
+                    if (currentMP >= maxMP && !isUltimateActive)
+                    {
+                        fixedJoint.connectedBody = null;
+                        fixedJoint.enabled = false;
 
-                    StartCoroutine(ActivateUltimate());
+                        StartCoroutine(ActivateUltimate());
+                    }
                 }
             }
         }
@@ -111,10 +111,13 @@ public class Magician : MonoBehaviour
     {
         Vector3 startPos = transform.position;
         Transform target = FindNearestEnemy();
-        GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<MagicBall>().SetDirection((target.position - firePoint.position).normalized);
-        proj.GetComponent<MagicBall>().speed = 5;
-        proj.transform.localScale *= 3;
+        if (target != null)
+        {
+            GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+            proj.GetComponent<MagicBall>().SetDirection((target.position - firePoint.position).normalized);
+            proj.GetComponent<MagicBall>().speed = 5;
+            proj.transform.localScale *= 3;
+        }
     }
 
     Transform FindNearestEnemy()
@@ -150,6 +153,14 @@ public class Magician : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
+            // 접촉면의 방향이 위쪽을 향하고 있는지 확인
+            ContactPoint2D contact = collision.contacts[0];
+            Vector2 normal = contact.normal;
+
+            // 법선 벡터가 거의 (0, 1)에 가까운 경우만 허용 (약간의 오차 허용)
+            if (Vector2.Dot(normal, Vector2.up) < 0.9f)
+                return;
+
             isGround = true;
             if (isUltimateActive) return;
             RiderManager.Instance.RiderCountUp();
