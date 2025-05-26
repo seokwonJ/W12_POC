@@ -1,4 +1,6 @@
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -11,22 +13,25 @@ public class EnemySpawner : MonoBehaviour
     public float Enemy2SpawnDelay = 3;
     float Enemy2SpawnCurrentDelay;
 
-    float PlayTime = 0;
-
+    public float playTime;
+    float currentPlayTime = 0;
+    public Text playTime_Text;
 
     private void Start()
     {
         Enemy1SpawnCurrentDelay = Enemy1SpawnDelay;
         Enemy2SpawnCurrentDelay = Enemy2SpawnDelay;
+        currentPlayTime = playTime;
     }
 
     private void Update()
     {
         Enemy1SpawnCurrentDelay -= Time.deltaTime;
         Enemy2SpawnCurrentDelay -= Time.deltaTime;
-        PlayTime += Time.deltaTime;
+        currentPlayTime -= Time.deltaTime;
+        playTime_Text.text = ((int)currentPlayTime).ToString();
 
-        if(PlayTime > 40)
+        if (currentPlayTime <= 0)
         {
             GameSceneManager.Instance.GameClearUI();
         }

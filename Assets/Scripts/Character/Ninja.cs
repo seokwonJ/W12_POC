@@ -126,9 +126,6 @@ public class Ninja : MonoBehaviour
 
     Transform FindNearestEnemy()
     {
-        print("ddd");
-
-
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
         float closestDist = Mathf.Infinity;
         Transform closestEnemy = null;

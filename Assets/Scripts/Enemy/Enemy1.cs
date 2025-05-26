@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Enemy1 : MonoBehaviour
+public class EnemyAI : MonoBehaviour
 {
     public float speed = 3f;
     public float retreatSpeed = 4f;
@@ -13,13 +13,17 @@ public class Enemy1 : MonoBehaviour
     public Transform firePoint;
 
     private Transform player;
+    private Rigidbody2D rb;
     private float lastFireTime;
     private enum State { Approach, Attack, Retreat }
     private State currentState = State.Approach;
 
+    private Vector2 moveDirection = Vector2.zero;
+
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -32,10 +36,11 @@ public class Enemy1 : MonoBehaviour
                 if (distance <= attackRange)
                 {
                     currentState = State.Attack;
+                    moveDirection = Vector2.zero;
                 }
                 else
                 {
-                    MoveTowards(player.position, speed);
+                    moveDirection = (player.position - transform.position).normalized * speed;
                 }
                 break;
 
@@ -46,6 +51,7 @@ public class Enemy1 : MonoBehaviour
                     lastFireTime = Time.time;
                     currentState = State.Retreat;
                 }
+                moveDirection = Vector2.zero;
                 break;
 
             case State.Retreat:
@@ -55,17 +61,26 @@ public class Enemy1 : MonoBehaviour
                 }
                 else
                 {
-                    Vector2 dir = (transform.position - player.position).normalized;
-                    MoveTowards(transform.position + (Vector3)dir, retreatSpeed);
+                    moveDirection = (transform.position - player.position).normalized * retreatSpeed;
                 }
                 break;
         }
     }
 
-    private void MoveTowards(Vector2 target, float moveSpeed)
+    private void FixedUpdate()
     {
-        Vector2 direction = (target - (Vector2)transform.position).normalized;
-        transform.position += (Vector3)direction * moveSpeed * Time.deltaTime;
+        if (isKnockback)
+        {
+            knockbackTimer -= Time.fixedDeltaTime;
+            if (knockbackTimer <= 0f)
+            {
+                isKnockback = false;
+            }
+            return; // 넉백 중엔 이동 안 함
+        }
+
+        Vector2 direction = (player.position - transform.position).normalized;
+        rb.linearVelocity = direction * speed;
     }
 
     private void FireProjectile()
@@ -73,5 +88,17 @@ public class Enemy1 : MonoBehaviour
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.identity);
         Vector2 dir = (player.position - firePoint.position).normalized;
         proj.GetComponent<Rigidbody2D>().linearVelocity = dir * 8f;
+    }
+
+    private bool isKnockback = false;
+    private float knockbackTime = 0.05f; // 넉백 지속 시간
+    private float knockbackTimer = 0f;
+
+    public void ApplyKnockback(Vector2 direction, float power)
+    {
+        isKnockback = true;
+        knockbackTimer = knockbackTime;
+        rb.linearVelocity = Vector2.zero; // 기존 움직임 제거
+        rb.AddForce(direction.normalized * power, ForceMode2D.Impulse);
     }
 }
