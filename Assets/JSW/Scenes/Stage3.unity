@@ -2343,6 +2343,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 284370707}
   normalProjectile: {fileID: 3397254127826795141, guid: 463033b682c21714ab2bd2741b0b5eaf, type: 3}
   firePoint: {fileID: 532515488}
   normalFireInterval: 1
@@ -2354,7 +2355,6 @@ MonoBehaviour:
   burstInterval: 0.3
   burstFireDelay: 0.1
   maxFallSpeed: -10
-  mpImage: {fileID: 284370707}
 --- !u!50 &532515491
 Rigidbody2D:
   serializedVersion: 5
@@ -2502,6 +2502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 1330138556}
   normalProjectile: {fileID: 2330834722853355751, guid: 2ae4b4304b31b4641ae3c88f573d501f, type: 3}
   firePoint: {fileID: 1928602102}
   normalFireInterval: 0.2
@@ -2513,7 +2514,6 @@ MonoBehaviour:
   burstInterval: 0.1
   burstFireDelay: 0.05
   maxFallSpeed: -10
-  mpImage: {fileID: 1330138556}
   stage3: 1
 --- !u!70 &540536642
 CapsuleCollider2D:
@@ -3878,10 +3878,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 1737713240}
   normalProjectile: {fileID: 6537457085924451293, guid: 81ea71a00a98a974c800aa788df95b99, type: 3}
   firePoint: {fileID: 810365877}
   normalFireInterval: 0.05
-  mpPerShot: 0.3
+  mpPerShot: 1
   enemyDetectRadius: 20
   jumpForce: 13
   burstProjectile: {fileID: 0}
@@ -3889,7 +3890,6 @@ MonoBehaviour:
   burstInterval: 0.3
   burstFireDelay: 0.1
   maxFallSpeed: -10
-  mpImage: {fileID: 1737713240}
 --- !u!70 &810365880
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5480,6 +5480,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 554469212}
   normalProjectile: {fileID: 7373925757434712426, guid: fc9b65927ae6ace4f9728ae732e16ce2, type: 3}
   firePoint: {fileID: 1185495245}
   normalFireInterval: 0.3
@@ -5491,7 +5492,6 @@ MonoBehaviour:
   burstInterval: 0.3
   burstFireDelay: 1.5
   maxFallSpeed: -10
-  mpImage: {fileID: 554469212}
 --- !u!70 &1185495248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
