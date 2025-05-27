@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      saeg-png-giban_0: -7452716144369169361
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
