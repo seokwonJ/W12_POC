@@ -2,97 +2,29 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Archer : MonoBehaviour
+public class Archer : Character
 {
-    [Header("MP 시스템")]
-    public float maxMP = 100;
-    private float currentMP = 0;
+    public bool stage3; // 이건 Archer 고유 옵션이니 유지
 
-    [Header("일반 공격")]
-    public GameObject normalProjectile;
-    public Transform firePoint;
-    public float normalFireInterval = 1f;
-    public int mpPerShot = 10;
-    public float enemyDetectRadius = 10f;
-
-    [Header("점프 & 궁극기")]
-    public float jumpForce = 10f;
-    public GameObject burstProjectile;
-    public int burstCount = 3;
-    public float burstInterval = 0.3f;
-    public float burstFireDelay = 0.1f;
-
-    private Rigidbody2D rb;
-    private FixedJoint2D fixedJoint;
-    private bool isUltimateActive = false;
-
-    public float maxFallSpeed = -10f; // 음수로 설정해야 아래로 가는 속도 제한
-    private bool isGround = true;
-    public Image mpImage;
-
-    public bool stage3;
-
-    void Start()
+    // 일반 공격 오버라이드
+    protected override void FireNormalProjectile(Vector3 targetPos)
     {
-        rb = GetComponent<Rigidbody2D>();
-        fixedJoint = GetComponent<FixedJoint2D>();
-        StartCoroutine(NormalAttackRoutine());
-    }
+        Vector2 direction = (targetPos - firePoint.position).normalized;
 
-    void FixedUpdate()
-    {
-        // 현재 y속도가 최대 낙하 속도를 넘으면 제한
-        if (rb.linearVelocity.y < maxFallSpeed)
+        GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+        proj.GetComponent<Arrow>().SetDirection(direction);
+
+        if (stage3)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxFallSpeed);
+            GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+            proj2.GetComponent<Arrow>().SetDirection(direction + Vector2.up);
+
+            GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+            proj3.GetComponent<Arrow>().SetDirection(direction + Vector2.down);
         }
     }
 
-    IEnumerator NormalAttackRoutine()
-    {
-        while (true)
-        {
-            yield return new WaitForSeconds(normalFireInterval);
-            if (isGround)
-            {
-                // 가장 가까운 적 찾기
-                Transform target = FindNearestEnemy();
-                if (target != null)
-                {
-                    Vector2 direction = (target.position - firePoint.position).normalized;
-
-                    GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-                    proj.GetComponent<Arrow>().SetDirection(direction);
-
-                    if (stage3 == true)
-                    {
-                        GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-                        proj2.GetComponent<Arrow>().SetDirection(direction + Vector2.up);
-
-                        GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-                        proj3.GetComponent<Arrow>().SetDirection(direction + -1 * Vector2.up);
-                    }
-
-                    // MP 증가
-                    currentMP += mpPerShot;
-                    mpImage.fillAmount = currentMP / maxMP;
-                    currentMP = Mathf.Min(currentMP, maxMP);
-
-                    // 궁극기 발동 조건 확인
-                    if (currentMP >= maxMP && !isUltimateActive)
-                    {
-
-                        fixedJoint.connectedBody = null;
-                        fixedJoint.enabled = false;
-
-                        StartCoroutine(ActivateUltimate());
-                    }
-                }
-            }
-        }
-    }
-
-    IEnumerator ActivateUltimate()
+    protected override IEnumerator ActivateUltimate()
     {
         if (isGround)
         {
@@ -119,7 +51,8 @@ public class Archer : MonoBehaviour
         }
     }
 
-    void FireBurstProjectiles()
+    // 궁극기 연사 오버라이드 (필요 시)
+    protected override void FireBurstProjectiles()
     {
         int projectileCount = 10;
         float angleStep = 360f / projectileCount;
@@ -133,66 +66,4 @@ public class Archer : MonoBehaviour
             proj.GetComponent<Arrow>().SetDirection(rotation * Vector2.right);
         }
     }
-
-
-    Transform FindNearestEnemy()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
-        float closestDist = Mathf.Infinity;
-        Transform closestEnemy = null;
-
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Enemy"))
-            {
-                float dist = Vector2.Distance(transform.position, hit.transform.position);
-                if (dist < closestDist)
-                {
-                    closestDist = dist;
-                    closestEnemy = hit.transform;
-                }
-            }
-        }
-
-        return closestEnemy;
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        // 시야 범위 시각화
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, enemyDetectRadius);
-    }
-
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            // 접촉면의 방향이 위쪽을 향하고 있는지 확인
-            ContactPoint2D contact = collision.contacts[0];
-            Vector2 normal = contact.normal;
-
-            // 법선 벡터가 거의 (0, 1)에 가까운 경우만 허용 (약간의 오차 허용)
-            if (Vector2.Dot(normal, Vector2.up) < 0.9f)
-                return;
-
-
-            isGround = true;
-            if (isUltimateActive) return;
-
-            RiderManager.Instance.RiderCountUp();
-            fixedJoint.enabled = true;
-            fixedJoint.connectedBody = collision.transform.GetComponent<Rigidbody2D>();
-        }
-    }
-
-    //private void OnCollisionExit2D(Collision2D collision)
-    //{
-    //    if (collision.gameObject.CompareTag("Player"))
-    //    {
-    //        isGround = false;
-    //        transform.SetParent(null); // 점프 등으로 떨어질 경우 분리
-    //    }
-    //}
 }
