@@ -4,7 +4,13 @@ using UnityEngine.UI;
 
 public class Magician : Character
 {
-    // 일반 공격 구현
+    [Header("궁극기")]
+    public GameObject burstProjectile;
+    public int burstCount = 3;
+    public float burstInterval = 0.3f;
+    public float burstFireDelay = 0.1f;
+
+    // 일반 공격: 가까운 적에게 관통 공격
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
@@ -13,35 +19,19 @@ public class Magician : Character
         proj.GetComponent<MagicBall>().SetDirection(direction);
     }
 
-    protected override IEnumerator ActivateUltimate()
+    // 스킬: 느리고 커다란 관통 공격
+    protected override IEnumerator FireSkill()
     {
-        if (isGround)
+        for (int i = 0; i < burstCount; i++)
         {
-            isGround = false;
-            transform.SetParent(null); // 점프 등으로 떨어질 경우 분리
-            RiderManager.Instance.RiderCountDown();
-
-            isUltimateActive = true;
-            currentMP = 0;
-            mpImage.fillAmount = currentMP / maxMP;
-
-            // 점프
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
-            // 궁극기 3연사
-            for (int i = 0; i < burstCount; i++)
-            {
-                yield return new WaitForSeconds(burstFireDelay);
-                FireBurstProjectiles();
-                yield return new WaitForSeconds(burstInterval);
-            }
-
-            isUltimateActive = false;
+            yield return new WaitForSeconds(burstFireDelay);
+            FireSkillProjectiles();
+            yield return new WaitForSeconds(burstInterval);
         }
     }
 
     // 궁극기 발사 구현
-    protected override void FireBurstProjectiles()
+    protected override void FireSkillProjectiles()
     {
         Transform target = FindNearestEnemy();
         if (target != null)

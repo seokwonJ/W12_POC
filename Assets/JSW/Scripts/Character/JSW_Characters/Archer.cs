@@ -4,9 +4,15 @@ using UnityEngine.UI;
 
 public class Archer : Character
 {
+    [Header("궁극기")]
+    public GameObject burstProjectile;
+    public int burstCount = 3;
+    public float burstInterval = 0.3f;
+    public float burstFireDelay = 0.1f;
+
     public bool stage3; // 이건 Archer 고유 옵션이니 유지
 
-    // 일반 공격 오버라이드
+    // 일반 공격 : 화살 발사 
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
@@ -17,42 +23,28 @@ public class Archer : Character
         if (stage3)
         {
             GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj2.GetComponent<Arrow>().SetDirection(direction + Vector2.up);
+            proj2.GetComponent<Arrow>().SetDirection(Quaternion.Euler(0, 0, 10) * direction);
 
             GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj3.GetComponent<Arrow>().SetDirection(direction + Vector2.down);
+            proj3.GetComponent<Arrow>().SetDirection(Quaternion.Euler(0, 0, -10) * direction);
         }
+
+        Destroy(proj, 3);
     }
 
-    protected override IEnumerator ActivateUltimate()
+    // 스킬 : 사방에 화살 여러번 발사
+    protected override IEnumerator FireSkill()
     {
-        if (isGround)
+        for (int i = 0; i < burstCount; i++)
         {
-            isGround = false;
-            transform.SetParent(null); // 점프 등으로 떨어질 경우 분리
-            RiderManager.Instance.RiderCountDown();
-
-            isUltimateActive = true;
-            currentMP = 0;
-            mpImage.fillAmount = currentMP / maxMP;
-
-            // 점프
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-
-            // 궁극기 3연사
-            for (int i = 0; i < burstCount; i++)
-            {
-                yield return new WaitForSeconds(burstFireDelay);
-                FireBurstProjectiles();
-                yield return new WaitForSeconds(burstInterval);
-            }
-
-            isUltimateActive = false;
+            yield return new WaitForSeconds(burstFireDelay);
+            FireSkillProjectiles();
+            yield return new WaitForSeconds(burstInterval);
         }
     }
 
     // 궁극기 연사 오버라이드 (필요 시)
-    protected override void FireBurstProjectiles()
+    protected override void FireSkillProjectiles()
     {
         int projectileCount = 10;
         float angleStep = 360f / projectileCount;

@@ -2367,7 +2367,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 532515488}
-  - component: {fileID: 532515489}
   - component: {fileID: 532515490}
   - component: {fileID: 532515491}
   - component: {fileID: 532515492}
@@ -2395,20 +2394,6 @@ Transform:
   - {fileID: 1741324691}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &532515489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 532515487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &532515490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2422,18 +2407,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 284370707}
   normalProjectile: {fileID: 3397254127826795141, guid: 6b65e076b01625c4aa90f35adc425b6f, type: 3}
   firePoint: {fileID: 532515488}
   normalFireInterval: 3
   mpPerShot: 35
   enemyDetectRadius: 100
   jumpForce: 5
+  maxFallSpeed: -10
   burstProjectile: {fileID: 3397254127826795141, guid: 6b65e076b01625c4aa90f35adc425b6f, type: 3}
   burstCount: 3
   burstInterval: 0.3
   burstFireDelay: 0.1
-  maxFallSpeed: -10
-  mpImage: {fileID: 284370707}
 --- !u!50 &532515491
 Rigidbody2D:
   serializedVersion: 5
@@ -2526,7 +2511,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 540536638}
-  - component: {fileID: 540536639}
   - component: {fileID: 540536640}
   - component: {fileID: 540536642}
   - component: {fileID: 540536643}
@@ -2554,20 +2538,6 @@ Transform:
   - {fileID: 1928602102}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &540536639
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 540536637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &540536640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2581,18 +2551,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 1330138556}
   normalProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
   firePoint: {fileID: 1928602102}
   normalFireInterval: 0.5
   mpPerShot: 10
   enemyDetectRadius: 100
   jumpForce: 10
+  maxFallSpeed: -10
   burstProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
   burstCount: 3
   burstInterval: 0.3
   burstFireDelay: 0.1
-  maxFallSpeed: -10
-  mpImage: {fileID: 1330138556}
   stage3: 0
 --- !u!70 &540536642
 CapsuleCollider2D:
@@ -3981,7 +3951,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 810365877}
-  - component: {fileID: 810365878}
   - component: {fileID: 810365879}
   - component: {fileID: 810365881}
   - component: {fileID: 810365880}
@@ -4009,20 +3978,6 @@ Transform:
   - {fileID: 871018280}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &810365878
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 810365876}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &810365879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4036,18 +3991,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 1737713240}
   normalProjectile: {fileID: 6537457085924451293, guid: 9b656dfe2bb050f48b58b7c7a95bcf44, type: 3}
   firePoint: {fileID: 810365877}
   normalFireInterval: 0.25
   mpPerShot: 3
   enemyDetectRadius: 10
   jumpForce: 13
-  burstProjectile: {fileID: 0}
-  burstCount: 3
-  burstInterval: 0.3
-  burstFireDelay: 0.1
   maxFallSpeed: -10
-  mpImage: {fileID: 1737713240}
+  burstInterval: 0.3
+  isUltimateLanding: 0
+  UltimagePower: 20
+  UltimagePowerTime: 3
 --- !u!70 &810365880
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -5762,7 +5717,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1185495245}
-  - component: {fileID: 1185495246}
   - component: {fileID: 1185495247}
   - component: {fileID: 1185495249}
   - component: {fileID: 1185495248}
@@ -5790,20 +5744,6 @@ Transform:
   - {fileID: 452292846}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1185495246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185495244}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &1185495247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5817,18 +5757,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpImage: {fileID: 554469212}
   normalProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
   firePoint: {fileID: 1185495245}
   normalFireInterval: 1
   mpPerShot: 15
   enemyDetectRadius: 100
   jumpForce: 10
+  maxFallSpeed: -10
   burstProjectile: {fileID: 0}
   burstCount: 1
   burstInterval: 0.3
   burstFireDelay: 1.5
-  maxFallSpeed: -10
-  mpImage: {fileID: 554469212}
 --- !u!70 &1185495248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
 {
+    // 캐릭터 기본 능력치
     [Header("MP 시스템")]
     public float maxMP = 100f;
     protected float currentMP = 0f;
@@ -16,19 +17,14 @@ public abstract class Character : MonoBehaviour
     public int mpPerShot = 10;
     public float enemyDetectRadius = 10f;
 
-    [Header("궁극기 & 점프")]
+    [Header("점프")]
     public float jumpForce = 10f;
-    public GameObject burstProjectile;
-    public int burstCount = 3;
-    public float burstInterval = 0.3f;
-    public float burstFireDelay = 0.1f;
+    public float maxFallSpeed = -10f;
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
     protected bool isGround = true;
     protected bool isUltimateActive = false;
-
-    public float maxFallSpeed = -10f;
 
     protected virtual void Start()
     {
@@ -37,6 +33,7 @@ public abstract class Character : MonoBehaviour
         StartCoroutine(NormalAttackRoutine());
     }
 
+    // 떨어질 때 속력
     protected virtual void FixedUpdate()
     {
         if (rb.linearVelocity.y < maxFallSpeed)
@@ -45,6 +42,7 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    // 일반공격 부분
     protected IEnumerator NormalAttackRoutine()
     {
         while (true)
@@ -65,16 +63,18 @@ public abstract class Character : MonoBehaviour
                 {
                     fixedJoint.connectedBody = null;
                     fixedJoint.enabled = false;
-                    StartCoroutine(ActivateUltimate());
+                    StartCoroutine(ActiveSkill());
                 }
             }
         }
     }
 
-    // 🔥 직업별로 반드시 구현해야 하는 부분
+    // 일반공격 투사체 관련 부분
     protected abstract void FireNormalProjectile(Vector3 targetPos);
 
-    protected virtual IEnumerator ActivateUltimate()
+
+    //스킬 사용하는 부분
+    protected virtual IEnumerator ActiveSkill()
     {
         if (!isGround) yield break;
 
@@ -82,37 +82,31 @@ public abstract class Character : MonoBehaviour
         transform.SetParent(null);
         RiderManager.Instance.RiderCountDown();
 
-        isUltimateActive = true;
         currentMP = 0;
         mpImage.fillAmount = 0;
+        isUltimateActive = true;
 
+        //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
 
-        //for (int i = 0; i < burstCount; i++)
-        //{
-        //    yield return new WaitForSeconds(burstFireDelay);
-        //    FireBurstProjectiles();
-        //    yield return new WaitForSeconds(burstInterval);
-        //}
+        yield return StartCoroutine(FireSkill());
 
+        // 궁극기 끝내는 부분
         isUltimateActive = false;
     }
 
-    protected virtual void FireBurstProjectiles()
+    // 스킬 발동 부분
+    protected virtual IEnumerator FireSkill()
     {
-        //// 기본 360도 탄막
-        //int count = 10;
-        //float angleStep = 360f / count;
-
-        //for (int i = 0; i < count; i++)
-        //{
-        //    float angle = i * angleStep;
-        //    Quaternion rotation = Quaternion.Euler(0, 0, angle);
-        //    GameObject proj = Instantiate(burstProjectile, transform.position, rotation);
-        //    //proj.GetComponent<Projectile>().SetDirection(rotation * Vector2.right);
-        //}
+        yield return null;
     }
 
+
+    // 스킬 투사체 관련 부분
+    protected virtual void FireSkillProjectiles() { }
+
+
+    // 사정거리내에 적을 발견하는 함수
     protected Transform FindNearestEnemy()
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
@@ -131,10 +125,10 @@ public abstract class Character : MonoBehaviour
                 }
             }
         }
-
         return nearest;
     }
 
+    // 착지하는 부분 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
@@ -150,6 +144,7 @@ public abstract class Character : MonoBehaviour
         fixedJoint.connectedBody = collision.rigidbody;
     }
 
+    // 사거리 나타내는 함수
     protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
