@@ -55,28 +55,25 @@ public class WorriorUpgrade : CharacterUpgrade
                 Debug.Log("Debug4 Worrior");
                 worrior.upgradeNum = 5;
                 break;
-            case UpgradeType.SkillProjectileCount:                 // 스킬 횟수가 +3 증가
+            case UpgradeType.SkillProjectileCount:                 // 스킬 횟수가 +2 증가
                 worrior.burstCount += 2;
                 Debug.Log("Debug5 Worrior");
                 worrior.upgradeNum = 5;
                 break;
-
-            // 여기까지 함
-            case UpgradeType.NormalProjectileLifetime:               // 스킬에 사용하는 화살 갯수 +6 증가
-                //worrior.skillProjectileCount += 6;
+            case UpgradeType.NormalProjectileLifetime:               // attack생존시간 5플러스
+                worrior.nomalAttackLifetime += 5;
                 Debug.Log("Debug6 Worrior");
                 worrior.upgradeNum = 7;
                 break;
-            case UpgradeType.CollisionOnFallDamage:                   // 사거리 50 증가
-                worrior.enemyDetectRadius += 50;
+            case UpgradeType.CollisionOnFallDamage:                   //  떨어지면서 적과 부딪힐 경우 데미지 입힘 true로 바꿔줌
+                worrior.isfallingCanAttack = true;
                 Debug.Log("Debug7 Worrior");
                 worrior.upgradeNum = 8;
                 break;
-            case UpgradeType.ShipDamageReduction:                    // 투사체 속도 15증가
-                worrior.projectileSpeed += 15;
+            case UpgradeType.ShipDamageReduction:                    // 배에 타있으면 배가 받는 데미지 피해 줄여줌 true로 바꿔줌
+                worrior.isShieldFlyer = true;
                 Debug.Log("Debug8 Worrior");
-                worrior.upgradeNum = 
-                    9;
+                worrior.upgradeNum = 9;
                 break;
         }
 
