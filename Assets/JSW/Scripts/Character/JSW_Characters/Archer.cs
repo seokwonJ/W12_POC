@@ -10,7 +10,12 @@ public class Archer : Character
     public float burstInterval = 0.3f;
     public float burstFireDelay = 0.1f;
 
+
     public bool stage3; // 이건 Archer 고유 옵션이니 유지
+
+
+    public int upgradeNum;
+
 
     // 일반 공격 : 화살 발사 
     protected override void FireNormalProjectile(Vector3 targetPos)
