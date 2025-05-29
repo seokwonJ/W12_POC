@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,19 +8,24 @@ public abstract class Character : MonoBehaviour
     // 캐릭터 기본 능력치
     [Header("MP 시스템")]
     public float maxMP = 100f;
+    public float mpPerSecond = 7;         // 초당 마나회복량
     protected float currentMP = 0f;
     public Image mpImage;
 
     [Header("일반 공격")]
     public GameObject normalProjectile;
     public Transform firePoint;
-    public float normalFireInterval = 1f;
-    public int mpPerShot = 10;
-    public float enemyDetectRadius = 10f;
+    public float normalFireInterval = 1f;       // 공격 후 쿨타임 (공속)
+    public float enemyDetectRadius = 10f;       // 사거리
 
     [Header("점프")]
-    public float jumpForce = 10f;
+    public float jumpForce = 10f;               // 점프력
     public float maxFallSpeed = -10f;
+
+    [Header("공격력")]
+    public int attackDamage;      // ad 물리공격력
+    public int abilityPower;      // ap 주문력
+    public float projectileSpeed;
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
@@ -42,6 +48,22 @@ public abstract class Character : MonoBehaviour
         }
     }
 
+    protected virtual void Update()
+    {
+        if (!isGround) return;
+
+        currentMP += Time.deltaTime * mpPerSecond;
+        currentMP = Mathf.Min(currentMP, maxMP);
+        mpImage.fillAmount = currentMP / maxMP;
+
+        if (currentMP >= maxMP && !isUltimateActive)
+        {
+            fixedJoint.connectedBody = null;
+            fixedJoint.enabled = false;
+            StartCoroutine(ActiveSkill());
+        }
+    }
+
     // 일반공격 부분
     protected IEnumerator NormalAttackRoutine()
     {
@@ -54,17 +76,6 @@ public abstract class Character : MonoBehaviour
             if (target != null)
             {
                 FireNormalProjectile(target.position);
-
-                currentMP += mpPerShot;
-                currentMP = Mathf.Min(currentMP, maxMP);
-                mpImage.fillAmount = currentMP / maxMP;
-
-                if (currentMP >= maxMP && !isUltimateActive)
-                {
-                    fixedJoint.connectedBody = null;
-                    fixedJoint.enabled = false;
-                    StartCoroutine(ActiveSkill());
-                }
             }
         }
     }
@@ -136,8 +147,8 @@ public abstract class Character : MonoBehaviour
         ContactPoint2D contact = collision.contacts[0];
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
 
-        isGround = true;
         if (isUltimateActive) return;
+        isGround = true;
 
         RiderManager.Instance.RiderCountUp();
         fixedJoint.enabled = true;

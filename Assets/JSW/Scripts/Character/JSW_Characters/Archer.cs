@@ -23,15 +23,15 @@ public class Archer : Character
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<Arrow>().SetDirection(direction);
+        proj.GetComponent<Arrow>().SetInit(direction, attackDamage, projectileSpeed);
 
         if (stage3)
         {
             GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj2.GetComponent<Arrow>().SetDirection(Quaternion.Euler(0, 0, 10) * direction);
+            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 10) * direction, attackDamage, projectileSpeed);
 
             GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj3.GetComponent<Arrow>().SetDirection(Quaternion.Euler(0, 0, -10) * direction);
+            proj3.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, -10) * direction, attackDamage, projectileSpeed);
         }
 
         Destroy(proj, 3);
@@ -60,7 +60,7 @@ public class Archer : Character
             float angle = i * angleStep;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             GameObject proj = Instantiate(burstProjectile, startPos, rotation);
-            proj.GetComponent<Arrow>().SetDirection(rotation * Vector2.right);
+            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, attackDamage, projectileSpeed);
         }
     }
 }

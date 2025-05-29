@@ -15,7 +15,7 @@ public class Ninja : Character
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<Kunai>().SetDirection(direction);
+        proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
     }
 
     // 스킬 : 점프 후 착지시 3초간 공격력 강화
@@ -32,8 +32,8 @@ public class Ninja : Character
         ContactPoint2D contact = collision.contacts[0];
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
 
-        isGround = true;
         if (isUltimateActive) return;
+        isGround = true;
         if (isUltimateLanding)
         {
             isUltimateLanding = false;

@@ -18,12 +18,15 @@ public class ProjectileBase : MonoBehaviour
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
-    public virtual void SetDirection(Vector2 dir)
+    public virtual void SetInit(Vector2 dir, int damageNum, float speedNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+        damage = damageNum;
+        speed = speedNum;
     }
+
 
     protected virtual void OnTriggerEnter2D(Collider2D other)
     {

@@ -16,7 +16,7 @@ public class Magician : Character
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<MagicBall>().SetDirection(direction);
+        proj.GetComponent<MagicBall>().SetInit(direction,abilityPower,projectileSpeed);
     }
 
     // 스킬: 느리고 커다란 관통 공격
@@ -39,7 +39,7 @@ public class Magician : Character
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
             MagicBall mb = proj.GetComponent<MagicBall>();
-            mb.SetDirection((target.position - firePoint.position).normalized);
+            mb.SetInit((target.position - firePoint.position).normalized, abilityPower, projectileSpeed);
             mb.speed = 5;
             proj.transform.localScale *= 3;
         }

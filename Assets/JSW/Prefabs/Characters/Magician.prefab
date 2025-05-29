@@ -115,7 +115,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1450283076957204448}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.71, y: 2.97, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -136,14 +136,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 15
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
   firePoint: {fileID: 455397532922092977}
   normalFireInterval: 1
-  mpPerShot: 15
   enemyDetectRadius: 100
   jumpForce: 10
   maxFallSpeed: -10
+  attackDamage: 0
+  abilityPower: 15
+  projectileSpeed: 15
   burstProjectile: {fileID: 0}
   burstCount: 1
   burstInterval: 0.3
