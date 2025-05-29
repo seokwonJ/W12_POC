@@ -185,9 +185,9 @@ GameObject:
   - component: {fileID: 3522934648679186784}
   - component: {fileID: 6767925907166550130}
   - component: {fileID: 417919556317119751}
-  - component: {fileID: 8335017293285894366}
   - component: {fileID: 2547726117004197558}
   - component: {fileID: 104311085194347337}
+  - component: {fileID: -9145300269846539496}
   m_Layer: 0
   m_Name: Enemy2
   m_TagString: Enemy
@@ -204,7 +204,7 @@ Transform:
   m_GameObject: {fileID: 7272904772713194245}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.471307, y: 13.291737, z: 0.15002449}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
@@ -303,19 +303,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.0000009536743, y: 0}
   m_Radius: 0.51774883
---- !u!114 &8335017293285894366
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7272904772713194245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8b3c3dfbbe5e704d8ecf7a8faa32c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 5
 --- !u!50 &2547726117004197558
 Rigidbody2D:
   serializedVersion: 5
@@ -356,3 +343,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 45
+--- !u!114 &-9145300269846539496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7272904772713194245}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be2bd29a45f7e464fbe41a0226f19168, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 5
+  retreatSpeed: 4
+  approachRange: 20
+  attackRange: 10
+  retreatDistance: 11
+  fireCooldown: 2
+  projectileSpeed: 0
+  movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
+  attackSO: {fileID: 0}
+  projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
+  firePoint: {fileID: 0}
+  player: {fileID: 0}
+  rb: {fileID: 0}

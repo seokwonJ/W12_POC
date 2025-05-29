@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Arrow : MonoBehaviour
 {
@@ -27,25 +27,25 @@ public class Arrow : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.CompareTag("Enemy")) // ÅÂ±×´Â ÇÊ¿ä¿¡ µû¶ó ¼³Á¤
+        if (other.CompareTag("Enemy")) // íƒœê·¸ëŠ” í•„ìš”ì— ë”°ë¼ ì„¤ì •
         {
-            // µ¥¹ÌÁö ÀÔÈ÷´Â ·ÎÁ÷ (Àû ½ºÅ©¸³Æ®¿¡¼­ ¹Şµµ·Ï ¼³°è °¡´É)
+            // ë°ë¯¸ì§€ ì…íˆëŠ” ë¡œì§ (ì  ìŠ¤í¬ë¦½íŠ¸ì—ì„œ ë°›ë„ë¡ ì„¤ê³„ ê°€ëŠ¥)
             Debug.Log("Hit enemy!");
             other.GetComponent<EnemyHP>().TakeDamage(damage);
 
-            Enemy2 rb2 = other.GetComponent<Enemy2>();
-            if (rb2!= null)
-            {
-                Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
-                rb2.ApplyKnockback(knockbackDirection, 1);
-            }
-            else
-            {
-                EnemyAI rb1 = other.GetComponent<EnemyAI>();
+            //Enemy2 rb2 = other.GetComponent<Enemy2>();
+            //if (rb2!= null)
+            //{
+            //    Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
+            //    rb2.ApplyKnockback(knockbackDirection, 1);
+            //}
+            //else
+            //{
+            //    EnemyAI rb1 = other.GetComponent<EnemyAI>();
 
-                Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
-                rb1.ApplyKnockback(knockbackDirection, 1);
-            }
+            //    Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
+            //    rb1.ApplyKnockback(knockbackDirection, 1);
+            //}
             Destroy(gameObject);
         }
     }

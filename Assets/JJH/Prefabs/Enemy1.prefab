@@ -11,9 +11,8 @@ GameObject:
   - component: {fileID: 2715036829172249429}
   - component: {fileID: 4276633064937619375}
   - component: {fileID: 7373224530758144929}
-  - component: {fileID: 4259899825586766361}
-  - component: {fileID: 4314202409012214010}
   - component: {fileID: 9030643398761379910}
+  - component: {fileID: 4314202409012214010}
   - component: {fileID: 2336702892526190934}
   m_Layer: 0
   m_Name: Enemy1
@@ -31,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 2971542310015680529}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.471307, y: 16.291737, z: 0.15002449}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -130,39 +129,6 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: -0.0000009536743, y: 0}
   m_Radius: 0.51774883
---- !u!114 &4259899825586766361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971542310015680529}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6614cfc01ac669e45b137f959317ae96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  retreatSpeed: 4
-  approachRange: 20
-  attackRange: 10
-  retreatDistance: 11
-  fireCooldown: 2
-  projectilePrefab: {fileID: 7373925757434712426, guid: 891ae665646effe44a8e43b26783312f, type: 3}
-  firePoint: {fileID: 2715036829172249429}
---- !u!114 &4314202409012214010
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971542310015680529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyHP: 100
 --- !u!50 &9030643398761379910
 Rigidbody2D:
   serializedVersion: 5
@@ -190,6 +156,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4314202409012214010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971542310015680529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyHP: 100
 --- !u!114 &2336702892526190934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,9 +181,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2bd29a45f7e464fbe41a0226f19168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speed: 3
+  retreatSpeed: 4
+  approachRange: 20
+  attackRange: 10
+  retreatDistance: 11
+  fireCooldown: 2
+  projectileSpeed: 8
+  movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
+  attackSO: {fileID: 11400000, guid: 9aec8e334ba37024facbb338251cce8c, type: 2}
   projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
   firePoint: {fileID: 2715036829172249429}
   player: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!1 &6061775303698966662
 GameObject:
   m_ObjectHideFlags: 0
