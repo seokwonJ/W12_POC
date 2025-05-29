@@ -54,7 +54,7 @@ public abstract class Character : MonoBehaviour
 
         currentMP += Time.deltaTime * mpPerSecond;
         currentMP = Mathf.Min(currentMP, maxMP);
-        mpImage.fillAmount = currentMP / maxMP;
+        if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
 
         if (currentMP >= maxMP && !isUltimateActive)
         {
