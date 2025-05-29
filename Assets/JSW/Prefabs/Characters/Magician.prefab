@@ -150,9 +150,16 @@ MonoBehaviour:
   projectileSpeed: 15
   burstProjectile: {fileID: 0}
   burstCount: 1
-  burstInterval: 0.3
-  burstFireDelay: 1.5
+  skillInterval: 0.3
+  skillFireDelay: 0.1
+  skillSize: 1
+  skillDamage: 1
+  nomalAttackSize: 1
+  isAddAbilityPower: 0
+  isnomalAttackSizePerMana: 0
+  isCanTeleport: 0
   upgradeNum: 0
+  player: {fileID: 0}
 --- !u!50 &4146563053807377205
 Rigidbody2D:
   serializedVersion: 5
