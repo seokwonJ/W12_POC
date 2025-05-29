@@ -10,6 +10,10 @@ public class Worrior : Character
     public float burstInterval = 0.3f;
     public float burstFireDelay = 0.1f;
 
+    [Header("일반공격 강화 강화")]
+    public float knockbackPower;
+    public float nomalAttackSize;
+
     public int upgradeNum;
 
     // 일반 공격: 직진형 투사체 발사

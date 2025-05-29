@@ -10,6 +10,8 @@ public class Magician : Character
     public float burstInterval = 0.3f;
     public float burstFireDelay = 0.1f;
 
+    public int upgradeNum;
+
     // 일반 공격: 가까운 적에게 관통 공격
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
