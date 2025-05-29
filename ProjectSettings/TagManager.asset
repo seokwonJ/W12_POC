@@ -44,5 +44,23 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: sky
+    uniqueID: 1736727923
+    locked: 0
+  - name: far-clouds
+    uniqueID: 206375443
+    locked: 0
+  - name: near-clouds
+    uniqueID: 2213941447
+    locked: 0
+  - name: far-mountains
+    uniqueID: 3199391629
+    locked: 0
+  - name: mountains
+    uniqueID: 947429485
+    locked: 0
+  - name: trees
+    uniqueID: 3803113799
+    locked: 0
   m_RenderingLayers:
   - Default
