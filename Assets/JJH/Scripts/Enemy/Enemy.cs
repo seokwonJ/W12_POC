@@ -5,6 +5,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 3f;
     public float fireCooldown = 2f;
+    public int damage = 20;
     public float projectileSpeed;
 
     public ScriptableObject movementSO;
@@ -51,5 +52,18 @@ public class Enemy : MonoBehaviour
     private void FixedUpdate()
     {
         movement?.Move();
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<PlayerHP>().TakeDamage(20);
+            Destroy(gameObject);
+        }
+        else if (collision.tag == "Wall")
+        {
+            Destroy(gameObject);
+        }
     }
 }

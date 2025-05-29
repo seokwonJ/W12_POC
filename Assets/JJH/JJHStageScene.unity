@@ -2350,7 +2350,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &532515488
 Transform:
   m_ObjectHideFlags: 0
@@ -3740,7 +3740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &810365877
 Transform:
   m_ObjectHideFlags: 0
@@ -5644,7 +5644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1185495245
 Transform:
   m_ObjectHideFlags: 0
@@ -8928,6 +8928,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemy1: {fileID: 2971542310015680529, guid: e85ed4fa121c2ca4b9ab35e62739636c, type: 3}
   enemy2: {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
+  enemy3: {fileID: 2971542310015680529, guid: 6f04bb04aaa06f743b9ca5338544cd29, type: 3}
   spawnPoints:
   - {fileID: 159853842}
   - {fileID: 1640558857}
@@ -8948,6 +8949,7 @@ MonoBehaviour:
   - {fileID: 1968725793}
   Enemy1SpawnDelay: 5
   Enemy2SpawnDelay: 3
+  Enemy3SpawnDelay: 2
   playTime: 60
   playTime_Text: {fileID: 663497427}
 --- !u!1 &1949148883
