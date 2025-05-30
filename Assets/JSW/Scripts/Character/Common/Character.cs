@@ -29,7 +29,7 @@ public abstract class Character : MonoBehaviour
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
-    protected bool isGround = true;
+    protected bool isGround = false;
     protected bool isUltimateActive = false;
 
     protected virtual void Start()
@@ -147,7 +147,7 @@ public abstract class Character : MonoBehaviour
         ContactPoint2D contact = collision.contacts[0];
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
 
-        if (isUltimateActive) return;
+        if (isUltimateActive || isGround) return;
         isGround = true;
 
         RiderManager.Instance.RiderCountUp();

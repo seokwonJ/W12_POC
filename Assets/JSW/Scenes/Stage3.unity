@@ -2328,8 +2328,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &532515490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2343,18 +2341,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
   mpImage: {fileID: 284370707}
   normalProjectile: {fileID: 3397254127826795141, guid: 463033b682c21714ab2bd2741b0b5eaf, type: 3}
   firePoint: {fileID: 532515488}
   normalFireInterval: 1
-  mpPerShot: 5
   enemyDetectRadius: 100
   jumpForce: 5
   maxFallSpeed: -10
+  attackDamage: 0
+  abilityPower: 0
+  projectileSpeed: 0
   burstProjectile: {fileID: 3397254127826795141, guid: 6b65e076b01625c4aa90f35adc425b6f, type: 3}
   burstCount: 3
   burstInterval: 0.3
   burstFireDelay: 0.1
+  upgradeNum: 0
 --- !u!50 &532515491
 Rigidbody2D:
   serializedVersion: 5
@@ -2487,8 +2489,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &540536640
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2502,19 +2502,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
   mpImage: {fileID: 1330138556}
   normalProjectile: {fileID: 2330834722853355751, guid: 2ae4b4304b31b4641ae3c88f573d501f, type: 3}
   firePoint: {fileID: 1928602102}
   normalFireInterval: 0.2
-  mpPerShot: 2
   enemyDetectRadius: 100
   jumpForce: 10
   maxFallSpeed: -10
+  attackDamage: 30
+  abilityPower: 0
+  projectileSpeed: 10
   burstProjectile: {fileID: 2330834722853355751, guid: 2ae4b4304b31b4641ae3c88f573d501f, type: 3}
   burstCount: 15
   burstInterval: 0.1
   burstFireDelay: 0.01
   stage3: 1
+  upgradeNum: 0
 --- !u!70 &540536642
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3863,8 +3867,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &810365879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3878,14 +3880,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
   mpImage: {fileID: 1737713240}
   normalProjectile: {fileID: 6537457085924451293, guid: 81ea71a00a98a974c800aa788df95b99, type: 3}
   firePoint: {fileID: 810365877}
   normalFireInterval: 0.05
-  mpPerShot: 1
   enemyDetectRadius: 20
   jumpForce: 13
   maxFallSpeed: -10
+  attackDamage: 0
+  abilityPower: 0
+  projectileSpeed: 0
   burstInterval: 0.3
   isUltimateLanding: 0
   UltimagePower: 0
@@ -5465,8 +5470,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8160c04df3a9e67418e8fb6a35048616, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP: 0
-  playerHP_Img: {fileID: 0}
 --- !u!114 &1185495247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5480,14 +5483,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
   mpImage: {fileID: 554469212}
   normalProjectile: {fileID: 7373925757434712426, guid: fc9b65927ae6ace4f9728ae732e16ce2, type: 3}
   firePoint: {fileID: 1185495245}
   normalFireInterval: 0.3
-  mpPerShot: 3
   enemyDetectRadius: 100
   jumpForce: 10
   maxFallSpeed: -10
+  attackDamage: 0
+  abilityPower: 0
+  projectileSpeed: 0
   burstProjectile: {fileID: 0}
   burstCount: 1
   burstInterval: 0.3

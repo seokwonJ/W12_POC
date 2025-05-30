@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class Ninja : Character
 {
-    public float burstInterval = 0.3f;
+    public float skillInterval = 0.3f;
     [Header("닌자 스킬")]
-    public bool isUltimateLanding;
-    public float UltimagePower;
-    public float UltimagePowerTime;
+    public bool isSkillLanding;
+    public float skillPower;
+    public float skillPowerTime;
+
+    public int upgradeNum;
 
     // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -21,7 +23,7 @@ public class Ninja : Character
     // 스킬 : 점프 후 착지시 3초간 공격력 강화
     protected override IEnumerator FireSkill()
     {
-        yield return new WaitForSeconds(burstInterval);
+        yield return new WaitForSeconds(skillInterval);
     }
 
     // 착지했을 경우
@@ -34,10 +36,10 @@ public class Ninja : Character
 
         if (isUltimateActive) return;
         isGround = true;
-        if (isUltimateLanding)
+        if (isSkillLanding)
         {
-            isUltimateLanding = false;
-            StartCoroutine(PowerUp(UltimagePower));
+            isSkillLanding = false;
+            StartCoroutine(PowerUp(skillPower));
         }
         RiderManager.Instance.RiderCountUp();
         fixedJoint.enabled = true;
@@ -48,7 +50,7 @@ public class Ninja : Character
     {
         // 공격력 += power
         Debug.Log("공격력 업!");
-        yield return new WaitForSeconds(UltimagePowerTime);
+        yield return new WaitForSeconds(skillPowerTime);
         Debug.Log("공격력 돌아옴");
     }
 }

@@ -768,6 +768,10 @@ MonoBehaviour:
   burstCount: 3
   burstInterval: 0.3
   burstFireDelay: 0.1
+  nomalAttackSize: 1
+  nomalAttackLifetime: 3
+  isfallingCanAttack: 0
+  isShieldFlyer: 0
   upgradeNum: 0
 --- !u!50 &3673613590161311052
 Rigidbody2D:

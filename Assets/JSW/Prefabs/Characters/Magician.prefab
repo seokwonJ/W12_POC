@@ -100,6 +100,7 @@ GameObject:
   - component: {fileID: 4146563053807377205}
   - component: {fileID: 2387763277851402292}
   - component: {fileID: 398941957888564015}
+  - component: {fileID: 4976871833072889351}
   m_Layer: 6
   m_Name: Magician
   m_TagString: Character
@@ -144,13 +145,21 @@ MonoBehaviour:
   enemyDetectRadius: 100
   jumpForce: 10
   maxFallSpeed: -10
-  attackDamage: 0
+  attackDamage: 5
   abilityPower: 15
   projectileSpeed: 15
   burstProjectile: {fileID: 0}
   burstCount: 1
-  burstInterval: 0.3
-  burstFireDelay: 1.5
+  skillInterval: 0.3
+  skillFireDelay: 0.1
+  skillSize: 1
+  skillDamage: 1
+  nomalAttackSize: 1
+  isAddAbilityPower: 0
+  isnomalAttackSizePerMana: 0
+  isCanTeleport: 0
+  upgradeNum: 0
+  player: {fileID: 0}
 --- !u!50 &4146563053807377205
 Rigidbody2D:
   serializedVersion: 5
@@ -234,6 +243,29 @@ FixedJoint2D:
   m_ConnectedAnchor: {x: 10.43, y: 3}
   m_DampingRatio: 0
   m_Frequency: 0
+--- !u!114 &4976871833072889351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1450283076957204448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 225d7a7746a759e4b85b56c4565646b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allUpgrades:
+  - {fileID: 11400000, guid: a0075395157727944b854aa87d0f930c, type: 2}
+  - {fileID: 11400000, guid: 753c48979fcbd5249958fa8ee153bc49, type: 2}
+  - {fileID: 11400000, guid: 9a4e8e2fb400dac41895ef6f6ffd44f0, type: 2}
+  - {fileID: 11400000, guid: 9744f275a84b8584bb3f7e3c82b01361, type: 2}
+  - {fileID: 11400000, guid: 7b0c6100758fe5a42a7173c9cfd553b3, type: 2}
+  - {fileID: 11400000, guid: d0fca4ebf9d7a664fb2e35b1438d9306, type: 2}
+  - {fileID: 11400000, guid: 1233355f183118046a4f1d7105c94031, type: 2}
+  - {fileID: 11400000, guid: 3245f24d51a01794e9dc6d357aed01f0, type: 2}
+  - {fileID: 11400000, guid: b8b9e5fc944fecc4b925d05f5675f552, type: 2}
+  - {fileID: 11400000, guid: fe982710373cb594da7fa0c8cdab64dd, type: 2}
 --- !u!1 &4633415822281531288
 GameObject:
   m_ObjectHideFlags: 0

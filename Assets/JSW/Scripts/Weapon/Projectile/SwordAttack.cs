@@ -8,12 +8,17 @@ public class SwordAttack : ProjectileBase
         transform.up = Vector2.right;
     }
 
-    public override void SetInit(Vector2 dir, int damageNum, float speedNum)
+    public void SetInit(Vector2 dir, int damageNum, float speedNum, float lifetimeNum, float scaleNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
+        damage = damageNum;
+        speed = speedNum;
+        lifetime = lifetimeNum;
+        transform.localScale = Vector3.one * scaleNum;
     }
+
 
     public override void DestroyProjectile(GameObject projectile)
     {
