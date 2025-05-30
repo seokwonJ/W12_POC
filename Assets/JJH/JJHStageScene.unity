@@ -8923,12 +8923,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1947735572}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1682e8cde97354b4ab9962b52d7062fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 649fd35b31a013940a60f3790ed9c7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy1: {fileID: 2971542310015680529, guid: e85ed4fa121c2ca4b9ab35e62739636c, type: 3}
-  enemy2: {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
-  enemy3: {fileID: 2971542310015680529, guid: 6f04bb04aaa06f743b9ca5338544cd29, type: 3}
   spawnPoints:
   - {fileID: 159853842}
   - {fileID: 1640558857}
@@ -8947,10 +8944,8 @@ MonoBehaviour:
   - {fileID: 74784370}
   - {fileID: 822248387}
   - {fileID: 1968725793}
-  Enemy1SpawnDelay: 5
-  Enemy2SpawnDelay: 3
-  Enemy3SpawnDelay: 2
-  playTime: 60
+  stageSOArray:
+  - {fileID: 11400000, guid: 44a3ac30893fb574c9899cdf001254c5, type: 2}
   playTime_Text: {fileID: 663497427}
 --- !u!1 &1949148883
 GameObject:

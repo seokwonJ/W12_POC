@@ -9,11 +9,11 @@ public class EnemySpawner : MonoBehaviour
     public GameObject enemy3;
     public Transform[] spawnPoints;
     
-    public float Enemy1SpawnDelay = 5;
+    float Enemy1SpawnDelay = 3;
     float Enemy1SpawnCurrentDelay;
-    public float Enemy2SpawnDelay = 3;
+    float Enemy2SpawnDelay = 4;
     float Enemy2SpawnCurrentDelay;
-    public float Enemy3SpawnDelay = 2;
+    float Enemy3SpawnDelay = 7;
     float Enemy3SpawnCurrentDelay;
 
     public float playTime;
