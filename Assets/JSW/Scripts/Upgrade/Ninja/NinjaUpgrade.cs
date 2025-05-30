@@ -6,16 +6,16 @@ public class NinjaUpgrade : CharacterUpgrade
     public enum UpgradeType
     {
 
-        AttackSpeed,       // 일반 공격 속도 증가 (쿨타임 감소)
-        AttackPower,       // 일반 공격의 공격력 증가
-        ManaRegen,         // 마나 초당 증가량 증가
-        ArrowSize,         // 화살 크기 증가 (크게 만들어서 맞추기 쉬움 또는 데미지 증가용)
-        ArrowKnockback,    // 화살 명중 시 적 넉백 효과 증가
-        SkillUseCount,     // 궁극기 사용 횟수 증가 (예: 버스트 발사 횟수)
-        SkillArrowCount,   // 궁극기 화살 발사량 증가 (1회 사용 시 더 많은 화살 발사)
-        AttackRange,       // 일반 공격 사거리 증가
-        ArrowSpeed,        // 화살 비행 속도 증가
-        TripleShot         // 기본 공격 시 한 번에 화살 3발 발사 }
+        AttackSpeed,            // 공속 증가
+        AttackPower,             // ad 증가
+        ManaRegen,              // 점프량 감소
+        LowJump,                // 마나증가량 증가
+        NomalAttackFive,         // 평타 5번당 한번 데미지 증가된 공격
+        SkillPowerUp,           // 궁극기 증가하는 힘 증가
+        SkillDurationUp,         // 궁극기 지속시간 증가
+        AttackRange,            // 사거리 증가
+        FirstLowHpEnemy,       // 체력이 적은 적부터 공격
+        AttackSpeedPerMana,        // 현재 마나가 클수록 공속 증가
     }
     public UpgradeType type;
     public float value;
@@ -27,53 +27,53 @@ public class NinjaUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                // archer.normalFireInterval -= value;
+                ninja.normalFireInterval -= 0.2f;
                 Debug.Log("Debug0 Ninja");
                 ninja.upgradeNum = 0;
                 break;
             case UpgradeType.AttackPower:
-                //archer.arrowSize += value;
+                ninja.attackDamage += 10;
                 Debug.Log("Debug1 Ninja");
                 ninja.upgradeNum = 1;
                 break;
             case UpgradeType.ManaRegen:
-                //archer.manaRegen += value;
-                Debug.Log("Debug2 Magician");
+                ninja.mpPerSecond += 3;
+                Debug.Log("Debug2 Ninja");
                 ninja.upgradeNum = 2;
                 break;
-            case UpgradeType.ArrowSize:
-                //archer.arrowSize += value;
-                Debug.Log("Debug3 Magician");
+            case UpgradeType.LowJump:
+                ninja.jumpForce -= 3;
+                Debug.Log("Debug3 Ninja");
                 ninja.upgradeNum = 3;
                 break;
-            case UpgradeType.ArrowKnockback:
-                //archer.manaRegen += value;
-                Debug.Log("Debug4 Magician");
+            case UpgradeType.NomalAttackFive:
+                ninja.isNomalAttackFive = true;
+                Debug.Log("Debug4 Ninja");
                 ninja.upgradeNum = 4;
                 break;
-            case UpgradeType.SkillUseCount:
-                //archer.arrowSize += value;
-                Debug.Log("Debug5 Magician");
+            case UpgradeType.SkillPowerUp:
+                ninja.skillPower += 10;
+                Debug.Log("Debug5 Ninja");
                 ninja.upgradeNum = 5;
                 break;
-            case UpgradeType.SkillArrowCount:
-                //archer.manaRegen += value;
-                Debug.Log("Debug6 Magician");
+            case UpgradeType.SkillDurationUp:
+                ninja.skillPowerDuration += 2;
+                Debug.Log("Debug6 Ninja");
                 ninja.upgradeNum = 6;
                 break;
             case UpgradeType.AttackRange:
-                //archer.arrowSize += value;
-                Debug.Log("Debug7 Magician");
+                ninja.enemyDetectRadius += 50;
+                Debug.Log("Debug7 Ninja");
                 ninja.upgradeNum = 7;
                 break;
-            case UpgradeType.ArrowSpeed:
+            case UpgradeType.FirstLowHpEnemy:
                 //archer.manaRegen += value;
-                Debug.Log("Debug8 Magician");
+                Debug.Log("Debug8 Ninja");
                 ninja.upgradeNum = 8;
                 break;
-            case UpgradeType.TripleShot:
+            case UpgradeType.AttackSpeedPerMana:
                 //archer.manaRegen += value;
-                Debug.Log("Debug9 Magician");
+                Debug.Log("Debug9 Ninja");
                 ninja.upgradeNum = 9;
                 break;
         }

@@ -6360,6 +6360,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Magician
       objectReference: {fileID: 0}
+    - target: {fileID: 1450283076957204448, guid: 6494efb290f2c1a41b85f3996ff5ae7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2511018040900854350, guid: 6494efb290f2c1a41b85f3996ff5ae7c, type: 3}
       propertyPath: mpImage
       value: 
