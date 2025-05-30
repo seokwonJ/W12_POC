@@ -144,12 +144,12 @@ MonoBehaviour:
   normalFireInterval: 1
   enemyDetectRadius: 100
   jumpForce: 10
-  maxFallSpeed: -10
+  maxFallSpeed: 10
   attackDamage: 5
   abilityPower: 15
   projectileSpeed: 15
-  burstProjectile: {fileID: 0}
-  burstCount: 1
+  skillProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
+  skillCount: 3
   skillInterval: 0.3
   skillFireDelay: 0.1
   skillSize: 1

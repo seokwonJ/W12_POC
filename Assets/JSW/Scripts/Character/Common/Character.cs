@@ -9,23 +9,23 @@ public abstract class Character : MonoBehaviour
     [Header("MP 시스템")]
     public float maxMP = 100f;
     public float mpPerSecond = 7;         // 초당 마나회복량
-    protected float currentMP = 0f;
+    protected float currentMP = 0f;       // 
     public Image mpImage;
 
     [Header("일반 공격")]
-    public GameObject normalProjectile;
-    public Transform firePoint;
+    public GameObject normalProjectile;         // 기본 공격 투사체
+    public Transform firePoint;                 // 공격 투사체
     public float normalFireInterval = 1f;       // 공격 후 쿨타임 (공속)
     public float enemyDetectRadius = 10f;       // 사거리
 
     [Header("점프")]
     public float jumpForce = 10f;               // 점프력
-    public float maxFallSpeed = -10f;
+    public float maxFallSpeed = 10f;           // 최대 떨어지는 속도
 
     [Header("공격력")]
     public int attackDamage;      // ad 물리공격력
     public int abilityPower;      // ap 주문력
-    public float projectileSpeed;
+    public float projectileSpeed;       // 투사체 속도
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
@@ -42,9 +42,9 @@ public abstract class Character : MonoBehaviour
     // 떨어질 때 속력
     protected virtual void FixedUpdate()
     {
-        if (rb.linearVelocity.y < maxFallSpeed)
+        if (rb.linearVelocity.y < -maxFallSpeed)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxFallSpeed);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed);
         }
     }
 
@@ -65,7 +65,7 @@ public abstract class Character : MonoBehaviour
     }
 
     // 일반공격 부분
-    protected IEnumerator NormalAttackRoutine()
+    protected virtual IEnumerator NormalAttackRoutine()
     {
         while (true)
         {

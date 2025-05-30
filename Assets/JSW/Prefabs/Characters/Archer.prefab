@@ -580,14 +580,14 @@ MonoBehaviour:
   normalFireInterval: 0.5
   enemyDetectRadius: 100
   jumpForce: 10
-  maxFallSpeed: -10
+  maxFallSpeed: 10
   attackDamage: 10
   abilityPower: 0
   projectileSpeed: 30
-  burstProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
-  burstCount: 3
-  burstInterval: 0.3
-  burstFireDelay: 0.1
+  skillProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
+  skillCount: 3
+  skillInterval: 0.3
+  skillFireDelay: 0.1
   skillProjectileCount: 10
   isUpgradeTripleShot: 0
   knockbackPower: 1

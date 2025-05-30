@@ -14,13 +14,17 @@ public class PlayerMove : MonoBehaviour
     private float dashTimer = 0f;
     private float dashCooldownTimer = 0f;
 
+    private PlayerStatus _playerStatus;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        _playerStatus = GetComponent<PlayerStatus>();
     }
 
     void Update()
     {
+        moveSpeed = _playerStatus.speed;
         // 대시 중이 아니면 입력 받기
         if (!isDashing)
         {

@@ -50,7 +50,7 @@ public class ArcherUpgrade : CharacterUpgrade
                 archer.upgradeNum = 4;
                 break;
             case UpgradeType.SkillUseCount:                 // 스킬 횟수가 +3 증가
-                archer.burstCount += 3;
+                archer.skillCount += 3;
                 Debug.Log("Debug5 Archer");
                 archer.upgradeNum = 5;
                 break;

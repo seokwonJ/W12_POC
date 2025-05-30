@@ -27,7 +27,6 @@ public class WorriorUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                // archer.normalFireInterval -= value;
                 worrior.normalFireInterval -= 0.1f;              // 공격 쿨타임 0.1초 감소
                 Debug.Log("Debug0 Worrior");
                 break;
@@ -51,12 +50,12 @@ public class WorriorUpgrade : CharacterUpgrade
                 worrior.upgradeNum = 4;
                 break;
             case UpgradeType.FallSpeed:                         // maxfallsize  -10
-                worrior.maxFallSpeed -= 10;
+                worrior.maxFallSpeed += 10;
                 Debug.Log("Debug4 Worrior");
                 worrior.upgradeNum = 5;
                 break;
             case UpgradeType.SkillProjectileCount:                 // 스킬 횟수가 +2 증가
-                worrior.burstCount += 2;
+                worrior.skillCount += 2;
                 Debug.Log("Debug5 Worrior");
                 worrior.upgradeNum = 5;
                 break;

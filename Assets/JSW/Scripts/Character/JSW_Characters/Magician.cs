@@ -4,15 +4,15 @@ using UnityEngine.UI;
 
 public class Magician : Character
 {
-    [Header("궁극기")]
-    public GameObject burstProjectile;
-    public int burstCount = 3;
+    [Header("스킬")]
+    public GameObject skillProjectile;
+    public int skillCount = 3;
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
     public float skillDamage = 1f;
 
-    [Header("일반 공격 강화")]
+    [Header("강화")]
     public float nomalAttackSize;
     public bool isAddAbilityPower;
     public bool isnomalAttackSizePerMana;
@@ -48,7 +48,7 @@ public class Magician : Character
     {
         if (isCanTeleport) StartCoroutine(TeleportToPlayer());
 
-        for (int i = 0; i < burstCount; i++)
+        for (int i = 0; i < skillCount; i++)
         {
             yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();
@@ -65,7 +65,7 @@ public class Magician : Character
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
             MagicBall mb = proj.GetComponent<MagicBall>();
-            mb.SetInit((target.position - firePoint.position).normalized, (int)(abilityPower* skillDamage), projectileSpeed, skillSize);
+            mb.SetInit((target.position - firePoint.position).normalized, (int)(abilityPower * skillDamage), projectileSpeed, skillSize);
             mb.speed = 5;
         }
     }

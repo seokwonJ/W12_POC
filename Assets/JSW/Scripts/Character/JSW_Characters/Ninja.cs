@@ -3,16 +3,15 @@ using UnityEngine;
 
 public class Ninja : Character
 {
-    public float skillInterval = 0.3f;
-    [Header("닌자 스킬")]
+    [Header("스킬")]
     public bool isSkillLanding;
     public int skillPower;
     public float skillPowerDuration;
-
+    public float skillInterval = 0.3f;
 
     [Header("강화")]
     public bool isNomalAttackFive;
-    public int NomalAttackCount = 0;
+    public int nomalAttackCount = 0;
     public bool isFirstLowHPEnemy;
     public bool isAttackSpeedPerMana;
 
@@ -26,27 +25,40 @@ public class Ninja : Character
             targetPos = FindLowHPEnemy().position;
         }
 
-        NomalAttackCount += 1;
+        nomalAttackCount += 1;
 
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        if (isNomalAttackFive && NomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillPower, projectileSpeed);  }
+        // 만약 투사체 에셋이 적용된다면 강화공격이 이곳에 적용되어야할 듯
+        if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillPower, projectileSpeed); }
         else proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
     }
 
-    protected override void Update()
+    protected override IEnumerator NormalAttackRoutine()
     {
-        base.Update();
-        if (isAttackSpeedPerMana)
+        float currnetNormalFireInterval;
+
+        while (true)
         {
-            normalFireInterval -= currentMP / 300;
+            if (isAttackSpeedPerMana) currnetNormalFireInterval = normalFireInterval - currentMP / 600;
+            else currnetNormalFireInterval = normalFireInterval;
+
+                yield return new WaitForSeconds(currnetNormalFireInterval);
+            if (!isGround) continue;
+
+            Transform target = FindNearestEnemy();
+            if (target != null)
+            {
+                FireNormalProjectile(target.position);
+            }
         }
     }
 
     // 스킬 : 점프 후 착지시 3초간 공격력 강화
     protected override IEnumerator FireSkill()
     {
+        isSkillLanding = true;
         yield return new WaitForSeconds(skillInterval);
     }
 
@@ -70,12 +82,13 @@ public class Ninja : Character
         fixedJoint.connectedBody = collision.rigidbody;
     }
 
-    IEnumerator PowerUp(float power)
+    IEnumerator PowerUp(int power)
     {
-        // 공격력 += power
+        attackDamage += power;
         Debug.Log("공격력 업!");
         yield return new WaitForSeconds(skillPowerDuration);
         Debug.Log("공격력 돌아옴");
+        attackDamage -= power;
     }
 
     protected Transform FindLowHPEnemy()
@@ -98,5 +111,4 @@ public class Ninja : Character
         }
         return nearest;
     }
-
 }
