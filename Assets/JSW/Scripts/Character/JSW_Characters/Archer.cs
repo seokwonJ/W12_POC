@@ -12,13 +12,11 @@ public class Archer : Character
     public int skillProjectileCount = 10;
     public bool isUpgradeTripleShot; // 이건 Archer 고유 옵션이니 유지
 
-    [Header("화살 강화")]
+    [Header("강화")]
     public float knockbackPower;
     public float arrowSize;
-    
 
     public int upgradeNum;
-
 
     // 일반 공격 : 화살 발사 
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -26,7 +24,7 @@ public class Archer : Character
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<Arrow>().SetInit(direction, attackDamage, projectileSpeed, knockbackPower,arrowSize);
+        proj.GetComponent<Arrow>().SetInit(direction, attackDamage, projectileSpeed, knockbackPower, arrowSize);
 
         if (isUpgradeTripleShot)
         {

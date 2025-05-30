@@ -12,7 +12,7 @@ public class Magician : Character
     public float skillSize = 1f;
     public float skillDamage = 1f;
 
-    [Header("일반 공격 강화")]
+    [Header("강화")]
     public float nomalAttackSize;
     public bool isAddAbilityPower;
     public bool isnomalAttackSizePerMana;
@@ -65,7 +65,7 @@ public class Magician : Character
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
             MagicBall mb = proj.GetComponent<MagicBall>();
-            mb.SetInit((target.position - firePoint.position).normalized, (int)(abilityPower* skillDamage), projectileSpeed, skillSize);
+            mb.SetInit((target.position - firePoint.position).normalized, (int)(abilityPower * skillDamage), projectileSpeed, skillSize);
             mb.speed = 5;
         }
     }

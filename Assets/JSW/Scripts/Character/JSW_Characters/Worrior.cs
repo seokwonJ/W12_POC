@@ -10,8 +10,7 @@ public class Worrior : Character
     public float burstInterval = 0.3f;
     public float burstFireDelay = 0.1f;
 
-    [Header("일반공격 강화")]
-    //public float knockbackPower;
+    [Header("강화")]
     public float nomalAttackSize;
     public float nomalAttackLifetime;
     public bool isfallingCanAttack;

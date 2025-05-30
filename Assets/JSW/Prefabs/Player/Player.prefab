@@ -393,10 +393,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2243100740182710390}
-  - component: {fileID: 7303189143498480759}
   - component: {fileID: 1639394430757680138}
   - component: {fileID: 3485904678645910857}
   - component: {fileID: 2287622558004937601}
+  - component: {fileID: 7388656127770911106}
+  - component: {fileID: 7303189143498480759}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -421,22 +422,6 @@ Transform:
   - {fileID: 3981080481216826744}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7303189143498480759
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7323909054480937571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41763223bc856044fa21a74e73aee689, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 10
-  dashSpeed: 20
-  dashDuration: 0.2
-  dashCooldown: 1
 --- !u!50 &1639394430757680138
 Rigidbody2D:
   serializedVersion: 5
@@ -524,6 +509,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHP: 100
   playerHP_Image: {fileID: 0}
+--- !u!114 &7388656127770911106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323909054480937571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebdebea19a5bfc449b0629cbea21bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Durability: 100
+  defensePower: 5
+  speed: 10
+--- !u!114 &7303189143498480759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323909054480937571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41763223bc856044fa21a74e73aee689, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 10
+  dashSpeed: 20
+  dashDuration: 0.2
+  dashCooldown: 1
 --- !u!1 &7328886787260068651
 GameObject:
   m_ObjectHideFlags: 0
