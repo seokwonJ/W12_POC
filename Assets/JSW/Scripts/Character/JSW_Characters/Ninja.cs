@@ -14,7 +14,7 @@ public class Ninja : Character
     public bool isNomalAttackFive;
     public int NomalAttackCount = 0;
     public bool isFirstLowHPEnemy;
-    public bool isAttackSpeedPerMana;
+    public bool isAttackSpeedPerMana; 
 
     public int upgradeNum;
 
@@ -25,6 +25,7 @@ public class Ninja : Character
         {
             targetPos = FindLowHPEnemy().position;
         }
+
 
         NomalAttackCount += 1;
 
@@ -38,16 +39,17 @@ public class Ninja : Character
     protected override void Update()
     {
         base.Update();
-        if (isAttackSpeedPerMana)
-        {
-            normalFireInterval -= currentMP / 300;
-        }
     }
 
     // 스킬 : 점프 후 착지시 3초간 공격력 강화
     protected override IEnumerator FireSkill()
     {
         yield return new WaitForSeconds(skillInterval);
+
+        if (isAttackSpeedPerMana)
+        {
+            normalFireInterval -= currentMP / 3000;
+        }
     }
 
     // 착지했을 경우
