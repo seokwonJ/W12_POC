@@ -3740,7 +3740,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &810365877
 Transform:
   m_ObjectHideFlags: 0
@@ -5644,7 +5644,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1185495245
 Transform:
   m_ObjectHideFlags: 0
@@ -8946,6 +8946,8 @@ MonoBehaviour:
   - {fileID: 1968725793}
   stageSOArray:
   - {fileID: 11400000, guid: 44a3ac30893fb574c9899cdf001254c5, type: 2}
+  - {fileID: 11400000, guid: 9ca6587c8482fb047b6f2b1c8dc62061, type: 2}
+  - {fileID: 11400000, guid: 723ecaae5e7681742bd780b5ef36f5dc, type: 2}
   playTime_Text: {fileID: 663497427}
 --- !u!1 &1949148883
 GameObject:

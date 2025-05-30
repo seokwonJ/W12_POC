@@ -10,21 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
-  m_Name: Stage1-1
+  m_Name: Stage1-3
   m_EditorClassIdentifier: 
   world: 1
-  stage: 1
-  stagePlayTime: 40
+  stage: 3
+  stagePlayTime: 60
   enemyWave:
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
   - {fileID: 11400000, guid: c52456bec26f9144cb4ba52f0d2b4367, type: 2}
-  - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
+  - {fileID: 11400000, guid: 9888c92ce1ea4594eb14ea222e69d67e, type: 2}
+  - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
   - {fileID: 11400000, guid: c52456bec26f9144cb4ba52f0d2b4367, type: 2}
-  - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
-  WaveCount: 0400000002000000040000000300000003000000
+  - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
+  WaveCount: 050000000500000005000000050000000500000005000000
   WaveInterval:
-  - 2.5
-  - 2.5
-  - 2.5
-  - 2.5
-  - 2.5
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2
+  - 2

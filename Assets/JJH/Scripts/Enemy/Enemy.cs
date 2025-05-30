@@ -3,18 +3,21 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public float speed = 3f;
-    public float fireCooldown = 2f;
-    public int damage = 20;
-    public float projectileSpeed;
-
     public ScriptableObject movementSO;
     public ScriptableObject attackSO;
+
+    public float speed;
+    public float minPlayerDistance;
+
+    public float fireCooldown;
+    public int damage; 
+    public float projectileSpeed;
+
+    public GameObject projectilePrefab;
 
     private IMovementPattern movement;
     private IAttackPattern attack;
 
-    public GameObject projectilePrefab;
 
     public GameObject player;
     public Rigidbody2D rb;
