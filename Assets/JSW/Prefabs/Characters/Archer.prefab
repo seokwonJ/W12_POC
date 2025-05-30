@@ -588,7 +588,10 @@ MonoBehaviour:
   burstCount: 3
   burstInterval: 0.3
   burstFireDelay: 0.1
-  stage3: 0
+  skillProjectileCount: 10
+  isUpgradeTripleShot: 0
+  knockbackPower: 1
+  arrowSize: 1
   upgradeNum: 0
 --- !u!114 &4301628890503601283
 MonoBehaviour:

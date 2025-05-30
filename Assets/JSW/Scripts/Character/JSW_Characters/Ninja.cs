@@ -3,25 +3,51 @@ using UnityEngine;
 
 public class Ninja : Character
 {
-    public float burstInterval = 0.3f;
+    public float skillInterval = 0.3f;
     [Header("닌자 스킬")]
-    public bool isUltimateLanding;
-    public float UltimagePower;
-    public float UltimagePowerTime;
+    public bool isSkillLanding;
+    public int skillPower;
+    public float skillPowerDuration;
+
+
+    [Header("강화")]
+    public bool isNomalAttackFive;
+    public int NomalAttackCount = 0;
+    public bool isFirstLowHPEnemy;
+    public bool isAttackSpeedPerMana;
+
+    public int upgradeNum;
 
     // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
+        if (isFirstLowHPEnemy)
+        {
+            targetPos = FindLowHPEnemy().position;
+        }
+
+        NomalAttackCount += 1;
+
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
+        if (isNomalAttackFive && NomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillPower, projectileSpeed);  }
+        else proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
+    }
+
+    protected override void Update()
+    {
+        base.Update();
+        if (isAttackSpeedPerMana)
+        {
+            normalFireInterval -= currentMP / 300;
+        }
     }
 
     // 스킬 : 점프 후 착지시 3초간 공격력 강화
     protected override IEnumerator FireSkill()
     {
-        yield return new WaitForSeconds(burstInterval);
+        yield return new WaitForSeconds(skillInterval);
     }
 
     // 착지했을 경우
@@ -34,10 +60,10 @@ public class Ninja : Character
 
         if (isUltimateActive) return;
         isGround = true;
-        if (isUltimateLanding)
+        if (isSkillLanding)
         {
-            isUltimateLanding = false;
-            StartCoroutine(PowerUp(UltimagePower));
+            isSkillLanding = false;
+            StartCoroutine(PowerUp(skillPower));
         }
         RiderManager.Instance.RiderCountUp();
         fixedJoint.enabled = true;
@@ -48,7 +74,29 @@ public class Ninja : Character
     {
         // 공격력 += power
         Debug.Log("공격력 업!");
-        yield return new WaitForSeconds(UltimagePowerTime);
+        yield return new WaitForSeconds(skillPowerDuration);
         Debug.Log("공격력 돌아옴");
     }
+
+    protected Transform FindLowHPEnemy()
+    {
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
+        float minHP = float.MaxValue;
+        Transform nearest = null;
+
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Enemy"))
+            {
+                float hp = hit.GetComponent<EnemyHP>().enemyHP;
+                if (hp < minHP)
+                {
+                    minHP = hp;
+                    nearest = hit.transform;
+                }
+            }
+        }
+        return nearest;
+    }
+
 }
