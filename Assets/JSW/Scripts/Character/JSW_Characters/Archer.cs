@@ -5,10 +5,10 @@ using UnityEngine.UI;
 public class Archer : Character
 {
     [Header("스킬")]
-    public GameObject burstProjectile;
-    public int burstCount = 3;
-    public float burstInterval = 0.3f;
-    public float burstFireDelay = 0.1f;
+    public GameObject skillProjectile;
+    public int skillCount = 3;
+    public float skillInterval = 0.3f;
+    public float skillFireDelay = 0.1f;
     public int skillProjectileCount = 10;
     public bool isUpgradeTripleShot; // 이건 Archer 고유 옵션이니 유지
 
@@ -41,11 +41,11 @@ public class Archer : Character
     // 스킬 : 사방에 화살 여러번 발사
     protected override IEnumerator FireSkill()
     {
-        for (int i = 0; i < burstCount; i++)
+        for (int i = 0; i < skillCount; i++)
         {
-            yield return new WaitForSeconds(burstFireDelay);
+            yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();
-            yield return new WaitForSeconds(burstInterval);
+            yield return new WaitForSeconds(skillInterval);
         }
     }
 
@@ -59,7 +59,7 @@ public class Archer : Character
         {
             float angle = i * angleStep;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
-            GameObject proj = Instantiate(burstProjectile, startPos, rotation);
+            GameObject proj = Instantiate(skillProjectile, startPos, rotation);
             proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, attackDamage, projectileSpeed, knockbackPower, arrowSize);
         }
     }

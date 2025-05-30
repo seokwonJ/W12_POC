@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Ninja : Character
 {
-    [Header("닌자 스킬")]
+    [Header("스킬")]
     public bool isSkillLanding;
     public int skillPower;
     public float skillPowerDuration;
@@ -58,6 +58,7 @@ public class Ninja : Character
     // 스킬 : 점프 후 착지시 3초간 공격력 강화
     protected override IEnumerator FireSkill()
     {
+        isSkillLanding = true;
         yield return new WaitForSeconds(skillInterval);
     }
 

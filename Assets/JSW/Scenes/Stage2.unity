@@ -2422,18 +2422,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
+  mpImage: {fileID: 284370707}
   normalProjectile: {fileID: 3397254127826795141, guid: 5da4185c856c06d4ab66fd7526f454b8, type: 3}
   firePoint: {fileID: 532515488}
   normalFireInterval: 2
-  mpPerShot: 15
   enemyDetectRadius: 100
   jumpForce: 5
+  maxFallSpeed: -10
+  attackDamage: 0
+  abilityPower: 0
+  projectileSpeed: 0
   burstProjectile: {fileID: 3397254127826795141, guid: 5da4185c856c06d4ab66fd7526f454b8, type: 3}
   burstCount: 3
   burstInterval: 0.3
   burstFireDelay: 0.1
-  maxFallSpeed: -10
-  mpImage: {fileID: 284370707}
+  nomalAttackSize: 0
+  nomalAttackLifetime: 0
+  isfallingCanAttack: 0
+  isShieldFlyer: 0
+  upgradeNum: 0
 --- !u!50 &532515491
 Rigidbody2D:
   serializedVersion: 5
@@ -2581,19 +2589,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
+  mpImage: {fileID: 1330138556}
   normalProjectile: {fileID: 2330834722853355751, guid: fa661f35bc4566d49817391c181886cf, type: 3}
   firePoint: {fileID: 1928602102}
   normalFireInterval: 0.2
-  mpPerShot: 3
   enemyDetectRadius: 100
   jumpForce: 10
+  maxFallSpeed: -10
+  attackDamage: 0
+  abilityPower: 0
+  projectileSpeed: 0
   burstProjectile: {fileID: 2330834722853355751, guid: fa661f35bc4566d49817391c181886cf, type: 3}
   burstCount: 10
   burstInterval: 0.1
   burstFireDelay: 0.05
-  maxFallSpeed: -10
-  mpImage: {fileID: 1330138556}
-  stage3: 0
+  skillProjectileCount: 10
+  isUpgradeTripleShot: 0
+  knockbackPower: 0
+  arrowSize: 0
+  upgradeNum: 0
 --- !u!70 &540536642
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -3957,18 +3972,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
+  mpImage: {fileID: 1737713240}
   normalProjectile: {fileID: 6537457085924451293, guid: 0bf669ef3dfbefa4aa62282fb03a7144, type: 3}
   firePoint: {fileID: 810365877}
   normalFireInterval: 0.1
-  mpPerShot: 0.8
   enemyDetectRadius: 15
   jumpForce: 13
-  burstProjectile: {fileID: 0}
-  burstCount: 3
-  burstInterval: 0.3
-  burstFireDelay: 0.1
   maxFallSpeed: -10
-  mpImage: {fileID: 1737713240}
+  attackDamage: 0
+  abilityPower: 0
+  projectileSpeed: 0
+  isSkillLanding: 0
+  skillPower: 0
+  skillPowerDuration: 0
+  skillInterval: 0.3
+  isNomalAttackFive: 0
+  nomalAttackCount: 0
+  isFirstLowHPEnemy: 0
+  isAttackSpeedPerMana: 0
+  upgradeNum: 0
 --- !u!70 &810365880
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4601,6 +4624,7 @@ GameObject:
   - component: {fileID: 889483788}
   - component: {fileID: 889483789}
   - component: {fileID: 889483790}
+  - component: {fileID: 889483791}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4728,6 +4752,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHP: 100
   playerHP_Image: {fileID: 866597020}
+--- !u!114 &889483791
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 889483785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ebdebea19a5bfc449b0629cbea21bf5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Durability: 100
+  defensePower: 5
+  speed: 10
 --- !u!1 &907368857
 GameObject:
   m_ObjectHideFlags: 0
@@ -5692,18 +5731,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
+  mpPerSecond: 7
+  mpImage: {fileID: 554469212}
   normalProjectile: {fileID: 7373925757434712426, guid: 83a705f96b5e6824fbb2ef79d85511c3, type: 3}
   firePoint: {fileID: 1185495245}
   normalFireInterval: 0.5
-  mpPerShot: 5
   enemyDetectRadius: 100
   jumpForce: 10
+  maxFallSpeed: -10
+  attackDamage: 0
+  abilityPower: 0
+  projectileSpeed: 0
   burstProjectile: {fileID: 0}
   burstCount: 1
-  burstInterval: 0.3
-  burstFireDelay: 1.5
-  maxFallSpeed: -10
-  mpImage: {fileID: 554469212}
+  skillInterval: 0.3
+  skillFireDelay: 0.1
+  skillSize: 1
+  skillDamage: 1
+  nomalAttackSize: 0
+  isAddAbilityPower: 0
+  isnomalAttackSizePerMana: 0
+  isCanTeleport: 0
+  upgradeNum: 0
+  player: {fileID: 0}
 --- !u!70 &1185495248
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

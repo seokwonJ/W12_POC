@@ -584,14 +584,18 @@ MonoBehaviour:
   normalFireInterval: 0.25
   enemyDetectRadius: 10
   jumpForce: 13
-  maxFallSpeed: -10
+  maxFallSpeed: 10
   attackDamage: 5
   abilityPower: 0
   projectileSpeed: 15
-  skillInterval: 0.3
   isSkillLanding: 0
   skillPower: 0
-  skillPowerTime: 0
+  skillPowerDuration: 0
+  skillInterval: 0.3
+  isNomalAttackFive: 0
+  nomalAttackCount: 0
+  isFirstLowHPEnemy: 0
+  isAttackSpeedPerMana: 0
   upgradeNum: 0
 --- !u!50 &7162487334415280215
 Rigidbody2D:

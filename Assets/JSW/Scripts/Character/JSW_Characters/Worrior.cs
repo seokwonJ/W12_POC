@@ -4,11 +4,11 @@ using UnityEngine.UI;
 
 public class Worrior : Character
 {
-    [Header("±Ã±Ø±â")]
-    public GameObject burstProjectile;
-    public int burstCount = 3;
-    public float burstInterval = 0.3f;
-    public float burstFireDelay = 0.1f;
+    [Header("½ºÅ³")]
+    public GameObject skillProjectile;
+    public int skillCount = 3;
+    public float skillInterval = 0.3f;
+    public float skillFireDelay = 0.1f;
 
     [Header("°­È­")]
     public float nomalAttackSize;
@@ -43,17 +43,17 @@ public class Worrior : Character
         if (isShieldFlyer) _playerStatus.defensePower -= 5;
 
         // ±Ã±Ø±â 3¿¬»ç
-        for (int i = 0; i < burstCount; i++)
+        for (int i = 0; i < skillCount; i++)
         {
-            yield return new WaitForSeconds(burstFireDelay);
+            yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();
-            yield return new WaitForSeconds(burstInterval);
+            yield return new WaitForSeconds(skillInterval);
         }
     }
 
     protected override void FireSkillProjectiles()
     {
-        GameObject proj = Instantiate(burstProjectile, firePoint.position, Quaternion.identity);
+        GameObject proj = Instantiate(skillProjectile, firePoint.position, Quaternion.identity);
         var sword = proj.GetComponent<SwordAttack>();
         if (sword != null)
         {
@@ -75,8 +75,6 @@ public class Worrior : Character
 
         if (isShieldFlyer) _playerStatus.defensePower += 5;
 
-
-
         RiderManager.Instance.RiderCountUp();
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
@@ -89,6 +87,4 @@ public class Worrior : Character
             collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
         }
     }
-
-
 }

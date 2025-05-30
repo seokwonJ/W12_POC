@@ -4,9 +4,9 @@ using UnityEngine.UI;
 
 public class Magician : Character
 {
-    [Header("±Ã±Ø±â")]
-    public GameObject burstProjectile;
-    public int burstCount = 3;
+    [Header("½ºÅ³")]
+    public GameObject skillProjectile;
+    public int skillCount = 3;
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
@@ -48,7 +48,7 @@ public class Magician : Character
     {
         if (isCanTeleport) StartCoroutine(TeleportToPlayer());
 
-        for (int i = 0; i < burstCount; i++)
+        for (int i = 0; i < skillCount; i++)
         {
             yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();

@@ -20,7 +20,7 @@ public abstract class Character : MonoBehaviour
 
     [Header("점프")]
     public float jumpForce = 10f;               // 점프력
-    public float maxFallSpeed = -10f;           // 최대 떨어지는 속도
+    public float maxFallSpeed = 10f;           // 최대 떨어지는 속도
 
     [Header("공격력")]
     public int attackDamage;      // ad 물리공격력
@@ -42,9 +42,9 @@ public abstract class Character : MonoBehaviour
     // 떨어질 때 속력
     protected virtual void FixedUpdate()
     {
-        if (rb.linearVelocity.y < maxFallSpeed)
+        if (rb.linearVelocity.y < -maxFallSpeed)
         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x, maxFallSpeed);
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x, -maxFallSpeed);
         }
     }
 
