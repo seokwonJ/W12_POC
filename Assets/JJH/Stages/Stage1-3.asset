@@ -16,14 +16,16 @@ MonoBehaviour:
   stage: 3
   stagePlayTime: 60
   enemyWave:
-  - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
-  - {fileID: 11400000, guid: c52456bec26f9144cb4ba52f0d2b4367, type: 2}
-  - {fileID: 11400000, guid: 9888c92ce1ea4594eb14ea222e69d67e, type: 2}
+  - {fileID: 11400000, guid: d1fdc41d9c9fd6e4a8588c14a5ff02a2, type: 2}
   - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
   - {fileID: 11400000, guid: c52456bec26f9144cb4ba52f0d2b4367, type: 2}
+  - {fileID: 11400000, guid: 172302cdd03ab874fa44aececc39b147, type: 2}
+  - {fileID: 11400000, guid: 5e27e0fe6011c1a4e9db0f6b71967bd3, type: 2}
+  - {fileID: 11400000, guid: 172302cdd03ab874fa44aececc39b147, type: 2}
   - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
-  WaveCount: 050000000500000005000000050000000500000005000000
+  WaveCount: 05000000050000000200000005000000050000000600000002000000
   WaveInterval:
+  - 2
   - 2
   - 2
   - 2

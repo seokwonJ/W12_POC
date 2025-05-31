@@ -61,6 +61,7 @@ public class Protecter : Character
         while (true)
         {
             currentSkillDuration -= Time.deltaTime;
+            if (protectSkillObject == null) break;
 
             protectSkillObject.transform.position = transform.position;
             if (currentSkillDuration < 0)

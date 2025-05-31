@@ -1,28 +1,32 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Levi : Character
 {
-    [Header("¸®¹ÙÀÌ °ø°İ")]
+    [Header("ë¦¬ë°”ì´ ê³µê²©")]
     public float dobleAttackCoolTime = 0.05f;
 
 
-    [Header("½ºÅ³")]
+    [Header("ìŠ¤í‚¬")]
     public bool isSkillLanding;
     public int skillDamage;
     public float skillCount;
     public float skillInterval = 0.3f;
+    public float skillDashSpeed;
 
-    [Header("°­È­")]
+    [Header("ê°•í™”")]
     public bool isNomalAttackFive;
     public int nomalAttackCount = 0;
     public bool isFirstLowHPEnemy;
     public bool isAttackSpeedPerMana;
 
+    public GameObject trail;
+ 
     public int upgradeNum;
 
-    // ÀÏ¹İ °ø°İ: ¿ø°Å¸® Åõ»çÃ¼ Ç¥Ã¢ °¡±î¿î Àû¿¡°Ô ´øÁö±â
+    // ì¼ë°˜ ê³µê²©: ì›ê±°ë¦¬ íˆ¬ì‚¬ì²´ í‘œì°½ ê°€ê¹Œìš´ ì ì—ê²Œ ë˜ì§€ê¸°
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         nomalAttackCount += 1;
@@ -30,7 +34,7 @@ public class Levi : Character
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        // ¸¸¾à Åõ»çÃ¼ ¿¡¼ÂÀÌ Àû¿ëµÈ´Ù¸é °­È­°ø°İÀÌ ÀÌ°÷¿¡ Àû¿ëµÇ¾î¾ßÇÒ µí
+        // ë§Œì•½ íˆ¬ì‚¬ì²´ ì—ì…‹ì´ ì ìš©ëœë‹¤ë©´ ê°•í™”ê³µê²©ì´ ì´ê³³ì— ì ìš©ë˜ì–´ì•¼í•  ë“¯
         if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillDamage, projectileSpeed); }
         else proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed);
     }
@@ -57,93 +61,97 @@ public class Levi : Character
         }
     }
 
-    // ½ºÅ³ : Á¡ÇÁ ÈÄ ÂøÁö½Ã 3ÃÊ°£ °ø°İ·Â °­È­
+    // ìŠ¤í‚¬ : ì í”„ í›„ ì°©ì§€ì‹œ 3ì´ˆê°„ ê³µê²©ë ¥ ê°•í™”
     protected override IEnumerator FireSkill()
     {
-        Debug.Log("µ¹Áø°¡Áî¾Æ!");
-
+        Debug.Log("ëŒì§„ê°€ì¦ˆì•„!");
+        trail.SetActive(true);
         List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
 
+        Transform target;
+
         for (int i = 0; i < skillCount; i++)
         {
-            Transform target = FindNearestEnemyExcluding(hitEnemies);
+            target = FindFarestEnemyExcluding(hitEnemies);
             if (target == null) break;
 
             hitEnemies.Add(target);
 
-            // µ¹Áø
+            // ëŒì§„
             yield return StartCoroutine(DashToTarget(target));
 
-            // µ¥¹ÌÁö ÁÖ±â
+            // ë°ë¯¸ì§€ ì£¼ê¸°
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             if (enemyHP != null)
             {
                 enemyHP.TakeDamage(attackDamage + skillDamage);
             }
 
-            yield return new WaitForSeconds(0.02f); // ¾à°£ÀÇ µô·¹ÀÌ
+            yield return new WaitForSeconds(0.02f); // ì•½ê°„ì˜ ë”œë ˆì´
+
         }
 
-        gameObject.layer = LayerMask.NameToLayer("Character");
-
         transform.up = Vector3.up;
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+        rb.linearVelocity = new Vector2(-10, jumpForce);
+        trail.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        gameObject.layer = LayerMask.NameToLayer("Character");
     }
 
-    private Transform FindNearestEnemyExcluding(List<Transform> excluded)
+    private Transform FindFarestEnemyExcluding(List<Transform> excluded)
     {
-        Transform nearest = null;
-        float minDist = float.MaxValue;
+        Transform farest = null;
+        float maxDist = 0;
 
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            if (excluded.Contains(obj.transform)) continue;
+            Transform enemyTransform = obj.transform;
 
-            float dist = Vector2.Distance(transform.position, obj.transform.position);
-            if (dist < minDist)
+            if (excluded.Contains(enemyTransform)) continue;
+
+            // ì¹´ë©”ë¼ ë·°í¬íŠ¸ ì•ˆì— ìˆëŠ”ì§€ í™•ì¸
+            Vector3 viewportPos = Camera.main.WorldToViewportPoint(enemyTransform.position);
+
+            bool isVisible = viewportPos.z > 0 &&
+                             viewportPos.x >= 0 && viewportPos.x <= 1 &&
+                             viewportPos.y >= 0 && viewportPos.y <= 1;
+
+            if (!isVisible) continue;
+
+            // ê°€ê¹Œìš´ ì  ê³„ì‚°
+            float dist = Vector2.Distance(transform.position, enemyTransform.position);
+            if (dist > maxDist)
             {
-                minDist = dist;
-                nearest = obj.transform;
+                maxDist = dist;
+                farest = enemyTransform;
             }
         }
 
-        return nearest;
+        return farest;
     }
 
     private IEnumerator DashToTarget(Transform target)
     {
-        float dashSpeed = 25;
+        float dashSpeed = skillDashSpeed;
         float reachDist = 1f;
 
         while (target != null && Vector2.Distance(transform.position, target.position) > reachDist)
         {
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(move); // °¨¼Ó ¾øÀ½
+            rb.MovePosition(move); // ê°ì† ì—†ìŒ
+            
+            if (dir.x >= 0) transform.right = Vector3.right;
+            else transform.right = Vector3.left;
 
-            transform.right = dir;
-
-            yield return new WaitForFixedUpdate(); // FixedUpdate ±âÁØ
+            yield return new WaitForFixedUpdate(); // FixedUpdate ê¸°ì¤€
         }
 
         rb.linearVelocity = Vector2.zero;
-    }
-
-    // ÂøÁöÇßÀ» °æ¿ì
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
-
-        ContactPoint2D contact = collision.contacts[0];
-        if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
-
-        if (isUltimateActive) return;
-
-        isGround = true;
-        Managers.Rider.RiderCountUp();
-        fixedJoint.enabled = true;
-        fixedJoint.connectedBody = collision.rigidbody;
     }
 }
