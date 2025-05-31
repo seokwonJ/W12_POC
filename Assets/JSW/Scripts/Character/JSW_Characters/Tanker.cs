@@ -79,7 +79,7 @@ public class Tanker : Character
     // 착지했을 경우 주위의 투사체 사라지고 적들은 넉백
     void LandingSkill(int skillDamageNum)
     {
-        GameObject landingSkillEffectObject = Instantiate(landingSkillEffect, transform.position, Quaternion.identity);
+        GameObject landingSkillEffectObject = Instantiate(landingSkillEffect, transform.position, Quaternion.identity); 
 
         Debug.Log("랜딩 스킬");
 
