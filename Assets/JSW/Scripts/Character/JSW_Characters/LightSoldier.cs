@@ -63,7 +63,7 @@ public class LightSoldier : Character
             }
 
             proj.transform.localScale *= 3;
-            rb.linearVelocity = new Vector2(0, 2.5f);
+            rb.linearVelocity = new Vector2(0, 2.2f);
             yield return new WaitForSeconds(0.2f);
             rb.linearVelocity = Vector3.zero;
         }
