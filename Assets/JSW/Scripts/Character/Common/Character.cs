@@ -91,7 +91,7 @@ public abstract class Character : MonoBehaviour
 
         isGround = false;
         transform.SetParent(null);
-        RiderManager.Instance.RiderCountDown();
+        Managers.Rider.RiderCountDown();
 
         currentMP = 0;
         mpImage.fillAmount = 0;
@@ -150,7 +150,7 @@ public abstract class Character : MonoBehaviour
         if (isUltimateActive || isGround) return;
         isGround = true;
 
-        RiderManager.Instance.RiderCountUp();
+        Managers.Rider.RiderCountUp();
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }

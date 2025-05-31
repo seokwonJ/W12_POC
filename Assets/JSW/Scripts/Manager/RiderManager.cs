@@ -1,27 +1,14 @@
 using UnityEngine;
 
-public class RiderManager : MonoBehaviour
+public class RiderManager
 {
-    public static RiderManager Instance { get; private set; }
-
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-
     public int riderCount;
     private CameraController cameraController;
 
-    private void Start()
+    public void Init()
     {
         cameraController = Camera.main.GetComponent<CameraController>();
+        if (cameraController == null) Debug.Log("CameraController 찾을 수 없음");
     }
 
     public void RiderCountUp()

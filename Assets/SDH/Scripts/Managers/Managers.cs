@@ -9,9 +9,12 @@ public class Managers : MonoBehaviour
     public static StatusManager Status => instance.status;
     private StatusManager status = new(); // 인게임 스탯 관리
     public static ArtifactManager Artifact => instance.artifact;
-    private ArtifactManager artifact; // 인게임 유물 관리
+    private ArtifactManager artifact = new(); // 인게임 유물 관리
     public static StageManager Stage => instance.stage;
-    private StageManager stage; // 씬 전환 관리 (전투-상점 등)
+    private StageManager stage = new(); // 씬 전환 관리 (전투-상점 등)
+
+    public static RiderManager Rider => instance.rider;
+    private RiderManager rider = new();
     #endregion
 
     private void Awake()
@@ -27,8 +30,10 @@ public class Managers : MonoBehaviour
         SetInit();
     }
 
-    private void SetInit() // 초기 설정
+    private void SetInit() // Awake 초기 설정
     {
         Application.targetFrameRate = 60;
+
+        rider.Init();
     }
 }
