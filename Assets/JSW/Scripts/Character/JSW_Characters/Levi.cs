@@ -142,7 +142,7 @@ public class Levi : Character
         if (isUltimateActive) return;
 
         isGround = true;
-        RiderManager.Instance.RiderCountUp();
+        Managers.Rider.RiderCountUp();
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }
