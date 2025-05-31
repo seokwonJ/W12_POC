@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Worrior : Character
+public class LightSoldier : Character
 {
     [Header("½ºÅ³")]
     public GameObject skillProjectile;

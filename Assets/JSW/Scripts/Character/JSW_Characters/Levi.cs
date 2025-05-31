@@ -154,23 +154,4 @@ public class Levi : Character
 
         rb.linearVelocity = Vector2.zero;
     }
-<<<<<<< Updated upstream
-
-    // 착지했을 경우
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
-
-        ContactPoint2D contact = collision.contacts[0];
-        if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
-
-        if (isUltimateActive) return;
-
-        isGround = true;
-        Managers.Rider.RiderCountUp();
-        fixedJoint.enabled = true;
-        fixedJoint.connectedBody = collision.rigidbody;
-    }
-=======
->>>>>>> Stashed changes
 }
