@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Levi : Character
 {
@@ -13,6 +14,7 @@ public class Levi : Character
     public int skillDamage;
     public float skillCount;
     public float skillInterval = 0.3f;
+    public float skillDashSpeed;
 
     [Header("강화")]
     public bool isNomalAttackFive;
@@ -20,6 +22,8 @@ public class Levi : Character
     public bool isFirstLowHPEnemy;
     public bool isAttackSpeedPerMana;
 
+    public GameObject trail;
+ 
     public int upgradeNum;
 
     // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
@@ -61,14 +65,16 @@ public class Levi : Character
     protected override IEnumerator FireSkill()
     {
         Debug.Log("돌진가즈아!");
-
+        trail.SetActive(true);
         List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
 
+        Transform target;
+
         for (int i = 0; i < skillCount; i++)
         {
-            Transform target = FindNearestEnemyExcluding(hitEnemies);
+            target = FindFarestEnemyExcluding(hitEnemies);
             if (target == null) break;
 
             hitEnemies.Add(target);
@@ -84,37 +90,54 @@ public class Levi : Character
             }
 
             yield return new WaitForSeconds(0.02f); // 약간의 딜레이
+
         }
 
-        gameObject.layer = LayerMask.NameToLayer("Character");
-
         transform.up = Vector3.up;
-        rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+
+        rb.linearVelocity = new Vector2(-10, jumpForce);
+        trail.SetActive(false);
+
+        yield return new WaitForSeconds(0.5f);
+
+        gameObject.layer = LayerMask.NameToLayer("Character");
     }
 
-    private Transform FindNearestEnemyExcluding(List<Transform> excluded)
+    private Transform FindFarestEnemyExcluding(List<Transform> excluded)
     {
-        Transform nearest = null;
-        float minDist = float.MaxValue;
+        Transform farest = null;
+        float maxDist = 0;
 
         foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
         {
-            if (excluded.Contains(obj.transform)) continue;
+            Transform enemyTransform = obj.transform;
 
-            float dist = Vector2.Distance(transform.position, obj.transform.position);
-            if (dist < minDist)
+            if (excluded.Contains(enemyTransform)) continue;
+
+            // 카메라 뷰포트 안에 있는지 확인
+            Vector3 viewportPos = Camera.main.WorldToViewportPoint(enemyTransform.position);
+
+            bool isVisible = viewportPos.z > 0 &&
+                             viewportPos.x >= 0 && viewportPos.x <= 1 &&
+                             viewportPos.y >= 0 && viewportPos.y <= 1;
+
+            if (!isVisible) continue;
+
+            // 가까운 적 계산
+            float dist = Vector2.Distance(transform.position, enemyTransform.position);
+            if (dist > maxDist)
             {
-                minDist = dist;
-                nearest = obj.transform;
+                maxDist = dist;
+                farest = enemyTransform;
             }
         }
 
-        return nearest;
+        return farest;
     }
 
     private IEnumerator DashToTarget(Transform target)
     {
-        float dashSpeed = 25;
+        float dashSpeed = skillDashSpeed;
         float reachDist = 1f;
 
         while (target != null && Vector2.Distance(transform.position, target.position) > reachDist)
@@ -122,14 +145,16 @@ public class Levi : Character
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
             rb.MovePosition(move); // 감속 없음
-
-            transform.right = dir;
+            
+            if (dir.x >= 0) transform.right = Vector3.right;
+            else transform.right = Vector3.left;
 
             yield return new WaitForFixedUpdate(); // FixedUpdate 기준
         }
 
         rb.linearVelocity = Vector2.zero;
     }
+<<<<<<< Updated upstream
 
     // 착지했을 경우
     protected override void OnCollisionEnter2D(Collision2D collision)
@@ -146,4 +171,6 @@ public class Levi : Character
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }
+=======
+>>>>>>> Stashed changes
 }

@@ -60,9 +60,9 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!70 &8093006193863305024
 CapsuleCollider2D:
@@ -172,10 +172,14 @@ MonoBehaviour:
   skillknockbackPower: 100
   skillInterval: 0.3
   skillRange: 10
+  landingSkillEffect: {fileID: 5948256768726399820, guid: 02b3edf9c933d7649819df429657066e, type: 3}
   nomalAttackSize: 1
   nomalAttackLifetime: 5
-  isfallingCanAttack: 0
+  knockBackpower: 1
+  isFallingSpeedToSkillDamage: 0
   isShieldFlyer: 0
+  isHitSkillPerGetMana: 0
+  isCloserMoreDamage: 0
   upgradeNum: 0
 --- !u!1 &1883067610540857561
 GameObject:

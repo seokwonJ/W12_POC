@@ -1,12 +1,23 @@
 using UnityEngine;
 
-public class ProtecterSkill : MonoBehaviour
+public class ProtecterSkill : PlayerHP
 {
-    private void OnTriggerEnter2D(Collider2D collision)
+    public int barrierHP;
+    private int _currentbarrierHp;
+
+    protected override void Start()
     {
-        if (collision.tag == "EnemyAttack")
+        _currentbarrierHp = barrierHP;
+        
+    }
+
+    public override void TakeDamage(int damage)
+    {
+        _currentbarrierHp -= (damage);
+   
+        if (_currentbarrierHp <= 0)
         {
-            Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
     }
 }

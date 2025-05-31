@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 8749697401223676892}
   m_Layer: 0
   m_Name: ProtecterSkill
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -165,3 +165,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5466ef16cc6d0974689bcb9064486452, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerHP: 200
+  playerHP_Image: {fileID: 0}
+  barrierHP: 100
