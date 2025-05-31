@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
 {
@@ -22,11 +23,15 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
         {
             BuyItem();
         }
+        if (Input.GetKeyDown(KeyCode.P)) // 임시 상점 종료 함수
+        {
+            SceneManager.LoadScene("JJHStageScene_SDH");
+        }
     }
 
     private void FindPlayer()
     {
-        player = FindAnyObjectByType<PlayerMove>().transform;
+        player = FindAnyObjectByType<PlayerMove>()?.transform;
 
         if (!player)
         {

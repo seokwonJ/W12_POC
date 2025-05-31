@@ -34,6 +34,7 @@ public class Managers : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
+        stage.Init();
         rider.Init();
     }
 }

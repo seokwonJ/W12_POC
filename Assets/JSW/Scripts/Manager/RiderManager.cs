@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class RiderManager
+public class RiderManager // 여기 수정 필요 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 {
     public int riderCount;
     private CameraController cameraController;
