@@ -51,13 +51,13 @@ public class Pirate : Character
         {
             rb.linearVelocity = Vector3.zero;
             yield return new WaitForSeconds(skillFireDelay);
-            FireSkillProjectiles();
+             StartCoroutine(FireSkillCanon());
             yield return new WaitForSeconds(skillInterval);
         }
     }
 
     // ±Ã±Ø±â ¹ß»ç ±¸Çö
-    protected override void FireSkillProjectiles()
+    IEnumerator FireSkillCanon()
     {
         float minAngle = 60f;
         float maxAngle = 120f;
@@ -78,6 +78,7 @@ public class Pirate : Character
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
             PirateAttack mb = proj.GetComponent<PirateAttack>();
             mb.SetInit(dir.normalized, (int)(abilityPower), projectileSpeed - 5, skillSize);
+            yield return new WaitForSeconds(0.05f);
         }
     }
 

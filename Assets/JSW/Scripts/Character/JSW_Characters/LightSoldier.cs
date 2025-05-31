@@ -31,22 +31,41 @@ public class LightSoldier : Character
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
-        GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<SwordAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+        GameObject proj = Instantiate(normalProjectile, firePoint.position + Vector3.up, Quaternion.identity);
+        GameObject proj2 = Instantiate(normalProjectile, firePoint.position + Vector3.down, Quaternion.identity);
+        proj.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+        proj2.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
 
     // 스킬: 커다란 직진형 투사체 3발 연속 발사
     protected override IEnumerator FireSkill()
     {
+        yield return new WaitForSeconds(skillInterval);
 
-        if (isShieldFlyer) _playerStatus.defensePower -= 5;
+        Camera cam = Camera.main;
 
-        // 궁극기 3연사
-        for (int i = 0; i < skillCount; i++)
+        // 카메라 뷰포트의 전체 상단 ~ 하단을 월드 기준으로 변환
+        Vector3 topLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.transform.position.z * -1f));
+        Vector3 bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.transform.position.z * -1f));
+
+        for (int i = 0; i < 14; i++)
         {
-            yield return new WaitForSeconds(skillFireDelay);
-            FireSkillProjectiles();
-            yield return new WaitForSeconds(skillInterval);
+            float randomY = Random.Range(bottomLeft.y, topLeft.y); // 실제 월드 Y 범위
+
+            Vector3 worldPos = new Vector3(topLeft.x, randomY, 0); // 왼쪽 가장자리에서 랜덤 y 위치
+
+            GameObject proj = Instantiate(skillProjectile, worldPos, Quaternion.identity);
+            var sword = proj.GetComponent<LightSoldierAttack>();
+            if (sword != null)
+            {
+                sword.speed = 20;
+                sword.SetInit(Vector3.right, attackDamage, 30, 10, nomalAttackSize);
+            }
+
+            proj.transform.localScale *= 3;
+            rb.linearVelocity = new Vector2(0, 2.5f);
+            yield return new WaitForSeconds(0.2f);
+            rb.linearVelocity = Vector3.zero;
         }
     }
 
@@ -61,23 +80,6 @@ public class LightSoldier : Character
         proj.transform.localScale *= 3; // 커다란 검 휘두르기 느낌
     }
 
-
-    protected override void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (!collision.gameObject.CompareTag("Player")) return;
-
-        ContactPoint2D contact = collision.contacts[0];
-        if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
-
-        if (isUltimateActive || isGround) return;
-        isGround = true;
-
-        if (isShieldFlyer) _playerStatus.defensePower += 5;
-
-        Managers.Rider.RiderCountUp();
-        fixedJoint.enabled = true;
-        fixedJoint.connectedBody = collision.rigidbody;
-    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
