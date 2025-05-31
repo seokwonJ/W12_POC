@@ -82,6 +82,9 @@ public class Levi : Character
             // 돌진
             yield return StartCoroutine(DashToTarget(target));
 
+            // 중간에 죽었을 경우
+            if (target == null) continue;
+
             // 데미지 주기
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             if (enemyHP != null)
@@ -142,7 +145,11 @@ public class Levi : Character
 
         while (target != null && Vector2.Distance(transform.position, target.position) > reachDist)
         {
-            if (target == null) break;
+            if (target == null || target.gameObject == null)
+            {
+                break;
+            }
+
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
             rb.MovePosition(move); // 감속 없음
