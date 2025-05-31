@@ -13,8 +13,8 @@ public class EnemySpawnerJH : MonoBehaviour
     public StageSO[] stageSOArray;
     private StageSO stageSO;
 
-    private int world = 1; // 월드 번호, 1-2 일 경우 1
-    private int stage = 1; // 스테이지 번호, 1-2 일 경우 2
+    [SerializeField] private int world = 1; // 월드 번호, 1-2 일 경우 1
+    [SerializeField] private int stage = 1; // 스테이지 번호, 1-2 일 경우 2
     private EnemyWaveSO[] enemyWave; // 각 웨이브의 적 구성
     private int[] WaveCount; // 각 웨이브를 몇 번씩 소환할지 횟수
     private float[] WaveInterval; // 각 웨이브 사이의 시간 간격    

@@ -3,6 +3,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+#if UNITY_EDITOR
+    [TextArea]
+    [SerializeField] private string editorNote = "";
+    #pragma warning restore 0414
+#endif
     public ScriptableObject movementSO;
     public ScriptableObject attackSO;
 
