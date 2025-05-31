@@ -64,7 +64,6 @@ public class Levi : Character
     // 스킬 : 점프 후 착지시 3초간 공격력 강화
     protected override IEnumerator FireSkill()
     {
-        Debug.Log("돌진가즈아!");
         trail.SetActive(true);
         List<Transform> hitEnemies = new List<Transform>();
 
@@ -161,5 +160,13 @@ public class Levi : Character
         }
 
         rb.linearVelocity = Vector2.zero;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isGround && collision.tag == "Enemy" && isUltimateActive)
+        {
+            collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
+        }
     }
 }

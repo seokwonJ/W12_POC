@@ -81,7 +81,7 @@ public class Worrior : Character
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isfallingCanAttack && collision.tag == "Enemy")
+        if (isfallingCanAttack && collision.tag == "Enemy" && !isGround)
         {
             collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
         }
