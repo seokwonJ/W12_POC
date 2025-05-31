@@ -94,7 +94,7 @@ public abstract class Character : MonoBehaviour
         Managers.Rider.RiderCountDown();
 
         currentMP = 0;
-        mpImage.fillAmount = 0;
+        if (mpImage != null) mpImage.fillAmount = 0;
         isUltimateActive = true;
 
         //점프
