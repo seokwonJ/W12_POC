@@ -3,8 +3,6 @@
 public class FoxAttack : ProjectileBase
 {
     private bool isReturning = false;
-    private Vector3 startPos;
-    private float maxDistance = 20f; // 얼마나 멀리 갔다가 돌아올지
     private Transform owner;       // 되돌아올 대상
 
     private float travelTime = 0f;
@@ -13,10 +11,13 @@ public class FoxAttack : ProjectileBase
     private float minSpeed = 3f;
     private float maxSpeed = 20f;
 
+    public bool isReturnDamageScalesWithHitCount;
+    public int fowardCount;
+    public bool isOrbPausesBeforeReturning;
+
     protected override void Start()
     {
         base.Start();
-        startPos = transform.position;
     }
 
     protected override void Update()
@@ -29,15 +30,19 @@ public class FoxAttack : ProjectileBase
             // 감속 커브 (빠르게 시작해서 점점 느려짐)
             speed = Mathf.Lerp(maxSpeed, minSpeed, t * t);
 
+            
             if (speed <= minSpeed + 0.01f) // 여유 범위 줘서 깔끔하게 전환
             {
-                isReturning = true;
-                returnTime = 0f;
+                 isReturning = true;
+                 returnTime = 0f;
             }
         }
         else if (owner != null)
         {
             returnTime += Time.deltaTime;
+
+            if (isOrbPausesBeforeReturning && returnTime < 1) return;
+
             float t = Mathf.Clamp01(returnTime / totalTravelTime);
             speed = Mathf.Lerp(minSpeed, maxSpeed, t);
 
@@ -56,7 +61,7 @@ public class FoxAttack : ProjectileBase
         base.Update();
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, Transform ownerTransform)
+    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult)
     {
         owner = ownerTransform;
 
@@ -66,6 +71,9 @@ public class FoxAttack : ProjectileBase
         damage = damageNum;
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
+        isReturnDamageScalesWithHitCount = isReturnDamageScalesWithHitCountResult;
+        totalTravelTime = totalTravelTimeNum;
+        isOrbPausesBeforeReturning = isOrbPausesBeforeReturningResult;
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -76,14 +84,19 @@ public class FoxAttack : ProjectileBase
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
+                
+                if (isReturnDamageScalesWithHitCount)
+                {
+                    enemy.TakeDamage(fowardCount * 2);
+                }
             }
+            
 
             // 아리 Q처럼, 돌아오는 중에도 데미지 줄 수 있도록
             // 단, 파괴는 하지 않음 — projectile 살아있어야 하니까
             if (!isReturning)
             {
-                // 앞으로 갈 때만 Destroy 하고 싶다면 이 조건 사용
-                // DestroyProjectile(gameObject);
+                fowardCount += 1;
             }
         }
     }

@@ -1,26 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Levi : Character
 {
     [Header("리바이 공격")]
     public float dobleAttackCoolTime = 0.05f;
-
+    public float NormalAttackProjectileDuration = 2f;
 
     [Header("스킬")]
     public bool isSkillLanding;
     public int skillDamage;
-    public float skillCount;
+    public float skillTargetCount;
     public float skillInterval = 0.3f;
     public float skillDashSpeed;
 
     [Header("강화")]
-    public bool isNomalAttackFive;
-    public int nomalAttackCount = 0;
-    public bool isFirstLowHPEnemy;
-    public bool isAttackSpeedPerMana;
+    public bool isAttackWhileFalling;
+    public bool isGainPowerFromSkillDamage;
+    public int GainPowerFromSkillDamageCount;
+    public float GainPowerFromSkillDamageDuration;
+    public bool isManaOnLandingBasedOnTimeAway;
+    public float ManaOnLandingBasedOnTime;
+    public bool isAttackSpeedBoostAfterQuickReboard;
+    public bool isMoreUltimateDamageWithJumpPower;
 
     public GameObject trail;
  
@@ -29,26 +32,23 @@ public class Levi : Character
     // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
-        nomalAttackCount += 1;
-
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        // 만약 투사체 에셋이 적용된다면 강화공격이 이곳에 적용되어야할 듯
-        if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillDamage, projectileSpeed); }
-        else proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed);
+        proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed, NormalAttackProjectileDuration);
+    }
+
+    protected override void Update()
+    {
+        if (isManaOnLandingBasedOnTimeAway && !isGround) ManaOnLandingBasedOnTime += Time.deltaTime;
+        base.Update();
     }
 
     protected override IEnumerator NormalAttackRoutine()
     {
-        float currnetNormalFireInterval;
-
         while (true)
         {
-            if (isAttackSpeedPerMana) currnetNormalFireInterval = normalFireInterval - currentMP / 600;
-            else currnetNormalFireInterval = normalFireInterval;
-
-            yield return new WaitForSeconds(currnetNormalFireInterval);
+            yield return new WaitForSeconds(normalFireInterval);
             if (!isGround) continue;
 
             Transform target = FindNearestEnemy();
@@ -71,7 +71,7 @@ public class Levi : Character
 
         Transform target;
 
-        for (int i = 0; i < skillCount; i++)
+        for (int i = 0; i < skillTargetCount; i++)
         {
             target = FindFarestEnemyExcluding(hitEnemies);
             if (target == null) break;
@@ -88,7 +88,10 @@ public class Levi : Character
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             if (enemyHP != null)
             {
-                enemyHP.TakeDamage(attackDamage + skillDamage);
+                if (isMoreUltimateDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
+                else enemyHP.TakeDamage(attackDamage + skillDamage);
+
+
             }
 
             yield return new WaitForSeconds(0.02f); // 약간의 딜레이
@@ -101,6 +104,9 @@ public class Levi : Character
         trail.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
+
+        if (isAttackSpeedBoostAfterQuickReboard) StartCoroutine(AttackSpeedBoostAfterQuickReboard());
+        if (isGainPowerFromSkillDamage) StartCoroutine(GainPowerFromSkillDamageCountUpGrade());
 
         gameObject.layer = LayerMask.NameToLayer("Character");
     }
@@ -162,11 +168,54 @@ public class Levi : Character
         rb.linearVelocity = Vector2.zero;
     }
 
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if(isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50);
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isGround && collision.tag == "Enemy" && isUltimateActive)
+        if (!isGround && collision.tag == "Enemy" && (isSkillActive || isAttackWhileFalling))            // 스킬을 쓰고있거나, 떨어짐 평타 강화되었을 때
         {
+            if (isGainPowerFromSkillDamage && isSkillActive) GainPowerFromSkillDamageCount += 1;
             collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
         }
     }
+
+    IEnumerator GainPowerFromSkillDamageCountUpGrade()
+    {
+        attackDamage += GainPowerFromSkillDamageCount;
+        yield return new WaitForSeconds(GainPowerFromSkillDamageDuration);
+        attackDamage -= GainPowerFromSkillDamageCount;
+        GainPowerFromSkillDamageCount = 0;
+    }
+
+    IEnumerator AttackSpeedBoostAfterQuickReboard()
+    {
+        float timer=0;
+        float minusNormalFireInterval = 0.2f;
+
+        while (true) {
+
+            if (isGround)
+            {
+                normalFireInterval -= minusNormalFireInterval;
+
+                yield return new WaitForSeconds(2f);
+
+                normalFireInterval += minusNormalFireInterval;
+
+                break;
+            }
+
+            if (timer > 3) break;
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
+    }
+
+    
 }

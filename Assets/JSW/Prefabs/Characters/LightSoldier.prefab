@@ -247,25 +247,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 7
+  mpPerSecond: 20
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 3397254127826795141, guid: d00a7d7500f295244865f3016de20ded, type: 3}
   firePoint: {fileID: 8136733323812700408}
   normalFireInterval: 1
-  enemyDetectRadius: 10
-  jumpForce: 10
+  enemyDetectRadius: 30
+  jumpForce: 15
   maxFallSpeed: 10
-  attackDamage: 10
-  abilityPower: 10
+  attackDamage: 30
+  abilityPower: 5
   projectileSpeed: 10
   skillProjectile: {fileID: 3397254127826795141, guid: d00a7d7500f295244865f3016de20ded, type: 3}
-  skillCount: 3
+  skillShotCount: 14
   skillInterval: 0.3
   skillFireDelay: 0.1
-  nomalAttackSize: 1
-  nomalAttackLifetime: 1
-  isfallingCanAttack: 0
-  isShieldFlyer: 0
+  skillSize: 2
+  normalAttackSize: 2
+  normalAttackLifetime: 5
+  isFires4NormalAttackProjectiles: 0
+  isGain1ManaPerHit: 0
   upgradeNum: 1
 --- !u!1 &4917781285868248035
 GameObject:

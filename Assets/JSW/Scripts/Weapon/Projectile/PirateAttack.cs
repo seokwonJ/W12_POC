@@ -6,6 +6,7 @@ public class PirateAttack : ProjectileBase
     public float range;
     public float knockbackPower;
     public GameObject explosionEffect;
+    public bool isFirstHitDealsBonusDamage;
 
     protected override void Start()
     {
@@ -15,7 +16,7 @@ public class PirateAttack : ProjectileBase
     protected override void Update() { }
     
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum)
+    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, bool isFirstHitDealsBonus)
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -25,6 +26,7 @@ public class PirateAttack : ProjectileBase
         damage = damageNum;
         transform.localScale = Vector3.one * scaleNum;
         rb.linearVelocity = direction * speedNum;
+        isFirstHitDealsBonusDamage = isFirstHitDealsBonus;
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -32,18 +34,18 @@ public class PirateAttack : ProjectileBase
         if (other.CompareTag("Enemy"))
         {
             var enemy = other.GetComponent<EnemyHP>();
-            if (enemy != null) enemy.TakeDamage(damage);
+            if (enemy != null && isFirstHitDealsBonusDamage)
+            {
+                enemy.TakeDamage(damage);
+            }
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range);
 
-            int hitEnemyCount = 0;
 
             foreach (var hit in hits)
             {
                 if (hit.CompareTag("Enemy"))
                 {
-                    hitEnemyCount += 1;
-
                     EnemyAI enemyAI = hit.GetComponent<EnemyAI>();
                     EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 

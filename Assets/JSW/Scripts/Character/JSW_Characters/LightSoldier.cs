@@ -5,20 +5,20 @@ public class LightSoldier : Character
 {
     [Header("스킬")]
     public GameObject skillProjectile;
-    public int skillCount = 3;
+    public int skillShotCount = 14;
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
+    public int skillSize = 2;
 
     [Header("강화")]
-    public float nomalAttackSize;
-    public float nomalAttackLifetime;
-    public bool isfallingCanAttack;
-    public bool isShieldFlyer;
+    public float normalAttackSize;
+    public float normalAttackLifetime;
+    public bool isFires4NormalAttackProjectiles;
+    public bool isGain1ManaPerHit;
 
     public int upgradeNum;
 
     private PlayerStatus _playerStatus;
-
 
     protected override void Start()
     {
@@ -31,10 +31,19 @@ public class LightSoldier : Character
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
+       
         GameObject proj = Instantiate(normalProjectile, firePoint.position + Vector3.up, Quaternion.identity);
         GameObject proj2 = Instantiate(normalProjectile, firePoint.position + Vector3.down, Quaternion.identity);
-        proj.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
-        proj2.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+        proj.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);
+        proj2.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); 
+
+       if (isFires4NormalAttackProjectiles)
+       {
+            GameObject proj3 = Instantiate(normalProjectile, firePoint.position + Vector3.up * 2, Quaternion.identity);
+            GameObject proj4 = Instantiate(normalProjectile, firePoint.position + Vector3.down * 2, Quaternion.identity);
+            proj3.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+            proj4.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+       }
     }
 
     // 스킬: 커다란 직진형 투사체 3발 연속 발사
@@ -48,7 +57,7 @@ public class LightSoldier : Character
         Vector3 topLeft = cam.ViewportToWorldPoint(new Vector3(0, 1, cam.transform.position.z * -1f));
         Vector3 bottomLeft = cam.ViewportToWorldPoint(new Vector3(0, 0, cam.transform.position.z * -1f));
 
-        for (int i = 0; i < 14; i++)
+        for (int i = 0; i < skillShotCount; i++)
         {
             float randomY = Random.Range(bottomLeft.y, topLeft.y); // 실제 월드 Y 범위
 
@@ -56,14 +65,14 @@ public class LightSoldier : Character
 
             GameObject proj = Instantiate(skillProjectile, worldPos, Quaternion.identity);
             var sword = proj.GetComponent<LightSoldierAttack>();
+
             if (sword != null)
             {
                 sword.speed = 20;
-                sword.SetInit(Vector3.right, attackDamage, 30, 10, nomalAttackSize);
+                sword.SetInit(Vector3.right, attackDamage, 30, 10, normalAttackSize * skillSize, this, false);
             }
 
-            proj.transform.localScale *= 3;
-            rb.linearVelocity = new Vector2(0, 2.2f);
+            rb.linearVelocity = new Vector2(0, 2f);
             yield return new WaitForSeconds(0.2f);
             rb.linearVelocity = Vector3.zero;
         }
@@ -80,12 +89,8 @@ public class LightSoldier : Character
         proj.transform.localScale *= 3; // 커다란 검 휘두르기 느낌
     }
 
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void GainMp() 
     {
-        if (isfallingCanAttack && collision.tag == "Enemy")
-        {
-            collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
-        }
+        currentMP += 1;
     }
 }

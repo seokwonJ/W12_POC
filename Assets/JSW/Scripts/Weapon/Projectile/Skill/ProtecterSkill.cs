@@ -2,13 +2,15 @@ using UnityEngine;
 
 public class ProtecterSkill : PlayerHP
 {
-    public int barrierHP;
-    private int _currentbarrierHp;
+    private int _currentbarrierHp = 100;
 
     protected override void Start()
     {
-        _currentbarrierHp = barrierHP;
-        
+    }
+
+    public void Init(int barrierHp)
+    {
+        _currentbarrierHp = barrierHp;
     }
 
     public override void TakeDamage(int damage)
