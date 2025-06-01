@@ -607,16 +607,16 @@ MonoBehaviour:
   abilityPower: 10
   projectileSpeed: 10
   skillProjectile: {fileID: 4447341475902856095, guid: 204f59ac013c742499c5ac4f47e533e4, type: 3}
-  skillCount: 3
   skillInterval: 0.3
   skillFireDelay: 0.1
   skillSize: 1
-  skillDamage: 1
+  skillMultiple: 2
   skillDuration: 5
   currentSkillDuration: 1
+  skillDurability: 100
   nomalAttackSize: 1
-  isAddAbilityPower: 0
-  isnomalAttackSizePerMana: 0
-  isCanTeleport: 0
-  upgradeNum: 5
+  isShieldBreakExplosion: 0
+  shieldBreakExplosionEffect: {fileID: 5948256768726399820, guid: 02b3edf9c933d7649819df429657066e, type: 3}
+  isShieldCancelsProjectiles: 0
+  upgradeNum: 0
   player: {fileID: 0}

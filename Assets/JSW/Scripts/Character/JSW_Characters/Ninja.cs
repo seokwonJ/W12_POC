@@ -70,7 +70,7 @@ public class Ninja : Character
         ContactPoint2D contact = collision.contacts[0];
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
 
-        if (isUltimateActive) return;
+        if (isSkillActive) return;
         isGround = true;
         if (isSkillLanding)
         {

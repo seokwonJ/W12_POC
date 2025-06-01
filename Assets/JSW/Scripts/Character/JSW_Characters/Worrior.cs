@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Worrior : Character
 {
@@ -70,7 +69,7 @@ public class Worrior : Character
         ContactPoint2D contact = collision.contacts[0];
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
 
-        if (isUltimateActive || isGround) return;
+        if (isSkillActive || isGround) return;
         isGround = true;
 
         if (isShieldFlyer) _playerStatus.defensePower += 5;
@@ -82,7 +81,7 @@ public class Worrior : Character
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (isfallingCanAttack && collision.tag == "Enemy")
+        if (isfallingCanAttack && collision.tag == "Enemy" && !isGround)
         {
             collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
         }

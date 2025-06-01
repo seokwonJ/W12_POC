@@ -762,13 +762,13 @@ MonoBehaviour:
   jumpForce: 5
   maxFallSpeed: 10
   attackDamage: 30
-  abilityPower: 0
+  abilityPower: 5
   projectileSpeed: 10
   skillProjectile: {fileID: 3397254127826795141, guid: 6b65e076b01625c4aa90f35adc425b6f, type: 3}
   skillCount: 3
   skillInterval: 0.3
   skillFireDelay: 0.1
-  nomalAttackSize: 1
+  nomalAttackSize: 2
   nomalAttackLifetime: 3
   isfallingCanAttack: 0
   isShieldFlyer: 0
