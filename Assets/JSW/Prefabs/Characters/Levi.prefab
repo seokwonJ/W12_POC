@@ -350,7 +350,7 @@ MonoBehaviour:
   NormalAttackProjectileDuration: 2
   isSkillLanding: 0
   skillDamage: 10
-  skillTargetCount: 0
+  skillTargetCount: 5
   skillInterval: 0.3
   skillDashSpeed: 100
   isAttackWhileFalling: 0

@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pirate
       objectReference: {fileID: 0}
+    - target: {fileID: 1450283076957204448, guid: 6494efb290f2c1a41b85f3996ff5ae7c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1033,6 +1037,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Protecter
       objectReference: {fileID: 0}
+    - target: {fileID: 8759741728731498054, guid: 52964e8436d421640a7380f00d3e1802, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1230,6 +1238,10 @@ PrefabInstance:
     - target: {fileID: 3895071034499481536, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
       propertyPath: m_Name
       value: Magician
+      objectReference: {fileID: 0}
+    - target: {fileID: 3895071034499481536, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1675,6 +1687,10 @@ PrefabInstance:
     - target: {fileID: 8888805337605806763, guid: 07f0c4acc0ee82e4898944448783d8cb, type: 3}
       propertyPath: m_Name
       value: Worrior
+      objectReference: {fileID: 0}
+    - target: {fileID: 8888805337605806763, guid: 07f0c4acc0ee82e4898944448783d8cb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3548,6 +3564,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 6067348945300716500, guid: 8ec8ed6cf725c154cb70369fc3b60b1b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4538,6 +4558,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tanker
       objectReference: {fileID: 0}
+    - target: {fileID: 1072928865997025003, guid: 684524fec5745d547879756a731ca09c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4409654462998481833, guid: 684524fec5745d547879756a731ca09c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10.41
@@ -5176,6 +5200,10 @@ PrefabInstance:
     - target: {fileID: 7343003592488363999, guid: b0aa909712586cf41a304353daf09190, type: 3}
       propertyPath: m_Name
       value: Ninja
+      objectReference: {fileID: 0}
+    - target: {fileID: 7343003592488363999, guid: b0aa909712586cf41a304353daf09190, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6482,6 +6510,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fox
       objectReference: {fileID: 0}
+    - target: {fileID: 4039518289144622579, guid: d44736fa1b5139b4783aa1237e26cc33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6725,6 +6757,10 @@ PrefabInstance:
     - target: {fileID: 3610092991606576360, guid: 6e4c872bbd35cd445b606458280d9428, type: 3}
       propertyPath: m_Name
       value: LightSoldier
+      objectReference: {fileID: 0}
+    - target: {fileID: 3610092991606576360, guid: 6e4c872bbd35cd445b606458280d9428, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8136733323812700408, guid: 6e4c872bbd35cd445b606458280d9428, type: 3}
       propertyPath: m_LocalPosition.x
