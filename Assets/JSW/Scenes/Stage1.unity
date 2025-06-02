@@ -1201,11 +1201,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 91693443383765436, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.71
+      value: 10.609
       objectReference: {fileID: 0}
     - target: {fileID: 91693443383765436, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.97
+      value: 2.941
       objectReference: {fileID: 0}
     - target: {fileID: 91693443383765436, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1239,13 +1239,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2816462353210408179, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3895071034499481536, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
       propertyPath: m_Name
       value: Magician
       objectReference: {fileID: 0}
     - target: {fileID: 3895071034499481536, guid: 0452980aca64bb54a983c4c9d285cbbd, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -6815,6 +6819,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 750889975}
   - {fileID: 619394802}
   - {fileID: 944028982}
   - {fileID: 5147033635172768413}
@@ -6831,7 +6836,6 @@ SceneRoots:
   - {fileID: 8190082313869006588}
   - {fileID: 812831421}
   - {fileID: 1544246024}
-  - {fileID: 750889975}
   - {fileID: 8578412222457819959}
   - {fileID: 18229405}
   - {fileID: 1772622237601990960}
