@@ -1038,7 +1038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8888805337605806763, guid: 07f0c4acc0ee82e4898944448783d8cb, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3428,7 +3428,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1072928865997025003, guid: 684524fec5745d547879756a731ca09c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4409654462998481833, guid: 684524fec5745d547879756a731ca09c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5839,7 +5839,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ca6587c8482fb047b6f2b1c8dc62061, type: 2}
   - {fileID: 11400000, guid: 65949a43ca8c5e34384532b07d71de85, type: 2}
   world: 1
-  stage: 3
+  stage: 1
   playTime_Text: {fileID: 663497427}
 --- !u!1 &1949148883
 GameObject:

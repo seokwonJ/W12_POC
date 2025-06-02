@@ -1,10 +1,10 @@
-using JetBrains.Annotations;
+ï»¿using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 
 public class Tanker : Character
 {
-    [Header("½ºÅ³")]
+    [Header("ìŠ¤í‚¬")]
     public bool isSkillLanding;
     public int skillDamage;
     public float skillknockbackPower;
@@ -12,12 +12,12 @@ public class Tanker : Character
     public float skillRange;
     public GameObject landingSkillEffect;
 
-    [Header("°ø°İ")]
+    [Header("ê³µê²©")]
     public float nomalAttackSize;
     public float nomalAttackLifetime;
     public float knockBackpower = 1;
 
-    [Header("°­È­")]
+    [Header("ê°•í™”")]
     public bool isFallingSpeedToSkillDamage;
     public bool isShieldFlyer;
     public bool isHitSkillPerGetMana;
@@ -33,16 +33,16 @@ public class Tanker : Character
         _playerStatus = FindAnyObjectByType<PlayerStatus>();
     }
 
-    // ÀÏ¹İ °ø°İ: Á÷ÁøÇü Åõ»çÃ¼ ¹ß»ç
+    // ì¼ë°˜ ê³µê²©: ì§ì§„í˜• íˆ¬ì‚¬ì²´ ë°œì‚¬
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // ÀÌ ¸Ş¼­µå°¡ ¾ø´Ù¸é ±×³É ¹æÇâ ÀúÀåÇØ¼­ ¾²¸é µÊ
+        proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // ì´ ë©”ì„œë“œê°€ ì—†ë‹¤ë©´ ê·¸ëƒ¥ ë°©í–¥ ì €ì¥í•´ì„œ ì“°ë©´ ë¨
     }
 
-    // ½ºÅ³: Ä¿´Ù¶õ Á÷ÁøÇü Åõ»çÃ¼ 3¹ß ¿¬¼Ó ¹ß»ç
+    // ìŠ¤í‚¬: ì»¤ë‹¤ë€ ì§ì§„í˜• íˆ¬ì‚¬ì²´ 3ë°œ ì—°ì† ë°œì‚¬
     protected override IEnumerator FireSkill()
     {
         if (isShieldFlyer) _playerStatus.defensePower -= 5;
@@ -51,7 +51,7 @@ public class Tanker : Character
         yield return new WaitForSeconds(skillInterval);
     }
 
-    // ÂøÁöÇßÀ» °æ¿ì
+    // ì°©ì§€í–ˆì„ ê²½ìš°
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
@@ -75,12 +75,12 @@ public class Tanker : Character
         fixedJoint.connectedBody = collision.rigidbody;
     }
 
-    // ÂøÁöÇßÀ» °æ¿ì ÁÖÀ§ÀÇ Åõ»çÃ¼ »ç¶óÁö°í ÀûµéÀº ³Ë¹é
+    // ì°©ì§€í–ˆì„ ê²½ìš° ì£¼ìœ„ì˜ íˆ¬ì‚¬ì²´ ì‚¬ë¼ì§€ê³  ì ë“¤ì€ ë„‰ë°±
     void LandingSkill(int skillDamageNum)
     {
         GameObject landingSkillEffectObject = Instantiate(landingSkillEffect, transform.position, Quaternion.identity);
 
-        Debug.Log("·£µù ½ºÅ³");
+        Debug.Log("ëœë”© ìŠ¤í‚¬");
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, skillRange);
 
@@ -92,7 +92,7 @@ public class Tanker : Character
             {
                 hitEnemyCount += 1;
 
-                EnemyAI enemyAI = hit.GetComponent<EnemyAI>();
+                Enemy enemy = hit.GetComponent<Enemy>();
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
                 int totalDamage = skillDamageNum;
@@ -102,12 +102,11 @@ public class Tanker : Character
                 else enemyHP.TakeDamage(totalDamage);
 
                 Vector3 knockbackDirection = hit.transform.position - transform.position;
-                if (enemyAI != null) enemyAI.ApplyKnockback(knockbackDirection, skillknockbackPower);
-                else
+                if (enemy != null)
                 {
-                    Enemy2 enemy2 = hit.GetComponent<Enemy2>();
-                    enemy2.ApplyKnockback(knockbackDirection, skillknockbackPower);
+                    enemy.ApplyKnockback(knockbackDirection, skillknockbackPower);
                 }
+
             }
             if (hit.CompareTag("EnemyAttack"))
             {

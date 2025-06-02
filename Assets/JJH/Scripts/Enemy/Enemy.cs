@@ -27,7 +27,7 @@ public class Enemy : MonoBehaviour
 
     private IMovementPattern movement;
     private IAttackPattern attack;
-
+    private SpriteRenderer spriteRenderer;
 
     public GameObject player; // 이후 싱글턴에서 player를 가져오도록 변경
     public Rigidbody2D rb; 
@@ -43,6 +43,8 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         if (movementSO != null )
         {
             ScriptableObject movementInstance = Instantiate(movementSO);
@@ -61,6 +63,16 @@ public class Enemy : MonoBehaviour
         attack?.Attack();
     }
 
+    private void Update()
+    {
+        if (spriteRenderer != null)
+        {
+            //  방향에 따라 스프라이트를 뒤집음
+            float directionX = transform.position.x - player.transform.position.x;
+            spriteRenderer.flipX = directionX <= 0 ? false : true; // directionX가 0 이하이면 정방향, 그 외에는 역방향으로 설정
+
+        }
+    }
 
     private void FixedUpdate()
     {
