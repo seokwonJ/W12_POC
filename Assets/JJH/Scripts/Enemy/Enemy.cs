@@ -87,6 +87,7 @@ public class Enemy : MonoBehaviour
 
     public void ApplyKnockback(Vector2 direction, float knockbackPower)
     {
+        if (!isKnockbackable) return;
         isKnockback = true;
         StartCoroutine(CoKnockbackTimer(0.05f));
         rb.linearVelocity = Vector2.zero; // 기존 움직임 제거

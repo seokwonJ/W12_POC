@@ -186,8 +186,9 @@ MonoBehaviour:
   attackSO: {fileID: 11400000, guid: 9aec8e334ba37024facbb338251cce8c, type: 2}
   speed: 3
   minPlayerDistance: 10
-  fireCooldown: 2
+  isKnockbackable: 1
   damage: 20
+  fireCooldown: 2
   projectileSpeed: 8
   projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
   player: {fileID: 0}
