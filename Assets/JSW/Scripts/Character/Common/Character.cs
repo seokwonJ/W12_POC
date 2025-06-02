@@ -102,7 +102,7 @@ public abstract class Character : MonoBehaviour
 
         yield return StartCoroutine(FireSkill());
 
-        // 궁극기 끝내는 부분
+        // 스킬 끝내는 부분
         isSkillActive = false;
     }
 

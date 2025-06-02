@@ -40,7 +40,7 @@ public class Worrior : Character
 
         if (isShieldFlyer) _playerStatus.defensePower -= 5;
 
-        // ±Ã±Ø±â 3¿¬»ç
+        // ½ºÅ³ 3¿¬»ç
         for (int i = 0; i < skillCount; i++)
         {
             yield return new WaitForSeconds(skillFireDelay);

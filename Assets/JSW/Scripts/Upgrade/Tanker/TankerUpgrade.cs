@@ -10,8 +10,8 @@ public class TankerUpgrade : CharacterUpgrade
         AttackPower,       // 공격력 증가
         ManaRegen,         // 마나 초당 증가량 증가
         FallSpeed,          // 떨어지는 속도 증가
-        SkillExpansion,      // 궁극기 범위 증가
-        FallingSpeedToSkillDamage,     // 떨어지는 속도가 빠를수록 궁 데미지 증가
+        SkillExpansion,      // 스킬 범위 증가
+        FallingSpeedToSkillDamage,     // 떨어지는 속도가 빠를수록 스킬 데미지 증가
         NomalAttackKnockback,       // 일반공격 넉백 강해짐
         ShipDamageReduction,       // 배에 타있으면 배가 받는 데미지 피해 줄여줌
         HitSkillPerGetMana,        // 밀려난 적의 수만큼 마나 획득

@@ -55,7 +55,7 @@ public class Magician : Character
         }
     }
 
-    // 궁극기 발사 구현
+    // 스킬 발사 구현
     protected override void FireSkillProjectiles()
     {
         Transform target = FindNearestEnemy();
