@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ghost-shocked_0: -2834633262075056714
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

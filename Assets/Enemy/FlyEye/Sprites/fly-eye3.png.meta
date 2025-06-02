@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fly-eye3_0: 145014742681167009
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

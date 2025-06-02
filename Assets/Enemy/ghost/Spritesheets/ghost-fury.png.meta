@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ghost-fury_0: 3723726899779618430
+      ghost-fury_1: -7339967770831823762
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
