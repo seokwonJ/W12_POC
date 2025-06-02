@@ -19,7 +19,6 @@ public class Worrior : Character
 
     private PlayerStatus _playerStatus;
 
-
     protected override void Start()
     {
         base.Start();

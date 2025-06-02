@@ -348,7 +348,6 @@ MonoBehaviour:
   projectileSpeed: 10
   skillProjectile: {fileID: 7373925757434712426, guid: c2f01c89bf474dd4aaba5612582d0136, type: 3}
   skillCount: 10
-  skillInterval: 0.3
   skillFireDelay: 1
   skillSize: 1
   skillDamage: 1

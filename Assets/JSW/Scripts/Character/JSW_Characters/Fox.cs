@@ -5,8 +5,7 @@ public class Fox : Character
 {
     [Header("스킬")]
     public GameObject skillProjectile;
-    public int skillCount = 3;
-    public float skillInterval = 0.3f;
+    public int skillCount = 10;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
     public float skillDamage = 1f;
@@ -22,6 +21,7 @@ public class Fox : Character
     public bool isAutoReturnAfterSeconds;
 
     public int upgradeNum;
+
     public GameObject player;
 
     protected override void Start()
@@ -30,7 +30,7 @@ public class Fox : Character
         player = FindAnyObjectByType<PlayerMove>().gameObject;
     }
 
-    // 일반 공격: 가까운 적에게 관통 공격
+    // 일반 공격: 원형 관통하고 돌아오는 원형 정수 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
@@ -59,7 +59,7 @@ public class Fox : Character
         }
     }
 
-    // 스킬: 느리고 커다란 관통 공격
+    // 스킬: 점프 후 원형 정수를 360도 사방으로 발사
     protected override IEnumerator FireSkill()
     {
         yield return new WaitForSeconds(skillFireDelay);
@@ -70,7 +70,6 @@ public class Fox : Character
     // 궁극기 발사 구현
     protected override void FireSkillProjectiles()
     {
-
         float angleStep = 360f / skillCount;
 
         for (int i = 0; i < skillCount; i++)

@@ -14,7 +14,7 @@ public class LeviUpgrade : CharacterUpgrade
         GainPowerFromSkillDamage,   // 스킬 시 데미지 준 적 비례해서 일시적 공격력 상승
         ManaOnLandingBasedOnTimeAway,   // 배와 떨어진 시간에 비례하여 착지시 마나 부여
         AttackSpeedBoostAfterQuickReboard,  // 스킬 쓰고 3초 안에 탑승 시 일시적인 공격속도 상승
-        MoreUltimateDamageWithJumpPower     // 점프에 비례해서 스킬 데미지 증가
+        MoreSkillDamageWithJumpPower     // 점프에 비례해서 스킬 데미지 증가
     }
 
     public UpgradeType type;
@@ -69,8 +69,8 @@ public class LeviUpgrade : CharacterUpgrade
                 Debug.Log("Debug8 Archer");
                 levi.upgradeNum = 8;
                 break;
-            case UpgradeType.MoreUltimateDamageWithJumpPower:                    // 일반 공격 함수에 조건문으로 걸려있는 tripleshot true로 바꿈
-                levi.isMoreUltimateDamageWithJumpPower = true;
+            case UpgradeType.MoreSkillDamageWithJumpPower:                    // 일반 공격 함수에 조건문으로 걸려있는 tripleshot true로 바꿈
+                levi.isMoreSkillDamageWithJumpPower = true;
                 Debug.Log("Debug9 Archer");
                 levi.upgradeNum = 9;
                 break;

@@ -611,6 +611,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Levi
       objectReference: {fileID: 0}
+    - target: {fileID: 4038042523987487916, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7217755437246237028, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.09
@@ -1690,7 +1694,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8888805337605806763, guid: 07f0c4acc0ee82e4898944448783d8cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

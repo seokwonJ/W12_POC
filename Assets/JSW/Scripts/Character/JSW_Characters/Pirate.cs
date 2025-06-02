@@ -9,9 +9,7 @@ public class Pirate : Character
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillSpeed = 10f;
-    public float skillDamage = 1f;
     public int skillShotCount = 4;
-
 
     [Header("강화")]
     public float nomalAttackSize;
@@ -19,6 +17,7 @@ public class Pirate : Character
     public bool isFirstHitDealsBonusDamage;
 
     public int upgradeNum;
+
     public GameObject player;
 
     protected override void Start()
@@ -27,7 +26,7 @@ public class Pirate : Character
         player = FindAnyObjectByType<PlayerMove>().gameObject;
     }
 
-    // 일반 공격: 가까운 적에게 관통 공격
+    // 일반 공격: 대포알 한발씩 발사 대포알 경우 광역 넉백
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         if (isBackwardCannonShot)
@@ -50,7 +49,7 @@ public class Pirate : Character
         proj.GetComponent<PirateAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize, isFirstHitDealsBonusDamage);
     }
 
-    // 스킬: 느리고 커다란 관통 공격
+    // 스킬: 점프 후 공중에 대포알들 여러발 발사
     protected override IEnumerator FireSkill()
     {
         yield return new WaitForSeconds(1f);
@@ -59,7 +58,7 @@ public class Pirate : Character
         {
             rb.linearVelocity = Vector3.zero;
             yield return new WaitForSeconds(skillFireDelay);
-             StartCoroutine(FireSkillCanon());
+            StartCoroutine(FireSkillCanon());
             yield return new WaitForSeconds(skillInterval);
         }
     }

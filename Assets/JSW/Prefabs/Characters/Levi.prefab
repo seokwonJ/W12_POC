@@ -351,7 +351,7 @@ MonoBehaviour:
   isSkillLanding: 0
   skillDamage: 10
   skillTargetCount: 5
-  skillInterval: 0.3
+  skillInterval: 0.02
   skillDashSpeed: 100
   isAttackWhileFalling: 0
   isGainPowerFromSkillDamage: 0

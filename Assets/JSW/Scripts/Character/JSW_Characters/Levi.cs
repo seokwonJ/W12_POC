@@ -23,13 +23,13 @@ public class Levi : Character
     public bool isManaOnLandingBasedOnTimeAway;
     public float ManaOnLandingBasedOnTime;
     public bool isAttackSpeedBoostAfterQuickReboard;
-    public bool isMoreUltimateDamageWithJumpPower;
+    public bool isMoreSkillDamageWithJumpPower;
 
     public GameObject trail;
- 
+
     public int upgradeNum;
 
-    // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
+    // 일반 공격: 연속 두번 관통형 공격 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
@@ -61,7 +61,7 @@ public class Levi : Character
         }
     }
 
-    // 스킬 : 점프 후 착지시 3초간 공격력 강화
+    // 스킬 : 캐릭터 기준 가장 멀리있는 적에게 돌진하여 데미지를 줌
     protected override IEnumerator FireSkill()
     {
         trail.SetActive(true);
@@ -88,14 +88,11 @@ public class Levi : Character
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             if (enemyHP != null)
             {
-                if (isMoreUltimateDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
+                if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
                 else enemyHP.TakeDamage(attackDamage + skillDamage);
-
-
             }
 
-            yield return new WaitForSeconds(0.02f); // 약간의 딜레이
-
+            yield return new WaitForSeconds(skillInterval); // 약간의 딜레이
         }
 
         transform.up = Vector3.up;
@@ -158,7 +155,7 @@ public class Levi : Character
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
             rb.MovePosition(move); // 감속 없음
-            
+
             if (dir.x >= 0) transform.right = Vector3.right;
             else transform.right = Vector3.left;
 
@@ -172,7 +169,7 @@ public class Levi : Character
     {
         base.OnCollisionEnter2D(collision);
 
-        if(isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50);
+        if (isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -194,10 +191,11 @@ public class Levi : Character
 
     IEnumerator AttackSpeedBoostAfterQuickReboard()
     {
-        float timer=0;
+        float timer = 0;
         float minusNormalFireInterval = 0.2f;
 
-        while (true) {
+        while (true)
+        {
 
             if (isGround)
             {
@@ -216,6 +214,4 @@ public class Levi : Character
             yield return null;
         }
     }
-
-    
 }

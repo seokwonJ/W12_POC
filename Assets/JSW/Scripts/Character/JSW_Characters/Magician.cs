@@ -42,7 +42,7 @@ public class Magician : Character
         }
     }
 
-    // 스킬: 느리고 커다란 관통 공격
+    // 스킬: 느리고 커다란 관통 공격 3발 발사
     protected override IEnumerator FireSkill()
     {
         if (isCanTeleport) StartCoroutine(TeleportToPlayer());

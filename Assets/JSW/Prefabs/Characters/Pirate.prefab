@@ -259,7 +259,6 @@ MonoBehaviour:
   skillInterval: 0.3
   skillFireDelay: 0.1
   skillSpeed: 10
-  skillDamage: 1
   skillShotCount: 4
   nomalAttackSize: 1
   isBackwardCannonShot: 0

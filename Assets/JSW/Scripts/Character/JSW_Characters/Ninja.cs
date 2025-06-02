@@ -44,7 +44,7 @@ public class Ninja : Character
             if (isAttackSpeedPerMana) currnetNormalFireInterval = normalFireInterval - currentMP / 600;
             else currnetNormalFireInterval = normalFireInterval;
 
-                yield return new WaitForSeconds(currnetNormalFireInterval);
+            yield return new WaitForSeconds(currnetNormalFireInterval);
             if (!isGround) continue;
 
             Transform target = FindNearestEnemy();
@@ -81,7 +81,6 @@ public class Ninja : Character
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }
-
     IEnumerator PowerUp(int power)
     {
         attackDamage += power;

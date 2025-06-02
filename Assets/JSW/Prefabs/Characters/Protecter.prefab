@@ -607,8 +607,7 @@ MonoBehaviour:
   abilityPower: 10
   projectileSpeed: 10
   skillProjectile: {fileID: 4447341475902856095, guid: 204f59ac013c742499c5ac4f47e533e4, type: 3}
-  skillInterval: 0.3
-  skillFireDelay: 0.1
+  skillFireDelay: 0.3
   skillSize: 1
   skillMultiple: 2
   skillDuration: 5

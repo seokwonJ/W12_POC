@@ -5,8 +5,7 @@ public class Protecter : Character
 {
     [Header("스킬")]
     public GameObject skillProjectile;
-    public float skillInterval = 0.3f;
-    public float skillFireDelay = 0.1f;
+    public float skillFireDelay = 0.3f;
     public float skillSize = 1f;
     public float skillMultiple = 2f;
     public float skillDuration = 7f;
@@ -28,7 +27,7 @@ public class Protecter : Character
         player = FindAnyObjectByType<PlayerMove>().gameObject;
     }
 
-    // 일반 공격: 가까운 적에게 관통 공격
+    // 일반 공격: 가까운 적에게 원형 투사체 공격
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
@@ -44,7 +43,7 @@ public class Protecter : Character
     // 스킬: 원형보호막 생성
     protected override IEnumerator FireSkill()
     {
-        yield return new WaitForSeconds(skillInterval);
+        yield return new WaitForSeconds(skillFireDelay);
         StartCoroutine(ActiveSkillProtect());
     }
 
