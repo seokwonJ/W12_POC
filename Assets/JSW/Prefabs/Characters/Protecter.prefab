@@ -600,15 +600,14 @@ MonoBehaviour:
   normalProjectile: {fileID: 7373925757434712426, guid: cfc5e93cc7fafe840b04ca1d247b2584, type: 3}
   firePoint: {fileID: 2329205813164804871}
   normalFireInterval: 1
-  enemyDetectRadius: 50
+  enemyDetectRadius: 25
   jumpForce: 15
   maxFallSpeed: 10
   attackDamage: 10
   abilityPower: 10
   projectileSpeed: 10
   skillProjectile: {fileID: 4447341475902856095, guid: 204f59ac013c742499c5ac4f47e533e4, type: 3}
-  skillInterval: 0.3
-  skillFireDelay: 0.1
+  skillFireDelay: 0.3
   skillSize: 1
   skillMultiple: 2
   skillDuration: 5

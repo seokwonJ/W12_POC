@@ -1,10 +1,10 @@
-ï»¿using JetBrains.Annotations;
+using JetBrains.Annotations;
 using System.Collections;
 using UnityEngine;
 
 public class Tanker : Character
 {
-    [Header("ìŠ¤í‚¬")]
+    [Header("½ºÅ³")]
     public bool isSkillLanding;
     public int skillDamage;
     public float skillknockbackPower;
@@ -12,12 +12,12 @@ public class Tanker : Character
     public float skillRange;
     public GameObject landingSkillEffect;
 
-    [Header("ê³µê²©")]
+    [Header("°ø°İ")]
     public float nomalAttackSize;
     public float nomalAttackLifetime;
     public float knockBackpower = 1;
 
-    [Header("ê°•í™”")]
+    [Header("°­È­")]
     public bool isFallingSpeedToSkillDamage;
     public bool isShieldFlyer;
     public bool isHitSkillPerGetMana;
@@ -33,16 +33,16 @@ public class Tanker : Character
         _playerStatus = FindAnyObjectByType<PlayerStatus>();
     }
 
-    // ì¼ë°˜ ê³µê²©: ì§ì§„í˜• íˆ¬ì‚¬ì²´ ë°œì‚¬
+    // ÀÏ¹İ °ø°İ: Á÷ÁøÇü Åõ»çÃ¼ ¹ß»ç
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // ì´ ë©”ì„œë“œê°€ ì—†ë‹¤ë©´ ê·¸ëƒ¥ ë°©í–¥ ì €ì¥í•´ì„œ ì“°ë©´ ë¨
+        proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // ÀÌ ¸Ş¼­µå°¡ ¾ø´Ù¸é ±×³É ¹æÇâ ÀúÀåÇØ¼­ ¾²¸é µÊ
     }
 
-    // ìŠ¤í‚¬: ì»¤ë‹¤ë€ ì§ì§„í˜• íˆ¬ì‚¬ì²´ 3ë°œ ì—°ì† ë°œì‚¬
+    // ½ºÅ³: Ä¿´Ù¶õ Á÷ÁøÇü Åõ»çÃ¼ 3¹ß ¿¬¼Ó ¹ß»ç
     protected override IEnumerator FireSkill()
     {
         if (isShieldFlyer) _playerStatus.defensePower -= 5;
@@ -51,7 +51,7 @@ public class Tanker : Character
         yield return new WaitForSeconds(skillInterval);
     }
 
-    // ì°©ì§€í–ˆì„ ê²½ìš°
+    // ÂøÁöÇßÀ» °æ¿ì
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
@@ -75,13 +75,12 @@ public class Tanker : Character
         fixedJoint.connectedBody = collision.rigidbody;
     }
 
-
-    // ì°©ì§€í–ˆì„ ê²½ìš° ì£¼ìœ„ì˜ íˆ¬ì‚¬ì²´ ì‚¬ë¼ì§€ê³  ì ë“¤ì€ ë„‰ë°±
+    // ÂøÁöÇßÀ» °æ¿ì ÁÖÀ§ÀÇ Åõ»çÃ¼ »ç¶óÁö°í ÀûµéÀº ³Ë¹é
     void LandingSkill(int skillDamageNum)
     {
-        GameObject landingSkillEffectObject = Instantiate(landingSkillEffect, transform.position, Quaternion.identity); 
+        GameObject landingSkillEffectObject = Instantiate(landingSkillEffect, transform.position, Quaternion.identity);
 
-        Debug.Log("ëœë”© ìŠ¤í‚¬");
+        Debug.Log("·£µù ½ºÅ³");
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, skillRange);
 
@@ -93,19 +92,21 @@ public class Tanker : Character
             {
                 hitEnemyCount += 1;
 
-                Enemy enemy = hit.GetComponent<Enemy>();
+                EnemyAI enemyAI = hit.GetComponent<EnemyAI>();
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
                 int totalDamage = skillDamageNum;
-                if (isCloserMoreDamage) totalDamage += (int)(skillRange / Vector2.Distance(hit.transform.position, transform.position));
+                if (isCloserMoreDamage) totalDamage += (int)(skillDamage / Vector2.Distance(hit.transform.position, transform.position));
 
-                if (isFallingSpeedToSkillDamage) enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);
+                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);}
                 else enemyHP.TakeDamage(totalDamage);
 
                 Vector3 knockbackDirection = hit.transform.position - transform.position;
-                if (enemy != null)
+                if (enemyAI != null) enemyAI.ApplyKnockback(knockbackDirection, skillknockbackPower);
+                else
                 {
-                    enemy.ApplyKnockback(knockbackDirection, skillknockbackPower);
+                    Enemy2 enemy2 = hit.GetComponent<Enemy2>();
+                    enemy2.ApplyKnockback(knockbackDirection, skillknockbackPower);
                 }
             }
             if (hit.CompareTag("EnemyAttack"))
@@ -115,7 +116,6 @@ public class Tanker : Character
         }
 
         if (isHitSkillPerGetMana) currentMP += 2 * hitEnemyCount;
-
         landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 2;
         Destroy(landingSkillEffectObject, 0.1f);
     }

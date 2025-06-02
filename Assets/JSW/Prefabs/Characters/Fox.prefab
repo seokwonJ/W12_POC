@@ -348,7 +348,6 @@ MonoBehaviour:
   projectileSpeed: 10
   skillProjectile: {fileID: 7373925757434712426, guid: c2f01c89bf474dd4aaba5612582d0136, type: 3}
   skillCount: 10
-  skillInterval: 0.3
   skillFireDelay: 1
   skillSize: 1
   skillDamage: 1
@@ -359,7 +358,7 @@ MonoBehaviour:
   EmpoweredAttackEveryCount: 0
   isMoreDamageBasedOnOnboardAllies: 0
   isOrbPausesBeforeReturning: 0
-  isAutoReturnAfterSeconds: 1
+  isAutoReturnAfterSeconds: 0
   upgradeNum: 0
   player: {fileID: 0}
 --- !u!1 &4516734006401047964

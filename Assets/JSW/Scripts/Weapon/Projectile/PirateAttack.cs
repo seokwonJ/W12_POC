@@ -3,7 +3,6 @@
 public class PirateAttack : ProjectileBase
 {
     public Rigidbody2D rb;
-    public float range;
     public float knockbackPower;
     public GameObject explosionEffect;
     public bool isFirstHitDealsBonusDamage;
@@ -39,8 +38,8 @@ public class PirateAttack : ProjectileBase
                 enemyHp.TakeDamage(damage);
             }
 
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, range);
-
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, transform.localScale.magnitude);
+            print(transform.localScale.magnitude);
 
             foreach (var hit in hits)
             {

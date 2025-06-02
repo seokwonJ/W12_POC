@@ -8,7 +8,7 @@ public class FoxUpgrade : CharacterUpgrade
         AttackSpeed,       // 일반 공격 속도 증가 (쿨타임 감소)
         AbilityPower,       // 주문력 증가
         ManaRegen,         // 마나 초당 증가량 증가
-        MoreUltimateOrbs,         // 궁극기 구슬 증가
+        MoreSkillOrbs,         // 궁극기 구슬 증가
         ReturnDamageScalesWithHitCount,    // 갈 때 맞은 적 개수당 돌아올 때 데미지 증가
         IncreasedSpiritOrbRange,     // 원혼구슬 사정거리 증가
         EmpoweredAttackEvery3Hits,   // 평타 3번당  강한 평타
@@ -26,7 +26,7 @@ public class FoxUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                fox.normalFireInterval -= 0.1f;              // 공격 쿨타임 0.1초 감소
+                fox.normalFireInterval -= 0.2f;              // 공격 쿨타임 0.1초 감소
                 Debug.Log("Debug0 Archer");
                 break;
             case UpgradeType.AbilityPower:
@@ -39,7 +39,7 @@ public class FoxUpgrade : CharacterUpgrade
                 Debug.Log("Debug2 Archer");
                 fox.upgradeNum = 2;
                 break;
-            case UpgradeType.MoreUltimateOrbs:                    // 궁극기 구슬 증가
+            case UpgradeType.MoreSkillOrbs:                    // 궁극기 구슬 증가
                 fox.skillCount += 6;
                 Debug.Log("Debug3 Archer");
                 fox.upgradeNum = 3;
@@ -69,7 +69,7 @@ public class FoxUpgrade : CharacterUpgrade
                 Debug.Log("Debug8 Archer");
                 fox.upgradeNum = 8;
                 break;
-            case UpgradeType.AutoReturnAfterSeconds:                    // 떨어지는 속도 증가
+            case UpgradeType.AutoReturnAfterSeconds:                    // 배에서 떨어지고 7초 동안 못타면 자동 복귀
                 fox.isAutoReturnAfterSeconds = true;
                 Debug.Log("Debug9 Archer");
                 fox.upgradeNum = 9;

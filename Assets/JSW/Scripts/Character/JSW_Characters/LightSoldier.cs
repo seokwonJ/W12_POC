@@ -18,35 +18,31 @@ public class LightSoldier : Character
 
     public int upgradeNum;
 
-    private PlayerStatus _playerStatus;
-
     protected override void Start()
     {
         base.Start();
-        _playerStatus = FindAnyObjectByType<PlayerStatus>();
     }
 
-    // 일반 공격: 직진형 투사체 발사
+    // 일반 공격: 직진형 투사체 발사 2발 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
-       
         GameObject proj = Instantiate(normalProjectile, firePoint.position + Vector3.up, Quaternion.identity);
         GameObject proj2 = Instantiate(normalProjectile, firePoint.position + Vector3.down, Quaternion.identity);
         proj.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);
-        proj2.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); 
+        proj2.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);
 
-       if (isFires4NormalAttackProjectiles)
-       {
+        if (isFires4NormalAttackProjectiles)
+        {
             GameObject proj3 = Instantiate(normalProjectile, firePoint.position + Vector3.up * 2, Quaternion.identity);
             GameObject proj4 = Instantiate(normalProjectile, firePoint.position + Vector3.down * 2, Quaternion.identity);
             proj3.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
             proj4.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
-       }
+        }
     }
 
-    // 스킬: 커다란 직진형 투사체 3발 연속 발사
+    // 스킬: 커다란 직진형 투사체 뒤에서 여러발 발사
     protected override IEnumerator FireSkill()
     {
         yield return new WaitForSeconds(skillInterval);
@@ -89,7 +85,7 @@ public class LightSoldier : Character
         proj.transform.localScale *= 3; // 커다란 검 휘두르기 느낌
     }
 
-    public void GainMp() 
+    public void GainMp()
     {
         currentMP += 1;
     }

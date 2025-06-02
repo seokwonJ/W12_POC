@@ -247,7 +247,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 20
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 3397254127826795141, guid: d00a7d7500f295244865f3016de20ded, type: 3}
   firePoint: {fileID: 8136733323812700408}

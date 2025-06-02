@@ -586,12 +586,13 @@ MonoBehaviour:
   jumpForce: 13
   maxFallSpeed: 10
   attackDamage: 5
-  abilityPower: 0
+  abilityPower: 5
   projectileSpeed: 15
   isSkillLanding: 0
-  skillPower: 0
-  skillPowerDuration: 0
-  skillInterval: 0.3
+  skillPower: 5
+  skillAttackSpeed: 2
+  skillPowerDuration: 3
+  skillInterval: 0.2
   isNomalAttackFive: 0
   nomalAttackCount: 0
   isFirstLowHPEnemy: 0

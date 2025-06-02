@@ -14,11 +14,11 @@ public class Worrior : Character
     public float nomalAttackLifetime;
     public bool isfallingCanAttack;
     public bool isShieldFlyer;
+    public float shieldNum = 5;
 
     public int upgradeNum;
 
     private PlayerStatus _playerStatus;
-
 
     protected override void Start()
     {
@@ -39,9 +39,9 @@ public class Worrior : Character
     protected override IEnumerator FireSkill()
     {
 
-        if (isShieldFlyer) _playerStatus.defensePower -= 5;
+        if (isShieldFlyer) _playerStatus.defensePower -= shieldNum;
 
-        // ±Ã±Ø±â 3¿¬»ç
+        // ½ºÅ³ 3¿¬»ç
         for (int i = 0; i < skillCount; i++)
         {
             yield return new WaitForSeconds(skillFireDelay);
@@ -72,7 +72,7 @@ public class Worrior : Character
         if (isSkillActive || isGround) return;
         isGround = true;
 
-        if (isShieldFlyer) _playerStatus.defensePower += 5;
+        if (isShieldFlyer) _playerStatus.defensePower += shieldNum;
 
         Managers.Rider.RiderCountUp();
         fixedJoint.enabled = true;

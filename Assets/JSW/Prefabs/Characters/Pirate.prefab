@@ -251,15 +251,14 @@ MonoBehaviour:
   enemyDetectRadius: 50
   jumpForce: 10
   maxFallSpeed: 10
-  attackDamage: 30
-  abilityPower: 30
+  attackDamage: 15
+  abilityPower: 15
   projectileSpeed: 15
   skillProjectile: {fileID: 7373925757434712426, guid: c05fcadff8e056842917c38b6e7458f3, type: 3}
   skillCount: 3
   skillInterval: 0.3
   skillFireDelay: 0.1
   skillSpeed: 10
-  skillDamage: 1
   skillShotCount: 4
   nomalAttackSize: 1
   isBackwardCannonShot: 0

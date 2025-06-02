@@ -26,12 +26,11 @@ public class ProtecterUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                // archer.normalFireInterval -= value;
-                protecter.normalFireInterval -= 0.1f;              // 공격 쿨타임 0.1초 감소
+                protecter.normalFireInterval -= 0.2f;              // 공격 쿨타임 0.1초 감소
                 Debug.Log("Debug0 Archer");
                 break;
             case UpgradeType.AttackPower:
-                protecter.attackDamage += 10;                    // ad 10 증가
+                protecter.abilityPower += 10;                    // ap 10 증가
                 Debug.Log("Debug1 Archer");
                 protecter.upgradeNum = 1;
                 break;
@@ -65,12 +64,12 @@ public class ProtecterUpgrade : CharacterUpgrade
                 Debug.Log("Debug7 Archer");
                 protecter.upgradeNum = 7;
                 break;
-            case UpgradeType.IncreasedShieldDurability:                    // 투사체 속도 15증가
+            case UpgradeType.IncreasedShieldDurability:                    // 보호막 내구도 증가
                 protecter.skillDurability += 100;
                 Debug.Log("Debug8 Archer");
                 protecter.upgradeNum = 8;
                 break;
-            case UpgradeType.ReducedJumpPower:                    // 일반 공격 함수에 조건문으로 걸려있는 tripleshot true로 바꿈
+            case UpgradeType.ReducedJumpPower:                    // 점프력 낮아짐
                 protecter.jumpForce -= 2;
                 Debug.Log("Debug9 Archer");
                 protecter.upgradeNum = 9;

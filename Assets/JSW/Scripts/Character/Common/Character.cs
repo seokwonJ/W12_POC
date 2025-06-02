@@ -102,7 +102,7 @@ public abstract class Character : MonoBehaviour
 
         yield return StartCoroutine(FireSkill());
 
-        // 궁극기 끝내는 부분
+        // 스킬 끝내는 부분
         isSkillActive = false;
     }
 
@@ -159,6 +159,6 @@ public abstract class Character : MonoBehaviour
     protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, enemyDetectRadius);
+        Gizmos.DrawWireSphere(transform.position, enemyDetectRadius/2);
     }
 }
