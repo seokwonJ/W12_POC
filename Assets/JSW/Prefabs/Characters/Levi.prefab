@@ -343,19 +343,24 @@ MonoBehaviour:
   enemyDetectRadius: 20
   jumpForce: 15
   maxFallSpeed: 10
-  attackDamage: 1
+  attackDamage: 10
   abilityPower: 1
   projectileSpeed: 10
   dobleAttackCoolTime: 0.05
+  NormalAttackProjectileDuration: 2
   isSkillLanding: 0
-  skillDamage: 20
-  skillCount: 5
+  skillDamage: 10
+  skillTargetCount: 5
   skillInterval: 0.3
   skillDashSpeed: 100
-  isNomalAttackFive: 0
-  nomalAttackCount: 1
-  isFirstLowHPEnemy: 0
-  isAttackSpeedPerMana: 0
+  isAttackWhileFalling: 0
+  isGainPowerFromSkillDamage: 0
+  GainPowerFromSkillDamageCount: 0
+  GainPowerFromSkillDamageDuration: 0
+  isManaOnLandingBasedOnTimeAway: 0
+  ManaOnLandingBasedOnTime: 0
+  isAttackSpeedBoostAfterQuickReboard: 0
+  isMoreUltimateDamageWithJumpPower: 0
   trail: {fileID: 5258655469011329452}
   upgradeNum: 1
 --- !u!1 &4341510303441533438

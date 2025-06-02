@@ -30,7 +30,7 @@ public abstract class Character : MonoBehaviour
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
     protected bool isGround = false;
-    protected bool isUltimateActive = false;
+    protected bool isSkillActive = false;
 
     protected virtual void Start()
     {
@@ -62,7 +62,7 @@ public abstract class Character : MonoBehaviour
         currentMP = Mathf.Min(currentMP, maxMP);
         if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
 
-        if (currentMP >= maxMP && !isUltimateActive)
+        if (currentMP >= maxMP && !isSkillActive)
         {
             fixedJoint.connectedBody = null;
             fixedJoint.enabled = false;
@@ -101,7 +101,7 @@ public abstract class Character : MonoBehaviour
 
         currentMP = 0;
         if (mpImage != null) mpImage.fillAmount = 0;
-        isUltimateActive = true;
+        isSkillActive = true;
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -109,7 +109,7 @@ public abstract class Character : MonoBehaviour
         yield return StartCoroutine(FireSkill());
 
         // 궁극기 끝내는 부분
-        isUltimateActive = false;
+        isSkillActive = false;
     }
 
     // 스킬 발동 부분
@@ -153,7 +153,7 @@ public abstract class Character : MonoBehaviour
         ContactPoint2D contact = collision.contacts[0];
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
 
-        if (isUltimateActive || isGround) return;
+        if (isSkillActive || isGround) return;
         isGround = true;
 
         Managers.Cam.RiderCountUp();

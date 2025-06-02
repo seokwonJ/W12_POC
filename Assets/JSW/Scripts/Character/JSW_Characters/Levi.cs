@@ -1,54 +1,54 @@
-ï»¿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 public class Levi : Character
 {
-    [Header("ë¦¬ë°”ì´ ê³µê²©")]
+    [Header("¸®¹ÙÀÌ °ø°İ")]
     public float dobleAttackCoolTime = 0.05f;
+    public float NormalAttackProjectileDuration = 2f;
 
-
-    [Header("ìŠ¤í‚¬")]
+    [Header("½ºÅ³")]
     public bool isSkillLanding;
     public int skillDamage;
-    public float skillCount;
+    public float skillTargetCount;
     public float skillInterval = 0.3f;
     public float skillDashSpeed;
 
-    [Header("ê°•í™”")]
-    public bool isNomalAttackFive;
-    public int nomalAttackCount = 0;
-    public bool isFirstLowHPEnemy;
-    public bool isAttackSpeedPerMana;
+    [Header("°­È­")]
+    public bool isAttackWhileFalling;
+    public bool isGainPowerFromSkillDamage;
+    public int GainPowerFromSkillDamageCount;
+    public float GainPowerFromSkillDamageDuration;
+    public bool isManaOnLandingBasedOnTimeAway;
+    public float ManaOnLandingBasedOnTime;
+    public bool isAttackSpeedBoostAfterQuickReboard;
+    public bool isMoreUltimateDamageWithJumpPower;
 
     public GameObject trail;
  
     public int upgradeNum;
 
-    // ì¼ë°˜ ê³µê²©: ì›ê±°ë¦¬ íˆ¬ì‚¬ì²´ í‘œì°½ ê°€ê¹Œìš´ ì ì—ê²Œ ë˜ì§€ê¸°
+    // ÀÏ¹İ °ø°İ: ¿ø°Å¸® Åõ»çÃ¼ Ç¥Ã¢ °¡±î¿î Àû¿¡°Ô ´øÁö±â
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
-        nomalAttackCount += 1;
-
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        // ë§Œì•½ íˆ¬ì‚¬ì²´ ì—ì…‹ì´ ì ìš©ëœë‹¤ë©´ ê°•í™”ê³µê²©ì´ ì´ê³³ì— ì ìš©ë˜ì–´ì•¼í•  ë“¯
-        if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillDamage, projectileSpeed); }
-        else proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed);
+        proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed, NormalAttackProjectileDuration);
+    }
+
+    protected override void Update()
+    {
+        if (isManaOnLandingBasedOnTimeAway && !isGround) ManaOnLandingBasedOnTime += Time.deltaTime;
+        base.Update();
     }
 
     protected override IEnumerator NormalAttackRoutine()
     {
-        float currnetNormalFireInterval;
-
         while (true)
         {
-            if (isAttackSpeedPerMana) currnetNormalFireInterval = normalFireInterval - currentMP / 600;
-            else currnetNormalFireInterval = normalFireInterval;
-
-            yield return new WaitForSeconds(currnetNormalFireInterval);
+            yield return new WaitForSeconds(normalFireInterval);
             if (!isGround) continue;
 
             Transform target = FindNearestEnemy();
@@ -61,10 +61,9 @@ public class Levi : Character
         }
     }
 
-    // ìŠ¤í‚¬ : ì í”„ í›„ ì°©ì§€ì‹œ 3ì´ˆê°„ ê³µê²©ë ¥ ê°•í™”
+    // ½ºÅ³ : Á¡ÇÁ ÈÄ ÂøÁö½Ã 3ÃÊ°£ °ø°İ·Â °­È­
     protected override IEnumerator FireSkill()
     {
-        Debug.Log("ëŒì§„ê°€ì¦ˆì•„!");
         trail.SetActive(true);
         List<Transform> hitEnemies = new List<Transform>();
 
@@ -72,24 +71,30 @@ public class Levi : Character
 
         Transform target;
 
-        for (int i = 0; i < skillCount; i++)
+        for (int i = 0; i < skillTargetCount; i++)
         {
             target = FindFarestEnemyExcluding(hitEnemies);
             if (target == null) break;
 
             hitEnemies.Add(target);
 
-            // ëŒì§„
+            // µ¹Áø
             yield return StartCoroutine(DashToTarget(target));
 
-            // ë°ë¯¸ì§€ ì£¼ê¸°
+            // Áß°£¿¡ Á×¾úÀ» °æ¿ì
+            if (target == null) continue;
+
+            // µ¥¹ÌÁö ÁÖ±â
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             if (enemyHP != null)
             {
-                enemyHP.TakeDamage(attackDamage + skillDamage);
+                if (isMoreUltimateDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
+                else enemyHP.TakeDamage(attackDamage + skillDamage);
+
+
             }
 
-            yield return new WaitForSeconds(0.02f); // ì•½ê°„ì˜ ë”œë ˆì´
+            yield return new WaitForSeconds(0.02f); // ¾à°£ÀÇ µô·¹ÀÌ
 
         }
 
@@ -99,6 +104,9 @@ public class Levi : Character
         trail.SetActive(false);
 
         yield return new WaitForSeconds(0.5f);
+
+        if (isAttackSpeedBoostAfterQuickReboard) StartCoroutine(AttackSpeedBoostAfterQuickReboard());
+        if (isGainPowerFromSkillDamage) StartCoroutine(GainPowerFromSkillDamageCountUpGrade());
 
         gameObject.layer = LayerMask.NameToLayer("Character");
     }
@@ -114,7 +122,7 @@ public class Levi : Character
 
             if (excluded.Contains(enemyTransform)) continue;
 
-            // ì¹´ë©”ë¼ ë·°í¬íŠ¸ ì•ˆì— ìˆëŠ”ì§€ í™•ì¸
+            // Ä«¸Ş¶ó ºäÆ÷Æ® ¾È¿¡ ÀÖ´ÂÁö È®ÀÎ
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(enemyTransform.position);
 
             bool isVisible = viewportPos.z > 0 &&
@@ -123,7 +131,7 @@ public class Levi : Character
 
             if (!isVisible) continue;
 
-            // ê°€ê¹Œìš´ ì  ê³„ì‚°
+            // °¡±î¿î Àû °è»ê
             float dist = Vector2.Distance(transform.position, enemyTransform.position);
             if (dist > maxDist)
             {
@@ -142,16 +150,72 @@ public class Levi : Character
 
         while (target != null && Vector2.Distance(transform.position, target.position) > reachDist)
         {
+            if (target == null || target.gameObject == null)
+            {
+                break;
+            }
+
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(move); // ê°ì† ì—†ìŒ
+            rb.MovePosition(move); // °¨¼Ó ¾øÀ½
             
             if (dir.x >= 0) transform.right = Vector3.right;
             else transform.right = Vector3.left;
 
-            yield return new WaitForFixedUpdate(); // FixedUpdate ê¸°ì¤€
+            yield return new WaitForFixedUpdate(); // FixedUpdate ±âÁØ
         }
 
         rb.linearVelocity = Vector2.zero;
     }
+
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision);
+
+        if(isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (!isGround && collision.tag == "Enemy" && (isSkillActive || isAttackWhileFalling))            // ½ºÅ³À» ¾²°íÀÖ°Å³ª, ¶³¾îÁü ÆòÅ¸ °­È­µÇ¾úÀ» ¶§
+        {
+            if (isGainPowerFromSkillDamage && isSkillActive) GainPowerFromSkillDamageCount += 1;
+            collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
+        }
+    }
+
+    IEnumerator GainPowerFromSkillDamageCountUpGrade()
+    {
+        attackDamage += GainPowerFromSkillDamageCount;
+        yield return new WaitForSeconds(GainPowerFromSkillDamageDuration);
+        attackDamage -= GainPowerFromSkillDamageCount;
+        GainPowerFromSkillDamageCount = 0;
+    }
+
+    IEnumerator AttackSpeedBoostAfterQuickReboard()
+    {
+        float timer=0;
+        float minusNormalFireInterval = 0.2f;
+
+        while (true) {
+
+            if (isGround)
+            {
+                normalFireInterval -= minusNormalFireInterval;
+
+                yield return new WaitForSeconds(2f);
+
+                normalFireInterval += minusNormalFireInterval;
+
+                break;
+            }
+
+            if (timer > 3) break;
+            timer += Time.deltaTime;
+
+            yield return null;
+        }
+    }
+
+    
 }

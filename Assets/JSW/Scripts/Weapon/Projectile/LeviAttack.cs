@@ -4,6 +4,11 @@ public class LeviAttack : ProjectileBase
 {
     private float knockbackPower = 1;
 
+    protected override void Start()
+    {
+        
+    }
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
@@ -13,25 +18,17 @@ public class LeviAttack : ProjectileBase
         }
     }
 
-    public override void SetInit(Vector2 dir, int damageNum, float speedNum)
+    public  void SetInit(Vector2 dir, int damageNum, float speedNum, float lifeTimeNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
         damage = damageNum;
         speed = speedNum;
+        Destroy(gameObject, lifeTimeNum);
     }
 
-
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float knockbackPowerNum, float scaleNum)
+    public override void DestroyProjectile(GameObject projectile)
     {
-        direction = dir.normalized;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0, 0, angle);
-        damage = damageNum;
-        speed = speedNum;
-        knockbackPower = knockbackPowerNum;
-        transform.localScale = Vector3.one * scaleNum;
     }
-
 }

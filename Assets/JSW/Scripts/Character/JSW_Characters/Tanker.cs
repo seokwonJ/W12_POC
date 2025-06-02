@@ -60,7 +60,7 @@ public class Tanker : Character
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
 
 
-        if (isUltimateActive) return;
+        if (isSkillActive) return;
         isGround = true;
 
         if (isShieldFlyer) _playerStatus.defensePower += 5;
