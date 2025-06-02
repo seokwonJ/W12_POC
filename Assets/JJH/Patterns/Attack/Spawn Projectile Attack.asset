@@ -9,14 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
-  m_Name: TestStage1-4
+  m_Script: {fileID: 11500000, guid: c1619c834747efa45a72707051108083, type: 3}
+  m_Name: Spawn Projectile Attack
   m_EditorClassIdentifier: 
-  world: 1
-  stage: 4
-  stagePlayTime: 60
-  enemyWave:
-  - {fileID: 11400000, guid: aecb3da004ce8b74286480873c64d739, type: 2}
-  WaveCount: 01000000
-  WaveInterval:
-  - 1
+  prevSpawnMoveTime: 2

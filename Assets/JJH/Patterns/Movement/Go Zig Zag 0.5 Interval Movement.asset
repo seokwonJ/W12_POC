@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c6bed0b1b67464847ab054ec7fbeef06, type: 3}
-  m_Name: Go Zig Zag Movement
+  m_Name: Go Zig Zag 0.5 Interval Movement
   m_EditorClassIdentifier: 
   zigzagInterval: 0.5

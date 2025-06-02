@@ -5712,9 +5712,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 44a3ac30893fb574c9899cdf001254c5, type: 2}
   - {fileID: 11400000, guid: 9ca6587c8482fb047b6f2b1c8dc62061, type: 2}
   - {fileID: 11400000, guid: 723ecaae5e7681742bd780b5ef36f5dc, type: 2}
-  - {fileID: 11400000, guid: 28491678ba01a5146afacdaa5b4592d7, type: 2}
+  - {fileID: 11400000, guid: 65949a43ca8c5e34384532b07d71de85, type: 2}
   world: 1
-  stage: 2
+  stage: 4
   playTime_Text: {fileID: 663497427}
 --- !u!1 &1949148883
 GameObject:

@@ -11,21 +11,24 @@ public class Enemy : MonoBehaviour
     public ScriptableObject movementSO;
     public ScriptableObject attackSO;
 
+    [Header("움직임 관련")]
     public float speed;
     public float minPlayerDistance;
 
-    public float fireCooldown;
-    public int damage; 
-    public float projectileSpeed;
 
+    [Header("공격 관련")]
+    public int damage; 
+    public float fireCooldown;
+    public float projectileSpeed;
     public GameObject projectilePrefab;
+
 
     private IMovementPattern movement;
     private IAttackPattern attack;
 
 
-    public GameObject player;
-    public Rigidbody2D rb;
+    public GameObject player; // 이후 싱글턴에서 player를 가져오도록 변경
+    public Rigidbody2D rb; 
 
     public Vector2 MoveDirection { get; set; } = Vector2.zero;
 
@@ -66,7 +69,7 @@ public class Enemy : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<PlayerHP>().TakeDamage(20);
+            collision.GetComponent<PlayerHP>().TakeDamage(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Wall")

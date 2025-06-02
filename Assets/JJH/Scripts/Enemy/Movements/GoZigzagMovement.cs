@@ -5,7 +5,7 @@ using UnityEngine;
 public class GoZigZagMovement : ScriptableObject, IMovementPattern
 {
     private Enemy enemy;
-    public float zigzagInterval = 1f;
+    public float zigzagInterval;
     bool isGoUpDiagonal = true;
     float zigzagTimer = 0f;
     Vector3 upDiagonal = new Vector3(-1, 0.5f, 0).normalized;
