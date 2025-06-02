@@ -33,6 +33,18 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         }
     }
     private int stage = 1; // 스테이지 번호, 1-2 일 경우 2
+    public bool OnField
+    {
+        get
+        {
+            return onField;
+        }
+        set
+        {
+            onField = value;
+        }
+    }
+    private bool onField; //true면 필드, false면 상점
 
     public void Init()
     {

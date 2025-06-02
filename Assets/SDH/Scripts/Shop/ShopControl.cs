@@ -25,7 +25,9 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
         }
         if (Input.GetKeyDown(KeyCode.P)) // 임시 상점 종료 함수
         {
-            SceneManager.LoadScene("JJHStageScene_SDH");
+            FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
+
+            SceneManager.LoadScene("Field");
         }
     }
 

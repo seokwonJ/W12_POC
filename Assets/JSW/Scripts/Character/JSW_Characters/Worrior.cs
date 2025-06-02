@@ -75,7 +75,7 @@ public class Worrior : Character
 
         if (isShieldFlyer) _playerStatus.defensePower += 5;
 
-        Managers.Rider.RiderCountUp();
+        Managers.Cam.RiderCountUp();
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }

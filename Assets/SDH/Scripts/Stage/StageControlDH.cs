@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇÏ´Â ½ºÅ©¸³Æ®
+public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇÏ´Â ½ºÅ©¸³Æ® (EnemySpawnerJH.cs¿¡¼­ °¡Á®¿È)
 {
     private const int MIN_RIGHT_SIDE_INDEX = 5; // ¿À¸¥ÂÊ ¸é¿¡ ÀÖ´Â À§Ä¡ ÀÎµ¦½ºÀÇ ÃÖ¼Ò°ª
     private const int MAX_RIGHT_SIDE_INDEX = 12; // ¿À¸¥ÂÊ ¸é¿¡ ÀÖ´Â À§Ä¡ ÀÎµ¦½ºÀÇ ÃÖ´ë°ª
@@ -18,7 +18,7 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
 
     private void Start()
     {
-        Managers.Rider.Init(); // RiderManager ¼öÁ¤ÇÏ¸é¼­ ¿©±âµµ ¼öÁ¤ ÇÊ¿ä @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        Managers.Cam.Init(); // RiderManager ¼öÁ¤ÇÏ¸é¼­ ¿©±âµµ ¼öÁ¤ ÇÊ¿ä @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         nowStage = Managers.Stage.GetNowStageTemplate();
 
         StartCoroutine(CoSpawnEnemyRoutine(nowStage.enemyWave, nowStage.WaveCount, nowStage.WaveInterval, nowStage.stagePlayTime));
@@ -34,7 +34,9 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
             Debug.Log("ÇöÀç ½ºÅ×ÀÌÁö ³¡");
             Managers.Stage.Stage++;
 
-            SceneManager.LoadScene("StoreEx_SDH");
+            FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
+
+            SceneManager.LoadScene("Shop");
         }
     }
 

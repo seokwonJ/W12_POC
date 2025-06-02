@@ -7,7 +7,12 @@ public class RiderManager // 여기 수정 필요 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
     public void Init()
     {
-        cameraController = Camera.main.GetComponent<CameraController>();
+        SetCameraController();
+    }
+
+    public void SetCameraController()
+    {
+        if (cameraController == null) cameraController = Camera.main.GetComponent<CameraController>();
         if (cameraController == null) Debug.Log("CameraController 찾을 수 없음");
     }
 

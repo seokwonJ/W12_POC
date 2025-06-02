@@ -70,7 +70,7 @@ public class Tanker : Character
             isSkillLanding = false;
             LandingSkill(skillDamage);
         }
-        Managers.Rider.RiderCountUp();
+        Managers.Cam.RiderCountUp();
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }

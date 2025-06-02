@@ -9,6 +9,7 @@ public class CameraController : MonoBehaviour
     private void Start()
     {
         _camera = GetComponent<Camera>();
+        Managers.Cam.SetCameraController();
     }
 
     // Update is called once per frame

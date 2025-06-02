@@ -1,0 +1,31 @@
+using UnityEngine;
+
+public class CameraManager
+{
+    public int riderCount;
+    private CameraController cameraController;
+
+    public void Init()
+    {
+        SetCameraController();
+    }
+
+    public void SetCameraController()
+    {
+        if (cameraController == null) cameraController = Camera.main.GetComponent<CameraController>();
+        if (cameraController == null) Debug.Log("CameraController 찾을 수 없음");
+    }
+
+    public void RiderCountUp()
+    {
+        riderCount += 1;
+        cameraController.SetOrthographicSize(0.1f);
+        cameraController.StartShake(0.1f, 0.1f);
+
+    }
+
+    public void RiderCountDown()
+    {
+        riderCount -= 1;
+    }
+}

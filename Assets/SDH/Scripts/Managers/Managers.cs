@@ -13,8 +13,8 @@ public class Managers : MonoBehaviour
     public static StageManager Stage => instance.stage;
     private StageManager stage = new(); // 씬 전환 관리 (전투-상점 등)
 
-    public static RiderManager Rider => instance.rider;
-    private RiderManager rider = new();
+    public static CameraManager Cam => instance.cam;
+    private CameraManager cam = new();
     #endregion
 
     private void Awake()
@@ -35,6 +35,6 @@ public class Managers : MonoBehaviour
         Application.targetFrameRate = 60;
 
         stage.Init();
-        rider.Init();
+        cam.Init();
     }
 }
