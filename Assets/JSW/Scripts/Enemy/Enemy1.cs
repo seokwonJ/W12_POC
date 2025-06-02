@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
@@ -76,7 +76,7 @@ public class EnemyAI : MonoBehaviour
             {
                 isKnockback = false;
             }
-            return; // ³Ë¹é Áß¿£ ÀÌµ¿ ¾È ÇÔ
+            return; // ë„‰ë°± ì¤‘ì—” ì´ë™ ì•ˆ í•¨
         }
 
         Vector2 direction = (player.position - transform.position).normalized;
@@ -91,14 +91,14 @@ public class EnemyAI : MonoBehaviour
     }
 
     private bool isKnockback = false;
-    private float knockbackTime = 0.05f; // ³Ë¹é Áö¼Ó ½Ã°£
+    private float knockbackTime = 0.05f; // ë„‰ë°± ì§€ì† ì‹œê°„
     private float knockbackTimer = 0f;
 
     public void ApplyKnockback(Vector2 direction, float power)
     {
         isKnockback = true;
         knockbackTimer = knockbackTime;
-        rb.linearVelocity = Vector2.zero; // ±âÁ¸ ¿òÁ÷ÀÓ Á¦°Å
+        rb.linearVelocity = Vector2.zero; // ê¸°ì¡´ ì›€ì§ì„ ì œê±°
         rb.AddForce(direction.normalized * power, ForceMode2D.Impulse);
     }
 }

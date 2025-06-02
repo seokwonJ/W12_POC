@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -14,7 +15,8 @@ public class Enemy : MonoBehaviour
     [Header("움직임 관련")]
     public float speed;
     public float minPlayerDistance;
-
+    public bool isKnockbackable; // 넉백 가능 여부
+    private bool isKnockback = false; // 넉백 상태인지 여부
 
     [Header("공격 관련")]
     public int damage; 
@@ -62,6 +64,11 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
+        if (isKnockback)
+        {
+            // 넉백 중에는 이동하지 않음
+            return;
+        }
         movement?.Move();
     }
 
@@ -75,6 +82,23 @@ public class Enemy : MonoBehaviour
         else if (collision.tag == "Wall")
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void ApplyKnockback(Vector2 direction, float knockbackPower)
+    {
+        isKnockback = true;
+        StartCoroutine(CoKnockbackTimer(0.05f));
+        rb.linearVelocity = Vector2.zero; // 기존 움직임 제거
+        rb.AddForce(direction.normalized * knockbackPower, ForceMode2D.Impulse);
+    }
+
+    IEnumerator CoKnockbackTimer(float knockbackTime)
+    {
+        while (isKnockback)
+        {
+            yield return new WaitForSeconds(knockbackTime);
+            isKnockback = false; // 넉백 상태 해제
         }
     }
 }
