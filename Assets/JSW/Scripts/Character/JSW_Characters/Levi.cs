@@ -34,6 +34,10 @@ public class Levi : Character
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed, NormalAttackProjectileDuration);
     }
@@ -54,9 +58,10 @@ public class Levi : Character
             Transform target = FindNearestEnemy();
             if (target != null)
             {
-                FireNormalProjectile(target.position);
+                Vector3 targetpos = target.position;
+                FireNormalProjectile(targetpos);
                 yield return new WaitForSeconds(dobleAttackCoolTime);
-                FireNormalProjectile(target.position);
+                FireNormalProjectile(targetpos);
             }
         }
     }
@@ -168,8 +173,10 @@ public class Levi : Character
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-
-        if (isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50);
+        if (collision.gameObject.tag == "Player")
+        {
+            if (isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50); ManaOnLandingBasedOnTime = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -192,7 +199,7 @@ public class Levi : Character
     IEnumerator AttackSpeedBoostAfterQuickReboard()
     {
         float timer = 0;
-        float minusNormalFireInterval = 0.2f;
+        float minusNormalFireInterval = 0.4f;
 
         while (true)
         {

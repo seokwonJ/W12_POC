@@ -27,7 +27,7 @@ public class NinjaUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:               // 공속 증가
-                ninja.normalFireInterval -= 0.2f;
+                ninja.normalFireInterval -= 0.1f;
                 Debug.Log("Debug0 Ninja");
                 ninja.upgradeNum = 0;
                 break;
@@ -36,12 +36,12 @@ public class NinjaUpgrade : CharacterUpgrade
                 Debug.Log("Debug1 Ninja");
                 ninja.upgradeNum = 1;
                 break;
-            case UpgradeType.ManaRegen:                 // 점프량 감소
+            case UpgradeType.ManaRegen:                 // 마나증가량 증가
                 ninja.mpPerSecond += 3;
                 Debug.Log("Debug2 Ninja");
                 ninja.upgradeNum = 2;
                 break;
-            case UpgradeType.LowJump:                   // 마나증가량 증가
+            case UpgradeType.LowJump:                   // 점프량 감소
                 ninja.jumpForce -= 3;
                 Debug.Log("Debug3 Ninja");
                 ninja.upgradeNum = 3;
@@ -62,17 +62,17 @@ public class NinjaUpgrade : CharacterUpgrade
                 ninja.upgradeNum = 6;
                 break;
             case UpgradeType.AttackRange:               // 사거리 증가
-                ninja.enemyDetectRadius += 50;
+                ninja.enemyDetectRadius += 10;
                 Debug.Log("Debug7 Ninja");
                 ninja.upgradeNum = 7;
                 break;
             case UpgradeType.FirstLowHpEnemy:           // 체력이 적은 적부터 공격
-                //archer.manaRegen += value;
+                ninja.isFirstLowHPEnemy = true;
                 Debug.Log("Debug8 Ninja");
                 ninja.upgradeNum = 8;
                 break;
             case UpgradeType.AttackSpeedPerMana:        // 현재 마나가 클수록 공속 증가
-                //archer.manaRegen += value;
+                ninja.isAttackSpeedPerMana = true;
                 Debug.Log("Debug9 Ninja");
                 ninja.upgradeNum = 9;
                 break;

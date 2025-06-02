@@ -600,7 +600,7 @@ MonoBehaviour:
   normalProjectile: {fileID: 7373925757434712426, guid: cfc5e93cc7fafe840b04ca1d247b2584, type: 3}
   firePoint: {fileID: 2329205813164804871}
   normalFireInterval: 1
-  enemyDetectRadius: 50
+  enemyDetectRadius: 25
   jumpForce: 15
   maxFallSpeed: 10
   attackDamage: 10

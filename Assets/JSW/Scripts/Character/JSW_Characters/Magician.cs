@@ -13,7 +13,7 @@ public class Magician : Character
 
     [Header("강화")]
     public float nomalAttackSize;
-    public bool isAddAbilityPower;
+    public bool isAddAttackDamage;
     public bool isnomalAttackSizePerMana;
     public bool isCanTeleport;
     public int upgradeNum;
@@ -30,15 +30,19 @@ public class Magician : Character
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float nownomalAttackSize = nomalAttackSize;
         if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
 
-        if (isAddAbilityPower) proj.GetComponent<MagicBall>().SetInit(direction, abilityPower + attackDamage, projectileSpeed, nownomalAttackSize);
+        if (isAddAttackDamage) proj.GetComponent<MagicBall>().SetInit(direction, abilityPower + attackDamage, projectileSpeed, nownomalAttackSize);
         else
         {
-            proj.GetComponent<MagicBall>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize);
+            proj.GetComponent<MagicBall>().SetInit(direction, abilityPower, projectileSpeed, nownomalAttackSize);
         }
     }
 

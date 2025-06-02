@@ -42,6 +42,10 @@ public class Pirate : Character
 
         Vector2 direction = (targetPos + Vector3.up - firePoint.position).normalized;
 
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float nownomalAttackSize = nomalAttackSize;

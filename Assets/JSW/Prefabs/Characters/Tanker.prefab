@@ -163,19 +163,19 @@ MonoBehaviour:
   normalFireInterval: 1.5
   enemyDetectRadius: 20
   jumpForce: 10
-  maxFallSpeed: 10
+  maxFallSpeed: 15
   attackDamage: 30
   abilityPower: 0
   projectileSpeed: 10
   isSkillLanding: 0
-  skillDamage: 10
+  skillDamage: 30
   skillknockbackPower: 100
   skillInterval: 0.3
-  skillRange: 10
+  skillRange: 7
   landingSkillEffect: {fileID: 5948256768726399820, guid: 02b3edf9c933d7649819df429657066e, type: 3}
   nomalAttackSize: 1
   nomalAttackLifetime: 5
-  knockBackpower: 1
+  knockBackpower: 10
   isFallingSpeedToSkillDamage: 0
   isShieldFlyer: 0
   isHitSkillPerGetMana: 0

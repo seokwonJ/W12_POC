@@ -59,13 +59,13 @@ public class ArcherUpgrade : CharacterUpgrade
                 Debug.Log("Debug6 Archer");
                 archer.upgradeNum = 6;          
                 break;
-            case UpgradeType.AttackRange:                   // 사거리 50 증가
-                archer.enemyDetectRadius += 50;
+            case UpgradeType.AttackRange:                   // 사거리 25 증가
+                archer.enemyDetectRadius += 25;
                 Debug.Log("Debug7 Archer");
                 archer.upgradeNum = 7;
                 break;
-            case UpgradeType.ArrowSpeed:                    // 투사체 속도 15증가
-                archer.projectileSpeed += 15;
+            case UpgradeType.ArrowSpeed:                    // 투사체 속도 20증가
+                archer.projectileSpeed += 20;
                 Debug.Log("Debug8 Archer");
                 archer.upgradeNum = 8;
                 break;

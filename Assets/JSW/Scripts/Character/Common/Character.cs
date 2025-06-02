@@ -159,6 +159,6 @@ public abstract class Character : MonoBehaviour
     protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, enemyDetectRadius);
+        Gizmos.DrawWireSphere(transform.position, enemyDetectRadius/2);
     }
 }

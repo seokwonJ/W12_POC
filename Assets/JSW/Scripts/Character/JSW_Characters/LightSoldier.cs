@@ -28,7 +28,6 @@ public class LightSoldier : Character
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
-
         GameObject proj = Instantiate(normalProjectile, firePoint.position + Vector3.up, Quaternion.identity);
         GameObject proj2 = Instantiate(normalProjectile, firePoint.position + Vector3.down, Quaternion.identity);
         proj.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);

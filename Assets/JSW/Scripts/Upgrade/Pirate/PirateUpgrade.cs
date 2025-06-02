@@ -25,8 +25,7 @@ public class PirateUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                // archer.normalFireInterval -= value;
-                pirate.normalFireInterval -= 0.1f;              // 공격 쿨타임 0.1초 감소
+                pirate.normalFireInterval -= 0.2f;              // 공격 쿨타임 0.1초 감소
                 Debug.Log("Debug0 Archer");
                 break;
             case UpgradeType.AttackPower:
@@ -40,7 +39,7 @@ public class PirateUpgrade : CharacterUpgrade
                 pirate.upgradeNum = 2;
                 break;
             case UpgradeType.IncreasedCannonBlastRadius:                    // 대포 폭발 범위 증가
-                pirate.nomalAttackSize += 1;
+                pirate.nomalAttackSize += 0.5f;
                 Debug.Log("Debug3 Archer");
                 pirate.upgradeNum = 3;
                 break;
@@ -60,7 +59,7 @@ public class PirateUpgrade : CharacterUpgrade
                 pirate.upgradeNum = 6;
                 break;
             case UpgradeType.BackwardCannonShot:                   // 일반 대포 쏠 때 정반대 방향으로도 한 발 쏨
-                pirate.enemyDetectRadius += 50;
+                pirate.isBackwardCannonShot = true;
                 Debug.Log("Debug7 Archer");
                 pirate.upgradeNum = 7;
                 break;

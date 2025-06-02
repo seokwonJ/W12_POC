@@ -32,6 +32,10 @@ public class Protecter : Character
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float nownomalAttackSize = nomalAttackSize;
@@ -101,8 +105,7 @@ public class Protecter : Character
 
         GameObject shieldBreakExplosionEffectObject = Instantiate(shieldBreakExplosionEffect, transform.position, Quaternion.identity);
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, skillSize * 2);
-
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, skillSize * 10);
 
         foreach (var hit in hits)
         {
@@ -111,7 +114,7 @@ public class Protecter : Character
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
                 int totalDamage = abilityPower;
-
+                print("폭발 데미지 받아랏!!!");
                 enemyHP.TakeDamage(totalDamage);
 
             }

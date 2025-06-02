@@ -253,17 +253,17 @@ MonoBehaviour:
   maxFallSpeed: 10
   attackDamage: 10
   abilityPower: 20
-  projectileSpeed: 5
+  projectileSpeed: 10
   skillProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
   skillCount: 3
   skillInterval: 0.3
   skillFireDelay: 0.1
-  skillSize: 3
+  skillSize: 4
   skillDamage: 10
-  nomalAttackSize: 1
-  isAddAbilityPower: 0
+  nomalAttackSize: 2
+  isAddAttackDamage: 0
   isnomalAttackSizePerMana: 0
-  isCanTeleport: 0
+  isCanTeleport: 1
   upgradeNum: 0
   player: {fileID: 0}
 --- !u!1 &5861792811945193929

@@ -35,15 +35,19 @@ public class Fox : Character
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float nownomalAttackSize = nomalAttackSize;
 
         float totalAttackDamage = 0;
 
-        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Rider.riderCount;
+        totalAttackDamage += abilityPower;
 
-        totalAttackDamage = abilityPower;
+        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Rider.riderCount;
 
         if (isEmpoweredAttackEvery3Hits)
         {
@@ -51,7 +55,13 @@ public class Fox : Character
             if (EmpoweredAttackEveryCount == 3)
             {
                 proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage * 2, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning);
+                EmpoweredAttackEveryCount = 0;
             }
+            else
+            {
+                proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning);
+            }
+
         }
         else
         {

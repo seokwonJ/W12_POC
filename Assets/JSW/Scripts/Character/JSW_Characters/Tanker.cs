@@ -96,9 +96,9 @@ public class Tanker : Character
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
                 int totalDamage = skillDamageNum;
-                if (isCloserMoreDamage) totalDamage += (int)(skillRange / Vector2.Distance(hit.transform.position, transform.position));
+                if (isCloserMoreDamage) totalDamage += (int)(skillDamage / Vector2.Distance(hit.transform.position, transform.position));
 
-                if (isFallingSpeedToSkillDamage) enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);
+                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);}
                 else enemyHP.TakeDamage(totalDamage);
 
                 Vector3 knockbackDirection = hit.transform.position - transform.position;
@@ -116,7 +116,6 @@ public class Tanker : Character
         }
 
         if (isHitSkillPerGetMana) currentMP += 2 * hitEnemyCount;
-
         landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 2;
         Destroy(landingSkillEffectObject, 0.1f);
     }

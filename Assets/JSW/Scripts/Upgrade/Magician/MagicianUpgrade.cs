@@ -10,7 +10,7 @@ public class MagicianUpgrade : CharacterUpgrade
         ManaRegen,                           // 마나증가량 증가
         NormalAttackSize,                   // 일반공격크기 증가         
         NormalProjectileSpeed,              // 일반공격 투사체 속도 증가
-        AddAbilityPowerToNormalAttack,      // 일반공격 데미지에 ap 추가
+        AddAttackDamageToNormalAttack,      // 일반공격 데미지에 ap 추가
         SkillSize,                       // 스킬 크기 증가
         SkillDamage,                     // 스킬 데미지 증가
         ProjectileSizePerMana,           // 마나 클수록 공격 크기 증가
@@ -50,13 +50,13 @@ public class MagicianUpgrade : CharacterUpgrade
                 Debug.Log("Debug4 Magician");
                 magician.upgradeNum = 4;
                 break;
-            case UpgradeType.AddAbilityPowerToNormalAttack:
-                magician.isAddAbilityPower = true;
+            case UpgradeType.AddAttackDamageToNormalAttack:
+                magician.isAddAttackDamage = true;
                 Debug.Log("Debug5 Magician");
                 magician.upgradeNum = 5;
                 break;
             case UpgradeType.SkillSize:
-                magician.skillSize += 1;
+                magician.skillSize += 4;
                 Debug.Log("Debug6 Magician");
                 magician.upgradeNum = 6;
                 break;

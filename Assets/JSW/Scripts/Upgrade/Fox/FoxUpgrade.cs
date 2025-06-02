@@ -26,7 +26,7 @@ public class FoxUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                fox.normalFireInterval -= 0.1f;              // 공격 쿨타임 0.1초 감소
+                fox.normalFireInterval -= 0.2f;              // 공격 쿨타임 0.1초 감소
                 Debug.Log("Debug0 Archer");
                 break;
             case UpgradeType.AbilityPower:

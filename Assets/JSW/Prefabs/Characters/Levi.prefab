@@ -335,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 30
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 6537457085924451293, guid: 1925317da1244ea408dc890970832d6e, type: 3}
   firePoint: {fileID: 7217755437246237028}
@@ -347,7 +347,7 @@ MonoBehaviour:
   abilityPower: 1
   projectileSpeed: 10
   dobleAttackCoolTime: 0.05
-  NormalAttackProjectileDuration: 2
+  NormalAttackProjectileDuration: 1
   isSkillLanding: 0
   skillDamage: 10
   skillTargetCount: 5
@@ -356,11 +356,11 @@ MonoBehaviour:
   isAttackWhileFalling: 0
   isGainPowerFromSkillDamage: 0
   GainPowerFromSkillDamageCount: 0
-  GainPowerFromSkillDamageDuration: 0
+  GainPowerFromSkillDamageDuration: 3
   isManaOnLandingBasedOnTimeAway: 0
   ManaOnLandingBasedOnTime: 0
   isAttackSpeedBoostAfterQuickReboard: 0
-  isMoreUltimateDamageWithJumpPower: 0
+  isMoreSkillDamageWithJumpPower: 0
   trail: {fileID: 5258655469011329452}
   upgradeNum: 1
 --- !u!1 &4341510303441533438
