@@ -59,6 +59,7 @@ public class Levi : Character
             if (target != null)
             {
                 Vector3 targetpos = target.position;
+                animator.Play("ATTACK", -1, 0f);
                 FireNormalProjectile(targetpos);
                 yield return new WaitForSeconds(dobleAttackCoolTime);
                 FireNormalProjectile(targetpos);
@@ -70,6 +71,8 @@ public class Levi : Character
     protected override IEnumerator FireSkill()
     {
         trail.SetActive(true);
+        animator.Play("SKILL", -1, 0f);
+
         List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
@@ -104,12 +107,14 @@ public class Levi : Character
 
         rb.linearVelocity = new Vector2(-10, jumpForce);
         trail.SetActive(false);
+        animator.Play("SKILLEND", -1, 0f);
 
         yield return new WaitForSeconds(0.5f);
 
         if (isAttackSpeedBoostAfterQuickReboard) StartCoroutine(AttackSpeedBoostAfterQuickReboard());
         if (isGainPowerFromSkillDamage) StartCoroutine(GainPowerFromSkillDamageCountUpGrade());
 
+        //animator.SetBool("5_FALL", true);
         gameObject.layer = LayerMask.NameToLayer("Character");
     }
 
