@@ -26,7 +26,7 @@ public class LightSoldierUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                lightSoldier.normalFireInterval -= 0.1f;              // 공격 쿨타임 0.1초 감소
+                lightSoldier.normalFireInterval -= 0.2f;              // 공격 쿨타임 0.1초 감소
                 Debug.Log("Debug0 Archer");
                 break;
             case UpgradeType.AttackPower:
@@ -40,7 +40,7 @@ public class LightSoldierUpgrade : CharacterUpgrade
                 lightSoldier.upgradeNum = 2;
                 break;
             case UpgradeType.LargerNormalAttack:                    // 일반공격 크기 커짐
-                lightSoldier.normalAttackSize += 1f;
+                lightSoldier.normalAttackSize += 2f;
                 Debug.Log("Debug3 Archer");
                 lightSoldier.upgradeNum = 3;
                 break;

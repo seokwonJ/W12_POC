@@ -5,8 +5,7 @@ public class Protecter : Character
 {
     [Header("스킬")]
     public GameObject skillProjectile;
-    public float skillInterval = 0.3f;
-    public float skillFireDelay = 0.1f;
+    public float skillFireDelay = 0.3f;
     public float skillSize = 1f;
     public float skillMultiple = 2f;
     public float skillDuration = 7f;
@@ -28,10 +27,14 @@ public class Protecter : Character
         player = FindAnyObjectByType<PlayerMove>().gameObject;
     }
 
-    // 일반 공격: 가까운 적에게 관통 공격
+    // 일반 공격: 가까운 적에게 원형 투사체 공격
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
+
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
@@ -44,7 +47,7 @@ public class Protecter : Character
     // 스킬: 원형보호막 생성
     protected override IEnumerator FireSkill()
     {
-        yield return new WaitForSeconds(skillInterval);
+        yield return new WaitForSeconds(skillFireDelay);
         StartCoroutine(ActiveSkillProtect());
     }
 
@@ -102,8 +105,7 @@ public class Protecter : Character
 
         GameObject shieldBreakExplosionEffectObject = Instantiate(shieldBreakExplosionEffect, transform.position, Quaternion.identity);
 
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, skillSize * 2);
-
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, skillSize * 10);
 
         foreach (var hit in hits)
         {
@@ -112,7 +114,7 @@ public class Protecter : Character
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
                 int totalDamage = abilityPower;
-
+                print("폭발 데미지 받아랏!!!");
                 enemyHP.TakeDamage(totalDamage);
 
             }

@@ -5,8 +5,7 @@ public class Fox : Character
 {
     [Header("스킬")]
     public GameObject skillProjectile;
-    public int skillCount = 3;
-    public float skillInterval = 0.3f;
+    public int skillCount = 10;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
     public float skillDamage = 1f;
@@ -22,6 +21,7 @@ public class Fox : Character
     public bool isAutoReturnAfterSeconds;
 
     public int upgradeNum;
+
     public GameObject player;
 
     protected override void Start()
@@ -30,10 +30,14 @@ public class Fox : Character
         player = FindAnyObjectByType<PlayerMove>().gameObject;
     }
 
-    // 일반 공격: 가까운 적에게 관통 공격
+    // 일반 공격: 원형 관통하고 돌아오는 원형 정수 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
+
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
@@ -41,9 +45,7 @@ public class Fox : Character
 
         float totalAttackDamage = 0;
 
-        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Status.RiderCount;
-
-        totalAttackDamage = abilityPower;
+        totalAttackDamage += abilityPower;
 
         if (isEmpoweredAttackEvery3Hits)
         {
@@ -51,7 +53,13 @@ public class Fox : Character
             if (EmpoweredAttackEveryCount == 3)
             {
                 proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage * 2, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning);
+                EmpoweredAttackEveryCount = 0;
             }
+            else
+            {
+                proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning);
+            }
+
         }
         else
         {
@@ -59,10 +67,14 @@ public class Fox : Character
         }
     }
 
-    // 스킬: 느리고 커다란 관통 공격
+    // 스킬: 점프 후 원형 정수를 360도 사방으로 발사
     protected override IEnumerator FireSkill()
     {
+        animator.Play("FOXSKILLREADY", -1, 0f);
         yield return new WaitForSeconds(skillFireDelay);
+        //animator.Play("FOXSKILLREADY", -1, 0f);
+        animator.Play("SKILL", -1, 0f);
+        yield return new WaitForSeconds(0.08f);
         FireSkillProjectiles();
         if(isAutoReturnAfterSeconds) StartCoroutine(TeleportToPlayer());
     }
@@ -70,7 +82,6 @@ public class Fox : Character
     // 궁극기 발사 구현
     protected override void FireSkillProjectiles()
     {
-
         float angleStep = 360f / skillCount;
 
         for (int i = 0; i < skillCount; i++)

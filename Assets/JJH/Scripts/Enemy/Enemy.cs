@@ -1,4 +1,5 @@
-﻿using Unity.VisualScripting;
+﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -11,21 +12,26 @@ public class Enemy : MonoBehaviour
     public ScriptableObject movementSO;
     public ScriptableObject attackSO;
 
+    [Header("움직임 관련")]
     public float speed;
     public float minPlayerDistance;
+    public bool isKnockbackable; // 넉백 가능 여부
+    private bool isKnockback = false; // 넉백 상태인지 여부
+    public bool isFilpping; // 스프라이트 뒤집기 여부
 
-    public float fireCooldown;
+    [Header("공격 관련")]
     public int damage; 
+    public float fireCooldown;
     public float projectileSpeed;
-
     public GameObject projectilePrefab;
+
 
     private IMovementPattern movement;
     private IAttackPattern attack;
+    private SpriteRenderer spriteRenderer;
 
-
-    public GameObject player;
-    public Rigidbody2D rb;
+    public GameObject player; // 이후 싱글턴에서 player를 가져오도록 변경
+    public Rigidbody2D rb; 
 
     public Vector2 MoveDirection { get; set; } = Vector2.zero;
 
@@ -38,6 +44,8 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+
         if (movementSO != null )
         {
             ScriptableObject movementInstance = Instantiate(movementSO);
@@ -56,9 +64,24 @@ public class Enemy : MonoBehaviour
         attack?.Attack();
     }
 
+    private void Update()
+    {
+        if (spriteRenderer != null && isFilpping)
+        {
+            //  방향에 따라 스프라이트를 뒤집음
+            float directionX = transform.position.x - player.transform.position.x;
+            spriteRenderer.flipX = directionX <= 0 ? false : true; // directionX가 0 이하이면 정방향, 그 외에는 역방향으로 설정
+
+        }
+    }
 
     private void FixedUpdate()
     {
+        if (isKnockback)
+        {
+            // 넉백 중에는 이동하지 않음
+            return;
+        }
         movement?.Move();
     }
 
@@ -66,12 +89,30 @@ public class Enemy : MonoBehaviour
     {
         if (collision.tag == "Player")
         {
-            collision.GetComponent<PlayerHP>().TakeDamage(20);
+            collision.GetComponent<PlayerHP>().TakeDamage(damage);
             Destroy(gameObject);
         }
         else if (collision.tag == "Wall")
         {
             Destroy(gameObject);
+        }
+    }
+
+    public void ApplyKnockback(Vector2 direction, float knockbackPower)
+    {
+        if (!isKnockbackable) return;
+        isKnockback = true;
+        StartCoroutine(CoKnockbackTimer(0.05f));
+        rb.linearVelocity = Vector2.zero; // 기존 움직임 제거
+        rb.AddForce(direction.normalized * knockbackPower, ForceMode2D.Impulse);
+    }
+
+    IEnumerator CoKnockbackTimer(float knockbackTime)
+    {
+        while (isKnockback)
+        {
+            yield return new WaitForSeconds(knockbackTime);
+            isKnockback = false; // 넉백 상태 해제
         }
     }
 }

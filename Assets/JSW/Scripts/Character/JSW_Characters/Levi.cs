@@ -23,16 +23,20 @@ public class Levi : Character
     public bool isManaOnLandingBasedOnTimeAway;
     public float ManaOnLandingBasedOnTime;
     public bool isAttackSpeedBoostAfterQuickReboard;
-    public bool isMoreUltimateDamageWithJumpPower;
+    public bool isMoreSkillDamageWithJumpPower;
 
     public GameObject trail;
- 
+
     public int upgradeNum;
 
-    // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
+    // 일반 공격: 연속 두번 관통형 공격 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
+
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed, NormalAttackProjectileDuration);
@@ -54,17 +58,21 @@ public class Levi : Character
             Transform target = FindNearestEnemy();
             if (target != null)
             {
-                FireNormalProjectile(target.position);
+                Vector3 targetpos = target.position;
+                animator.Play("ATTACK", -1, 0f);
+                FireNormalProjectile(targetpos);
                 yield return new WaitForSeconds(dobleAttackCoolTime);
-                FireNormalProjectile(target.position);
+                FireNormalProjectile(targetpos);
             }
         }
     }
 
-    // 스킬 : 점프 후 착지시 3초간 공격력 강화
+    // 스킬 : 캐릭터 기준 가장 멀리있는 적에게 돌진하여 데미지를 줌
     protected override IEnumerator FireSkill()
     {
         trail.SetActive(true);
+        animator.Play("SKILL", -1, 0f);
+
         List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
@@ -88,26 +96,25 @@ public class Levi : Character
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             if (enemyHP != null)
             {
-                if (isMoreUltimateDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
+                if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
                 else enemyHP.TakeDamage(attackDamage + skillDamage);
-
-
             }
 
-            yield return new WaitForSeconds(0.02f); // 약간의 딜레이
-
+            yield return new WaitForSeconds(skillInterval); // 약간의 딜레이
         }
 
         transform.up = Vector3.up;
 
         rb.linearVelocity = new Vector2(-10, jumpForce);
         trail.SetActive(false);
+        animator.Play("SKILLEND", -1, 0f);
 
         yield return new WaitForSeconds(0.5f);
 
         if (isAttackSpeedBoostAfterQuickReboard) StartCoroutine(AttackSpeedBoostAfterQuickReboard());
         if (isGainPowerFromSkillDamage) StartCoroutine(GainPowerFromSkillDamageCountUpGrade());
 
+        //animator.SetBool("5_FALL", true);
         gameObject.layer = LayerMask.NameToLayer("Character");
     }
 
@@ -146,7 +153,7 @@ public class Levi : Character
     private IEnumerator DashToTarget(Transform target)
     {
         float dashSpeed = skillDashSpeed;
-        float reachDist = 1f;
+        float reachDist = 1.5f;
 
         while (target != null && Vector2.Distance(transform.position, target.position) > reachDist)
         {
@@ -158,9 +165,9 @@ public class Levi : Character
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
             rb.MovePosition(move); // 감속 없음
-            
-            if (dir.x >= 0) transform.right = Vector3.right;
-            else transform.right = Vector3.left;
+
+            if (dir.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            else if (dir.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
             yield return new WaitForFixedUpdate(); // FixedUpdate 기준
         }
@@ -171,8 +178,10 @@ public class Levi : Character
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
         base.OnCollisionEnter2D(collision);
-
-        if(isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50);
+        if (collision.gameObject.tag == "Player")
+        {
+            if (isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50); ManaOnLandingBasedOnTime = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -194,10 +203,11 @@ public class Levi : Character
 
     IEnumerator AttackSpeedBoostAfterQuickReboard()
     {
-        float timer=0;
-        float minusNormalFireInterval = 0.2f;
+        float timer = 0;
+        float minusNormalFireInterval = 0.4f;
 
-        while (true) {
+        while (true)
+        {
 
             if (isGround)
             {
@@ -216,6 +226,4 @@ public class Levi : Character
             yield return null;
         }
     }
-
-    
 }

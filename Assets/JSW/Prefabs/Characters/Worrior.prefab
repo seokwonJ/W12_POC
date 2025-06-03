@@ -757,7 +757,7 @@ MonoBehaviour:
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 3397254127826795141, guid: 6b65e076b01625c4aa90f35adc425b6f, type: 3}
   firePoint: {fileID: 4224433023789113850}
-  normalFireInterval: 3
+  normalFireInterval: 2
   enemyDetectRadius: 100
   jumpForce: 5
   maxFallSpeed: 10
@@ -769,9 +769,10 @@ MonoBehaviour:
   skillInterval: 0.3
   skillFireDelay: 0.1
   nomalAttackSize: 2
-  nomalAttackLifetime: 3
+  nomalAttackLifetime: 1
   isfallingCanAttack: 0
-  isShieldFlyer: 0
+  isShieldFlyer: 1
+  shieldNum: 5
   upgradeNum: 0
 --- !u!50 &3673613590161311052
 Rigidbody2D:
