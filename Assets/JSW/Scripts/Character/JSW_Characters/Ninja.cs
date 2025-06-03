@@ -55,6 +55,7 @@ public class Ninja : Character
             Transform target = FindNearestEnemy();
             if (target != null)
             {
+                animator.Play("ATTACK", -1, 0f);
                 FireNormalProjectile(target.position);
             }
         }
@@ -77,6 +78,7 @@ public class Ninja : Character
 
         if (isSkillActive) return;
         isGround = true;
+        animator.SetBool("5_Fall", false);
         if (isSkillLanding)
         {
             isSkillLanding = false;

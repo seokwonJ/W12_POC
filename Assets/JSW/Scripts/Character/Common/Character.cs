@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -27,6 +26,10 @@ public abstract class Character : MonoBehaviour
     public int abilityPower;      // ap 주문력
     public float projectileSpeed;       // 투사체 속도
 
+    [Header("애니메이션")]
+    public Animator animator;
+    public Transform playerTransform;
+
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
     protected bool isGround = false;
@@ -36,6 +39,7 @@ public abstract class Character : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         fixedJoint = GetComponent<FixedJoint2D>();
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         StartCoroutine(NormalAttackRoutine());
     }
 
@@ -50,6 +54,14 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (!isGround && !isSkillActive)
+        {
+            Vector3 direction = playerTransform.position - transform.position;
+            if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            animator.SetBool("5_Fall", true);
+        }
+
         if (!isGround) return;
 
         currentMP += Time.deltaTime * mpPerSecond;
@@ -75,6 +87,7 @@ public abstract class Character : MonoBehaviour
             Transform target = FindNearestEnemy();
             if (target != null)
             {
+                animator.Play("ATTACK", -1, 0f);
                 FireNormalProjectile(target.position);
             }
         }
@@ -149,6 +162,7 @@ public abstract class Character : MonoBehaviour
 
         if (isSkillActive || isGround) return;
         isGround = true;
+        animator.SetBool("5_Fall", false);
 
         Managers.Rider.RiderCountUp();
         fixedJoint.enabled = true;

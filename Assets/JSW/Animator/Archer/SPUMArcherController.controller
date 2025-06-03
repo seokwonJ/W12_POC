@@ -48,7 +48,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: c66e5eb2778574f1abbd40dcb05e1df7, type: 2}
+  m_Motion: {fileID: 7400000, guid: ccc66609eaae7425f967209ab0b3935f, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -149,9 +149,9 @@ AnimatorStateTransition:
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.41231287
+  m_TransitionDuration: 2.0586867
   m_TransitionOffset: 0
-  m_ExitTime: 0.004723553
+  m_ExitTime: 0.0047235535
   m_HasExitTime: 0
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -238,7 +238,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: SPUMController
+  m_Name: SPUMArcherController
   serializedVersion: 5
   m_AnimatorParameters:
   - m_Name: 1_Move
@@ -319,7 +319,7 @@ AnimatorStateMachine:
     m_Position: {x: 40, y: -340, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 4062835933475243747}
-    m_Position: {x: 290, y: -290, z: 0}
+    m_Position: {x: 290, y: -300, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -8587324393773273741}
     m_Position: {x: 40, y: -290, z: 0}
