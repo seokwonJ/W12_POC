@@ -439,6 +439,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 500
+  damagedMat: {fileID: 0}
 --- !u!114 &139859905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1172,6 +1173,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 500
+  damagedMat: {fileID: 0}
 --- !u!114 &483196441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4797,6 +4799,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 500
+  damagedMat: {fileID: 0}
 --- !u!114 &1570323336
 MonoBehaviour:
   m_ObjectHideFlags: 0

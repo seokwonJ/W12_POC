@@ -201,6 +201,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 30
+  damagedMat: {fileID: 2100000, guid: 4687fee9f0e71c94fa86c8ffba72012f, type: 2}
 --- !u!114 &2336702892526190934
 MonoBehaviour:
   m_ObjectHideFlags: 0
