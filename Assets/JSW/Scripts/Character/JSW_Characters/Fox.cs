@@ -41,7 +41,7 @@ public class Fox : Character
 
         float totalAttackDamage = 0;
 
-        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Rider.riderCount;
+        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Cam.riderCount;
 
         totalAttackDamage = abilityPower;
 
