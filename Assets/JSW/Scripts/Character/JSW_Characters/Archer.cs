@@ -15,12 +15,16 @@ public class Archer : Character
     [Header("강화")]
     public float knockbackPower;
     public float arrowSize;
-
     public int upgradeNum;
+
+    [Header("이펙트")]
+    public ParticleSystem skillActive;
 
     // 일반 공격 : 화살 발사 
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
+        if (targetPos == null) return;
+
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         // 방향에 따라 캐릭터 스프라이트 좌우 반전
@@ -50,6 +54,7 @@ public class Archer : Character
             yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();
             animator.Play("SKILL", -1, 0f);
+            skillActive.Play();
             yield return new WaitForSeconds(skillInterval);
         }
     }

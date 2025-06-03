@@ -14,6 +14,7 @@ public class Levi : Character
     public float skillTargetCount;
     public float skillInterval = 0.3f;
     public float skillDashSpeed;
+    public GameObject trail;
 
     [Header("강화")]
     public bool isAttackWhileFalling;
@@ -24,10 +25,10 @@ public class Levi : Character
     public float ManaOnLandingBasedOnTime;
     public bool isAttackSpeedBoostAfterQuickReboard;
     public bool isMoreSkillDamageWithJumpPower;
-
-    public GameObject trail;
-
     public int upgradeNum;
+
+    [Header("이펙트")]
+    public ParticleSystem skillActiveEffect;
 
     // 일반 공격: 연속 두번 관통형 공격 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -98,6 +99,8 @@ public class Levi : Character
             {
                 if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
                 else enemyHP.TakeDamage(attackDamage + skillDamage);
+                
+                skillActiveEffect.Play();
             }
 
             yield return new WaitForSeconds(skillInterval); // 약간의 딜레이
@@ -162,9 +165,19 @@ public class Levi : Character
                 break;
             }
 
+
+
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
             rb.MovePosition(move); // 감속 없음
+
+
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, dashSpeed * Time.fixedDeltaTime, LayerMask.GetMask("Wall")); // 벽 레이어 확인
+
+            if (hit.collider != null)
+            {
+                break; // 대쉬 종료
+            }
 
             if (dir.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             else if (dir.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
