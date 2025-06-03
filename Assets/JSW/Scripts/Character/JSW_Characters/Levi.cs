@@ -59,6 +59,7 @@ public class Levi : Character
             if (target != null)
             {
                 Vector3 targetpos = target.position;
+                animator.Play("ATTACK", -1, 0f);
                 FireNormalProjectile(targetpos);
                 yield return new WaitForSeconds(dobleAttackCoolTime);
                 FireNormalProjectile(targetpos);
@@ -70,6 +71,8 @@ public class Levi : Character
     protected override IEnumerator FireSkill()
     {
         trail.SetActive(true);
+        animator.Play("SKILL", -1, 0f);
+
         List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
@@ -104,12 +107,14 @@ public class Levi : Character
 
         rb.linearVelocity = new Vector2(-10, jumpForce);
         trail.SetActive(false);
+        animator.Play("SKILLEND", -1, 0f);
 
         yield return new WaitForSeconds(0.5f);
 
         if (isAttackSpeedBoostAfterQuickReboard) StartCoroutine(AttackSpeedBoostAfterQuickReboard());
         if (isGainPowerFromSkillDamage) StartCoroutine(GainPowerFromSkillDamageCountUpGrade());
 
+        //animator.SetBool("5_FALL", true);
         gameObject.layer = LayerMask.NameToLayer("Character");
     }
 
@@ -148,7 +153,7 @@ public class Levi : Character
     private IEnumerator DashToTarget(Transform target)
     {
         float dashSpeed = skillDashSpeed;
-        float reachDist = 1f;
+        float reachDist = 1.5f;
 
         while (target != null && Vector2.Distance(transform.position, target.position) > reachDist)
         {
@@ -161,8 +166,8 @@ public class Levi : Character
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
             rb.MovePosition(move); // 감속 없음
 
-            if (dir.x >= 0) transform.right = Vector3.right;
-            else transform.right = Vector3.left;
+            if (dir.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            else if (dir.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
             yield return new WaitForFixedUpdate(); // FixedUpdate 기준
         }

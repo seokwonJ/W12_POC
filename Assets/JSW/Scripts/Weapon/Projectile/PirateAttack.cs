@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PirateAttack : ProjectileBase
 {
@@ -32,10 +32,10 @@ public class PirateAttack : ProjectileBase
     {
         if (other.CompareTag("Enemy"))
         {
-            var enemy = other.GetComponent<EnemyHP>();
-            if (enemy != null && isFirstHitDealsBonusDamage)
+            EnemyHP enemyHp = other.GetComponent<EnemyHP>();
+            if (enemyHp != null && isFirstHitDealsBonusDamage)
             {
-                enemy.TakeDamage(damage);
+                enemyHp.TakeDamage(damage);
             }
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, transform.localScale.magnitude);
@@ -45,19 +45,17 @@ public class PirateAttack : ProjectileBase
             {
                 if (hit.CompareTag("Enemy"))
                 {
-                    EnemyAI enemyAI = hit.GetComponent<EnemyAI>();
-                    EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
+                    Enemy enemy = hit.GetComponent<Enemy>();
+                    EnemyHP otherEnemyHP = hit.GetComponent<EnemyHP>();
 
                     int totalDamage = damage;
 
-                    enemyHP.TakeDamage(totalDamage);
+                    otherEnemyHP.TakeDamage(totalDamage);
 
                     Vector3 knockbackDirection = hit.transform.position - transform.position;
-                    if (enemyAI != null) enemyAI.ApplyKnockback(knockbackDirection, knockbackPower);
-                    else
+                    if (enemy != null)
                     {
-                        Enemy2 enemy2 = hit.GetComponent<Enemy2>();
-                        enemy2.ApplyKnockback(knockbackDirection, knockbackPower);
+                        enemy.ApplyKnockback(knockbackDirection, knockbackPower);
                     }
                 }
             }

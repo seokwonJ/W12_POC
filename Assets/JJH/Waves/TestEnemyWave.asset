@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TestEnemyWave
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 2971542310015680529, guid: c2476b7aaaaae2a4ea58aeea97ca6d9e, type: 3}
-  enemyCount: 03000000
-  spawnPositionType: 01000000
+  - {fileID: 2971542310015680529, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+  enemyCount: 01000000
+  spawnPositionType: 02000000

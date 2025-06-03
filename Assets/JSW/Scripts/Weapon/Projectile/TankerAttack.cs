@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class TankerAttack : ProjectileBase
 {
@@ -33,24 +33,18 @@ public class TankerAttack : ProjectileBase
     {
         if (other.CompareTag("Enemy"))
         {
-            var enemy = other.GetComponent<EnemyHP>();
-            if (enemy != null)
-                enemy.TakeDamage(damage);
+            var enemyHp = other.GetComponent<EnemyHP>();
+            if (enemyHp != null)
+                enemyHp.TakeDamage(damage);
 
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
 
-            Enemy2 enemy2 = other.GetComponent<Enemy2>();
-            if (enemy2 != null)
+            Enemy enemy = other.GetComponent<Enemy>();
+            if (enemy != null)
             {
-                enemy2.ApplyKnockback(knockbackDirection, knockbackPower);
+                enemy.ApplyKnockback(knockbackDirection, knockbackPower);
             }
 
-            else
-            {
-                EnemyAI enemyAI = other.GetComponent<EnemyAI>();
-                if (enemyAI != null)
-                    enemyAI.ApplyKnockback(knockbackDirection, knockbackPower);
-            }
 
             Destroy(gameObject);
         }

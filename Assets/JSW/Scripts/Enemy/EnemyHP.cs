@@ -1,14 +1,16 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
 {
     public int enemyHP;
+    public Material damagedMat;
+    private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
     public void TakeDamage(int hp)
     {
         enemyHP -= hp;
-        StartCoroutine(getDmagedEffect());
+        //StartCoroutine(getDmagedEffect());
 
         if (enemyHP <= 0)
         {
@@ -22,10 +24,10 @@ public class EnemyHP : MonoBehaviour
 
         Destroy(gameObject);
     }
-    IEnumerator getDmagedEffect()
-    {
-        transform.GetChild(1).gameObject.SetActive(true);
-        yield return new WaitForSeconds(0.1f);
-        transform.GetChild(1).gameObject.SetActive(false);
-    }
+    //IEnumerator getDmagedEffect()
+    //{
+    //    //damagedMat.SetFloat("_FlashAmount", 1f);
+    //    //yield return flashDuration;
+    //    //damagedMat.SetFloat("_FlashAmount", 0f);
+    //}
 }
