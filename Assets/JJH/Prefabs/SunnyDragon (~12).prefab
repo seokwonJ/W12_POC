@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 9030643398761379910}
   - component: {fileID: 4314202409012214010}
   - component: {fileID: 2336702892526190934}
-  - component: {fileID: 2458949306618517918}
+  - component: {fileID: 8304087639445234492}
+  - component: {fileID: 3514870351024797152}
   m_Layer: 0
-  m_Name: EnemyZigZag (3)
+  m_Name: SunnyDragon (~12)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3814411018074682771}
@@ -82,8 +83,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
-  m_Color: {r: 1, g: 0, b: 0.5176471, a: 1}
+  m_Sprite: {fileID: -5572707476907577575, guid: eb62fadc91d8ebe4fa96703d3807a8bb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -132,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 15
+  enemyHP: 200
 --- !u!114 &2336702892526190934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,19 +146,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be2bd29a45f7e464fbe41a0226f19168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  editorNote: 3
-  movementSO: {fileID: 11400000, guid: f79b1cec03431fe439419d5e73ca4fc6, type: 2}
-  attackSO: {fileID: 0}
-  speed: 8
+  editorNote: 6
+  movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
+  attackSO: {fileID: 11400000, guid: f2d5163ee7f671746a77a5aee897285b, type: 2}
+  speed: 3
   minPlayerDistance: 0
-  isKnockbackable: 1
+  isKnockbackable: 0
+  isFilpping: 0
   damage: 20
-  fireCooldown: 0
-  projectileSpeed: 0
+  fireCooldown: 2
+  projectileSpeed: 8
   projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
   player: {fileID: 0}
   rb: {fileID: 0}
---- !u!60 &2458949306618517918
+--- !u!95 &8304087639445234492
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971542310015680529}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4f1daba5352dee2428b757ca0a3685c7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!60 &3514870351024797152
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -195,7 +219,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.8828125}
+    oldSize: {x: 1.64, y: 1.08}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -203,33 +227,46 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.3671875, y: -0.26171875}
-      - {x: 0.39453125, y: -0.21484375}
-      - {x: 0.42578125, y: -0.16015625}
-      - {x: 0.484375, y: -0.05859375}
-      - {x: 0.5, y: -0.02734375}
-      - {x: 0.5, y: 0.03125}
-      - {x: 0.484375, y: 0.05859375}
-      - {x: 0.3671875, y: 0.26171875}
-      - {x: 0.265625, y: 0.4375}
-      - {x: 0.2578125, y: 0.44140625}
-      - {x: -0.2578125, y: 0.44140625}
-      - {x: -0.265625, y: 0.4375}
-      - {x: -0.29296875, y: 0.390625}
-      - {x: -0.30859375, y: 0.36328125}
-      - {x: -0.3671875, y: 0.26171875}
-      - {x: -0.39453125, y: 0.21484375}
-      - {x: -0.42578125, y: 0.16015625}
-      - {x: -0.5, y: 0.03125}
-      - {x: -0.5, y: -0.03125}
-      - {x: -0.484375, y: -0.05859375}
-      - {x: -0.41015625, y: -0.1875}
-      - {x: -0.265625, y: -0.4375}
-      - {x: -0.2578125, y: -0.44140625}
-      - {x: 0.2578125, y: -0.44140625}
-      - {x: 0.265625, y: -0.4375}
-      - {x: 0.29296875, y: -0.390625}
-      - {x: 0.30859375, y: -0.36328125}
+    - - {x: 0.78, y: -0.19999999}
+      - {x: 0.7079571, y: -0.22553186}
+      - {x: 0.62842053, y: -0.42165846}
+      - {x: 0.51, y: -0.42999998}
+      - {x: 0.41, y: -0.45}
+      - {x: 0.34, y: -0.34}
+      - {x: 0.31, y: -0.14999999}
+      - {x: 0.22999999, y: 0}
+      - {x: 0.1182556, y: 0.06583033}
+      - {x: -0.10272889, y: 0.097001016}
+      - {x: -0.25425375, y: 0.060979478}
+      - {x: -0.16531724, y: 0.14583032}
+      - {x: -0.0010634363, y: 0.23272389}
+      - {x: -0.008638093, y: 0.37}
+      - {x: 0.17999999, y: 0.53999996}
+      - {x: -0.11689368, y: 0.5213618}
+      - {x: -0.37446827, y: 0.39757457}
+      - {x: -0.41825563, y: 0.32999998}
+      - {x: -0.46204287, y: 0.14204288}
+      - {x: -0.56136185, y: 0.19893676}
+      - {x: -0.82, y: -0.049999997}
+      - {x: -0.82, y: -0.16}
+      - {x: -0.72999996, y: -0.24}
+      - {x: -0.65999997, y: -0.24}
+      - {x: -0.5, y: -0.41}
+      - {x: -0.26, y: -0.37}
+      - {x: -0.07, y: -0.29}
+      - {x: 0.064164445, y: -0.12662129}
+      - {x: 0.13, y: -0.19}
+      - {x: 0.17, y: -0.35}
+      - {x: 0.21, y: -0.42999998}
+      - {x: 0.34, y: -0.53999996}
+      - {x: 0.57, y: -0.53999996}
+      - {x: 0.69, y: -0.48}
+      - {x: 0.82, y: -0.35999998}
+      - {x: 0.82, y: -0.26}
+    - - {x: -0.51, y: 0.08}
+      - {x: -0.52, y: 0.08}
+      - {x: -0.53999996, y: 0.049999997}
+      - {x: -0.53, y: 0.049999997}
   m_UseDelaunayMesh: 0
 --- !u!1 &6061775303698966662
 GameObject:
@@ -307,7 +344,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 2
-  m_Sprite: {fileID: 2747690628134850419, guid: 16037dbd798344f57a526d53d48f5ead, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
   m_FlipX: 0
   m_FlipY: 0
@@ -334,7 +371,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3814411018074682771
 Transform:
   m_ObjectHideFlags: 0

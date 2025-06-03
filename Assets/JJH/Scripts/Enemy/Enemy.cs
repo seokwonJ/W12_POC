@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     public float minPlayerDistance;
     public bool isKnockbackable; // 넉백 가능 여부
     private bool isKnockback = false; // 넉백 상태인지 여부
+    public bool isFilpping; // 스프라이트 뒤집기 여부
 
     [Header("공격 관련")]
     public int damage; 
@@ -65,7 +66,7 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
-        if (spriteRenderer != null)
+        if (spriteRenderer != null && isFilpping)
         {
             //  방향에 따라 스프라이트를 뒤집음
             float directionX = transform.position.x - player.transform.position.x;

@@ -1038,7 +1038,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8888805337605806763, guid: 07f0c4acc0ee82e4898944448783d8cb, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2514,7 +2514,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1450283076957204448, guid: 6494efb290f2c1a41b85f3996ff5ae7c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3609538008976467063, guid: 6494efb290f2c1a41b85f3996ff5ae7c, type: 3}
       propertyPath: attackDamage
@@ -5839,7 +5839,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 9ca6587c8482fb047b6f2b1c8dc62061, type: 2}
   - {fileID: 11400000, guid: 65949a43ca8c5e34384532b07d71de85, type: 2}
   world: 1
-  stage: 1
+  stage: 3
   playTime_Text: {fileID: 663497427}
 --- !u!1 &1949148883
 GameObject:
