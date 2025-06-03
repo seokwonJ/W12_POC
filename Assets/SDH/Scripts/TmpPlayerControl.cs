@@ -70,7 +70,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         playerMove.enabled = true;
        
-        if(Managers.Stage.OnField) SceneManager.LoadScene("Shop");
+        if(!Managers.Stage.OnField) SceneManager.LoadScene("Shop");
         else SceneManager.LoadScene("Field");
     }
 }
