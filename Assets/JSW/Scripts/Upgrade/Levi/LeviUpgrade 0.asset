@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4dcb6e721b80047bbdf5faf962862a, type: 3}
   m_Name: LeviUpgrade 0
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: AttackSpeed
+  description: AttackSpeed
   icon: {fileID: 0}
   type: 0
   value: 0

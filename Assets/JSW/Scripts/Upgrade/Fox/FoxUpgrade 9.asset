@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96aafbf49a84e9418c81fb2cdb2b7e6, type: 3}
   m_Name: FoxUpgrade 9
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: AutoReturnAfterSeconds
+  description: AutoReturnAfterSeconds
   icon: {fileID: 0}
-  type: 0
+  type: 9
   value: 0
