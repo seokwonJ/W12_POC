@@ -223,7 +223,7 @@ GameObject:
   - component: {fileID: 56223213}
   - component: {fileID: 56223212}
   - component: {fileID: 56223211}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -714,6 +714,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8158726512124471703, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
+      propertyPath: skillDashSpeed
+      value: 120
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -974,7 +978,7 @@ GameObject:
   - component: {fileID: 344258410}
   - component: {fileID: 344258409}
   - component: {fileID: 344258408}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2053,7 +2057,7 @@ GameObject:
   - component: {fileID: 547562522}
   - component: {fileID: 547562524}
   - component: {fileID: 547562523}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2069,7 +2073,7 @@ Transform:
   m_GameObject: {fileID: 547562521}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.14061, y: -6.74, z: 0.11821564}
+  m_LocalPosition: {x: 15.8, y: -8.1, z: 0.11821564}
   m_LocalScale: {x: 43.516796, y: 7.469844, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2725,7 +2729,7 @@ GameObject:
   - component: {fileID: 630877065}
   - component: {fileID: 630877064}
   - component: {fileID: 630877063}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3146,7 +3150,7 @@ GameObject:
   - component: {fileID: 751868832}
   - component: {fileID: 751868831}
   - component: {fileID: 751868830}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4069,6 +4073,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Archer
       objectReference: {fileID: 0}
+    - target: {fileID: 6067348945300716500, guid: 8ec8ed6cf725c154cb70369fc3b60b1b, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4953,7 +4961,7 @@ GameObject:
   - component: {fileID: 1389133883}
   - component: {fileID: 1389133882}
   - component: {fileID: 1389133881}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: GroundUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5856,6 +5864,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ninja
       objectReference: {fileID: 0}
+    - target: {fileID: 7343003592488363999, guid: b0aa909712586cf41a304353daf09190, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6282,7 +6294,7 @@ GameObject:
   - component: {fileID: 1872653760}
   - component: {fileID: 1872653761}
   - component: {fileID: 1872653762}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Ground
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6298,7 +6310,7 @@ Transform:
   m_GameObject: {fileID: 1872653758}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.14061, y: -6.4039073, z: 0.11821564}
+  m_LocalPosition: {x: 17.14061, y: -8.1, z: 0.11821564}
   m_LocalScale: {x: 43.516796, y: 7.469844, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7201,6 +7213,10 @@ PrefabInstance:
     - target: {fileID: 4039518289144622579, guid: d44736fa1b5139b4783aa1237e26cc33, type: 3}
       propertyPath: m_Name
       value: Fox
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039518289144622579, guid: d44736fa1b5139b4783aa1237e26cc33, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

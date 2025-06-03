@@ -16,8 +16,12 @@ public class Ninja : Character
     public int nomalAttackCount = 0;
     public bool isFirstLowHPEnemy;
     public bool isAttackSpeedPerMana;
-
     public int upgradeNum;
+
+    [Header("이펙트")]
+    public ParticleSystem skillActive;
+    public ParticleSystem skillLandingActive;
+
 
     // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -75,6 +79,7 @@ public class Ninja : Character
     {
         isSkillLanding = true;
         yield return new WaitForSeconds(skillInterval);
+        skillActive.Play();
     }
 
     // 착지했을 경우
@@ -93,6 +98,7 @@ public class Ninja : Character
         if (isSkillLanding)
         {
             isSkillLanding = false;
+            skillLandingActive.Play();
             StartCoroutine(PowerUp(skillPower));
         }
         Managers.Rider.RiderCountUp();

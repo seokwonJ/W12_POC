@@ -20,15 +20,10 @@ public class Fox : Character
     public bool isOrbPausesBeforeReturning;
     public bool isAutoReturnAfterSeconds;
 
+    [Header("이펙트")]
+    public ParticleSystem skillActiveEffect;
+
     public int upgradeNum;
-
-    public GameObject player;
-
-    protected override void Start()
-    {
-        base.Start();
-        player = FindAnyObjectByType<PlayerMove>().gameObject;
-    }
 
     // 일반 공격: 원형 관통하고 돌아오는 원형 정수 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -46,6 +41,8 @@ public class Fox : Character
         float totalAttackDamage = 0;
 
         totalAttackDamage += abilityPower;
+
+
 
         if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Rider.riderCount;
 
@@ -74,11 +71,13 @@ public class Fox : Character
     {
         animator.Play("FOXSKILLREADY", -1, 0f);
         yield return new WaitForSeconds(skillFireDelay);
-        //animator.Play("FOXSKILLREADY", -1, 0f);
         animator.Play("SKILL", -1, 0f);
         yield return new WaitForSeconds(0.08f);
+
         FireSkillProjectiles();
-        if(isAutoReturnAfterSeconds) StartCoroutine(TeleportToPlayer());
+        skillActiveEffect.Play();
+
+        if (isAutoReturnAfterSeconds) StartCoroutine(TeleportToPlayer());
     }
 
     // 궁극기 발사 구현
@@ -101,6 +100,6 @@ public class Fox : Character
     IEnumerator TeleportToPlayer()
     {
         yield return new WaitForSeconds(7f);
-        if (!isGround) transform.position = player.transform.position + Vector3.up;
+        if (!isGround) transform.position = playerTransform.position + Vector3.up;
     }
 }

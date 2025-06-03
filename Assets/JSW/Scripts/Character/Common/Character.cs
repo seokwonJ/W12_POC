@@ -30,6 +30,9 @@ public abstract class Character : MonoBehaviour
     public Animator animator;
     public Transform playerTransform;
 
+    public ParticleSystem skillReadyEffect;
+    public ParticleSystem skillJumpEffect;
+
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
     protected bool isGround = false;
@@ -70,9 +73,8 @@ public abstract class Character : MonoBehaviour
 
         if (currentMP >= maxMP && !isSkillActive)
         {
-            fixedJoint.connectedBody = null;
-            fixedJoint.enabled = false;
             StartCoroutine(ActiveSkill());
+            isSkillActive = true;
         }
     }
 
@@ -102,16 +104,22 @@ public abstract class Character : MonoBehaviour
     {
         if (!isGround) yield break;
 
+        skillReadyEffect.Play();
+        yield return new WaitForSeconds(0.5f);
+
+        fixedJoint.connectedBody = null;
+        fixedJoint.enabled = false;
+
         isGround = false;
         transform.SetParent(null);
         Managers.Rider.RiderCountDown();
 
         currentMP = 0;
         if (mpImage != null) mpImage.fillAmount = 0;
-        isSkillActive = true;
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+        skillJumpEffect.Play();
 
         yield return StartCoroutine(FireSkill());
 
