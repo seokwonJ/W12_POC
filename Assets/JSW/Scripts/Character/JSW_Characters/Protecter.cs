@@ -93,7 +93,7 @@ public class Protecter : Character
         isGround = true;
 
 
-        Managers.Rider.RiderCountUp();
+        Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }
