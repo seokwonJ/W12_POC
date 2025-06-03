@@ -1,9 +1,11 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
 {
+    [SerializeField] private TextMeshProUGUI goldTxt;
     private Transform player;
     private LayerMask shopLayerMask;
 
@@ -15,11 +17,13 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
     private void Start()
     {
         FindPlayer();
+
+        goldTxt.text = "골드: " + Managers.Status.Gold.ToString();
     }
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.V))
+        if (Input.GetKeyDown(KeyCode.Return)) // 엔터키로 구매
         {
             BuyItem();
         }
@@ -43,13 +47,8 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
 
     private void BuyItem() // 버튼을 누르면 아이템 구매
     {
-        Collider2D[] colliders = Physics2D.OverlapPointAll(player.transform.position, shopLayerMask); // 사실 상품 콜라이더가 겹칠 일은 없으니 OverlapPoint만 해도 충분한 거 아닐까
+        Collider2D collider = Physics2D.OverlapPoint(player.transform.position, shopLayerMask); // 사실 상품 콜라이더가 겹칠 일은 없으니 OverlapPoint만 해도 충분한 거 아닐까
 
-        if (colliders.Length == 0) return;
-
-        foreach(Collider2D col in colliders)
-        {
-            Debug.Log(col.gameObject.name);
-        }
+        collider?.GetComponent<ShopItem>().BuyItem();
     }
 }

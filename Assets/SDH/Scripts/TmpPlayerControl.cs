@@ -52,7 +52,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
     {
         playerMove.enabled = false;
 
-        float nowTime = 0f, maxTime = 0.4f; // maxTime 시간동안 끝나는 연출
+        float nowTime = 0f, maxTime = 0.3f; // maxTime 시간동안 끝나는 연출
         Vector3[] startCharacterPos = Enumerable.Range(0, characters.Length).Select(i => characters[i].transform.localPosition).ToArray();
         Vector3 startPlayerPos = transform.position;
 
