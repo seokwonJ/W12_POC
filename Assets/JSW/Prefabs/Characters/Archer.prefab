@@ -471,8 +471,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 9.77, y: 2.95, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8563013868116144819}
   - {fileID: 2374882699913040130}
@@ -585,6 +585,8 @@ MonoBehaviour:
   attackDamage: 10
   abilityPower: 0
   projectileSpeed: 30
+  animator: {fileID: 6100445639778453496}
+  playerTransform: {fileID: 0}
   skillProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
   skillCount: 3
   skillInterval: 0.3
@@ -720,6 +722,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPUM_20250602203619091
       objectReference: {fileID: 0}
+    - target: {fileID: 5819509992447022730, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 534fa265c52643c4e92bcbd83bb77ee8, type: 2}
     - target: {fileID: 8268539385431532481, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -790,7 +796,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8268539385431532481, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.361
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 8268539385431532481, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -809,6 +815,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
+--- !u!95 &6100445639778453496 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5819509992447022730, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
+  m_PrefabInstance: {fileID: 318118940422656370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8563013868116144819 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8268539385431532481, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}

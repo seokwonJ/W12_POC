@@ -209,8 +209,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.09, y: 2.97, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8005028632198254281}
   - {fileID: 3059039242600384561}
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 10
+  mpPerSecond: 50
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 6537457085924451293, guid: 1925317da1244ea408dc890970832d6e, type: 3}
   firePoint: {fileID: 7217755437246237028}
@@ -346,14 +346,16 @@ MonoBehaviour:
   maxFallSpeed: 10
   attackDamage: 10
   abilityPower: 1
-  projectileSpeed: 10
+  projectileSpeed: 20
+  animator: {fileID: 6002530475527297520}
+  playerTransform: {fileID: 0}
   dobleAttackCoolTime: 0.05
-  NormalAttackProjectileDuration: 1
+  NormalAttackProjectileDuration: 0.5
   isSkillLanding: 0
   skillDamage: 10
   skillTargetCount: 5
-  skillInterval: 0.02
-  skillDashSpeed: 100
+  skillInterval: 0
+  skillDashSpeed: 150
   isAttackWhileFalling: 0
   isGainPowerFromSkillDamage: 0
   GainPowerFromSkillDamageCount: 0
@@ -855,7 +857,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6758516225888479684, guid: b5c487c37519da14a9cee30b00070132, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.38
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 6758516225888479684, guid: b5c487c37519da14a9cee30b00070132, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -873,11 +875,20 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7030616245758803709, guid: b5c487c37519da14a9cee30b00070132, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4d02fc8ef1b8d0c4eb69a9ea4fe9cc33, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5c487c37519da14a9cee30b00070132, type: 3}
+--- !u!95 &6002530475527297520 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 7030616245758803709, guid: b5c487c37519da14a9cee30b00070132, type: 3}
+  m_PrefabInstance: {fileID: 3664946668954576653}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8005028632198254281 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6758516225888479684, guid: b5c487c37519da14a9cee30b00070132, type: 3}

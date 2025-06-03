@@ -558,8 +558,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.09, y: 2.97, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4227649689367462887}
   - {fileID: 4084557208937531928}
@@ -589,7 +589,10 @@ MonoBehaviour:
   attackDamage: 5
   abilityPower: 5
   projectileSpeed: 15
+  animator: {fileID: 5282197696764482722}
+  playerTransform: {fileID: 0}
   isSkillLanding: 0
+  isSkilling: 0
   skillPower: 5
   skillAttackSpeed: 2
   skillPowerDuration: 3
@@ -783,7 +786,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 971818924909635018, guid: 808962b8a1527b34b89bb42f8ff9d405, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -0.36
+      value: -0.43
       objectReference: {fileID: 0}
     - target: {fileID: 971818924909635018, guid: 808962b8a1527b34b89bb42f8ff9d405, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -805,6 +808,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPUM_20250602205309543
       objectReference: {fileID: 0}
+    - target: {fileID: 9122351134256460431, guid: 808962b8a1527b34b89bb42f8ff9d405, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 412536eb5462257438d3595a6c467c0b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -813,5 +820,10 @@ PrefabInstance:
 --- !u!224 &4227649689367462887 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 971818924909635018, guid: 808962b8a1527b34b89bb42f8ff9d405, type: 3}
+  m_PrefabInstance: {fileID: 4023747290777019949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &5282197696764482722 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9122351134256460431, guid: 808962b8a1527b34b89bb42f8ff9d405, type: 3}
   m_PrefabInstance: {fileID: 4023747290777019949}
   m_PrefabAsset: {fileID: 0}

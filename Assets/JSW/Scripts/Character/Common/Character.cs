@@ -163,6 +163,7 @@ public abstract class Character : MonoBehaviour
         if (isSkillActive || isGround) return;
         isGround = true;
         animator.SetBool("5_Fall", false);
+        animator.Play("IDLE", -1, 0f);
 
         Managers.Rider.RiderCountUp();
         fixedJoint.enabled = true;

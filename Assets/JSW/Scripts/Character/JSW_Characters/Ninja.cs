@@ -5,6 +5,7 @@ public class Ninja : Character
 {
     [Header("스킬")]
     public bool isSkillLanding;
+    public bool isSkilling;
     public int skillPower;
     public float skillAttackSpeed;
     public float skillPowerDuration;
@@ -55,8 +56,16 @@ public class Ninja : Character
             Transform target = FindNearestEnemy();
             if (target != null)
             {
-                animator.Play("ATTACK", -1, 0f);
-                FireNormalProjectile(target.position);
+                if (isSkilling)
+                {
+                    animator.Play("SKILLINGATTACK", -1, 0f);
+                    FireNormalProjectile(target.position);
+                }
+                else
+                {
+                    animator.Play("ATTACK", -1, 0f);
+                    FireNormalProjectile(target.position);
+                }
             }
         }
     }
@@ -79,6 +88,8 @@ public class Ninja : Character
         if (isSkillActive) return;
         isGround = true;
         animator.SetBool("5_Fall", false);
+        animator.Play("IDLE", -1, 0f);
+
         if (isSkillLanding)
         {
             isSkillLanding = false;
@@ -90,6 +101,7 @@ public class Ninja : Character
     }
     IEnumerator PowerUp(int power)
     {
+        isSkilling = true;
         attackDamage += power;
         normalFireInterval /= skillAttackSpeed;
         Debug.Log("공격력 업!");
@@ -97,6 +109,7 @@ public class Ninja : Character
         Debug.Log("공격력 돌아옴");
         attackDamage -= power;
         normalFireInterval *= skillAttackSpeed;
+        isSkilling = false;
     }
 
     protected Transform FindLowHPEnemy()
