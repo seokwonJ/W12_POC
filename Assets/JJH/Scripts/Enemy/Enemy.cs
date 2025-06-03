@@ -29,6 +29,7 @@ public class Enemy : MonoBehaviour
     private IMovementPattern movement;
     private IAttackPattern attack;
     private SpriteRenderer spriteRenderer;
+    private EnemyHP enemyHP; // 적의 HP 스크립트
 
     public GameObject player; // 이후 싱글턴에서 player를 가져오도록 변경
     public Rigidbody2D rb; 
@@ -45,6 +46,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        enemyHP = GetComponent<EnemyHP>();
 
         if (movementSO != null )
         {
@@ -77,7 +79,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isKnockback)
+        if (isKnockback || enemyHP.isDead)
         {
             // 넉백 중에는 이동하지 않음
             return;

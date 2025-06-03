@@ -4,12 +4,14 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     public int enemyHP;
-    private bool isDead = false;
+    public bool isDead = false;
 
     private Renderer renderer;
     private Collider collider;
+    private Animator animator;
+    private Rigidbody2D rb;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
-    private float dieDelay = 1f;
+    private float dieDelay = 0.5f;
 
 
     private void Awake()
@@ -17,7 +19,8 @@ public class EnemyHP : MonoBehaviour
         //dieEffectDuration = new WaitForSeconds(dieDelay);
         renderer = GetComponent<Renderer>();
         collider = GetComponent<Collider>();
-
+        animator = GetComponent<Animator>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     public void TakeDamage(int hp)
@@ -36,6 +39,7 @@ public class EnemyHP : MonoBehaviour
     public void Die()
     {
         isDead = true;
+        rb.linearVelocity = Vector2.zero; // 죽을 때 속도 초기화
         StartCoroutine(CoDieEffect());
     }
     IEnumerator CoDamagedEffect()
@@ -47,6 +51,11 @@ public class EnemyHP : MonoBehaviour
 
     IEnumerator CoDieEffect()
     {
+        // 애니메이션 정지
+        if (animator != null)
+        {
+            animator.enabled = false;
+        }
         // _DieEffectValue가  dieEffectDuration 시간에 걸쳐 1에서 0으로 감소
         yield return flashDuration;
         float elapsedTime = 0f;
