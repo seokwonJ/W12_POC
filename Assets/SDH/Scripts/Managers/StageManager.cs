@@ -1,14 +1,14 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-// RandomÀº UnityEngine.RandomÀ¸·Î ÀÚµ¿À¸·Î »ç¿ëÇÏ°Ô
-using Random = UnityEngine.Random; // UnityEngine.RandomÀ» »ç¿ëÇÏ±â À§ÇØ ¸í½ÃÀûÀ¸·Î ÁöÁ¤
+// Randomì€ UnityEngine.Randomìœ¼ë¡œ ìë™ìœ¼ë¡œ ì‚¬ìš©í•˜ê²Œ
+using Random = UnityEngine.Random; // UnityEngine.Randomì„ ì‚¬ìš©í•˜ê¸° ìœ„í•´ ëª…ì‹œì ìœ¼ë¡œ ì§€ì •
 
-public class StageManager // ¾À ÀüÈ¯ °ü¸® (ÀüÅõ-»óÁ¡ µî)
+public class StageManager // ì”¬ ì „í™˜ ê´€ë¦¬ (ì „íˆ¬-ìƒì  ë“±)
 {
     public StageSO[] StageTemplates => stageTemplates;
-    private StageSO[] stageTemplates; // ½ºÅ×ÀÌÁö ±¸¼º ¸ğÀ½
+    private StageSO[] stageTemplates; // ìŠ¤í…Œì´ì§€ êµ¬ì„± ëª¨ìŒ
     public int World
     {
         get
@@ -20,7 +20,7 @@ public class StageManager // ¾À ÀüÈ¯ °ü¸® (ÀüÅõ-»óÁ¡ µî)
             world = value;
         }
     }
-    private int world = 1; // ¿ùµå ¹øÈ£, 1-2 ÀÏ °æ¿ì 1
+    private int world = 1; // ì›”ë“œ ë²ˆí˜¸, 1-2 ì¼ ê²½ìš° 1
     public int Stage
     {
         get
@@ -32,7 +32,7 @@ public class StageManager // ¾À ÀüÈ¯ °ü¸® (ÀüÅõ-»óÁ¡ µî)
             stage = value;
         }
     }
-    private int stage = 1; // ½ºÅ×ÀÌÁö ¹øÈ£, 1-2 ÀÏ °æ¿ì 2
+    private int stage = 1; // ìŠ¤í…Œì´ì§€ ë²ˆí˜¸, 1-2 ì¼ ê²½ìš° 2
     public bool OnField
     {
         get
@@ -44,20 +44,20 @@ public class StageManager // ¾À ÀüÈ¯ °ü¸® (ÀüÅõ-»óÁ¡ µî)
             onField = value;
         }
     }
-    private bool onField; //true¸é ÇÊµå, false¸é »óÁ¡
+    private bool onField = true; //trueë©´ í•„ë“œ, falseë©´ ìƒì  -> ì´í›„ ìˆ˜ì • í•„ìš”
 
     public void Init()
     {
         stageTemplates = Resources.LoadAll<StageSO>("StageTemplates");
     }
 
-    public void StartGame() // °ÔÀÓ ½ÃÀÛ. ÇöÀç´Â ½ºÅ×ÀÌÁö º¯¼ö ÃÊ±âÈ­¸¸ ÀÖÀ¸¸ç ¾Æ¹«°Íµµ ¾ÈÇÔ ÀÌ°Å ¼öÁ¤ÇÏ¸é¼­ À§¿¡ º¯¼öµé ÃÊ±âÈ­ ¼³Á¤°ª º¯°æÇÒ °Í
+    public void StartGame() // ê²Œì„ ì‹œì‘. í˜„ì¬ëŠ” ìŠ¤í…Œì´ì§€ ë³€ìˆ˜ ì´ˆê¸°í™”ë§Œ ìˆìœ¼ë©° ì•„ë¬´ê²ƒë„ ì•ˆí•¨ ì´ê±° ìˆ˜ì •í•˜ë©´ì„œ ìœ„ì— ë³€ìˆ˜ë“¤ ì´ˆê¸°í™” ì„¤ì •ê°’ ë³€ê²½í•  ê²ƒ
     {
         world = 1;
         stage = 1;
     }
 
-    public StageSO GetNowStageTemplate() // ÇöÀç ½ºÅ×ÀÌÁö ÅÛÇÃ¸´ °¡Á®¿À±â
+    public StageSO GetNowStageTemplate() // í˜„ì¬ ìŠ¤í…Œì´ì§€ í…œí”Œë¦¿ ê°€ì ¸ì˜¤ê¸°
     {
         return Array.Find(stageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
     }
