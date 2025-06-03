@@ -42,10 +42,13 @@ public class Fox : Character
 
         totalAttackDamage += abilityPower;
 
+//<<<<<<< HEAD
 
 
-        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Rider.riderCount;
+//        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Rider.riderCount;
 
+//=======
+//>>>>>>> main
         if (isEmpoweredAttackEvery3Hits)
         {
             EmpoweredAttackEveryCount += 1;

@@ -57,6 +57,12 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (!Managers.Stage.OnField)
+        {
+            currentMP = 0f;
+            isSkillActive = false;
+            return;
+        }
         if (!isGround && !isSkillActive)
         {
             Vector3 direction = playerTransform.position - transform.position;
@@ -64,7 +70,6 @@ public abstract class Character : MonoBehaviour
             else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             animator.SetBool("5_Fall", true);
         }
-
         if (!isGround) return;
 
         currentMP += Time.deltaTime * mpPerSecond;
@@ -112,7 +117,7 @@ public abstract class Character : MonoBehaviour
 
         isGround = false;
         transform.SetParent(null);
-        Managers.Rider.RiderCountDown();
+        Managers.Status.RiderCount--;
 
         currentMP = 0;
         if (mpImage != null) mpImage.fillAmount = 0;
@@ -173,7 +178,7 @@ public abstract class Character : MonoBehaviour
         animator.SetBool("5_Fall", false);
         animator.Play("IDLE", -1, 0f);
 
-        Managers.Rider.RiderCountUp();
+        Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }

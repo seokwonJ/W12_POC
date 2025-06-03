@@ -101,7 +101,7 @@ public class Ninja : Character
             skillLandingActive.Play();
             StartCoroutine(PowerUp(skillPower));
         }
-        Managers.Rider.RiderCountUp();
+        Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }
