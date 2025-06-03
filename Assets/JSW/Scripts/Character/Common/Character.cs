@@ -50,6 +50,12 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
+        if (!Managers.Stage.OnField)
+        {
+            currentMP = 0f;
+            isSkillActive = false;
+            return;
+        }
         if (!isGround) return;
 
         currentMP += Time.deltaTime * mpPerSecond;
@@ -91,7 +97,7 @@ public abstract class Character : MonoBehaviour
 
         isGround = false;
         transform.SetParent(null);
-        Managers.Cam.RiderCountDown();
+        Managers.Status.RiderCount--;
 
         currentMP = 0;
         if (mpImage != null) mpImage.fillAmount = 0;
@@ -150,7 +156,7 @@ public abstract class Character : MonoBehaviour
         if (isSkillActive || isGround) return;
         isGround = true;
 
-        Managers.Cam.RiderCountUp();
+        Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
     }

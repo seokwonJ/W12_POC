@@ -8,6 +8,6 @@ public class TmpStartBtn : MonoBehaviour
         Managers.Status.StartGame();
         Managers.Stage.StartGame();
 
-        SceneManager.LoadScene("Field");
+        SceneManager.LoadScene("Layover");
     }
 }
