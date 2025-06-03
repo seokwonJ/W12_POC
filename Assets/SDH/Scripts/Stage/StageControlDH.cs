@@ -18,7 +18,6 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
 
     private void Start()
     {
-        //Managers.Cam.Init(); // RiderManager ¼öÁ¤ÇÏ¸é¼­ ¿©±âµµ ¼öÁ¤ ÇÊ¿ä @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         nowStage = Managers.Stage.GetNowStageTemplate();
 
         StartCoroutine(CoSpawnEnemyRoutine(nowStage.enemyWave, nowStage.WaveCount, nowStage.WaveInterval, nowStage.stagePlayTime));
@@ -26,6 +25,12 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
 
     private void Update()
     {
+        if (!Managers.Stage.OnField)
+        {
+            StopAllCoroutines();
+            return;
+        }
+
         currentTime -= Time.deltaTime;
         currentTimeDisplay.text = ((int)currentTime).ToString();
 
@@ -36,7 +41,7 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
 
             FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
 
-            SceneManager.LoadScene("Shop");
+            //SceneManager.LoadScene("Shop");
         }
     }
 

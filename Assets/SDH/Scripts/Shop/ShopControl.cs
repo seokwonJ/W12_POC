@@ -27,7 +27,7 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
         {
             FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
 
-            SceneManager.LoadScene("Field");
+            //SceneManager.LoadScene("Field");
         }
     }
 
