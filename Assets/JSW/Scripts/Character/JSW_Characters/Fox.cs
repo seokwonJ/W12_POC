@@ -72,7 +72,11 @@ public class Fox : Character
     // 스킬: 점프 후 원형 정수를 360도 사방으로 발사
     protected override IEnumerator FireSkill()
     {
+        animator.Play("FOXSKILLREADY", -1, 0f);
         yield return new WaitForSeconds(skillFireDelay);
+        //animator.Play("FOXSKILLREADY", -1, 0f);
+        animator.Play("SKILL", -1, 0f);
+        yield return new WaitForSeconds(0.08f);
         FireSkillProjectiles();
         if(isAutoReturnAfterSeconds) StartCoroutine(TeleportToPlayer());
     }

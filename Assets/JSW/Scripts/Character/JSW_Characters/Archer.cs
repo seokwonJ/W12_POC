@@ -49,6 +49,7 @@ public class Archer : Character
         {
             yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();
+            animator.Play("SKILL", -1, 0f);
             yield return new WaitForSeconds(skillInterval);
         }
     }

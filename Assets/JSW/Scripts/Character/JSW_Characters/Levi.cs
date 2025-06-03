@@ -153,7 +153,7 @@ public class Levi : Character
     private IEnumerator DashToTarget(Transform target)
     {
         float dashSpeed = skillDashSpeed;
-        float reachDist = 1f;
+        float reachDist = 1.5f;
 
         while (target != null && Vector2.Distance(transform.position, target.position) > reachDist)
         {
@@ -166,8 +166,8 @@ public class Levi : Character
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
             rb.MovePosition(move); // 감속 없음
 
-            if (dir.x >= 0) transform.right = Vector3.right;
-            else transform.right = Vector3.left;
+            if (dir.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            else if (dir.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
             yield return new WaitForFixedUpdate(); // FixedUpdate 기준
         }
