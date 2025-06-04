@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5091009696441392486
 Transform:
   m_ObjectHideFlags: 0
@@ -96,7 +96,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.16149071
+        value: 0.031040763
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -320,9 +320,9 @@ MonoBehaviour:
   projectileSpeed: 20
   animator: {fileID: 6002530475527297520}
   playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 7080631152248162937}
-  skillJumpEffect: {fileID: 1639776915212229317}
-  fallingTrail: {fileID: 0}
+  skillReadyEffect: {fileID: 8042010290544875445, guid: 79f67893848460243970fb269bc84fde, type: 3}
+  skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
+  fallingTrail: {fileID: 505486261304034584}
   dobleAttackCoolTime: 0.05
   NormalAttackProjectileDuration: 0.5
   isSkillLanding: 0
@@ -415,8 +415,8 @@ TrailRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -673865093
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Time: 0.7
   m_PreviewTimeScale: 1
@@ -427,8 +427,8 @@ TrailRenderer:
       serializedVersion: 2
       m_Curve:
       - serializedVersion: 3
-        time: 0
-        value: 0.24778748
+        time: 0.008991241
+        value: 0.12763977
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -437,7 +437,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0
+        value: 0.07751465
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -605,11 +605,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
---- !u!198 &7080631152248162937 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7485119826907495163, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
-  m_PrefabInstance: {fileID: 406177563419668610}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7080631152248162938 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7485119826907495160, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
@@ -988,11 +983,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f67893848460243970fb269bc84fde, type: 3}
---- !u!198 &1639776915212229317 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8042010290544875451, guid: 79f67893848460243970fb269bc84fde, type: 3}
-  m_PrefabInstance: {fileID: 8744686089046510974}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1639776915212229318 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8042010290544875448, guid: 79f67893848460243970fb269bc84fde, type: 3}

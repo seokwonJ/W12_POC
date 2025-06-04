@@ -30,8 +30,8 @@ public abstract class Character : MonoBehaviour
     public Animator animator;
     public Transform playerTransform;
 
-    public ParticleSystem skillReadyEffect;
-    public ParticleSystem skillJumpEffect;
+    public GameObject skillReadyEffect;
+    public GameObject skillJumpEffect;
     public GameObject fallingTrail;
 
     protected Rigidbody2D rb;
@@ -110,7 +110,7 @@ public abstract class Character : MonoBehaviour
     {
         if (!isGround) yield break;
 
-        skillReadyEffect.Play();
+        Instantiate(skillReadyEffect, transform.position, Quaternion.identity, transform);
         yield return new WaitForSeconds(0.5f);
 
         fixedJoint.connectedBody = null;
@@ -125,7 +125,7 @@ public abstract class Character : MonoBehaviour
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        skillJumpEffect.Play();
+        Instantiate(skillJumpEffect,transform.position - Vector3.up * 0.45f,Quaternion.identity, playerTransform);
 
         yield return StartCoroutine(FireSkill());
 

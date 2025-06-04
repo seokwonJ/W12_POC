@@ -96,7 +96,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.16149071
+        value: 0.031040763
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -248,8 +248,9 @@ MonoBehaviour:
   projectileSpeed: 15
   animator: {fileID: 5282197696764482722}
   playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 4853302092874737452}
-  skillJumpEffect: {fileID: 334140087914766662}
+  skillReadyEffect: {fileID: 8042010290544875445, guid: 79f67893848460243970fb269bc84fde, type: 3}
+  skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
+  fallingTrail: {fileID: 710097518450156534}
   isSkillLanding: 0
   isSkilling: 0
   skillPower: 5
@@ -628,11 +629,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
---- !u!198 &4853302092874737452 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7485119826907495163, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
-  m_PrefabInstance: {fileID: 2646454501589425623}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4853302092874737455 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7485119826907495160, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
@@ -841,10 +837,5 @@ PrefabInstance:
 --- !u!4 &334140087914766661 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8042010290544875448, guid: 79f67893848460243970fb269bc84fde, type: 3}
-  m_PrefabInstance: {fileID: 7726469846536697597}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &334140087914766662 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8042010290544875451, guid: 79f67893848460243970fb269bc84fde, type: 3}
   m_PrefabInstance: {fileID: 7726469846536697597}
   m_PrefabAsset: {fileID: 0}

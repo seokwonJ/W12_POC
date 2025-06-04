@@ -148,8 +148,9 @@ MonoBehaviour:
   projectileSpeed: 30
   animator: {fileID: 6100445639778453496}
   playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 5818012023326275736}
-  skillJumpEffect: {fileID: 9176362505347642104}
+  skillReadyEffect: {fileID: 8042010290544875445, guid: 79f67893848460243970fb269bc84fde, type: 3}
+  skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
+  fallingTrail: {fileID: 7593743128653616012}
   skillProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
   skillCount: 3
   skillInterval: 0.3
@@ -199,7 +200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4771086970465598288
 Transform:
   m_ObjectHideFlags: 0
@@ -279,7 +280,7 @@ TrailRenderer:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 1
-        value: 0.16149071
+        value: 0.031040763
         inSlope: 0
         outSlope: 0
         tangentMode: 0
@@ -554,11 +555,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79f67893848460243970fb269bc84fde, type: 3}
---- !u!198 &9176362505347642104 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 8042010290544875451, guid: 79f67893848460243970fb269bc84fde, type: 3}
-  m_PrefabInstance: {fileID: 1207537359709742403}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &9176362505347642107 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8042010290544875448, guid: 79f67893848460243970fb269bc84fde, type: 3}
@@ -633,11 +629,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
---- !u!198 &5818012023326275736 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 7485119826907495163, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
-  m_PrefabInstance: {fileID: 3989564537016517219}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5818012023326275739 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7485119826907495160, guid: d2c20e57b07e7654cba7aa979bee3d9a, type: 3}
