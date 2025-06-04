@@ -36,7 +36,7 @@ public class SpawnProjectileAttack : ScriptableObject, IAttackPattern
             {
                 float angle = Mathf.Lerp(45f, 135f, (float)i / (projectileCount - 1)); // 45도에서 135도 사이의 균등한 각도
                 Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up; // 위쪽 방향과 곱해서 Vector2로 변경
-                GameObject proj = Instantiate(enemy.projectilePrefab, enemy.transform.position, Quaternion.identity);
+                GameObject proj = Instantiate(enemy.projectilePrefab, enemy.firePoint.position, Quaternion.identity);
                 proj.GetComponent<Rigidbody2D>().linearVelocity = direction * enemy.projectileSpeed;
             }
 

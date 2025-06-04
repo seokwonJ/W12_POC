@@ -125,16 +125,16 @@ ScriptedImporter:
   animatedSpriteImportData:
   - name: Frame_0
     originalName: 
-    pivot: {x: 0.54545456, y: -0.39285716}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 40
-      width: 22
-      height: 28
+      x: 0
+      y: 36
+      width: 32
+      height: 32
     spriteID: 7ab2d563a97ffd145a13488bfb94ada2
     spriteBone: []
     spriteOutline: []
@@ -146,16 +146,16 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 40}
   - name: Frame_1
     originalName: 
-    pivot: {x: 0.46428567, y: -0.42857143}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 4
-      width: 28
-      height: 28
+      x: 0
+      y: 0
+      width: 32
+      height: 32
     spriteID: bb29ad7ffb8aeff46a05ccf6e1be044a
     spriteBone: []
     spriteOutline: []
@@ -167,16 +167,16 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 4}
   - name: Frame_2
     originalName: 
-    pivot: {x: 0.54545456, y: -0.45454547}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 4
-      y: 76
-      width: 22
-      height: 22
+      x: 0
+      y: 72
+      width: 32
+      height: 32
     spriteID: 521b8b337ec091642b8975dfeccb40c4
     spriteBone: []
     spriteOutline: []
@@ -188,16 +188,16 @@ ScriptedImporter:
     uvTransform: {x: 4, y: 76}
   - name: Frame_3
     originalName: 
-    pivot: {x: 0.46153846, y: -0.5909091}
-    alignment: 9
+    pivot: {x: 0.5, y: 0.5}
+    alignment: 0
     border: {x: 0, y: 0, z: 0, w: 0}
     customData: 
     rect:
       serializedVersion: 2
-      x: 34
-      y: 40
-      width: 26
-      height: 22
+      x: 32
+      y: 36
+      width: 32
+      height: 32
     spriteID: e88298326f1e6b24da2e0eaf4eaf7c88
     spriteBone: []
     spriteOutline: []

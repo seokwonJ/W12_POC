@@ -22,6 +22,7 @@ public class Enemy : MonoBehaviour
     [Header("공격 관련")]
     public int damage; 
     public float fireCooldown;
+    public Transform firePoint; // 발사체 발사 위치
     public float projectileSpeed;
     public GameObject projectilePrefab;
 
