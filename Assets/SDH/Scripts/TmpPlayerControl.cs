@@ -85,7 +85,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
             {
                 characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(0.5f - i * 0.5f, 1.1f, 0f), nowTime / maxTime);
             }
-            transform.position = Vector3.Lerp(startPlayerPos, new(11f, 2f, 0f), nowTime / maxTime);
+            transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
             nowTime += Time.deltaTime;
             yield return null;

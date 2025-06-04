@@ -6653,7 +6653,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c89d11fc7a285545a9db88861226ac1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldTxt: {fileID: 1759211988}
 --- !u!4 &659055507
 Transform:
   m_ObjectHideFlags: 0
@@ -19187,6 +19186,7 @@ GameObject:
   - component: {fileID: 1759211987}
   - component: {fileID: 1759211989}
   - component: {fileID: 1759211988}
+  - component: {fileID: 1759211990}
   m_Layer: 5
   m_Name: GoldTxt
   m_TagString: Untagged
@@ -19312,6 +19312,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1759211986}
   m_CullTransparentMesh: 1
+--- !u!114 &1759211990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1759211986}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea17872f69a13ca4dae57292d9ab8dab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1764822795
 GameObject:
   m_ObjectHideFlags: 0

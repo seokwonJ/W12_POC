@@ -16,6 +16,7 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
     {
         FindPlayer();
 
+        goldTxt = FindAnyObjectByType<GoldTxtFinder>().GetComponent<TextMeshProUGUI>();
         goldTxt.text = "골드: " + Managers.Status.Gold.ToString();
     }
 

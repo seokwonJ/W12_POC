@@ -26,4 +26,9 @@ public class SceneFlowManager
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void Clear()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
 }

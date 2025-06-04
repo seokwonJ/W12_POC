@@ -14,9 +14,8 @@ public class Managers : MonoBehaviour
     private StageManager stage = new(); // 전투나 상점 관리
     public static SceneFlowManager SceneFlow => instance.sceneFlow;
     private SceneFlowManager sceneFlow = new(); // 씬 전환 및 sceneLoaded계열 관리
-
     public static CameraManager Cam => instance.cam;
-    private CameraManager cam = new();
+    private CameraManager cam = new(); // 카메라 관리
     #endregion
 
     private void Awake()
@@ -38,5 +37,10 @@ public class Managers : MonoBehaviour
 
         sceneFlow.Init();
         stage.Init();
+    }
+
+    private void OnDestroy() // 초기화
+    {
+        sceneFlow.Clear();
     }
 }
