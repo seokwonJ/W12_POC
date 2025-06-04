@@ -3084,6 +3084,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1615599175450580663, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2243100740182710390, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -3128,6 +3132,10 @@ PrefabInstance:
       propertyPath: playerHP_Image
       value: 
       objectReference: {fileID: 866597020}
+    - target: {fileID: 4181766712391737040, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7323909054480937571, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -4257,6 +4265,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1550112779}
   m_CullTransparentMesh: 1
+--- !u!1001 &1566870484
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 10.890419
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.70794153
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971542310015680529, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_Name
+      value: SunnyDragon (~12)
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
 --- !u!1 &1601303377
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,3 +6076,4 @@ SceneRoots:
   - {fileID: 1947735573}
   - {fileID: 1601303381}
   - {fileID: 1544246024}
+  - {fileID: 1566870484}

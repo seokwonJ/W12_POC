@@ -34,9 +34,10 @@ public class SpawnProjectileAttack : ScriptableObject, IAttackPattern
             int projectileCount = Random.Range(4, 7); // 4에서 6개 사이의 발사체 생성
             for (int i = 0; i < projectileCount; i++)
             {
-                float angle = Mathf.Lerp(45f, 135f, (float)i / (projectileCount - 1)); // 45도에서 135도 사이의 균등한 각도
-                Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.up; // 위쪽 방향과 곱해서 Vector2로 변경
-                GameObject proj = Instantiate(enemy.projectilePrefab, enemy.firePoint.position, Quaternion.identity);
+                float angle = Mathf.Lerp(-45f, 45f, (float)i / (projectileCount - 1)); // 45도에서 135도 사이의 균등한 각도
+                Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.left; // 위쪽 방향과 곱해서 Vector2로 변경
+                //
+                GameObject proj = Instantiate(enemy.projectilePrefab, enemy.firePoint.position, Quaternion.Euler(0, 0, angle + 180));
                 proj.GetComponent<Rigidbody2D>().linearVelocity = direction * enemy.projectileSpeed;
             }
 
