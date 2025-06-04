@@ -32,6 +32,7 @@ public abstract class Character : MonoBehaviour
 
     public ParticleSystem skillReadyEffect;
     public ParticleSystem skillJumpEffect;
+    public GameObject fallingTrail;
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
@@ -130,6 +131,7 @@ public abstract class Character : MonoBehaviour
 
         // 스킬 끝내는 부분
         isSkillActive = false;
+        fallingTrail.SetActive(true);
     }
 
     // 스킬 발동 부분
@@ -181,6 +183,7 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
+        fallingTrail.SetActive(false);
     }
 
     // 사거리 나타내는 함수
