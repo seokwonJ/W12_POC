@@ -1,7 +1,5 @@
-using System.Collections;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
 {

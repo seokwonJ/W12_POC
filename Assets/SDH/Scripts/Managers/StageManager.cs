@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 // Random은 UnityEngine.Random으로 자동으로 사용하게
-using Random = UnityEngine.Random; // UnityEngine.Random을 사용하기 위해 명시적으로 지정
 
 public class StageManager // 씬 전환 관리 (전투-상점 등)
 {

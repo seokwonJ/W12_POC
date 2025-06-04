@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇÏ´Â ½ºÅ©¸³Æ® (EnemySpawnerJH.cs¿¡¼­ °¡Á®¿È)
 {
@@ -41,8 +40,6 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
             Managers.Status.Gold += 200;
 
             FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
-
-            //SceneManager.LoadScene("Shop");
         }
     }
 
