@@ -104,6 +104,7 @@ public class Ninja : Character
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
+        fallingTrail.SetActive(false);
     }
     IEnumerator PowerUp(int power)
     {
@@ -111,7 +112,9 @@ public class Ninja : Character
         attackDamage += power;
         normalFireInterval /= skillAttackSpeed;
         Debug.Log("공격력 업!");
+
         yield return new WaitForSeconds(skillPowerDuration);
+
         Debug.Log("공격력 돌아옴");
         attackDamage -= power;
         normalFireInterval *= skillAttackSpeed;
