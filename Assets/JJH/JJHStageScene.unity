@@ -611,6 +611,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2715036829172249429, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.32
       objectReference: {fileID: 0}
@@ -653,6 +661,14 @@ PrefabInstance:
     - target: {fileID: 2971542310015680529, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
       propertyPath: m_Name
       value: SunnyDragon (~12)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314202409012214010, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: isDead
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4314202409012214010, guid: 5d9d7ff1012ab554f9c8768327be0250, type: 3}
+      propertyPath: enemyHP
+      value: 200
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
