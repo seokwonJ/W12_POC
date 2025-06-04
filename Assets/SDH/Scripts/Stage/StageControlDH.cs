@@ -19,6 +19,7 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
     {
         Debug.Log(Managers.Stage.Stage);
         nowStage = Managers.Stage.GetNowStageTemplate();
+        Debug.Log(nowStage);
 
         StartCoroutine(CoSpawnEnemyRoutine(nowStage.enemyWave, nowStage.WaveCount, nowStage.WaveInterval, nowStage.stagePlayTime));
     }
