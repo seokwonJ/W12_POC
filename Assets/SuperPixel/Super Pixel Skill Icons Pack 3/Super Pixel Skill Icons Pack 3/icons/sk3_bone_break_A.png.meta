@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_bone_break_A_0: 930924579908703902
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

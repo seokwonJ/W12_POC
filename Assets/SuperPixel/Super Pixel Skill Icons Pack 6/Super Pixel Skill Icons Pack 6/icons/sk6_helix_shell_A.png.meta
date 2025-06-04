@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_helix_shell_A_0: -7897449419946252518
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_feather_C_0: 3711853692549231441
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

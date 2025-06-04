@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_ancient_heart_A_0: -8879832767317615317
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_blood_hand_B_0: 8712450880326529007
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

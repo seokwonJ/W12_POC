@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_beast_mark_B_0: -3302634105194331061
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

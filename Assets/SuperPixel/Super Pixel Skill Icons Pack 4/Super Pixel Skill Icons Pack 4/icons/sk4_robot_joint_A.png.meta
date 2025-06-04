@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_robot_joint_A_0: -2422231722970133893
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

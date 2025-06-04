@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_entangle_B_0: 8764639128552752616
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_oceans_blessing_A_0: 1020499137760021777
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

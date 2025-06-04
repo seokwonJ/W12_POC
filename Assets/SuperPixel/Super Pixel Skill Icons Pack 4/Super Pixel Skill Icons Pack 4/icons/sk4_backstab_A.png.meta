@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_backstab_A_0: -4310359267885542641
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

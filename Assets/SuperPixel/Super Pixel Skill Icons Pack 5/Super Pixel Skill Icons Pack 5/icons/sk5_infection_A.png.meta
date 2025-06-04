@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_infection_A_0: 6636174209198050705
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

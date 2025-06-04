@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_capacitor_A_0: 3311304336568312480
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

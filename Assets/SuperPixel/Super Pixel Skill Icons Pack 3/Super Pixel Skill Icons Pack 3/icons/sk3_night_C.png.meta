@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_night_C_0: -1468080230326744181
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_magic_sword_C_0: 5293997784740904418
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

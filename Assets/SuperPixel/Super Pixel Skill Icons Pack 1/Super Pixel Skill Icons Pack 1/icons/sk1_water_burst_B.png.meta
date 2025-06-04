@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_water_burst_B_0: 5341043419210046588
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

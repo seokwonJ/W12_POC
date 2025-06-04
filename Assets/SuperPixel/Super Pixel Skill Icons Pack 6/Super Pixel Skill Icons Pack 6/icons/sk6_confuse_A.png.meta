@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_confuse_A_0: 3466850915360861010
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

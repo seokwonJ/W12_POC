@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_exile_B_0: -5089536773846844270
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

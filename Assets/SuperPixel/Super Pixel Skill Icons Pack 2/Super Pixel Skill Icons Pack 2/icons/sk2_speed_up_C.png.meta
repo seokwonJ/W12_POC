@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_speed_up_C_0: 4203778351258082520
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

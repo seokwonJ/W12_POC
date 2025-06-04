@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_quickdraw_B_0: -3369033491394298278
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

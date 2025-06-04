@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_angel_wings_A_0: 6940559472534561618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

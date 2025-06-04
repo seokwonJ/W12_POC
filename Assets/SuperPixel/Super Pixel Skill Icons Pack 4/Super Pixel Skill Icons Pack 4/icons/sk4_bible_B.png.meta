@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_bible_B_0: 3154590705988765896
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_skeleton_B_0: 2261078442069735330
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_scifi_missile_A_0: 8494749733519200542
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

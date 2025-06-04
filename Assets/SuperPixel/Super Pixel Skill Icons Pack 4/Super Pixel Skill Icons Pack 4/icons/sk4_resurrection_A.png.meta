@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_resurrection_A_0: 8884433782364497618
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

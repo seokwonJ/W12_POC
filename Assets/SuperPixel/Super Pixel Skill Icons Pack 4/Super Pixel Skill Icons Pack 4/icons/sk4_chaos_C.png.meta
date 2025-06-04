@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_chaos_C_0: 172340394213335724
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

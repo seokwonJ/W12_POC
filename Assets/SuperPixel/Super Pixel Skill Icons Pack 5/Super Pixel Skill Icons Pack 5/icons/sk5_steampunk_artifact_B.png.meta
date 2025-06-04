@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_steampunk_artifact_B_0: 1757993012886191295
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

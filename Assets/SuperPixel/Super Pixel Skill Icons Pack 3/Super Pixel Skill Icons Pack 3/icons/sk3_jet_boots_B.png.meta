@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_jet_boots_B_0: 6266893843847151934
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

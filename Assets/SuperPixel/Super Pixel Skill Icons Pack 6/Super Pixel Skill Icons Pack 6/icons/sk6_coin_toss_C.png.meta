@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_coin_toss_C_0: -1786879023519679973
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

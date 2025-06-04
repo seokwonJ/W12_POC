@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_nuts_and_bolts_C_0: 8936460583046019867
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

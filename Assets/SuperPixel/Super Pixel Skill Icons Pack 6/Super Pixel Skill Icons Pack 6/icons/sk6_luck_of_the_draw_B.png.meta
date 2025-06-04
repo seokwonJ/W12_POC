@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_luck_of_the_draw_B_0: 6656572618437039819
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_invisibility_A_0: 5317864899905395984
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

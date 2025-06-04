@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_freeze_A_0: -3875854179958315023
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

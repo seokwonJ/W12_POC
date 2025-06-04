@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_floppy_disk_A_0: 8758715333721719927
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

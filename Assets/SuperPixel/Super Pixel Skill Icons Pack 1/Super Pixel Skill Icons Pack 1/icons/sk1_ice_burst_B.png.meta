@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_ice_burst_B_0: 3275121068746288921
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

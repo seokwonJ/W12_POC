@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_ancient_scroll_C_0: -4326736848467303753
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

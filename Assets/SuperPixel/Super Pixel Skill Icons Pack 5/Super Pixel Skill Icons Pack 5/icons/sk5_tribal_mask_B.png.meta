@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_tribal_mask_B_0: -5970688289679790883
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

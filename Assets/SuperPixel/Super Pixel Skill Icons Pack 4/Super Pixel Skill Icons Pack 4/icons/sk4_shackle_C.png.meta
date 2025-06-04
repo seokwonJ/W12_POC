@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_shackle_C_0: -5861003665133834097
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_food_up_A_0: -2179533571515573828
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

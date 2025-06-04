@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_scifi_bomb_A_0: 6293458278520684760
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

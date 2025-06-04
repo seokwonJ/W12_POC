@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_electric_plug_A_0: -6701062893212536765
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

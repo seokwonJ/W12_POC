@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_vampire_B_0: -7791852012235046763
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

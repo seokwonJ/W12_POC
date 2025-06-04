@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_buzzsaw_A_0: 265713712401000357
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

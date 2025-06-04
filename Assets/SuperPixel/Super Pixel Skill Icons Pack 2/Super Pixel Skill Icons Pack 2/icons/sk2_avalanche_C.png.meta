@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_avalanche_C_0: -3434882363011859331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

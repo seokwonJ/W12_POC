@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_magnet_B_0: -3380627309190680857
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

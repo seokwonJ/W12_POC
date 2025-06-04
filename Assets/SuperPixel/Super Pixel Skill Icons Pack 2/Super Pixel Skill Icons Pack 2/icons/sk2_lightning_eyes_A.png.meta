@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_lightning_eyes_A_0: 8292579489191370362
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

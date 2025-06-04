@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_dynamite_A_0: 2914481137212897475
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_vengeance_C_0: 6085401629386338766
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

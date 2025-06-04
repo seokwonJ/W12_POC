@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_howl_B_0: -55495533586911044
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

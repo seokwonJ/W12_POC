@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_meteor_C_0: -8332685511341655247
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

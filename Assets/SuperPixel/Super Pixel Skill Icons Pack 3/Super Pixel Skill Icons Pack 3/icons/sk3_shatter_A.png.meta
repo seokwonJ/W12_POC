@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_shatter_A_0: -5036321495506036304
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

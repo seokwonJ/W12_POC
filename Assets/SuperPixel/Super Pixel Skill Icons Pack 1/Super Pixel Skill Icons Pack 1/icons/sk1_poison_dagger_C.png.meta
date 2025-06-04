@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_poison_dagger_C_0: 155948983909110950
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_triple_knife_A_0: 6326223637698328007
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

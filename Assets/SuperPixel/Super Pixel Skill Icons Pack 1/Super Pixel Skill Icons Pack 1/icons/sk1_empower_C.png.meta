@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_empower_C_0: 4945363866173231969
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

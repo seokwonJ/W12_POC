@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_dragon_eye_A_0: -88913156797966514
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

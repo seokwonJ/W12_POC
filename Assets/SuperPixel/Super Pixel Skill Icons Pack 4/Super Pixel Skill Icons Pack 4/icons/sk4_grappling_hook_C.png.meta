@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_grappling_hook_C_0: -3510411956137468560
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

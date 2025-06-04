@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_hammer_A_0: -3881315485264821438
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

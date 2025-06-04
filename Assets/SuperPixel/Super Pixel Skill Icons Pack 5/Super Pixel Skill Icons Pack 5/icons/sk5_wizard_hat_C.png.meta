@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_wizard_hat_C_0: -3585204130027797575
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

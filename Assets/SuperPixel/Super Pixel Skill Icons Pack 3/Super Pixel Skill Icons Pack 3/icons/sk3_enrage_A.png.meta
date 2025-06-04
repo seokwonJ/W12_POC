@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_enrage_A_0: -8918161493898086804
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

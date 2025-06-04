@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_sacrifice_B_0: 8513210785338154478
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

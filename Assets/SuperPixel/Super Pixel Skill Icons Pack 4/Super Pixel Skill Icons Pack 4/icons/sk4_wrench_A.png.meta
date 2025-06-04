@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_wrench_A_0: -2577213159489582458
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

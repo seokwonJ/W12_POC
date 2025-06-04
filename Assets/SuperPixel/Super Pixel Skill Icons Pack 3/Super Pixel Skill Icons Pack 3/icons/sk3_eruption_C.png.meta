@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_eruption_C_0: 8537540690955459055
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

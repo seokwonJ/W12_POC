@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_harp_C_0: -2748003308319766661
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_money_up_B_0: 5320933367806792542
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

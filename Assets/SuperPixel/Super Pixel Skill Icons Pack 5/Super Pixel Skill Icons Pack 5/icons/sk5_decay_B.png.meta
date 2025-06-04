@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_decay_B_0: 5956374810232823011
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

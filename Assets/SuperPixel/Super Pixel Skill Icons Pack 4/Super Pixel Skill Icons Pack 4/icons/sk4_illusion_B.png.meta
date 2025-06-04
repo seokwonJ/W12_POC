@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_illusion_B_0: -7264489471878687719
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

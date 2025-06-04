@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_holy_light_B_0: 1435693851081583339
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

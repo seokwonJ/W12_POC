@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_cauldron_B_0: 7652674827320220365
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

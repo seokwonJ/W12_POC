@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_magic_dagger_C_0: 4845848101637370887
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

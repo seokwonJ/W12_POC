@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_biohazard_C_0: -2506470374146649229
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

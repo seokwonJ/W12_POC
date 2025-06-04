@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_lightning_hand_A_0: 3986466910639124722
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

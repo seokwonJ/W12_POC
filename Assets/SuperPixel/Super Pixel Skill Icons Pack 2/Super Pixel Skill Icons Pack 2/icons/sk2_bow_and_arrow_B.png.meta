@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_bow_and_arrow_B_0: -1875931284818499474
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

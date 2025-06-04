@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_virus_B_0: -1050881609633952026
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

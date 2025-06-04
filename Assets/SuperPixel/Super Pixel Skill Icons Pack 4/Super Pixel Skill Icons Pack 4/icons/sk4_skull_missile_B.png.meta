@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_skull_missile_B_0: -2693596444922505508
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

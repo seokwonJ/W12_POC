@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_lightning_gears_A_0: -6341594871339243269
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

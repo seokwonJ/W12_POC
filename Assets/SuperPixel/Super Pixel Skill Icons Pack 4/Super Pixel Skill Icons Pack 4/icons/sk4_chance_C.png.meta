@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_chance_C_0: -97037044328787046
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

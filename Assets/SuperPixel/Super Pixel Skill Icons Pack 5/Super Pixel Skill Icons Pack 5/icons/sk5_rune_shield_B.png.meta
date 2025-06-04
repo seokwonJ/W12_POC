@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_rune_shield_B_0: -3237938807997682133
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

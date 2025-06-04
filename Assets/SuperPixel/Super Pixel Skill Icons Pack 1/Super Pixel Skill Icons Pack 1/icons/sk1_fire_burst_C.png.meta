@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_fire_burst_C_0: 8409539952166905713
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

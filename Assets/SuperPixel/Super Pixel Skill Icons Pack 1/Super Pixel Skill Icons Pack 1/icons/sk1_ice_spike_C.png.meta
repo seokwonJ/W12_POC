@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_ice_spike_C_0: 6050531097806545001
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

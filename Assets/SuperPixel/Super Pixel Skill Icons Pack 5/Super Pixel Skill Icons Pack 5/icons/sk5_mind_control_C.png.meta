@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_mind_control_C_0: 5620499869204237361
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

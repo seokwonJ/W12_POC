@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_rally_B_0: -3615967181205115904
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

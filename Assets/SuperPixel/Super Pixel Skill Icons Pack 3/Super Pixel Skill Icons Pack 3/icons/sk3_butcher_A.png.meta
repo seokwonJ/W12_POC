@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_butcher_A_0: 3507005993858836559
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

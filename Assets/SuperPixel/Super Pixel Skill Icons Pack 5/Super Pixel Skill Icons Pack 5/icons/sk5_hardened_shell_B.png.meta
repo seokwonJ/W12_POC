@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_hardened_shell_B_0: 4890936798662141647
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

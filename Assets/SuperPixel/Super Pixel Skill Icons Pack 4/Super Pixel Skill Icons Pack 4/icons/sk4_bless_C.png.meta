@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_bless_C_0: 7491898024115511217
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

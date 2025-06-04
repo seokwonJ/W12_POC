@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_robot_claw_C_0: -2071312545176921449
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

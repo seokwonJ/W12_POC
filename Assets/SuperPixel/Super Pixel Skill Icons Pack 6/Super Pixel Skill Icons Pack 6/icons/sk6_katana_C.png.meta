@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_katana_C_0: 4125080749675456884
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

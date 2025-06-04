@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_tombstone_C_0: 3303050291706565136
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

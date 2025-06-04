@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_land_mine_C_0: -1893113447228346433
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

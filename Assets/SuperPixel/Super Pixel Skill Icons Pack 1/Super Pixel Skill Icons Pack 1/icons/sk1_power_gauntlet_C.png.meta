@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_power_gauntlet_C_0: -7138233367376814215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

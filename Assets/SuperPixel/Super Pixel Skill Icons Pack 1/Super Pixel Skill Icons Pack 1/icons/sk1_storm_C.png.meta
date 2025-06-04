@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_storm_C_0: -8904881625327781299
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

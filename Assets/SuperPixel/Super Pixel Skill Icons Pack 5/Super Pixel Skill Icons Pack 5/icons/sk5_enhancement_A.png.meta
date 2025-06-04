@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_enhancement_A_0: -971915375328058325
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

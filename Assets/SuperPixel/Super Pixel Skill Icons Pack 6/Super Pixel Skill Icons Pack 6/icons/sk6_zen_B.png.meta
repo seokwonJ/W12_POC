@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_zen_B_0: 7987851135071738549
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

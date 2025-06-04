@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_tornado_C_0: 279359862915069904
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

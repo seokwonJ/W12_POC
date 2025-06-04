@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_claw_C_0: 4787777215332063210
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk6_sickle_A_0: -3206726147641324894
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

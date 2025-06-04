@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk5_battery_up_A_0: -7298124966852293199
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

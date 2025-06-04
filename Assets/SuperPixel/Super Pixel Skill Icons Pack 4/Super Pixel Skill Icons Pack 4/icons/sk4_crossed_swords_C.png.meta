@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk4_crossed_swords_C_0: 7357848190852369835
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

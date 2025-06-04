@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_mystic_eye_A_0: -6752060415140654892
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

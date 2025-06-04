@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_enlighten_C_0: -3123567446031737428
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_magic_crystal_B_0: 3025821821787242571
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

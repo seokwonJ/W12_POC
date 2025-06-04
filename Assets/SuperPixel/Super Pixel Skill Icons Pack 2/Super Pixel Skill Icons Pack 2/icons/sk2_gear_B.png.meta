@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk2_gear_B_0: 141588483193194014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

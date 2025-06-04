@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk3_soul_siphon_A_0: -7336825696610172580
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

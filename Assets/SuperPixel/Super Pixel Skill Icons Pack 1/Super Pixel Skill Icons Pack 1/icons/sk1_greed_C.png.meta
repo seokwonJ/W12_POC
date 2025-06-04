@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sk1_greed_C_0: 7252638989185312747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
