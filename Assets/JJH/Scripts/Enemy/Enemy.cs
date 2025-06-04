@@ -16,12 +16,13 @@ public class Enemy : MonoBehaviour
     public float speed;
     public float minPlayerDistance;
     public bool isKnockbackable; // 넉백 가능 여부
-    private bool isKnockback = false; // 넉백 상태인지 여부
+    protected bool isKnockback = false; // 넉백 상태인지 여부
     public bool isFilpping; // 스프라이트 뒤집기 여부
 
     [Header("공격 관련")]
     public int damage; 
     public float fireCooldown;
+    public Transform firePoint; // 발사체 발사 위치
     public float projectileSpeed;
     public GameObject projectilePrefab;
 
@@ -36,12 +37,12 @@ public class Enemy : MonoBehaviour
 
     public Vector2 MoveDirection { get; set; } = Vector2.zero;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         Init();
     }
 
-    private void Init()
+    protected void Init()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
@@ -66,7 +67,7 @@ public class Enemy : MonoBehaviour
         attack?.Attack();
     }
 
-    private void Update()
+    protected void Update()
     {
         if (spriteRenderer != null && isFilpping)
         {
@@ -77,7 +78,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (isKnockback || enemyHP.isDead)
         {
@@ -87,18 +88,23 @@ public class Enemy : MonoBehaviour
         movement?.Move();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.CompareTag("Player"))
         {
             collision.GetComponent<PlayerHP>().TakeDamage(damage);
-            Destroy(gameObject);
+            OnPlayerCollided();
         }
-        else if (collision.tag == "Wall")
+        else if (collision.CompareTag("Wall"))
         {
             Destroy(gameObject);
         }
     }
+    protected virtual void OnPlayerCollided()
+    {
+        Destroy(gameObject);
+    }
+
 
     public void ApplyKnockback(Vector2 direction, float knockbackPower)
     {
