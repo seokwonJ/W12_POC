@@ -20,7 +20,7 @@ public class Ninja : Character
 
     [Header("이펙트")]
     public ParticleSystem skillActive;
-    public ParticleSystem skillLandingActive;
+    public GameObject skillLandingActive;
 
 
     // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
@@ -98,7 +98,6 @@ public class Ninja : Character
         if (isSkillLanding)
         {
             isSkillLanding = false;
-            skillLandingActive.Play();
             StartCoroutine(PowerUp(skillPower));
         }
         Managers.Status.RiderCount++;
@@ -108,6 +107,7 @@ public class Ninja : Character
     }
     IEnumerator PowerUp(int power)
     {
+        GameObject activeParticle = Instantiate(skillLandingActive,transform.position,Quaternion.identity,transform);
         isSkilling = true;
         attackDamage += power;
         normalFireInterval /= skillAttackSpeed;
@@ -119,6 +119,7 @@ public class Ninja : Character
         attackDamage -= power;
         normalFireInterval *= skillAttackSpeed;
         isSkilling = false;
+        Destroy(activeParticle);
     }
 
     protected Transform FindLowHPEnemy()

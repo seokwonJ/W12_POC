@@ -28,7 +28,9 @@ public class Levi : Character
     public int upgradeNum;
 
     [Header("이펙트")]
-    public ParticleSystem skillActiveEffect;
+    public GameObject skillDashStartEffect;
+    public GameObject skillActiveEffect;
+
 
     // 일반 공격: 연속 두번 관통형 공격 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -73,8 +75,22 @@ public class Levi : Character
     {
         trail.SetActive(true);
         animator.Play("SKILL", -1, 0f);
+        
+        // 바라보는 방향에 따라 이펙트 좌우 반전
+        if (transform.localScale.x < 0) // 왼쪽
+        {
+            GameObject DashEffect = Instantiate(skillDashStartEffect, transform.position + Vector3.right * 2 + Vector3.up * 0.3f, Quaternion.identity, playerTransform);
+            Vector3 scale = DashEffect.transform.localScale;
+            scale.x *= -1;
+            DashEffect.transform.localScale = scale;
+        }
+        else
+        {
+            GameObject DashEffect = Instantiate(skillDashStartEffect, transform.position - Vector3.right * 2 + Vector3.up * 0.3f, Quaternion.identity, playerTransform);
+        }
 
-        List<Transform> hitEnemies = new List<Transform>();
+
+            List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
 
@@ -99,8 +115,8 @@ public class Levi : Character
             {
                 if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
                 else enemyHP.TakeDamage(attackDamage + skillDamage);
-                
-                skillActiveEffect.Play();
+
+                Instantiate(skillActiveEffect,enemyHP.transform.position,Quaternion.identity);
             }
 
             yield return new WaitForSeconds(skillInterval); // 약간의 딜레이

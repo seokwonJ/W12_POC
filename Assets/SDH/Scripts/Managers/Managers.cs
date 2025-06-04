@@ -11,7 +11,9 @@ public class Managers : MonoBehaviour
     public static ArtifactManager Artifact => instance.artifact;
     private ArtifactManager artifact = new(); // 인게임 유물 관리
     public static StageManager Stage => instance.stage;
-    private StageManager stage = new(); // 씬 전환 관리 (전투-상점 등)
+    private StageManager stage = new(); // 전투나 상점 관리
+    public static SceneFlowManager SceneFlow => instance.sceneFlow;
+    private SceneFlowManager sceneFlow = new(); // 씬 전환 및 sceneLoaded계열 관리
 
     public static CameraManager Cam => instance.cam;
     private CameraManager cam = new();
@@ -34,7 +36,7 @@ public class Managers : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
+        sceneFlow.Init();
         stage.Init();
-        cam.Init();
     }
 }
