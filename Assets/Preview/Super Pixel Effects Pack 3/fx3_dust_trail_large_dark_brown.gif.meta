@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_dust_trail_large_dark_brown_0: 2184399452238604796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj1_laser_large_blue_0: -5298469248265417807
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

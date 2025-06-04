@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx1_magic_puff_large_black_0: -5577583370243945070
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

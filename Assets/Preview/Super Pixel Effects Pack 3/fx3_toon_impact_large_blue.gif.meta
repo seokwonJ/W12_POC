@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_toon_impact_large_blue_0: -770157412223877480
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

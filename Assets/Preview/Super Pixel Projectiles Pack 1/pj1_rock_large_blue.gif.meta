@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj1_rock_large_blue_0: -2592394462664512695
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

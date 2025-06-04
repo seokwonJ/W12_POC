@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_knife_large_blue_0: -4877109293289554504
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

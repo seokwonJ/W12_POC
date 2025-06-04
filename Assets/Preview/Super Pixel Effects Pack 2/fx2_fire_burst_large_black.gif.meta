@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_fire_burst_large_black_0: 4284618869795757796
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

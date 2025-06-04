@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj1_slash_large_black_0: -4049546936744417354
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

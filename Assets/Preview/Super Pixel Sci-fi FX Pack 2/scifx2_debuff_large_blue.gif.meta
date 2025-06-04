@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_debuff_large_blue_0: 9016311101786408882
+      scifx2_debuff_large_blue_1: -7230990809654791730
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

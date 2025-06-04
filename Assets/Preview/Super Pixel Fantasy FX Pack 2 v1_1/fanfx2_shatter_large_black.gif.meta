@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_shatter_large_black_0: -2433145458916232023
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

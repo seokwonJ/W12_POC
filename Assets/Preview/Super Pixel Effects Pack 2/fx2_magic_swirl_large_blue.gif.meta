@@ -234,7 +234,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_magic_swirl_large_blue_0: -170946989983079068
+      fx2_magic_swirl_large_blue_1: 854274733484048044
+      fx2_magic_swirl_large_blue_2: 6260702788334884180
+      fx2_magic_swirl_large_blue_3: 3705283960925286878
+      fx2_magic_swirl_large_blue_4: -479701668772605811
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

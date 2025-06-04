@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx1_aura_energy_large_blue_0: 6432894089590512078
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

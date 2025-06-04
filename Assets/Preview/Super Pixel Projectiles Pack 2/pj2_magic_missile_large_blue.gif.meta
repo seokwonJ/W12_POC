@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj2_magic_missile_large_blue_0: 3207907980424663747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

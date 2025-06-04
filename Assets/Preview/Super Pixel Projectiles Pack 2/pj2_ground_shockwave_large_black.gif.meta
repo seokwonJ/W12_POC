@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj2_ground_shockwave_large_black_0: 4582782251045416223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

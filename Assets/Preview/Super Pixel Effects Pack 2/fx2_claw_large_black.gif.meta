@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_claw_large_black_0: 2529073465456469747
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_toon_explosion_large_blue_0: -8463698272480880227
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

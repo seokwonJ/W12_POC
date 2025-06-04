@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_earth_spikes_large_black_0: -2609528185279887530
+      fanfx2_earth_spikes_large_black_1: -769766481511709906
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

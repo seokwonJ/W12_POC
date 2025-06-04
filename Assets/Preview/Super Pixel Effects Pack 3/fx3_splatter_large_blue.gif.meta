@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_splatter_large_blue_0: -8684274856170607319
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

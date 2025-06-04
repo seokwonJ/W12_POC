@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_lightning_spell_end_large_black_0: 8867070067687947599
+      fanfx2_lightning_spell_end_large_black_1: 6313262893585365605
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

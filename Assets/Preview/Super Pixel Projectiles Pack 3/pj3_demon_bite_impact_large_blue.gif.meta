@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_demon_bite_impact_large_blue_0: -7496468696101535023
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

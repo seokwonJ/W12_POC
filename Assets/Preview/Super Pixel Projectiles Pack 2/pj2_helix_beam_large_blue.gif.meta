@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj2_helix_beam_large_blue_0: 7569574467864026863
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_claw_large_black_0: -1284136439718495951
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

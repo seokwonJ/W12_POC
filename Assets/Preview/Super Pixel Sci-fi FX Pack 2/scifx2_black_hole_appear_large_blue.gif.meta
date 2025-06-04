@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_black_hole_appear_large_blue_0: 4901359252301610072
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

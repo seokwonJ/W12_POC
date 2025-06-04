@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_light_spark_large_blue_0: -7711632092746799371
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

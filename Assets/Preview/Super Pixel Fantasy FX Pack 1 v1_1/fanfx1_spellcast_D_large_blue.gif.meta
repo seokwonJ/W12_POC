@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx1_spellcast_D_large_blue_0: -8311080526006517222
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

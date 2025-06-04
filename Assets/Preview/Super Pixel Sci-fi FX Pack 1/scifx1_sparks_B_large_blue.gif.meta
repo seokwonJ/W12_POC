@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx1_sparks_B_large_blue_0: -7306057321472815409
+      scifx1_sparks_B_large_blue_1: 2570632229253674435
+      scifx1_sparks_B_large_blue_2: -1095712712897401639
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

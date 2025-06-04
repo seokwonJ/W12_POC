@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_electric_aura_large_blue_0: -1948682211060327179
+      scifx2_electric_aura_large_blue_1: -6107851775556759159
+      scifx2_electric_aura_large_blue_2: 8547399232161623225
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_electric_burst_large_blue_0: 7113964828394340913
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

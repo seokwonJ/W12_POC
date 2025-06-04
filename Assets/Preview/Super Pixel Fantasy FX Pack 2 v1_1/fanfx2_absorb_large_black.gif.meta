@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_absorb_large_black_0: 1712628281445512197
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

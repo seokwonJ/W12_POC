@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx1_power_up_large_blue_0: 2326040570725574049
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

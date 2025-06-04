@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj4_dark_matter_large_blue_0: 8727623631004908645
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

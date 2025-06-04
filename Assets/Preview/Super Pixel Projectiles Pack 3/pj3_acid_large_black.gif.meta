@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_acid_large_black_0: -4070129118282681806
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

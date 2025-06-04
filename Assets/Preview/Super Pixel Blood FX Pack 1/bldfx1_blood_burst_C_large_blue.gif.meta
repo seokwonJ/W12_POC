@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      bldfx1_blood_burst_C_large_blue_0: 2535373647420485699
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

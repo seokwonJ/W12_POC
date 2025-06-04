@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx1_magic_burst_A_large_blue_0: -4297463984409927449
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

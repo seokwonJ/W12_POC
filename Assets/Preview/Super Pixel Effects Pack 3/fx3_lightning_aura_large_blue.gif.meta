@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_lightning_aura_large_blue_0: -181799569744496516
+      fx3_lightning_aura_large_blue_1: 4882982193841160740
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

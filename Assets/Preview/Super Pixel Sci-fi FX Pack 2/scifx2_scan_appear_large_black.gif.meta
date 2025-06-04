@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_scan_appear_large_black_0: 7599988929672387942
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

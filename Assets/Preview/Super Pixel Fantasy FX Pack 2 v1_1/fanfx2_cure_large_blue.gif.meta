@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_cure_large_blue_0: -8717440307674908940
+      fanfx2_cure_large_blue_1: 4818787869240133512
+      fanfx2_cure_large_blue_2: 2045474922061753084
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

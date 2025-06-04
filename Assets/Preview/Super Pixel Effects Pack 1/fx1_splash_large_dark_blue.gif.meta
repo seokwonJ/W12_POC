@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx1_splash_large_dark_blue_0: 2309641498130465530
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

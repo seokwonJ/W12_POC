@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj4_plasma_ball_large_blue_0: -4621155195793008472
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

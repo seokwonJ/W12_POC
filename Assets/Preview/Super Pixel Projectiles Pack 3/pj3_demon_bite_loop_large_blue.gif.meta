@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_demon_bite_loop_large_blue_0: 4932874647240387923
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

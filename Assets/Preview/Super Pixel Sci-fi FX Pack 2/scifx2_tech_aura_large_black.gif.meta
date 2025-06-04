@@ -259,7 +259,13 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_tech_aura_large_black_0: 1919110643111929103
+      scifx2_tech_aura_large_black_1: 6434144197834445477
+      scifx2_tech_aura_large_black_2: 3271458371386669312
+      scifx2_tech_aura_large_black_3: 2804913691470842090
+      scifx2_tech_aura_large_black_4: -4495835318609935932
+      scifx2_tech_aura_large_black_5: 7726601347730247180
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

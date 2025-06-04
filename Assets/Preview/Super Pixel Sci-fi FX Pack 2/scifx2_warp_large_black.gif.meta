@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_warp_large_black_0: -2064684092972827315
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

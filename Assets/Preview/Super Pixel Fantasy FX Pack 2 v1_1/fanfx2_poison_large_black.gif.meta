@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_poison_large_black_0: -2724914218092507540
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

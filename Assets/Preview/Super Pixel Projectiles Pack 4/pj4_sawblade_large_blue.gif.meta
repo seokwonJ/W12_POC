@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj4_sawblade_large_blue_0: 8697193891806423688
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj4_energy_pellet_large_blue_0: 2318943253586607421
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

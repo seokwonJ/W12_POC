@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_arrow_loop_large_black_0: -5113574715048198381
+      pj3_arrow_loop_large_black_1: 7645679304491209707
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

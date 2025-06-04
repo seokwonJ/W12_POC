@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_splatter_large_black_0: -6466071416542323293
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

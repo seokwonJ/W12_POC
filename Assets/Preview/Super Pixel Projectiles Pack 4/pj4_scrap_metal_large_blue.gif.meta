@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj4_scrap_metal_large_blue_0: -6465982483365813943
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

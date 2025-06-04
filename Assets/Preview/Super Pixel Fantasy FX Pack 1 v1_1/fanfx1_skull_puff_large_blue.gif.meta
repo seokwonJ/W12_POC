@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx1_skull_puff_large_blue_0: -7248714362111602841
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

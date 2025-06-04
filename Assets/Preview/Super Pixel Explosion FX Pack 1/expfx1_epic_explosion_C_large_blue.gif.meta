@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      expfx1_epic_explosion_C_large_blue_0: 6883178777366728812
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

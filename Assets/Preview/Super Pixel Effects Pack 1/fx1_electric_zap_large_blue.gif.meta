@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx1_electric_zap_large_blue_0: 6806308635360540840
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

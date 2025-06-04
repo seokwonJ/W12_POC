@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx1_zap_B_large_blue_0: -5690077846554770093
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

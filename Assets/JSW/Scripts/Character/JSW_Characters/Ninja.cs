@@ -19,7 +19,6 @@ public class Ninja : Character
     public int upgradeNum;
 
     [Header("이펙트")]
-    public ParticleSystem skillActive;
     public GameObject skillLandingActive;
 
 
@@ -79,7 +78,6 @@ public class Ninja : Character
     {
         isSkillLanding = true;
         yield return new WaitForSeconds(skillInterval);
-        skillActive.Play();
     }
 
     // 착지했을 경우

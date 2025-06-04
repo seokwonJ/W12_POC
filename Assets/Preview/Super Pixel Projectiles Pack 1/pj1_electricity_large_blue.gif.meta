@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj1_electricity_large_blue_0: 4355454266155459987
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx1_impact_dust_large_brown_0: 4459806663931949149
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

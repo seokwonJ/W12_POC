@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_magic_spike_large_black_0: -4132019973655173255
+      pj3_magic_spike_large_black_1: -8256391208227271123
+      pj3_magic_spike_large_black_2: 3472952367322386803
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

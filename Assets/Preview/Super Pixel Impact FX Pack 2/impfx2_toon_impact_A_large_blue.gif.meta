@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      impfx2_toon_impact_A_large_blue_0: 4136897257621852875
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

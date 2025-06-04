@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_ice_burst_large_black_0: 6735642734816903830
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

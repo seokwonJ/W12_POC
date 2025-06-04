@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_magic_spawn_large_blue_0: 3456398172200232888
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

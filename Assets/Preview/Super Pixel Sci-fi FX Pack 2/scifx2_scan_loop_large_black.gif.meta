@@ -534,7 +534,24 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_scan_loop_large_black_0: -7288079878224269059
+      scifx2_scan_loop_large_black_1: 6467853513409247450
+      scifx2_scan_loop_large_black_10: -4014026763528486577
+      scifx2_scan_loop_large_black_11: -8970694336074994160
+      scifx2_scan_loop_large_black_12: 8018093480257068248
+      scifx2_scan_loop_large_black_13: -6533650170092649894
+      scifx2_scan_loop_large_black_14: -2245001552210818420
+      scifx2_scan_loop_large_black_15: -7664365592114659759
+      scifx2_scan_loop_large_black_16: -5617092382346599414
+      scifx2_scan_loop_large_black_2: 3656970136474253489
+      scifx2_scan_loop_large_black_3: -1260033783319201038
+      scifx2_scan_loop_large_black_4: 5032692952105382907
+      scifx2_scan_loop_large_black_5: 915625462696419704
+      scifx2_scan_loop_large_black_6: -5052203451011879110
+      scifx2_scan_loop_large_black_7: 7861928781702714106
+      scifx2_scan_loop_large_black_8: -973163146819660619
+      scifx2_scan_loop_large_black_9: 6037688075484177909
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

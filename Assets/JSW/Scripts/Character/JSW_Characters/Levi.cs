@@ -73,7 +73,12 @@ public class Levi : Character
     // 스킬 : 캐릭터 기준 가장 멀리있는 적에게 돌진하여 데미지를 줌
     protected override IEnumerator FireSkill()
     {
-        trail.SetActive(true);
+        trail.GetComponent<TrailRenderer>().enabled = false;
+        trail.transform.SetParent(this.transform);
+        trail.transform.position = this.transform.position;
+        //trail.SetActive(true);
+        trail.GetComponent<TrailRenderer>().enabled = true;
+
         animator.Play("SKILL", -1, 0f);
         
         // 바라보는 방향에 따라 이펙트 좌우 반전
@@ -125,7 +130,10 @@ public class Levi : Character
         transform.up = Vector3.up;
 
         rb.linearVelocity = new Vector2(-10, jumpForce);
-        trail.SetActive(false);
+        //trail.SetActive(false);
+        trail.transform.SetParent(null);
+
+
         animator.Play("SKILLEND", -1, 0f);
 
         yield return new WaitForSeconds(0.5f);

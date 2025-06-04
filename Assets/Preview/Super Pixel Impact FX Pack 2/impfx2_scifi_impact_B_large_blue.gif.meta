@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      impfx2_scifi_impact_B_large_blue_0: -5874197205584183999
+      impfx2_scifi_impact_B_large_blue_1: 6101908277250694238
+      impfx2_scifi_impact_B_large_blue_2: -2222448614699551926
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

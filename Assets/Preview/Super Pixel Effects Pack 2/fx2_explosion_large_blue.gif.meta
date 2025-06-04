@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_explosion_large_blue_0: -8041309048283153423
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

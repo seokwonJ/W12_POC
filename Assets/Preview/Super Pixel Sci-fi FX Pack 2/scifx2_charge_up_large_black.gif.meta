@@ -184,7 +184,10 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_charge_up_large_black_0: 1892884838879528943
+      scifx2_charge_up_large_black_1: -4364281607895665757
+      scifx2_charge_up_large_black_2: 1555501994011830246
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

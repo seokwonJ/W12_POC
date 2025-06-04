@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj4_energy_blast_B_large_blue_0: 5633992245440622759
+      pj4_energy_blast_B_large_blue_1: 7270413481564558655
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

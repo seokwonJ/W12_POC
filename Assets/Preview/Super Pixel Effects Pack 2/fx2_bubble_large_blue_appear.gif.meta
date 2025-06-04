@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_bubble_large_blue_appear_0: -5508982645374630484
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

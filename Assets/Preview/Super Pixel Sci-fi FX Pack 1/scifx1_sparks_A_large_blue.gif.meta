@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx1_sparks_A_large_blue_0: 8832563008731141006
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

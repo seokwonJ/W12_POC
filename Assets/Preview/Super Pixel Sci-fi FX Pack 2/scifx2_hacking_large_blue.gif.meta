@@ -484,7 +484,22 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_hacking_large_blue_0: -773210290021270898
+      scifx2_hacking_large_blue_1: -3921271187671934993
+      scifx2_hacking_large_blue_10: 5342598876982476529
+      scifx2_hacking_large_blue_11: -3748869308587037097
+      scifx2_hacking_large_blue_12: 8630823459274042518
+      scifx2_hacking_large_blue_13: -5513464874277464886
+      scifx2_hacking_large_blue_14: -3945930145657785899
+      scifx2_hacking_large_blue_2: -3047819991763728657
+      scifx2_hacking_large_blue_3: 9179029500246477923
+      scifx2_hacking_large_blue_4: 5275366957213084102
+      scifx2_hacking_large_blue_5: 8078115406414577010
+      scifx2_hacking_large_blue_6: 4520123155885205016
+      scifx2_hacking_large_blue_7: 3269652525780528171
+      scifx2_hacking_large_blue_8: -4691280049289416448
+      scifx2_hacking_large_blue_9: 1953354291512218541
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

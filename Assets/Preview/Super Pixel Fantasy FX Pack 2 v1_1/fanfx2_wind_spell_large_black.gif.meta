@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_wind_spell_large_black_0: -3759525470766276560
+      fanfx2_wind_spell_large_black_1: 6928073973386988957
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj2_meteor_large_blue_0: 6200602419952143847
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

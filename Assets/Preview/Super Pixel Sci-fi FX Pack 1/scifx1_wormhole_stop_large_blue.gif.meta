@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx1_wormhole_stop_large_blue_0: -8614945976823954035
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

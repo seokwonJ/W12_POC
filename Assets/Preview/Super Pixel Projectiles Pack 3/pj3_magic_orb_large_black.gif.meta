@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_magic_orb_large_black_0: 2732432539398478244
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx1_impact_hit_large_black_0: 2158825157080009547
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

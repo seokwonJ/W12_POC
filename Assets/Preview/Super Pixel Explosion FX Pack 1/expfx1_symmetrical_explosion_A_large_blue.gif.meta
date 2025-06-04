@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      expfx1_symmetrical_explosion_A_large_blue_0: -1838791478164330095
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

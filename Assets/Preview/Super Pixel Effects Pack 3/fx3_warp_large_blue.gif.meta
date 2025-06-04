@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_warp_large_blue_0: 7340925177444387469
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_smoke_bomb_large_black_0: -1771360138432631749
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

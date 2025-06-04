@@ -159,7 +159,9 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj2_lightning_orb_large_blue_0: 8485393939423975686
+      pj2_lightning_orb_large_blue_1: 2400166440401374223
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

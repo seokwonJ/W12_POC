@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      scifx2_hex_shield_large_black_0: -5895970468874563031
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

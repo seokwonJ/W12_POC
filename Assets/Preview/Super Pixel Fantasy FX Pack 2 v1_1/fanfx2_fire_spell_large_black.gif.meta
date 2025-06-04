@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fanfx2_fire_spell_large_black_0: -9196015655992221080
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

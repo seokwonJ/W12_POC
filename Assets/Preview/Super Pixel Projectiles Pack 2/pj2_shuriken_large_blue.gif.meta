@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj2_shuriken_large_blue_0: 3134218061362404479
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

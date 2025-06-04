@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj3_death_wave_large_black_0: 2664412609302245355
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

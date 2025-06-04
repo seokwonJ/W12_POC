@@ -134,7 +134,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      pj2_scifi_missile_large_black_0: 7890600086668395217
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
