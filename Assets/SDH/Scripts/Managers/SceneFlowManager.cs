@@ -13,12 +13,12 @@ public class SceneFlowManager
 
         if (scene.name == "Field") // 전투 씬이 로드될 때 실행
         {
-
+            Managers.Stage.Stage++;
         }
 
         if(scene.name == "Shop") // 상점 씬이 로드될 때 실행
         {
-
+            Managers.Status.Gold += 200;
         }
     }
 

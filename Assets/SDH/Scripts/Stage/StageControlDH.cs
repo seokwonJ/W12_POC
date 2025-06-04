@@ -36,8 +36,6 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
         if (currentTime <= 0)
         {
             Debug.Log("ÇöÀç ½ºÅ×ÀÌÁö ³¡");
-            Managers.Stage.Stage++;
-            Managers.Status.Gold += 200;
 
             FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
         }

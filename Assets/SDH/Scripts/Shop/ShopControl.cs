@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
 {
-    [SerializeField] private TextMeshProUGUI goldTxt;
+    private TextMeshProUGUI goldTxt;
     private Transform player;
     private LayerMask shopLayerMask;
 
@@ -28,8 +28,6 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
         if (Input.GetKeyDown(KeyCode.P)) // 임시 상점 종료 함수
         {
             FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
-
-            //SceneManager.LoadScene("Field");
         }
     }
 
