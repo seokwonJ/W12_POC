@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4dcb6e721b80047bbdf5faf962862a, type: 3}
   m_Name: LeviUpgrade 4
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: LongerProjectileDuration
+  description: LongerProjectileDuration
   icon: {fileID: 0}
-  type: 0
+  type: 4
   value: 0

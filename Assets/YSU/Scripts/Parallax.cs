@@ -16,7 +16,7 @@ public class Parallax : MonoBehaviour
     void SetupTexture()
     {
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
-        singleTextureWidth = sprite.texture.width / sprite.pixelsPerUnit;
+        singleTextureWidth = (sprite.texture.width / sprite.pixelsPerUnit) * transform.localScale.x;
     }
 
     void Scroll()

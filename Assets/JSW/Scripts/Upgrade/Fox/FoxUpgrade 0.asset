@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96aafbf49a84e9418c81fb2cdb2b7e6, type: 3}
   m_Name: FoxUpgrade 0
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: AttackSpeed
+  description: AttackSpeed
   icon: {fileID: 0}
   type: 0
   value: 0
