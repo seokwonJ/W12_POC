@@ -18,7 +18,7 @@ public class Archer : Character
     public int upgradeNum;
 
     [Header("이펙트")]
-    public ParticleSystem skillActive;
+    public GameObject skillActive;
 
     // 일반 공격 : 화살 발사 
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -54,7 +54,7 @@ public class Archer : Character
             yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();
             animator.Play("SKILL", -1, 0f);
-            skillActive.Play();
+            Instantiate(skillActive, transform.position, Quaternion.identity, transform);
             yield return new WaitForSeconds(skillInterval);
         }
     }
