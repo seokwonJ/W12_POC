@@ -21,7 +21,7 @@ public class Fox : Character
     public bool isAutoReturnAfterSeconds;
 
     [Header("¿Ã∆Â∆Æ")]
-    public ParticleSystem skillActiveEffect;
+    public GameObject skillActiveEffect;
 
     public int upgradeNum;
 
@@ -78,7 +78,7 @@ public class Fox : Character
         yield return new WaitForSeconds(0.08f);
 
         FireSkillProjectiles();
-        skillActiveEffect.Play();
+        Instantiate(skillActiveEffect, transform.position, Quaternion.identity);
 
         if (isAutoReturnAfterSeconds) StartCoroutine(TeleportToPlayer());
     }

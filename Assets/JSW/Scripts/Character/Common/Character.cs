@@ -30,8 +30,9 @@ public abstract class Character : MonoBehaviour
     public Animator animator;
     public Transform playerTransform;
 
-    public ParticleSystem skillReadyEffect;
-    public ParticleSystem skillJumpEffect;
+    public GameObject skillReadyEffect;
+    public GameObject skillJumpEffect;
+    public GameObject fallingTrail;
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
@@ -109,7 +110,7 @@ public abstract class Character : MonoBehaviour
     {
         if (!isGround) yield break;
 
-        skillReadyEffect.Play();
+        Instantiate(skillReadyEffect, transform.position, Quaternion.identity, transform);
         yield return new WaitForSeconds(0.5f);
 
         fixedJoint.connectedBody = null;
@@ -124,12 +125,13 @@ public abstract class Character : MonoBehaviour
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        skillJumpEffect.Play();
+        Instantiate(skillJumpEffect,transform.position - Vector3.up * 0.45f,Quaternion.identity, playerTransform);
 
         yield return StartCoroutine(FireSkill());
 
         // 스킬 끝내는 부분
         isSkillActive = false;
+        fallingTrail.SetActive(true);
     }
 
     // 스킬 발동 부분
@@ -181,6 +183,7 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
+        fallingTrail.SetActive(false);
     }
 
     // 사거리 나타내는 함수
