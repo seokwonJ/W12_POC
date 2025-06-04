@@ -125,7 +125,8 @@ public abstract class Character : MonoBehaviour
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        Instantiate(skillJumpEffect,transform.position - Vector3.up * 0.45f,Quaternion.identity, playerTransform);
+
+        if (skillJumpEffect != null) Instantiate(skillJumpEffect,transform.position - Vector3.up * 0.45f,Quaternion.identity, playerTransform);
 
         yield return StartCoroutine(FireSkill());
 
