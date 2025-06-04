@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2715036829172249429}
   - component: {fileID: 4276633064937619375}
+  - component: {fileID: 1220328981298064038}
   - component: {fileID: 9030643398761379910}
   - component: {fileID: 4314202409012214010}
-  - component: {fileID: 2336702892526190934}
   - component: {fileID: 8304087639445234492}
   - component: {fileID: 1368834091956541019}
   m_Layer: 0
@@ -32,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3, y: 3.0000005, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5124512343639712896}
@@ -93,6 +93,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1220328981298064038
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971542310015680529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f8b185456898654397e55ffa6fd3215, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  editorNote: 6
+  movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
+  attackSO: {fileID: 11400000, guid: f2d5163ee7f671746a77a5aee897285b, type: 2}
+  speed: 3
+  minPlayerDistance: 0
+  isKnockbackable: 0
+  isFilpping: 0
+  damage: 40
+  fireCooldown: 2
+  firePoint: {fileID: 5124512343639712896}
+  projectileSpeed: 8
+  projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
+  player: {fileID: 0}
+  rb: {fileID: 0}
+  damageInterval: 1
 --- !u!50 &9030643398761379910
 Rigidbody2D:
   serializedVersion: 5
@@ -132,34 +159,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 200
+  enemyHP: 500
   isDead: 0
---- !u!114 &2336702892526190934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971542310015680529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: be2bd29a45f7e464fbe41a0226f19168, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  editorNote: 6
-  movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
-  attackSO: {fileID: 11400000, guid: f2d5163ee7f671746a77a5aee897285b, type: 2}
-  speed: 3
-  minPlayerDistance: 0
-  isKnockbackable: 0
-  isFilpping: 0
-  damage: 20
-  fireCooldown: 2
-  firePoint: {fileID: 5124512343639712896}
-  projectileSpeed: 8
-  projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
-  player: {fileID: 0}
-  rb: {fileID: 0}
 --- !u!95 &8304087639445234492
 Animator:
   serializedVersion: 7
