@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
 
     protected void Update()
     {
-        if (spriteRenderer != null && isFilpping)
+        if (spriteRenderer != null && isFilpping && !enemyHP.isDead)
         {
             //  방향에 따라 스프라이트를 뒤집음
             float directionX = transform.position.x - player.transform.position.x;
