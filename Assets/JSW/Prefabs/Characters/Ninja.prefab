@@ -234,34 +234,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 10
+  mpPerSecond: 8
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 6537457085924451293, guid: 9b656dfe2bb050f48b58b7c7a95bcf44, type: 3}
   firePoint: {fileID: 2195331686744385332}
   normalFireInterval: 0.25
   enemyDetectRadius: 20
   jumpForce: 13
-  maxFallSpeed: 10
+  maxFallSpeed: 15
   attackDamage: 5
   abilityPower: 5
   projectileSpeed: 15
   animator: {fileID: 5282197696764482722}
   playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 8042010290544875445, guid: 79f67893848460243970fb269bc84fde, type: 3}
+  skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
   skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
   fallingTrail: {fileID: 710097518450156534}
+  skillKunai: {fileID: 6537457085924451293, guid: d98f22cf34fd8ac4d9a2c430a3cb05ed, type: 3}
   isSkillLanding: 0
   isSkilling: 0
   skillPower: 5
-  skillAttackSpeed: 2
-  skillPowerDuration: 3
-  skillInterval: 0.2
+  skillAttackSpeed: 2.5
+  skillPowerDuration: 5
+  skillInterval: 0.15
   isNomalAttackFive: 0
   nomalAttackCount: 0
   isFirstLowHPEnemy: 0
   isAttackSpeedPerMana: 0
   upgradeNum: 0
-  skillActive: {fileID: 5741427209050753139}
   skillLandingActive: {fileID: 4843983985677134281, guid: b5e7ba5802db8c04bb8a7ca8b064e5c9, type: 3}
 --- !u!50 &7162487334415280215
 Rigidbody2D:
@@ -453,11 +453,6 @@ PrefabInstance:
 --- !u!4 &5741427209050753138 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5025927521102399133, guid: 92fbae99c072bbc418109d5a81265f0f, type: 3}
-  m_PrefabInstance: {fileID: 725655491380809455}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &5741427209050753139 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 5025927521102399132, guid: 92fbae99c072bbc418109d5a81265f0f, type: 3}
   m_PrefabInstance: {fileID: 725655491380809455}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2646454501589425623

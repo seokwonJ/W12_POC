@@ -4,6 +4,7 @@ using UnityEngine;
 public class Ninja : Character
 {
     [Header("스킬")]
+    public GameObject skillKunai;
     public bool isSkillLanding;
     public bool isSkilling;
     public int skillPower;
@@ -38,10 +39,20 @@ public class Ninja : Character
         if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
-        GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        // 만약 투사체 에셋이 적용된다면 강화공격이 이곳에 적용되어야할 듯
-        if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillPower, projectileSpeed); nomalAttackCount = 0; }
-        else proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
+        GameObject proj;
+
+        if (isSkilling)
+        {
+            proj = Instantiate(skillKunai, firePoint.position, Quaternion.identity);
+            proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed * 2.5f);
+        }
+        else
+        {
+            proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+            // 만약 투사체 에셋이 적용된다면 강화공격이 이곳에 적용되어야할 듯
+            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillPower, projectileSpeed); nomalAttackCount = 0; }
+            else proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
+        }
     }
 
     protected override IEnumerator NormalAttackRoutine()

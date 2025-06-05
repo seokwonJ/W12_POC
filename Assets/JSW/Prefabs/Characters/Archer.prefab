@@ -141,13 +141,13 @@ MonoBehaviour:
   normalFireInterval: 0.5
   enemyDetectRadius: 25
   jumpForce: 10
-  maxFallSpeed: 10
+  maxFallSpeed: 15
   attackDamage: 10
   abilityPower: 0
   projectileSpeed: 30
   animator: {fileID: 6100445639778453496}
   playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 8042010290544875445, guid: 79f67893848460243970fb269bc84fde, type: 3}
+  skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
   skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
   fallingTrail: {fileID: 7593743128653616012}
   skillProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}

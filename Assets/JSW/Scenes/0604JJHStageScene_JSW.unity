@@ -1945,7 +1945,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2195331686744385332, guid: b0aa909712586cf41a304353daf09190, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.044407845
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2195331686744385332, guid: b0aa909712586cf41a304353daf09190, type: 3}
       propertyPath: m_LocalPosition.y
@@ -3375,25 +3375,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2122129670}
     m_Modifications:
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.colorGradient.key1.a
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.colorGradient.m_ColorSpace
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.widthCurve.m_Curve.Array.data[1].value
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4038042523987487916, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
       propertyPath: m_Name
       value: Levi
-      objectReference: {fileID: 0}
-    - target: {fileID: 5258655469011329452, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7217755437246237028, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
       propertyPath: m_LocalPosition.x
