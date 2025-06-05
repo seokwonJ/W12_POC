@@ -29,7 +29,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(string clipName)
     {
-        AudioClip clip = GetClip(clipName);
+        AudioClip clip = GetSFXClip(clipName);
         if (clip != null)
         {
             sfxSource.PlayOneShot(clip);
@@ -38,7 +38,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlayBGM(string clipName, bool loop = true)
     {
-        AudioClip clip = GetClip(clipName);
+        AudioClip clip = GetBGMClip(clipName);
         if (clip != null)
         {
             bgmSource.clip = clip;
@@ -47,7 +47,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
-    private AudioClip GetClip(string name)
+    private AudioClip GetSFXClip(string name)
     {
         if (cache.TryGetValue(name, out var cachedClip))
         {
@@ -55,6 +55,26 @@ public class SoundManager : MonoBehaviour
         }
 
         AudioClip clip = Resources.Load<AudioClip>($"SFX/{name}");
+        if (clip != null)
+        {
+            cache[name] = clip;
+        }
+        else
+        {
+            Debug.LogWarning($"[SoundManager] Clip not found: {name}");
+        }
+
+        return clip;
+    }
+
+    private AudioClip GetBGMClip(string name)
+    {
+        if (cache.TryGetValue(name, out var cachedClip))
+        {
+            return cachedClip;
+        }
+
+        AudioClip clip = Resources.Load<AudioClip>($"BGM/{name}");
         if (clip != null)
         {
             cache[name] = clip;
