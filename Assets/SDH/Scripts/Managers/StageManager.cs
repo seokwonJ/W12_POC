@@ -43,7 +43,18 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         }
     }
     private bool onField = true; //true면 필드, false면 상점 -> 이후 수정 필요
-
+    public int EnemyKill
+    {
+        get
+        {
+            return enemyKill;
+        }
+        set
+        {
+            enemyKill = value;
+        }
+    }
+    private int enemyKill; // 잡은 적 수
     public void Init()
     {
         stageTemplates = Resources.LoadAll<StageSO>("StageTemplates");
