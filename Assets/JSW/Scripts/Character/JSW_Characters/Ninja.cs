@@ -53,6 +53,8 @@ public class Ninja : Character
             if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillPower, projectileSpeed); nomalAttackCount = 0; }
             else proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
         }
+
+        SoundManager.Instance.PlaySFX("NinjaAttack");
     }
 
     protected override IEnumerator NormalAttackRoutine()

@@ -22,12 +22,28 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        PlayBGM("Bgm1", true);
+    }
+
     public void PlaySFX(string clipName)
     {
         AudioClip clip = GetClip(clipName);
         if (clip != null)
         {
             sfxSource.PlayOneShot(clip);
+        }
+    }
+
+    public void PlayBGM(string clipName, bool loop = true)
+    {
+        AudioClip clip = GetClip(clipName);
+        if (clip != null)
+        {
+            bgmSource.clip = clip;
+            bgmSource.loop = loop;
+            bgmSource.Play();
         }
     }
 

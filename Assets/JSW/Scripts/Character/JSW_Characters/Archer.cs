@@ -25,6 +25,7 @@ public class Archer : Character
     {
         if (targetPos == null) return;
 
+
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         // 방향에 따라 캐릭터 스프라이트 좌우 반전
@@ -42,6 +43,8 @@ public class Archer : Character
             GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
             proj3.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, -10) * direction, attackDamage, projectileSpeed, knockbackPower, arrowSize);
         }
+
+        SoundManager.Instance.PlaySFX("ArcherAttack");
 
         Destroy(proj, 3);
     }

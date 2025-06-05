@@ -43,6 +43,8 @@ public class Levi : Character
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed, NormalAttackProjectileDuration);
+
+        SoundManager.Instance.PlaySFX("LeviAttack");
     }
 
     protected override void Update()

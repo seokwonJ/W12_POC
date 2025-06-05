@@ -67,6 +67,8 @@ public class Fox : Character
         {
             proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning);
         }
+
+        //SoundManager.Instance.PlaySFX("FoxAttack");
     }
 
     // 스킬: 점프 후 원형 정수를 360도 사방으로 발사
@@ -81,6 +83,8 @@ public class Fox : Character
         Instantiate(skillActiveEffect, transform.position, Quaternion.identity);
 
         if (isAutoReturnAfterSeconds) StartCoroutine(TeleportToPlayer());
+
+        SoundManager.Instance.PlaySFX("FoxSkill");
     }
 
     // 궁극기 발사 구현
