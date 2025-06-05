@@ -170,7 +170,6 @@ public abstract class Character : MonoBehaviour
     // 착지하는 부분 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!Managers.Stage.OnField) return;
         if (!collision.gameObject.CompareTag("Player")) return;
 
         ContactPoint2D contact = collision.contacts[0];

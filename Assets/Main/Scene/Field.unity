@@ -5840,7 +5840,7 @@ GameObject:
   - component: {fileID: 1646955305}
   - component: {fileID: 1646955304}
   m_Layer: 0
-  m_Name: StageControl
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5876,7 +5876,7 @@ MonoBehaviour:
   - {fileID: 1276349031}
   - {fileID: 792751957}
   - {fileID: 1343338882}
-  currentTimeDisplay: {fileID: 1685567429}
+  currentTimeTxt: {fileID: 1685567429}
 --- !u!4 &1646955305
 Transform:
   m_ObjectHideFlags: 0
@@ -5921,7 +5921,7 @@ GameObject:
   - component: {fileID: 1685567430}
   - component: {fileID: 1685567429}
   m_Layer: 5
-  m_Name: Timer
+  m_Name: currentTimeTxt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

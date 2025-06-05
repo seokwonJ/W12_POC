@@ -21,10 +21,6 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
         {
             BuyItem();
         }
-        if (Input.GetKeyDown(KeyCode.P)) // 임시 상점 종료 함수
-        {
-            FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
-        }
     }
 
     private void BuyItem() // 버튼을 누르면 아이템 구매

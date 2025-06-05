@@ -20,19 +20,10 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
     {
         DontDestroyOnLoad(gameObject);
         Managers.PlayerControl.NowPlayer = gameObject;
-
-        Init();
     }
 
-    private void Init()
+    public void SetPlayerStageEnd()
     {
-        Managers.Stage.OnField = true;
-    }
-
-    public void ToggleOnField()
-    {
-        Managers.Stage.OnField = !Managers.Stage.OnField;
-
         rb.bodyType = RigidbodyType2D.Static;
         playerMove.enabled = false;
 

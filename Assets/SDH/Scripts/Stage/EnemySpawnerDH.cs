@@ -3,55 +3,54 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class StageControlDH : MonoBehaviour // 적 스폰과 스테이지 종료를 컨트롤하는 스크립트 (EnemySpawnerJH.cs에서 가져옴)
+public class EnemySpawnerDH : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의상 타이머 기능도 겸함 (EnemySpawnerJH.cs에서 가져옴)
 {
     private const int MIN_RIGHT_SIDE_INDEX = 5; // 오른쪽 면에 있는 위치 인덱스의 최소값
     private const int MAX_RIGHT_SIDE_INDEX = 12; // 오른쪽 면에 있는 위치 인덱스의 최대값
 
     public Transform[] spawnPoints; // 임시 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-    public TextMeshProUGUI currentTimeDisplay;
+    [SerializeField] private TextMeshProUGUI currentTimeTxt;
 
     private StageSO nowStage;
-    private float currentTime;
 
     private void Start()
     {
-        Managers.Status.Hp = Managers.Status.MaxHp;
-        Debug.Log(Managers.Stage.Stage);
-        nowStage = Managers.Stage.GetNowStageTemplate();
-        Debug.Log(nowStage);
+        nowStage = Managers.Stage.StartStage();
 
-        StartCoroutine(CoSpawnEnemyRoutine(nowStage.enemyWave, nowStage.WaveCount, nowStage.WaveInterval, nowStage.stagePlayTime));
+        StartCoroutine(StageTimer(nowStage.stagePlayTime));
+        StartCoroutine(CoSpawnEnemyRoutine(nowStage));
     }
 
-    private void Update()
+    private IEnumerator StageTimer(float stagePlayTime)
     {
-        if (!Managers.Stage.OnField) return;
+        float currentTime = stagePlayTime;
 
-        currentTime -= Time.deltaTime;
-        currentTimeDisplay.text = ((int)currentTime).ToString();
-
-        if (currentTime <= 0)
+        while (currentTime >= 0)
         {
-            Debug.Log("현재 스테이지 끝");
+            currentTimeTxt.text = Mathf.Ceil(currentTime).ToString();
 
-            DeleteEnemy();
-            FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
+            currentTime -= Time.deltaTime;
+            yield return null;
         }
+
+        currentTimeTxt.text = "0";
+        Debug.Log("현재 스테이지 끝");
+
+        DeleteEnemy();
+        Managers.Stage.OnField = false;
     }
 
-    private IEnumerator CoSpawnEnemyRoutine(EnemyWaveSO[] enemyWave, int[] WaveCount, float[] WaveInterval, float stageplayTime)
+    private IEnumerator CoSpawnEnemyRoutine(StageSO nowStage)
     {
         Debug.Log("EnemySpawnerJH->StageControlDH Start Coroutine");
-        currentTime = stageplayTime;
-        for (int waveIndex = 0; waveIndex < enemyWave.Length; waveIndex++) // 웨이브1, 2, 3, 4... 를 반복
+        for (int waveIndex = 0; waveIndex < nowStage.enemyWave.Length; waveIndex++) // 웨이브1, 2, 3, 4... 를 반복
         {
-            EnemyWaveSO enemyWaveSO = enemyWave[waveIndex];
-            for (int i = 0; i < WaveCount[waveIndex]; i++) // 각 웨이브를 소환하는 횟수만큼 반복
+            EnemyWaveSO enemyWaveSO = nowStage.enemyWave[waveIndex];
+            for (int i = 0; i < nowStage.WaveCount[waveIndex]; i++) // 각 웨이브를 소환하는 횟수만큼 반복
             {
                 SpawnEnemyWave(enemyWaveSO);
-                yield return new WaitForSeconds(WaveInterval[waveIndex]);
+                yield return new WaitForSeconds(nowStage.WaveInterval[waveIndex]);
             }
         }
     }
