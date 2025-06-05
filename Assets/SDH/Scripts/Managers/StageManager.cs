@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using static UnityEngine.InputManagerEntry;
 // Random은 UnityEngine.Random으로 자동으로 사용하게
 
 public class StageManager // 씬 전환 관리 (전투-상점 등)

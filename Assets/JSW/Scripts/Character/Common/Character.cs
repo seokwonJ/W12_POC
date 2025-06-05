@@ -44,6 +44,10 @@ public abstract class Character : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         fixedJoint = GetComponent<FixedJoint2D>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
+    protected void OnEnable()
+    {
         StartCoroutine(NormalAttackRoutine());
     }
 
@@ -58,12 +62,6 @@ public abstract class Character : MonoBehaviour
 
     protected virtual void Update()
     {
-        if (!Managers.Stage.OnField)
-        {
-            currentMP = 0f;
-            isSkillActive = false;
-            return;
-        }
         if (!isGround && !isSkillActive)
         {
             Vector3 direction = playerTransform.position - transform.position;
@@ -172,6 +170,7 @@ public abstract class Character : MonoBehaviour
     // 착지하는 부분 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!Managers.Stage.OnField) return;
         if (!collision.gameObject.CompareTag("Player")) return;
 
         ContactPoint2D contact = collision.contacts[0];
@@ -193,5 +192,20 @@ public abstract class Character : MonoBehaviour
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, enemyDetectRadius/2);
+    }
+
+    public void EndFieldAct() // 필드전투가 종료될 때 실행
+    {
+        StopAllCoroutines();
+
+        isGround = true;
+        animator.SetBool("5_Fall", false);
+        animator.Play("IDLE", -1, 0f);
+
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        Managers.Status.RiderCount++;
+        fixedJoint.enabled = true;
+        fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
+        fallingTrail.SetActive(false);
     }
 }

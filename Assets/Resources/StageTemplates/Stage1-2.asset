@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   world: 1
   stage: 2
-  stagePlayTime: 15
+  stagePlayTime: 60
   enemyWave:
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
   - {fileID: 11400000, guid: c52456bec26f9144cb4ba52f0d2b4367, type: 2}
