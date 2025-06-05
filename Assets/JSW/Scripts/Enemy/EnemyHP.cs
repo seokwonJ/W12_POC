@@ -29,6 +29,7 @@ public class EnemyHP : MonoBehaviour
 
         enemyHP -= hp;
         StartCoroutine(CoDamagedEffect());
+        SoundManager.Instance.PlaySFX("hitSound");
 
         if (enemyHP <= 0)
         {
