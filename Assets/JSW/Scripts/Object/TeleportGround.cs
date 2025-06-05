@@ -9,9 +9,14 @@ public class TeleportGround : MonoBehaviour
     {
         if (collision.transform.tag == "Character")
         {
+
             Character character = collision.GetComponent<Character>();
+
+            character.fallingAfterImageSpawner.enabled = false;
+
             collision.transform.position = new Vector3(collision.transform.position.x,topGround.transform.position.y);
-            character.fallingTrail.Clear();
+
+            character.fallingAfterImageSpawner.enabled = true;
 
             Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
 

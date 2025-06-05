@@ -18,6 +18,7 @@ public class PlayerHP : MonoBehaviour
     public virtual void TakeDamage(int damage)
     {
         currentPlayerHP -= (damage - _playerStatus.defensePower);
+        SoundManager.Instance.PlaySFX("PlayerHitSound");
         if (playerHP_Image != null) playerHP_Image.fillAmount = currentPlayerHP / playerHP;
 
         if (currentPlayerHP <= 0)

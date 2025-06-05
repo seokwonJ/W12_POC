@@ -114,10 +114,13 @@ public class Ninja : Character
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
-        fallingTrail.enabled = false;
+        fallingAfterImageSpawner.enabled = false;
     }
     IEnumerator PowerUp(int power)
     {
+        SoundManager.Instance.PlaySFX("NinjaSkillActive");
+        SoundManager.Instance.PlaySFX("NinjaSkillDuration");
+
         GameObject activeParticle = Instantiate(skillLandingActive,transform.position,Quaternion.identity,transform);
         isSkilling = true;
         attackDamage += power;

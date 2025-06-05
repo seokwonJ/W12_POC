@@ -30,9 +30,11 @@ public abstract class Character : MonoBehaviour
     public Animator animator;
     public Transform playerTransform;
 
+    [Header("VFX")]
     public GameObject skillReadyEffect;
     public GameObject skillJumpEffect;
-    public TrailRenderer fallingTrail;
+    public FallingAfterImageSpawner fallingAfterImageSpawner;
+    
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
@@ -132,7 +134,7 @@ public abstract class Character : MonoBehaviour
 
         // 스킬 끝내는 부분
         isSkillActive = false;
-        fallingTrail.enabled = true;
+        fallingAfterImageSpawner.enabled = true;
     }
 
     // 스킬 발동 부분
@@ -185,7 +187,7 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
-        fallingTrail.enabled = false;
+        fallingAfterImageSpawner.enabled = false;
         SoundManager.Instance.PlaySFX("Landing");
     }
 
@@ -208,6 +210,6 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
-        fallingTrail.enabled = false;
+        fallingAfterImageSpawner.enabled = false;
     }
 }

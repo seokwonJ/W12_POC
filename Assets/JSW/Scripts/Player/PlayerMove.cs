@@ -40,6 +40,7 @@ public class PlayerMove : MonoBehaviour
         // 스페이스 누르면 대시 시작
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing && dashCooldownTimer <= 0)
         {
+            SoundManager.Instance.PlaySFX("PlayerDash");
             isDashing = true;
             dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;
