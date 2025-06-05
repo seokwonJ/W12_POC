@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using NUnit.Framework.Internal;
 using TMPro;
 using UnityEngine;
 
@@ -26,11 +27,7 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
 
     private void Update()
     {
-        if (!Managers.Stage.OnField)
-        {
-            StopAllCoroutines();
-            return;
-        }
+        if (!Managers.Stage.OnField) return;
 
         currentTime -= Time.deltaTime;
         currentTimeDisplay.text = ((int)currentTime).ToString();
@@ -39,6 +36,7 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
         {
             Debug.Log("ÇöÀç ½ºÅ×ÀÌÁö ³¡");
 
+            DeleteEnemy();
             FindAnyObjectByType<TmpPlayerControl>().ToggleOnField();
         }
     }
@@ -116,5 +114,14 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
             Transform spawnPosition = spawnPoints[spawnIndex];
             Instantiate(enemyPrefab, spawnPosition.position, enemyPrefab.transform.rotation);
         }
+    }
+
+    public void DeleteEnemy() // ½ºÅ×ÀÌÁö Á¾·á ½Ã ¸ğµç Àû°ú Åõ»çÃ¼ Á¦°Å
+    {
+        StopAllCoroutines();
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = enemys.Length - 1; i >= 0; i--) Destroy(enemys[i]);
+        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
+        for (int i = projectiles.Length - 1; i >= 0; i--) Destroy(projectiles[i]);
     }
 }
