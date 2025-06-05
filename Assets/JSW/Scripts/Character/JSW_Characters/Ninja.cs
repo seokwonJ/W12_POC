@@ -114,7 +114,7 @@ public class Ninja : Character
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
-        fallingTrail.SetActive(false);
+        fallingTrail.enabled = false;
     }
     IEnumerator PowerUp(int power)
     {

@@ -82,7 +82,8 @@ public class Levi : Character
         trail.GetComponent<TrailRenderer>().enabled = true;
 
         animator.Play("SKILL", -1, 0f);
-        
+        SoundManager.Instance.PlaySFX("LeviDashStart");
+
         // 바라보는 방향에 따라 이펙트 좌우 반전
         if (transform.localScale.x < 0) // 왼쪽
         {
@@ -118,6 +119,9 @@ public class Levi : Character
 
             // 데미지 주기
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
+            SoundManager.Instance.PlaySFX("LeviSkillAttack");
+
+
             if (enemyHP != null)
             {
                 if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));

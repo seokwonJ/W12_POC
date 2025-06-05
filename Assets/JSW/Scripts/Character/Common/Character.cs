@@ -32,7 +32,7 @@ public abstract class Character : MonoBehaviour
 
     public GameObject skillReadyEffect;
     public GameObject skillJumpEffect;
-    public GameObject fallingTrail;
+    public TrailRenderer fallingTrail;
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
@@ -109,6 +109,7 @@ public abstract class Character : MonoBehaviour
         if (!isGround) yield break;
 
         Instantiate(skillReadyEffect, transform.position, Quaternion.identity, transform);
+        SoundManager.Instance.PlaySFX("SkillReady");
         yield return new WaitForSeconds(0.5f);
 
         fixedJoint.connectedBody = null;
@@ -123,7 +124,7 @@ public abstract class Character : MonoBehaviour
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
-        SoundManager.Instance.PlaySFX("jumpSE2");
+        SoundManager.Instance.PlaySFX("Jump");
 
         if (skillJumpEffect != null) Instantiate(skillJumpEffect,transform.position - Vector3.up * 0.45f,Quaternion.identity, playerTransform);
 
@@ -131,7 +132,7 @@ public abstract class Character : MonoBehaviour
 
         // 스킬 끝내는 부분
         isSkillActive = false;
-        fallingTrail.SetActive(true);
+        fallingTrail.enabled = true;
     }
 
     // 스킬 발동 부분
@@ -184,7 +185,8 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
-        fallingTrail.SetActive(false);
+        fallingTrail.enabled = false;
+        SoundManager.Instance.PlaySFX("Landing");
     }
 
     // 사거리 나타내는 함수
@@ -206,6 +208,6 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
-        fallingTrail.SetActive(false);
+        fallingTrail.enabled = false;
     }
 }
