@@ -18,6 +18,7 @@ public class StageControlDH : MonoBehaviour // Àû ½ºÆù°ú ½ºÅ×ÀÌÁö Á¾·á¸¦ ÄÁÆ®·ÑÇ
 
     private void Start()
     {
+        Managers.Status.Hp = Managers.Status.MaxHp;
         Debug.Log(Managers.Stage.Stage);
         nowStage = Managers.Stage.GetNowStageTemplate();
         Debug.Log(nowStage);

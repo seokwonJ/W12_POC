@@ -136,4 +136,12 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         yield break;
     }
+
+    public void GatherCharacters()
+    {
+        foreach (GameObject character in characters) // 집나간 캐릭터들 자식으로 불러오기 코드. 리스타트 버튼용 임시 함수임 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        {
+            character.transform.SetParent(transform);
+        }
+    }
 }
