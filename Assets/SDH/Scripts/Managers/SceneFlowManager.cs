@@ -1,7 +1,22 @@
+using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneFlowManager
+public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 {
+    public CanvasGroup FadeOutCanvas
+    {
+        get
+        {
+            return fadeOutCanvas;
+        }
+        set
+        {
+            fadeOutCanvas = value;
+        }
+    }
+    public CanvasGroup fadeOutCanvas;
+
     public void Init()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -30,5 +45,25 @@ public class SceneFlowManager
     public void Clear()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    public IEnumerator FadeOut(float maxTime) // 씬 전환 시 연출
+    {
+        if (fadeOutCanvas == null)
+        {
+            Debug.Log("FadeOutCanvas 못찾음");
+            yield break;
+        }
+
+        float nowTime = 0f;
+
+        while (nowTime <= maxTime)
+        {
+            fadeOutCanvas.alpha = nowTime / maxTime;
+            nowTime += Time.deltaTime;
+            yield return null;
+        }
+
+        yield break;
     }
 }
