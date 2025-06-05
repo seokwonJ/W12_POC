@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1556d8410d346b44e9918f1fed5879c9, type: 3}
-  m_Name: Wave Shoot + 2xBrown (14)
+  m_Name: Wave Ghost + 2xEyeDemon(14)
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 2971542310015680529, guid: e85ed4fa121c2ca4b9ab35e62739636c, type: 3}
