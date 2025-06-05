@@ -108,6 +108,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -234,7 +247,12 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx2_magic_swirl_large_blue_0: -170946989983079068
+      fx2_magic_swirl_large_blue_1: 854274733484048044
+      fx2_magic_swirl_large_blue_2: 6260702788334884180
+      fx2_magic_swirl_large_blue_3: 3705283960925286878
+      fx2_magic_swirl_large_blue_4: -479701668772605811
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

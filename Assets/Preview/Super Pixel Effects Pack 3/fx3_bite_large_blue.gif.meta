@@ -123,6 +123,19 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -359,7 +372,17 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      fx3_bite_large_blue_0: 5655889564365512344
+      fx3_bite_large_blue_1: 2677253141201834156
+      fx3_bite_large_blue_2: 7742378858279004625
+      fx3_bite_large_blue_3: -914674486569458897
+      fx3_bite_large_blue_4: 6964387378354465754
+      fx3_bite_large_blue_5: -7247261832580977512
+      fx3_bite_large_blue_6: -7409188768542671782
+      fx3_bite_large_blue_7: -3201668167388980364
+      fx3_bite_large_blue_8: 3934177878923653882
+      fx3_bite_large_blue_9: 9036814385203062066
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
