@@ -5646,7 +5646,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4500679c4d72e6c45bdf1cb74b3b35d9, type: 2}
   - {fileID: 11400000, guid: e60436c6fbeb2ab4f878aa0f6953e415, type: 2}
   world: 1
-  stage: 2
+  stage: 1
   playTime_Text: {fileID: 663497427}
 --- !u!1 &1949148883
 GameObject:
@@ -6348,6 +6348,10 @@ PrefabInstance:
     - target: {fileID: 2010104840657968575, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
       propertyPath: m_Name
       value: Fox
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010104840657968575, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2203849580821667185, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
       propertyPath: m_LocalPosition.x
