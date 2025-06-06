@@ -2000,14 +2000,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2122129670}
     m_Modifications:
-    - target: {fileID: 302522663227774237, guid: b0aa909712586cf41a304353daf09190, type: 3}
-      propertyPath: spawnInterval
-      value: 0.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 302522663227774237, guid: b0aa909712586cf41a304353daf09190, type: 3}
-      propertyPath: afterImagePrefab
-      value: 
-      objectReference: {fileID: 2010104840657968575, guid: 64920d95c13a2cb49a7fbd9caedaf3d6, type: 3}
     - target: {fileID: 2195331686744385332, guid: b0aa909712586cf41a304353daf09190, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -2051,10 +2043,6 @@ PrefabInstance:
     - target: {fileID: 7343003592488363999, guid: b0aa909712586cf41a304353daf09190, type: 3}
       propertyPath: m_Name
       value: Ninja
-      objectReference: {fileID: 0}
-    - target: {fileID: 8144431789627151663, guid: b0aa909712586cf41a304353daf09190, type: 3}
-      propertyPath: mpPerSecond
-      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3378,34 +3366,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2122129670}
     m_Modifications:
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.textureMode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: 7549126fc311c48919a9dcbe1d43a364, type: 2}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.textureScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.textureScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.numCornerVertices
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 1641603395240672867, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
-      propertyPath: m_Parameters.colorGradient.key0.a
-      value: 0.78431374
-      objectReference: {fileID: 0}
     - target: {fileID: 4038042523987487916, guid: 4f067f03692b9b4468dfdf089858d208, type: 3}
       propertyPath: m_Name
       value: Levi
