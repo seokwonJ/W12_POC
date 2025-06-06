@@ -6,6 +6,7 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 {
     public Canvas FadeOutCanvas;
     public Canvas GameOverCanvas;
+    public SetUpgradeCanvas SetUpgradeCanvasCS;
 
     public void Init()
     {

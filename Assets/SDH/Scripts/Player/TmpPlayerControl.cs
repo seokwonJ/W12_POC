@@ -1,25 +1,21 @@
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 컨트롤하는 스크립트
 {
-    public GameObject[] characters; // 씬 전환시 동료 컨트롤용 변수. 일단은 퍼블릭으로 선언하지만 수정 필요 @@@@@@@@@@@@@@@@@@@@@@@@@@
-
     private PlayerMove playerMove;
     private Rigidbody2D rb;
 
     private void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
         playerMove = GetComponent<PlayerMove>();
         rb = GetComponent<Rigidbody2D>();
-    }
 
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-        Managers.PlayerControl.NowPlayer = gameObject;
+        Managers.PlayerControl.NowPlayer = gameObject; // 관리용 오브젝트에 플레이어 설정. 현재 플레이어가 고정적으로 같이 실행이라 이걸 Awake에 안넣으면 코드가 꼬이는데, 나중에 매커니즘 변경하면서 Start로 옮길 것 @@@@@@@@@@@@@@@@@
     }
 
     public void SetPlayerStageEnd()
@@ -27,11 +23,11 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         rb.bodyType = RigidbodyType2D.Static;
         playerMove.enabled = false;
 
-        foreach (GameObject character in characters)
+        foreach (GameObject character in Managers.PlayerControl.Characters)
         {
             character.GetComponent<Character>().EndFieldAct();
             character.GetComponent<Character>().enabled = false;
-            character.transform.SetParent(transform); // 애들이 스킬쓰고 점프 뛸때마다 부모가 풀리던데 왜인지는 모름
+            character.transform.SetParent(transform); // 부모 재설정 해줘야함
         }
 
         if (Managers.Stage.OnField) // 필드 돌입
@@ -53,14 +49,14 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         Vector3 startPlayerPos; // 현재 위치용 변수
 
         nowTime = 0f; maxTime = 0.3f; // maxTime 시간동안 모이기
-        Vector3[] startCharacterPos = Enumerable.Range(0, characters.Length).Select(i => characters[i].transform.localPosition).ToArray();
+        Vector3[] startCharacterPos = Enumerable.Range(0, Managers.PlayerControl.Characters.Count).Select(i => Managers.PlayerControl.Characters[i].transform.localPosition).ToArray();
         startPlayerPos = transform.position;
 
         while (nowTime <= maxTime)
         {
-            for (int i = 0; i < characters.Length; i++)
+            for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
             {
-                characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(0.5f - i * 0.5f, 1.2f, 0f), nowTime / maxTime);
+                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(0.5f - i * 0.5f, 1.2f, 0f), nowTime / maxTime);
             }
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
@@ -68,9 +64,9 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
             yield return null;
         }
 
-        for (int i = 0; i < characters.Length; i++) // 오차가 있을 수 있으니 확실하게 보정
+        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++) // 오차가 있을 수 있으니 확실하게 보정
         {
-            characters[i].transform.localPosition = new(0.5f - i * 0.5f, 1.2f, 0f);
+            Managers.PlayerControl.Characters[i].transform.localPosition = new(0.5f - i * 0.5f, 1.2f, 0f);
         }
 
         StartCoroutine(Managers.SceneFlow.FadeOut(0.8f)); // 기본값 = 뒤로이동maxTime+앞으로이동maxTime+대기시간
@@ -100,17 +96,17 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         yield break;
     }
 
-    private IEnumerator ShopEnd() // 상점이 끝난 뒤 연출. 지금은 임시로 FieldEnd와 같은 코드 사용 중
+    private IEnumerator ShopEnd() // 상점이 끝난 뒤 연출. 지금은 임시로 FieldEnd와 비슷한 코드 사용 중
     {
         float nowTime = 0f, maxTime = 0.3f; // maxTime 시간동안 끝나는 연출
-        Vector3[] startCharacterPos = Enumerable.Range(0, characters.Length).Select(i => characters[i].transform.localPosition).ToArray();
+        Vector3[] startCharacterPos = Enumerable.Range(0, Managers.PlayerControl.Characters.Count).Select(i => Managers.PlayerControl.Characters[i].transform.localPosition).ToArray();
         Vector3 startPlayerPos = transform.position;
 
         while (nowTime <= maxTime)
         {
-            for (int i = 0; i < characters.Length; i++)
+            for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
             {
-                characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(0.5f - i * 0.5f, 1.2f, 0f), nowTime / maxTime);
+                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(0.5f - i * 0.5f, 1.2f, 0f), nowTime / maxTime);
             }
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
@@ -118,7 +114,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
             yield return null;
         }
 
-        foreach (GameObject character in characters) // 켜두기
+        foreach (GameObject character in Managers.PlayerControl.Characters) // 켜두기
         {
             character.GetComponent<Character>().enabled = true;
         }
@@ -130,7 +126,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
     public void GatherCharacters()
     {
-        foreach (GameObject character in characters) // 집나간 캐릭터들 자식으로 불러오기 코드. 리스타트 버튼용 임시 함수임 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        foreach (GameObject character in Managers.PlayerControl.Characters) // 집나간 캐릭터들 자식으로 불러오기 코드. 리스타트 버튼용 임시 함수임 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
         {
             character.transform.SetParent(transform);
         }
