@@ -5,33 +5,18 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scene/Main.unity
     guid: 11e9bb07f5e3fd240ae2ef65918a2873
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scene/Layover.unity
     guid: d950eedebb23cbe4ead718fdfbafb760
-  - enabled: 1
+  - enabled: 0
     path: Assets/Main/Scene/Field.unity
-    guid: f76525bcc36918a43841ebcd6ba90cba
-  - enabled: 1
+    guid: 0906092dc2e08a145963d960e145b332
+  - enabled: 0
     path: Assets/Main/Scene/Shop.unity
     guid: 9ac6a8c9aa4d6e84eb09452ac755cb16
-  - enabled: 1
-    path: Assets/JSW/Scenes/Old/Stage1.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 1
-    path: Assets/JSW/Scenes/Old/Stage2.unity
-    guid: d3923a034dae06246b6615a6ab94c0db
-  - enabled: 1
-    path: Assets/JSW/Scenes/Old/Stage3.unity
-    guid: 4428fa9a088565a4391df7039e53702a
-  - enabled: 1
-    path: Assets/SDH/Scenes/JJHStageScene_SDH.unity
-    guid: ce45b1db872397f49a558a25dac65049
-  - enabled: 1
-    path: Assets/SDH/Scenes/StoreEx_SDH.unity
-    guid: fdfd3eb56052c2e41a457635ee01a6d8
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0
