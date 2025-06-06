@@ -20,19 +20,10 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
     {
         DontDestroyOnLoad(gameObject);
         Managers.PlayerControl.NowPlayer = gameObject;
-
-        Init();
     }
 
-    private void Init()
+    public void SetPlayerStageEnd()
     {
-        Managers.Stage.OnField = true;
-    }
-
-    public void ToggleOnField()
-    {
-        Managers.Stage.OnField = !Managers.Stage.OnField;
-
         rb.bodyType = RigidbodyType2D.Static;
         playerMove.enabled = false;
 
@@ -135,5 +126,13 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         Managers.SceneFlow.GotoScene("Field");
 
         yield break;
+    }
+
+    public void GatherCharacters()
+    {
+        foreach (GameObject character in characters) // 집나간 캐릭터들 자식으로 불러오기 코드. 리스타트 버튼용 임시 함수임 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        {
+            character.transform.SetParent(transform);
+        }
     }
 }

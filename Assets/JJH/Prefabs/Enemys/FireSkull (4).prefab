@@ -133,7 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 20
+  enemyHP: 50
   isDead: 0
 --- !u!114 &2336702892526190934
 MonoBehaviour:
@@ -148,9 +148,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editorNote: 4
-  movementSO: {fileID: 11400000, guid: fc40662e0f79e7645b952ee29acfab16, type: 2}
+  movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
   attackSO: {fileID: 0}
-  speed: 15
+  speed: 2
   minPlayerDistance: 0
   isKnockbackable: 1
   isFilpping: 0

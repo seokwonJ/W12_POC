@@ -3,27 +3,24 @@ using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
-    public float playerHP;
-    protected float currentPlayerHP;
     public Image playerHP_Image;
     private PlayerStatus _playerStatus;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        currentPlayerHP = playerHP;
         _playerStatus = GetComponent<PlayerStatus>();
     }
     
     public virtual void TakeDamage(int damage)
     {
-        currentPlayerHP -= (damage - _playerStatus.defensePower);
-        SoundManager.Instance.PlaySFX("PlayerHitSound");
-        if (playerHP_Image != null) playerHP_Image.fillAmount = currentPlayerHP / playerHP;
+        Managers.Status.Hp -= (damage - _playerStatus.defensePower);
+        if (playerHP_Image != null) playerHP_Image.fillAmount = Managers.Status.Hp / Managers.Status.MaxHp;
 
-        if (currentPlayerHP <= 0)
+        if (Managers.Status.Hp <= 0)
         {
-            GameSceneManager.Instance.GameOverUI();
+            GetComponent<TmpPlayerControl>().GatherCharacters();
+            Managers.SceneFlow.GameOver();
         }
     }
 }

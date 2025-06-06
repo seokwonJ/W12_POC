@@ -36,11 +36,6 @@ public class EnemySpawner : MonoBehaviour
         currentPlayTime -= Time.deltaTime;
         playTime_Text.text = ((int)currentPlayTime).ToString();
 
-        if (currentPlayTime <= 0)
-        {
-            GameSceneManager.Instance.GameClearUI();
-        }
-
         if (Enemy1SpawnCurrentDelay < 0)
         {
             Enemy1SpawnCurrentDelay = Enemy1SpawnDelay;

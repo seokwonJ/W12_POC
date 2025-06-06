@@ -81,7 +81,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673865093
   m_SortingLayer: 2
-  m_SortingOrder: 0
+  m_SortingOrder: 10
   m_Sprite: {fileID: -2628527846636693884, guid: 34c4752ea21fdd94090eea2933385bf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -191,6 +191,7 @@ MonoBehaviour:
   isFilpping: 1
   damage: 20
   fireCooldown: 4
+  firePoint: {fileID: 0}
   projectileSpeed: 0
   projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
   player: {fileID: 0}

@@ -4,6 +4,6 @@ public class FadeOutCanvas : MonoBehaviour
 {
     private void Start()
     {
-        Managers.SceneFlow.fadeOutCanvas = GetComponent<CanvasGroup>();
+        Managers.SceneFlow.FadeOutCanvas = GetComponent<Canvas>();
     }
 }

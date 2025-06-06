@@ -1,9 +1,12 @@
+using TMPro;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.LightTransport;
 
 public class StatusManager // 인게임 플레이 스탯 관리
 {
+    public TextMeshProUGUI goldTxt;
+
     public int Gold
     {
         get
@@ -13,9 +16,34 @@ public class StatusManager // 인게임 플레이 스탯 관리
         set
         {
             gold = value;
+            if (goldTxt != null) goldTxt.text = gold.ToString();
         }
     }
-    private int gold = 0; // 인게임 재화
+    private int gold; // 인게임 재화
+    public float MaxHp
+    {
+        get
+        {
+            return maxHp;
+        }
+        set
+        {
+            maxHp = value;
+        }
+    }
+    private float maxHp; // 인게임에 진입할 때마다 재설정되는 체력값
+    public float Hp
+    {
+        get
+        {
+            return hp;
+        }
+        set
+        {
+            hp = value;
+        }
+    }
+    private float hp; // 인게임 체력
     public int RiderCount
     {
         get
@@ -33,5 +61,6 @@ public class StatusManager // 인게임 플레이 스탯 관리
     public void StartGame() // 게임 시작
     {
         gold = 0;
+        maxHp = 100;
     }
 }
