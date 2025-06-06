@@ -39,13 +39,13 @@ MonoBehaviour:
     volume: 1
   - clipName: LeviDashStart
     clip: {fileID: 8300000, guid: c911457a9e3b539469edab3840b80e4a, type: 3}
-    volume: 1
+    volume: 0.5
   - clipName: LeviSkillAttack
     clip: {fileID: 8300000, guid: fc749bfd3eaefb44a870a2ab3282d1b2, type: 3}
-    volume: 1
+    volume: 0.8
   - clipName: NinjaAttack
     clip: {fileID: 8300000, guid: 4e4bd087775273a48a1bca1ca3f8dcb0, type: 3}
-    volume: 1
+    volume: 0.7
   - clipName: NinjaSkillActive
     clip: {fileID: 8300000, guid: 000178ccd626be24b90c29832adadcf3, type: 3}
     volume: 1
@@ -59,8 +59,11 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: 621ba338b8be6f0499e622d07affbb79, type: 3}
     volume: 1
   - clipName: SkillReady
-    clip: {fileID: 8300000, guid: cfd20edbca108a6438ba08781fe8f0df, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 6a33f70aab0ca6541ba8ef9798f0900c, type: 3}
+    volume: 0.4
   - clipName: PickUpItem
     clip: {fileID: 8300000, guid: bb6658f28052afa46af2c7890737f315, type: 3}
+    volume: 1
+  - clipName: BlueDragonShootProjectile
+    clip: {fileID: 8300000, guid: ee21542d62a832e47a14ab794675a277, type: 3}
     volume: 1

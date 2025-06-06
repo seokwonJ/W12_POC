@@ -40,6 +40,7 @@ public class SpawnProjectileAttack : ScriptableObject, IAttackPattern
                 GameObject proj = Instantiate(enemy.projectilePrefab, enemy.firePoint.position, Quaternion.Euler(0, 0, angle + 180));
                 proj.GetComponent<Rigidbody2D>().linearVelocity = direction * enemy.projectileSpeed;
             }
+            SoundManager.Instance.PlaySFX("BlueDragonShootProjectile");
 
             yield return fireWait;
         }
