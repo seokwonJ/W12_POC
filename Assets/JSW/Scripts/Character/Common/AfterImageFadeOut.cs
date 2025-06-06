@@ -1,36 +1,45 @@
 using UnityEngine;
+using System.Collections;
 
 public class AfterImageFadeOut : MonoBehaviour
 {
     public float fadeDuration = 0.3f;
     public Animator animator;
-    private float elapsed = 0f;
+
     private SpriteRenderer[] renderers;
 
-
-    void Start()
+    void Awake()
     {
         renderers = GetComponentsInChildren<SpriteRenderer>();
     }
 
-    void Update()
+    public void StartFade()
     {
-        elapsed += Time.deltaTime;
-        float alpha = Mathf.Lerp(0.5f, 0f, elapsed / fadeDuration);
+        StopAllCoroutines(); // 재활용 전 기존 코루틴 정리
+        StartCoroutine(FadeOut());
+    }
 
-        foreach (var sr in renderers)
+    IEnumerator FadeOut()
+    {
+        float elapsed = 0f;
+        while (elapsed < fadeDuration)
         {
-            if (sr != null)
+            elapsed += Time.deltaTime;
+            float alpha = Mathf.Lerp(0.7f, 0f, elapsed / fadeDuration);
+
+            foreach (var sr in renderers)
             {
-                Color c = sr.color;
-                c.a = alpha;
-                sr.color = c;
+                if (sr != null)
+                {
+                    Color c = sr.color;
+                    c.a = alpha;
+                    sr.color = c;
+                }
             }
+
+            yield return null;
         }
 
-        if (elapsed >= fadeDuration)
-        {
-            Destroy(gameObject);
-        }
+        gameObject.SetActive(false);
     }
 }

@@ -4,15 +4,28 @@ public class FallingAfterImageSpawner : MonoBehaviour
 {
     public GameObject afterImagePrefab;
     public float spawnInterval = 0.02f;
+    public Material afterImageMaterial;
 
     private float timer;
     private Rigidbody2D rb;
 
-    public Material afterImageMaterial; // <- Inspector에 할당
+    // 오브젝트 풀
+    public int poolSize = 20;
+    private GameObject[] afterImagePool;
+    private int poolIndex = 0;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+
+        // 풀 초기화
+        afterImagePool = new GameObject[poolSize];
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject clone = Instantiate(afterImagePrefab);
+            clone.SetActive(false);
+            afterImagePool[i] = clone;
+        }
     }
 
     void Update()
@@ -28,9 +41,14 @@ public class FallingAfterImageSpawner : MonoBehaviour
 
     void SpawnAfterImage()
     {
-        GameObject clone = Instantiate(afterImagePrefab, transform.position, transform.rotation);
+        GameObject clone = afterImagePool[poolIndex];
+        clone.transform.position = transform.position;
+        clone.transform.rotation = transform.rotation;
+        clone.SetActive(true);
 
-        // 각 부위 sprite 복사
+        poolIndex = (poolIndex + 1) % poolSize;
+
+        // 스프라이트 복사
         SpriteRenderer[] originalRenderers = GetComponentsInChildren<SpriteRenderer>();
         SpriteRenderer[] cloneRenderers = clone.GetComponentsInChildren<SpriteRenderer>();
 
@@ -42,14 +60,13 @@ public class FallingAfterImageSpawner : MonoBehaviour
                 {
                     cloneSR.sprite = original.sprite;
                     cloneSR.flipX = original.flipX;
-                    cloneSR.color = new Color(1f, 1f, 1f, 0.7f); // 검은 실루엣
+                    cloneSR.color = new Color(1f, 1f, 1f, 0.7f);
                     cloneSR.material = afterImageMaterial;
-
                 }
             }
         }
 
-        // 3. Animator 동기화
+        // Animator 동기화
         Animator sourceAnimator = GetComponent<Animator>();
         Animator cloneAnimator = clone.GetComponent<AfterImageFadeOut>().animator;
 
@@ -59,5 +76,8 @@ public class FallingAfterImageSpawner : MonoBehaviour
             cloneAnimator.Play(state.fullPathHash, 0, state.normalizedTime);
             cloneAnimator.speed = 0f;
         }
+
+        // 페이드 시작
+        clone.GetComponent<AfterImageFadeOut>().StartFade();
     }
 }
