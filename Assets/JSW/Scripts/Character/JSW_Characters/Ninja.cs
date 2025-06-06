@@ -96,26 +96,19 @@ public class Ninja : Character
     // 착지했을 경우
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        base.OnCollisionEnter2D(collision); // 부모 로직 먼저 실행
 
-        ContactPoint2D contact = collision.contacts[0];
-        if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
+        // 조건 만족 안 하면 아무것도 안 하고 리턴 (부모에서 이미 isGround 처리됨)
+        if (!isGround) return;
 
-        if (isSkillActive) return;
-        isGround = true;
-        animator.SetBool("5_Fall", false);
-        animator.Play("IDLE", -1, 0f);
-
+        // 추가 스킬 처리
         if (isSkillLanding)
         {
             isSkillLanding = false;
             StartCoroutine(PowerUp(skillPower));
         }
-        Managers.Status.RiderCount++;
-        fixedJoint.enabled = true;
-        fixedJoint.connectedBody = collision.rigidbody;
-        fallingAfterImageSpawner.enabled = false;
     }
+
     IEnumerator PowerUp(int power)
     {
         SoundManager.Instance.PlaySFX("NinjaSkillActive");
