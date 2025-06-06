@@ -57,7 +57,7 @@ MonoBehaviour:
     volume: 1
   - clipName: PlayerHitSound
     clip: {fileID: 8300000, guid: 621ba338b8be6f0499e622d07affbb79, type: 3}
-    volume: 0.118
+    volume: 1
   - clipName: SkillReady
     clip: {fileID: 8300000, guid: 6a33f70aab0ca6541ba8ef9798f0900c, type: 3}
     volume: 0.4

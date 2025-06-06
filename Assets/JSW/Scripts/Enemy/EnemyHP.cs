@@ -13,7 +13,7 @@ public class EnemyHP : MonoBehaviour
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
     private float dieDelay = 0.4f;
-
+    private Coroutine flashCoroutine;
 
     private void Awake()
     {
@@ -28,7 +28,8 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
 
         enemyHP -= hp;
-        StartCoroutine(CoDamagedEffect());
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(CoDamagedEffect());
         SoundManager.Instance.PlaySFX("HitSound");
 
         if (enemyHP <= 0)

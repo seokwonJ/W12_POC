@@ -10,11 +10,6 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
         shopLayerMask = ~LayerMask.GetMask("Character", "Flyer"); // 영웅(Character) 비행체(Flyer) 제외. 상점 상품 전용 레이어가 생긴다면 그렇게 넣는 것도 가능
     }
 
-    private void Start()
-    {
-        Managers.PlayerControl.NowPlayer.transform.position = Vector3.zero;
-    }
-
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return)) // 엔터키로 구매

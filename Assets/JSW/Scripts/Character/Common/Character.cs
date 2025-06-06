@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
@@ -33,7 +34,7 @@ public abstract class Character : MonoBehaviour
     [Header("VFX")]
     public GameObject skillReadyEffect;
     public GameObject skillJumpEffect;
-    public FallingAfterImageSpawner fallingAfterImageSpawner;
+    public AfterImageSpawner fallingAfterImageSpawner;
     
 
     protected Rigidbody2D rb;
@@ -119,7 +120,8 @@ public abstract class Character : MonoBehaviour
         fixedJoint.enabled = false;
 
         isGround = false;
-        transform.SetParent(null);
+        //transform.SetParent(null); 필요에 의해 DH가 지웠음
+        Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetOrderInLayer(transform);
         Managers.Status.RiderCount--;
 
         currentMP = 0;
@@ -184,6 +186,7 @@ public abstract class Character : MonoBehaviour
         animator.SetBool("5_Fall", false);
         animator.Play("IDLE", -1, 0f);
 
+        Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetOrderInLayer(transform);
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
@@ -198,7 +201,7 @@ public abstract class Character : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, enemyDetectRadius/2);
     }
 
-    public void EndFieldAct() // 필드전투가 종료될 때 실행
+    public virtual void EndFieldAct() // 필드전투가 종료될 때 실행
     {
         StopAllCoroutines();
 
