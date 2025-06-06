@@ -33,6 +33,7 @@ public class EnemyHP : MonoBehaviour
 
         if (enemyHP <= 0)
         {
+            Managers.Stage.PlusEnemyKill(transform.position);
             Die();
         }
     }

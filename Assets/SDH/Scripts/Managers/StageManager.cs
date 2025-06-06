@@ -105,4 +105,23 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     {
         return Array.Find(stageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage); // stageTemplates를 정렬해뒀기 때문에 나중에 이부분 수정 가능 @@@@@@@@@@@@@@@@@@@@@@@@@@
     }
+
+    public void PlusEnemyKill(Vector3 position) // 적 처치 수 증가
+    {
+        EnemyKill++;
+        EnemyTotalKill++;
+        if (EnemyKill % 10 == 0) // 10마리마다 코인 생성
+        {
+            SpawnCoin(position);
+        }
+    }
+
+    public void SpawnCoin(Vector3 position, int coinCount = 1) // 코인 생성
+    {
+        for (int i = 0; i < coinCount; i++)
+        {
+            GameObject coinObj = GameObject.Instantiate(coin, position, Quaternion.identity);
+            coinObj.GetComponent<Coin>().SetCoinValue(UnityEngine.Random.Range(8, 13)); // 코인 값은 8~12 사이의 랜덤값
+        }
+    }
 }

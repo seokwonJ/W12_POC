@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using UnityEngine;
 
 public class TeleportGround : MonoBehaviour
@@ -7,25 +7,28 @@ public class TeleportGround : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.transform.tag == "Character")
+        if (collision.CompareTag("Character"))
         {
-
             Character character = collision.GetComponent<Character>();
 
             character.fallingAfterImageSpawner.enabled = false;
 
-            collision.transform.position = new Vector3(collision.transform.position.x,topGround.transform.position.y);
+            collision.transform.position = new Vector3(collision.transform.position.x, topGround.transform.position.y);
 
             character.fallingAfterImageSpawner.enabled = true;
 
-            Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+        } else if (collision.CompareTag("Item"))
+        {
+            collision.transform.position = new Vector3(collision.transform.position.x, topGround.transform.position.y);
+        }
 
-            // ÁÂ¿ì ¼Óµµ°¡ °ÅÀÇ ¾øÀ» ¶§¸¸ Àû¿ë
-            if (Mathf.Abs(rb.linearVelocity.x) < 0.1f)
-            {
-                float xForce = Random.Range(-5f, 5f);
-                rb.AddForce(new Vector2(xForce, 0f), ForceMode2D.Impulse);
-            }
+        Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
+
+        // ì¢Œìš° ì†ë„ê°€ ê±°ì˜ ì—†ì„ ë•Œë§Œ ì ìš©
+        if (Mathf.Abs(rb.linearVelocity.x) < 0.1f)
+        {
+            float xForce = Random.Range(-5f, 5f);
+            rb.AddForce(new Vector2(xForce, 0f), ForceMode2D.Impulse);
         }
     }
 }
