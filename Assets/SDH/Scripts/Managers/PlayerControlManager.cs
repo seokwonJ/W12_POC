@@ -17,4 +17,10 @@ public class PlayerControlManager // 플레이어 관리
     private GameObject nowPlayer; // 현재 비행체 오브젝트
     public List<GameObject> Characters => characters;
     private List<GameObject> characters = new(); // 현재 영웅 오브젝트들
+
+    public void Reset()
+    {
+        nowPlayer = null;
+        characters = new();
+    }
 }
