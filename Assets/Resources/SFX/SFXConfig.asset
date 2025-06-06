@@ -30,10 +30,10 @@ MonoBehaviour:
     volume: 1
   - clipName: Jump
     clip: {fileID: 8300000, guid: dad8879f43315a64e928c5030324e35b, type: 3}
-    volume: 1
+    volume: 0.5
   - clipName: Landing
     clip: {fileID: 8300000, guid: 502e7d957861151469054e29f167986f, type: 3}
-    volume: 1
+    volume: 0.5
   - clipName: LeviAttack
     clip: {fileID: 8300000, guid: c49de2d5f33869d409c786ea21411931, type: 3}
     volume: 1
@@ -51,7 +51,7 @@ MonoBehaviour:
     volume: 1
   - clipName: NinjaSkillDuration
     clip: {fileID: 8300000, guid: c52c6afd16471d34f8456e23625e79a0, type: 3}
-    volume: 1
+    volume: 0.15
   - clipName: PlayerDash
     clip: {fileID: 8300000, guid: da3df7c0f02b3764691c692dba6c698d, type: 3}
     volume: 1
