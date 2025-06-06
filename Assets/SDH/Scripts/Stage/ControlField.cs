@@ -120,8 +120,8 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의�
         StopAllCoroutines();
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = enemys.Length - 1; i >= 0; i--) Destroy(enemys[i]);
-        GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
-        for (int i = projectiles.Length - 1; i >= 0; i--) Destroy(projectiles[i]);
+        GameObject[] enemyProjectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
+        for (int i = enemyProjectiles.Length - 1; i >= 0; i--) Destroy(enemyProjectiles[i]);
         GameObject[] playerProjectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
         for (int i = playerProjectiles.Length - 1; i >= 0; i--) Destroy(playerProjectiles[i]);
     }
