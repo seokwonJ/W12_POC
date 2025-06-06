@@ -5,18 +5,18 @@ using UnityEngine.UI;
 
 public class SetUpgradeCanvas : MonoBehaviour
 {
-    [SerializeField] Image icon0;
-    [SerializeField] TextMeshProUGUI name0;
-    [SerializeField] TextMeshProUGUI description0;
-    [SerializeField] Button button0;
-    [SerializeField] Image icon1;
-    [SerializeField] TextMeshProUGUI name1;
-    [SerializeField] TextMeshProUGUI description1;
-    [SerializeField] Button button1;
-    [SerializeField] Image icon2;
-    [SerializeField] TextMeshProUGUI name2;
-    [SerializeField] TextMeshProUGUI description2;
-    [SerializeField] Button button2;
+    [SerializeField] private Image icon0;
+    [SerializeField] private TextMeshProUGUI name0;
+    [SerializeField] private TextMeshProUGUI description0;
+    [SerializeField] private Button button0;
+    [SerializeField] private Image icon1;
+    [SerializeField] private TextMeshProUGUI name1;
+    [SerializeField] private TextMeshProUGUI description1;
+    [SerializeField] private Button button1;
+    [SerializeField] private Image icon2;
+    [SerializeField] private TextMeshProUGUI name2;
+    [SerializeField] private TextMeshProUGUI description2;
+    [SerializeField] private Button button2;
 
     public void SetUpgrades(GameObject character)
     {

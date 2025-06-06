@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections;
-using TMPro;
 using UnityEngine;
 // Random은 UnityEngine.Random으로 자동으로 사용하게
 
 public class StageManager // 씬 전환 관리 (전투-상점 등)
 {
     private StageSO[] stageTemplates; // 스테이지 구성 모음
+    public GameObject Coin => coin;
     private GameObject coin; // 전투 도중 떨어지는 골드 오브젝트
     public int World
     {
@@ -44,7 +44,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
             Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetPlayerStageEnd();
         }
     }
-    private bool onField = true; //true면 필드, false면 상점 이 변수가 호출되었다는 것은 스테이지나 상점이 끝났다는 의미
+    private bool onField = true; // true면 필드, false면 상점 이 변수가 호출되었다는 것은 스테이지나 상점이 끝났다는 의미
     public int EnemyTotalKill
     {
         get
