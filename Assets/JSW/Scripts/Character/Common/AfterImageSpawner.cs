@@ -46,10 +46,18 @@ public class AfterImageSpawner : MonoBehaviour
     void SpawnAfterImage()
     {
         GameObject clone = afterImagePool[poolIndex];
-        if (clone == null) Init();
-        clone.transform.position = transform.position;
-        clone.transform.rotation = transform.rotation;
-        clone.SetActive(true);
+        if (clone == null)
+        {
+            Init();
+            return;
+        }
+
+        else
+        {
+            clone.transform.position = transform.position;
+            clone.transform.rotation = transform.rotation;
+            clone.SetActive(true);
+        }
 
         poolIndex = (poolIndex + 1) % poolSize;
 

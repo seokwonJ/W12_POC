@@ -48,6 +48,7 @@ public class EnemyHP : MonoBehaviour
         }
         gameObject.tag = "Untagged"; // 사망시 태그 제거
         rb.linearVelocity = Vector2.zero; // 죽을 때 속도 초기화
+       
         StartCoroutine(CoDieEffect());
     }
     IEnumerator CoDamagedEffect()
