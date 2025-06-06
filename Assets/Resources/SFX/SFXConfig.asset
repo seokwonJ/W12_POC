@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d678dbaf70f86bd42a843640a7249a36, type: 3}
+  m_Name: SFXConfig
+  m_EditorClassIdentifier: 
+  sfxList:
+  - clipName: ArcherAttack
+    clip: {fileID: 8300000, guid: c0590182607cb7e4e9ef25e9e960f1fd, type: 3}
+    volume: 1
+  - clipName: ArcherSkill
+    clip: {fileID: 8300000, guid: bef982b74e1737145b024570cf265a94, type: 3}
+    volume: 1
+  - clipName: FoxAttack
+    clip: {fileID: 8300000, guid: 177e199f6fc17fa42afc47c4af8b4a31, type: 3}
+    volume: 1
+  - clipName: FoxSkill
+    clip: {fileID: 8300000, guid: d533c9953381d034a8ec9590e5f08a10, type: 3}
+    volume: 1
+  - clipName: HitSound
+    clip: {fileID: 8300000, guid: 42c62ad1d7d23b948bb0dda6581967a6, type: 3}
+    volume: 1
+  - clipName: Jump
+    clip: {fileID: 8300000, guid: dad8879f43315a64e928c5030324e35b, type: 3}
+    volume: 1
+  - clipName: Landing
+    clip: {fileID: 8300000, guid: 502e7d957861151469054e29f167986f, type: 3}
+    volume: 1
+  - clipName: LeviAttack
+    clip: {fileID: 8300000, guid: c49de2d5f33869d409c786ea21411931, type: 3}
+    volume: 1
+  - clipName: LeviDashStart
+    clip: {fileID: 8300000, guid: c911457a9e3b539469edab3840b80e4a, type: 3}
+    volume: 1
+  - clipName: LeviSkillAttack
+    clip: {fileID: 8300000, guid: fc749bfd3eaefb44a870a2ab3282d1b2, type: 3}
+    volume: 1
+  - clipName: NinjaAttack
+    clip: {fileID: 8300000, guid: 4e4bd087775273a48a1bca1ca3f8dcb0, type: 3}
+    volume: 1
+  - clipName: NinjaSkillActive
+    clip: {fileID: 8300000, guid: 000178ccd626be24b90c29832adadcf3, type: 3}
+    volume: 1
+  - clipName: NinjaSkillDuration
+    clip: {fileID: 8300000, guid: c52c6afd16471d34f8456e23625e79a0, type: 3}
+    volume: 1
+  - clipName: PlayerDash
+    clip: {fileID: 8300000, guid: da3df7c0f02b3764691c692dba6c698d, type: 3}
+    volume: 1
+  - clipName: PlayerHitSound
+    clip: {fileID: 8300000, guid: 621ba338b8be6f0499e622d07affbb79, type: 3}
+    volume: 0.118
+  - clipName: SkillReady
+    clip: {fileID: 8300000, guid: cfd20edbca108a6438ba08781fe8f0df, type: 3}
+    volume: 1

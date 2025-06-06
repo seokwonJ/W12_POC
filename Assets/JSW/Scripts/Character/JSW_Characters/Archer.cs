@@ -57,6 +57,7 @@ public class Archer : Character
             yield return new WaitForSeconds(skillFireDelay);
             FireSkillProjectiles();
             animator.Play("SKILL", -1, 0f);
+            SoundManager.Instance.PlaySFX("ArcherSkill");
             Instantiate(skillActive, transform.position, Quaternion.identity, transform);
             yield return new WaitForSeconds(skillInterval);
         }
