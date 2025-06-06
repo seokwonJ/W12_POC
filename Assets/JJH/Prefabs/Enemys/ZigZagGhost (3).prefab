@@ -150,7 +150,7 @@ MonoBehaviour:
   editorNote: 3
   movementSO: {fileID: 11400000, guid: f79b1cec03431fe439419d5e73ca4fc6, type: 2}
   attackSO: {fileID: 0}
-  speed: 7
+  speed: 8
   minPlayerDistance: 0
   isKnockbackable: 1
   isFilpping: 0
