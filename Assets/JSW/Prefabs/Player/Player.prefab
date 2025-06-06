@@ -610,7 +610,7 @@ Transform:
   m_GameObject: {fileID: 5927389573566095359}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.17400002, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.135, y: 0.135, z: 0.135}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -946,6 +946,7 @@ GameObject:
   - component: {fileID: 2287622558004937601}
   - component: {fileID: 7388656127770911106}
   - component: {fileID: 7303189143498480759}
+  - component: {fileID: 7617486408707418532}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -1045,7 +1046,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.022487164, y: 0.4289541}
+  m_Offset: {x: -0.022487164, y: 0.15744129}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -1055,7 +1056,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 3.260779, y: 0.3813768}
+  m_Size: {x: 3.260779, y: 0.4339277}
   m_EdgeRadius: 0
 --- !u!114 &2287622558004937601
 MonoBehaviour:
@@ -1071,6 +1072,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerHP_Image: {fileID: 0}
   hpBarObject: {fileID: 0}
+  rendererFlyer: {fileID: 0}
   hpBarPrefab: {fileID: 0}
   canvasTransform: {fileID: 0}
   hpBarOffset: {x: 0, y: 0, z: 0}
@@ -1105,6 +1107,22 @@ MonoBehaviour:
   dashSpeed: 20
   dashDuration: 0.2
   dashCooldown: 1
+--- !u!114 &7617486408707418532
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7323909054480937571}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54ef55d439d8a224092f387b8958981f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterImagePrefab: {fileID: 8777183884744099591, guid: ff809c6d567077e4cbffbec4147effaa, type: 3}
+  afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
+  spawnInterval: 0.02
+  poolSize: 20
 --- !u!1 &7328886787260068651
 GameObject:
   m_ObjectHideFlags: 0

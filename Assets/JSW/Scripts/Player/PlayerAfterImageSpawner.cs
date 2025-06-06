@@ -18,14 +18,7 @@ public class PlayerAfterImageSpawner : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        // 풀 초기화
-        afterImagePool = new GameObject[poolSize];
-        for (int i = 0; i < poolSize; i++)
-        {
-            GameObject clone = Instantiate(afterImagePrefab);
-            clone.SetActive(false);
-            afterImagePool[i] = clone;
-        }
+        Init();
     }
 
     void Update()
@@ -39,9 +32,28 @@ public class PlayerAfterImageSpawner : MonoBehaviour
         }
     }
 
+    void Init()
+    {
+        // 풀 초기화
+        afterImagePool = new GameObject[poolSize];
+        for (int i = 0; i < poolSize; i++)
+        {
+            GameObject clone = Instantiate(afterImagePrefab);
+            clone.SetActive(false);
+            afterImagePool[i] = clone;
+        }
+    }
+
+
     void SpawnAfterImage()
     {
         GameObject clone = afterImagePool[poolIndex];
+        if (clone == null)
+        {
+            Init();
+            return;
+        }
+
         clone.transform.position = transform.position;
         clone.transform.rotation = transform.rotation;
         clone.SetActive(true);
