@@ -64,3 +64,6 @@ MonoBehaviour:
   - clipName: PickUpItem
     clip: {fileID: 8300000, guid: bb6658f28052afa46af2c7890737f315, type: 3}
     volume: 1
+  - clipName: BlueDragonShootProjectile
+    clip: {fileID: 8300000, guid: ee21542d62a832e47a14ab794675a277, type: 3}
+    volume: 1
