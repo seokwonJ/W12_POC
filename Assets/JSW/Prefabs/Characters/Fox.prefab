@@ -3998,6 +3998,7 @@ GameObject:
   - component: {fileID: 2002880204878429790}
   - component: {fileID: 1280781568330686410}
   - component: {fileID: 3843504183935493478}
+  - component: {fileID: 2420911758232512809}
   m_Layer: 6
   m_Name: Fox
   m_TagString: Character
@@ -4186,6 +4187,19 @@ MonoBehaviour:
   afterImagePrefab: {fileID: 2010104840657968575, guid: 083384c8dd4d76649ac8505017ce8b0b, type: 3}
   spawnInterval: 0.05
   afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
+  poolSize: 20
+--- !u!210 &2420911758232512809
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2010104840657968575}
+  m_Enabled: 1
+  m_SortingLayerID: -673865093
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &2271618374476364355
 GameObject:
   m_ObjectHideFlags: 0
@@ -4490,7 +4504,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 6
+  m_SortingOrder: 7
   m_Sprite: {fileID: -6629070720298189932, guid: 8fa9fb17013e3458791bb1f2bfe2a76a, type: 3}
   m_Color: {r: 0.9882353, g: 0, b: 0, a: 1}
   m_FlipX: 0
@@ -5013,7 +5027,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5578927849435719520}
-  - component: {fileID: 7841610374220572597}
   - component: {fileID: 4116809875839684467}
   m_Layer: 0
   m_Name: UnitRoot
@@ -5039,18 +5052,6 @@ Transform:
   - {fileID: 8294126219101583}
   m_Father: {fileID: 5338052208532661414}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!210 &7841610374220572597
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4061167979469615854}
-  m_Enabled: 1
-  m_SortingLayerID: -673865093
-  m_SortingLayer: 2
-  m_SortingOrder: 5
-  m_SortAtRoot: 0
 --- !u!95 &4116809875839684467
 Animator:
   serializedVersion: 7

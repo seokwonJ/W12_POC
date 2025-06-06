@@ -41,7 +41,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         set
         {
             onField = value;
-            Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetPlayerStageEnd();
+            Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().StageEnd();
         }
     }
     private bool onField = true; // true면 필드, false면 상점 이 변수가 호출되었다는 것은 스테이지나 상점이 끝났다는 의미

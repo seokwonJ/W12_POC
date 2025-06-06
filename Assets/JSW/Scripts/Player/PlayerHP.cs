@@ -49,7 +49,6 @@ public class PlayerHP : MonoBehaviour
 
         if (Managers.Status.Hp <= 0)
         {
-            GetComponent<TmpPlayerControl>().GatherCharacters();
             Managers.SceneFlow.GameOver();
             if (hpBarObject != null) Destroy(hpBarObject);
         }

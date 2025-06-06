@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 컨트롤하는 스크립트
 {
@@ -18,7 +18,12 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         Managers.PlayerControl.NowPlayer = gameObject; // 관리용 오브젝트에 플레이어 설정. 현재 플레이어가 고정적으로 같이 실행이라 이걸 Awake에 안넣으면 코드가 꼬이는데, 나중에 매커니즘 변경하면서 Start로 옮길 것 @@@@@@@@@@@@@@@@@
     }
 
-    public void SetPlayerStageEnd()
+    public void StageEnd() // 필드나 상점이 끝났을 때 호출되는 함수
+    {
+        StartCoroutine(SetStageEnd());
+    }
+
+    private IEnumerator SetStageEnd() // 필드나 상점이 끝났을 때 연출
     {
         rb.bodyType = RigidbodyType2D.Static;
         playerMove.enabled = false;
@@ -27,16 +32,15 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         {
             character.GetComponent<Character>().EndFieldAct();
             character.GetComponent<Character>().enabled = false;
-            character.transform.SetParent(transform); // 부모 재설정 해줘야함
         }
 
         if (Managers.Stage.OnField) // 필드 돌입
         {
-            StartCoroutine(ShopEnd());
+             yield return StartCoroutine(ShopEnd());
         }
         else // 상점 돌입
         {
-            StartCoroutine(FieldEnd());
+            yield return StartCoroutine(FieldEnd());
         }
 
         rb.bodyType = RigidbodyType2D.Dynamic;
@@ -56,7 +60,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         {
             for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
             {
-                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(0.5f - i * 0.5f, 1.2f, 0f), nowTime / maxTime);
+                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(1.5f - i, 1.2f, 0f), nowTime / maxTime);
             }
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
@@ -64,10 +68,12 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
             yield return null;
         }
 
-        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++) // 오차가 있을 수 있으니 확실하게 보정
+        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
-            Managers.PlayerControl.Characters[i].transform.localPosition = new(0.5f - i * 0.5f, 1.2f, 0f);
+            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1.2f, 0f);
         }
+
+        yield return new WaitForSeconds(0.1f); // 대기시간
 
         StartCoroutine(Managers.SceneFlow.FadeOut(0.8f)); // 기본값 = 뒤로이동maxTime+앞으로이동maxTime+대기시간
 
@@ -106,7 +112,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         {
             for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
             {
-                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(0.5f - i * 0.5f, 1.2f, 0f), nowTime / maxTime);
+                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(1.5f - i, 1.2f, 0f), nowTime / maxTime);
             }
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
@@ -124,11 +130,26 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         yield break;
     }
 
-    public void GatherCharacters()
+    public void SetStartPosition() // 씬이 시작할 때 비행체와 캐릭터 위치 보정 + 레이어 순서 변경
     {
-        foreach (GameObject character in Managers.PlayerControl.Characters) // 집나간 캐릭터들 자식으로 불러오기 코드. 리스타트 버튼용 임시 함수임 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        transform.position = Vector3.zero;
+
+        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
-            character.transform.SetParent(transform);
+            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1.2f, 0f);
+            Managers.PlayerControl.Characters[i].transform.SetAsLastSibling();
+        }
+
+        SetOrderInLayer(null);
+    }
+
+    public void SetOrderInLayer(Transform character) // 캐릭터들이 점프하거나 착지할 때마다 레이어 순서 변경
+    {
+        character?.SetAsLastSibling();
+
+        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
+        {
+            Managers.PlayerControl.Characters[i].GetComponent<SortingGroup>().sortingOrder = Managers.PlayerControl.Characters[i].transform.GetSiblingIndex() + 3;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
@@ -119,7 +120,8 @@ public abstract class Character : MonoBehaviour
         fixedJoint.enabled = false;
 
         isGround = false;
-        transform.SetParent(null);
+        //transform.SetParent(null); 필요에 의해 DH가 지웠음
+        Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetOrderInLayer(transform);
         Managers.Status.RiderCount--;
 
         currentMP = 0;
@@ -184,6 +186,7 @@ public abstract class Character : MonoBehaviour
         animator.SetBool("5_Fall", false);
         animator.Play("IDLE", -1, 0f);
 
+        Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetOrderInLayer(transform);
         Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = collision.rigidbody;
