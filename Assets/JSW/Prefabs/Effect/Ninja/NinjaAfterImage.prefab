@@ -3995,7 +3995,7 @@ GameObject:
   - component: {fileID: 458411223712662763}
   - component: {fileID: 7267718605263430078}
   m_Layer: 6
-  m_Name: CharacterAfterImage
+  m_Name: NinjaAfterImage
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4042,7 +4042,7 @@ Animator:
   m_GameObject: {fileID: 2010104840657968575}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3ecf647ee8ce0974fbf6b3a0f469c604, type: 2}
+  m_Controller: {fileID: 9100000, guid: da7ed523a8559314faf00fc723240160, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5077,7 +5077,7 @@ Animator:
   m_GameObject: {fileID: 4061167979469615854}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 3ecf647ee8ce0974fbf6b3a0f469c604, type: 2}
+  m_Controller: {fileID: 9100000, guid: da7ed523a8559314faf00fc723240160, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

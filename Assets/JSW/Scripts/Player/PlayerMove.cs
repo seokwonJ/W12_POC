@@ -15,12 +15,13 @@ public class PlayerMove : MonoBehaviour
     private float dashCooldownTimer = 0f;
 
     private PlayerStatus _playerStatus;
-    private AfterImageSpawner DashAfterImageSpawner;
+    private PlayerAfterImageSpawner DashAfterImageSpawner;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         _playerStatus = GetComponent<PlayerStatus>();
-        DashAfterImageSpawner = GetComponent<AfterImageSpawner>();
+        DashAfterImageSpawner = GetComponent<PlayerAfterImageSpawner>();
     }
 
     void Update()

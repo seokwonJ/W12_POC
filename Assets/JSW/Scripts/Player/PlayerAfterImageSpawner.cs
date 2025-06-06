@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class AfterImageSpawner : MonoBehaviour
+public class PlayerAfterImageSpawner : MonoBehaviour
 {
     public GameObject afterImagePrefab;
     public Material afterImageMaterial;
@@ -32,7 +32,7 @@ public class AfterImageSpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (rb.linearVelocity.y < -5 && timer >= spawnInterval)
+        if (timer >= spawnInterval)
         {
             SpawnAfterImage();
             timer = 0f;
