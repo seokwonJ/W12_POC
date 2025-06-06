@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class EnemySpawnerDH : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의상 타이머 기능도 겸함 (EnemySpawnerJH.cs에서 가져옴)
+public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의상 타이머 기능도 겸함 (EnemySpawnerJH.cs에서 가져옴)
 {
     private const int MIN_RIGHT_SIDE_INDEX = 5; // 오른쪽 면에 있는 위치 인덱스의 최소값
     private const int MAX_RIGHT_SIDE_INDEX = 12; // 오른쪽 면에 있는 위치 인덱스의 최대값
@@ -115,12 +115,14 @@ public class EnemySpawnerDH : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편�
         }
     }
 
-    public void DeleteEnemy() // 스테이지 종료 시 모든 적과 투사체 제거
+    public void DeleteEnemy() // 스테이지 종료 시 모든 적과 적/아군 투사체 제거
     {
         StopAllCoroutines();
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
         for (int i = enemys.Length - 1; i >= 0; i--) Destroy(enemys[i]);
         GameObject[] projectiles = GameObject.FindGameObjectsWithTag("Projectile");
         for (int i = projectiles.Length - 1; i >= 0; i--) Destroy(projectiles[i]);
+        GameObject[] playerProjectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
+        for (int i = playerProjectiles.Length - 1; i >= 0; i--) Destroy(playerProjectiles[i]);
     }
 }

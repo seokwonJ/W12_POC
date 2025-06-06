@@ -17,7 +17,7 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
     {
         Managers.Cam.SetCameraController();
 
-        Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetStartPosition();
+        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetStartPosition();
 
         if (scene.name == "Field") FieldSceneLoaded();
         if (scene.name == "Shop") ShopSceneLoaded();

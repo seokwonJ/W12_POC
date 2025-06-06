@@ -201,7 +201,7 @@ public abstract class Character : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, enemyDetectRadius/2);
     }
 
-    public void EndFieldAct() // 필드전투가 종료될 때 실행
+    public virtual void EndFieldAct() // 필드전투가 종료될 때 실행
     {
         StopAllCoroutines();
 
