@@ -60,7 +60,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         {
             for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
             {
-                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(1.5f - i, 1.2f, 0f), nowTime / maxTime);
+                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(1.5f - i, 1f, 0f), nowTime / maxTime);
             }
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
@@ -70,7 +70,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
-            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1.2f, 0f);
+            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f);
         }
 
         yield return new WaitForSeconds(0.1f); // 대기시간
@@ -112,7 +112,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         {
             for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
             {
-                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(1.5f - i, 1.2f, 0f), nowTime / maxTime);
+                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(1.5f - i, 1f, 0f), nowTime / maxTime);
             }
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
@@ -136,7 +136,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
-            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1.2f, 0f);
+            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f);
             Managers.PlayerControl.Characters[i].transform.SetAsLastSibling();
         }
 
