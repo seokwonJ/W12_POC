@@ -58,6 +58,6 @@ public class StatusManager // 인게임 플레이 스탯 관리
     public void StartGame() // 게임 시작
     {
         gold = 0;
-        maxHp = 1;
+        maxHp = 100;
     }
 }

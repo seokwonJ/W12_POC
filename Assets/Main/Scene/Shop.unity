@@ -1565,7 +1565,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Enter\uD0A4\uB85C \uC120\uD0DD (\uC5C5\uADF8\uB808\uC774\uB4DC 100\uC6D0)"
+  m_text: "Enter\uD0A4\uB85C \uC120\uD0DD (\uC5C5\uADF8\uB808\uC774\uB4DC 100\uC6D0)\n\uC5C5\uADF8\uB808\uC774\uB4DC\uD558\uBA74
+    \uBC84\uADF8\uD130\uC9C0\uB2C8 \uD558\uC9C0\uB9C8\uC2DC\uC624"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 758a12e0a3825b14bae12a8eb55d7b64, type: 2}
   m_sharedMaterial: {fileID: 6035570881830436507, guid: 758a12e0a3825b14bae12a8eb55d7b64, type: 2}
