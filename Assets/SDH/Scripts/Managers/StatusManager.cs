@@ -1,9 +1,6 @@
-using TMPro;
-using UnityEditor.SceneManagement;
-using UnityEngine;
-using UnityEngine.LightTransport;
+ï»¿using TMPro;
 
-public class StatusManager // ÀÎ°ÔÀÓ ÇÃ·¹ÀÌ ½ºÅÈ °ü¸®
+public class StatusManager // ì¸ê²Œì„ í”Œë ˆì´ ìŠ¤íƒ¯ ê´€ë¦¬
 {
     public TextMeshProUGUI goldTxt;
 
@@ -16,10 +13,10 @@ public class StatusManager // ÀÎ°ÔÀÓ ÇÃ·¹ÀÌ ½ºÅÈ °ü¸®
         set
         {
             gold = value;
-            if (goldTxt != null) goldTxt.text = "°ñµå: " + gold.ToString();
+            if (goldTxt != null) goldTxt.text = "ê³¨ë“œ: " + gold.ToString();
         }
     }
-    private int gold; // ÀÎ°ÔÀÓ ÀçÈ­
+    private int gold; // ì¸ê²Œì„ ì¬í™”
     public float MaxHp
     {
         get
@@ -31,7 +28,7 @@ public class StatusManager // ÀÎ°ÔÀÓ ÇÃ·¹ÀÌ ½ºÅÈ °ü¸®
             maxHp = value;
         }
     }
-    private float maxHp; // ÀÎ°ÔÀÓ¿¡ ÁøÀÔÇÒ ¶§¸¶´Ù Àç¼³Á¤µÇ´Â Ã¼·Â°ª
+    private float maxHp; // ì¸ê²Œì„ì— ì§„ì…í•  ë•Œë§ˆë‹¤ ì¬ì„¤ì •ë˜ëŠ” ì²´ë ¥ê°’
     public float Hp
     {
         get
@@ -43,7 +40,7 @@ public class StatusManager // ÀÎ°ÔÀÓ ÇÃ·¹ÀÌ ½ºÅÈ °ü¸®
             hp = value;
         }
     }
-    private float hp; // ÀÎ°ÔÀÓ Ã¼·Â
+    private float hp; // ì¸ê²Œì„ ì²´ë ¥
     public int RiderCount
     {
         get
@@ -52,13 +49,13 @@ public class StatusManager // ÀÎ°ÔÀÓ ÇÃ·¹ÀÌ ½ºÅÈ °ü¸®
         }
         set
         {
-            if (value > riderCount) Managers.Cam.LandCharacter(); // ÂøÁöÇß´Ù¸é Ä«¸Ş¶ó Èçµé±â
+            if (value > riderCount) Managers.Cam.LandCharacter(); // ì°©ì§€í–ˆë‹¤ë©´ ì¹´ë©”ë¼ í”ë“¤ê¸°
             riderCount = value;
         }
     }
-    private int riderCount = 0; // ºñÇàÃ¼¿¡ Åº ÀÎ¿ø ¼ö
+    private int riderCount = 0; // ë¹„í–‰ì²´ì— íƒ„ ì¸ì› ìˆ˜
 
-    public void StartGame() // °ÔÀÓ ½ÃÀÛ
+    public void StartGame() // ê²Œì„ ì‹œì‘
     {
         gold = 0;
         maxHp = 100;

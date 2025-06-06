@@ -1,21 +1,20 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "WorriorUpgrade", menuName = "Upgrades/WorriorUpgrade")]
 public class WorriorUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackSpeed,       // ÀÏ¹İ °ø°İ ¼Óµµ Áõ°¡ (ÄğÅ¸ÀÓ °¨¼Ò)
-        AttackPower,       // °ø°İ·Â Áõ°¡
-        ManaRegen,         // ¸¶³ª ÃÊ´ç Áõ°¡·® Áõ°¡
-        NormalAttackSize,         // ÀÏ¹İ °ø°İ Å©±â Áõ°¡
-        NormalProjectileSpeed,    // ÀÏ¹İ°ø°İ Åõ»çÃ¼ ¼Óµµ Áõ°¡
-        FallSpeed,     // ¶³¾îÁö´Â ¼Óµµ Áõ°¡
-        SkillProjectileCount,   // ±Ã±Ø±â ³¯¸®´Â °¹¼ö Áõ°¡
-        NormalProjectileLifetime,       // ÀÏ¹İ°ø°İ ¶óÀÌÇÁÅ¸ÀÓ Áõ°¡
-        CollisionOnFallDamage,        // ¶³¾îÁö¸é¼­ Àû°ú ºÎµúÈú °æ¿ì µ¥¹ÌÁö ÀÔÈû 
-        ShipDamageReduction         // ¹è¿¡ Å¸ÀÖÀ¸¸é ¹è°¡ ¹Ş´Â µ¥¹ÌÁö ÇÇÇØ ÁÙ¿©ÁÜ
+        AttackSpeed,       // ì¼ë°˜ ê³µê²© ì†ë„ ì¦ê°€ (ì¿¨íƒ€ì„ ê°ì†Œ)
+        AttackPower,       // ê³µê²©ë ¥ ì¦ê°€
+        ManaRegen,         // ë§ˆë‚˜ ì´ˆë‹¹ ì¦ê°€ëŸ‰ ì¦ê°€
+        NormalAttackSize,         // ì¼ë°˜ ê³µê²© í¬ê¸° ì¦ê°€
+        NormalProjectileSpeed,    // ì¼ë°˜ê³µê²© íˆ¬ì‚¬ì²´ ì†ë„ ì¦ê°€
+        FallSpeed,     // ë–¨ì–´ì§€ëŠ” ì†ë„ ì¦ê°€
+        SkillProjectileCount,   // ê¶ê·¹ê¸° ë‚ ë¦¬ëŠ” ê°¯ìˆ˜ ì¦ê°€
+        NormalProjectileLifetime,       // ì¼ë°˜ê³µê²© ë¼ì´í”„íƒ€ì„ ì¦ê°€
+        CollisionOnFallDamage,        // ë–¨ì–´ì§€ë©´ì„œ ì ê³¼ ë¶€ë”ªí ê²½ìš° ë°ë¯¸ì§€ ì…í˜ 
+        ShipDamageReduction         // ë°°ì— íƒ€ìˆìœ¼ë©´ ë°°ê°€ ë°›ëŠ” ë°ë¯¸ì§€ í”¼í•´ ì¤„ì—¬ì¤Œ
     }
     public UpgradeType type;
     public float value;
@@ -27,25 +26,25 @@ public class WorriorUpgrade : CharacterUpgrade
         switch (type)
         {
             case UpgradeType.AttackSpeed:
-                worrior.normalFireInterval -= 1f;              // °ø°İ ÄğÅ¸ÀÓ 1ÃÊ °¨¼Ò
+                worrior.normalFireInterval -= 1f;              // ê³µê²© ì¿¨íƒ€ì„ 1ì´ˆ ê°ì†Œ
                 Debug.Log("Debug0 Worrior");
                 break;
             case UpgradeType.AttackPower:
-                worrior.attackDamage += 10;                    // ad 10 Áõ°¡
+                worrior.attackDamage += 10;                    // ad 10 ì¦ê°€
                 Debug.Log("Debug1 Worrior");
                 worrior.upgradeNum = 1;
                 break;
-            case UpgradeType.ManaRegen:                      // ÃÊ´ç mp Áõ°¡·® 3Áõ°¡
+            case UpgradeType.ManaRegen:                      // ì´ˆë‹¹ mp ì¦ê°€ëŸ‰ 3ì¦ê°€
                 worrior.mpPerSecond += 3;
                 Debug.Log("Debug2 Worrior");
                 worrior.upgradeNum = 2;
                 break;
-            case UpgradeType.NormalAttackSize:                     // nomalAttackSize  1.5¹è Áõ°¡
+            case UpgradeType.NormalAttackSize:                     // nomalAttackSize  1.5ë°° ì¦ê°€
                 worrior.nomalAttackSize *= 1.5f;
                 Debug.Log("Debug3 Worrior");
                 worrior.upgradeNum = 3;
                 break;
-            case UpgradeType.NormalProjectileSpeed:                    // Åõ»çÃ¼ ¼Óµµ 15Áõ°¡
+            case UpgradeType.NormalProjectileSpeed:                    // íˆ¬ì‚¬ì²´ ì†ë„ 15ì¦ê°€
                 worrior.projectileSpeed += 15;
                 Debug.Log("Debug9 Worrior");
                 worrior.upgradeNum = 4;
@@ -55,28 +54,28 @@ public class WorriorUpgrade : CharacterUpgrade
                 Debug.Log("Debug4 Worrior");
                 worrior.upgradeNum = 5;
                 break;
-            case UpgradeType.SkillProjectileCount:                 // ½ºÅ³ È½¼ö°¡ +2 Áõ°¡
+            case UpgradeType.SkillProjectileCount:                 // ìŠ¤í‚¬ íšŸìˆ˜ê°€ +2 ì¦ê°€
                 worrior.skillCount += 2;
                 Debug.Log("Debug5 Worrior");
                 worrior.upgradeNum = 5;
                 break;
-            case UpgradeType.NormalProjectileLifetime:               // attack»ıÁ¸½Ã°£ 3ÇÃ·¯½º
+            case UpgradeType.NormalProjectileLifetime:               // attackìƒì¡´ì‹œê°„ 3í”ŒëŸ¬ìŠ¤
                 worrior.nomalAttackLifetime += 3;
                 Debug.Log("Debug6 Worrior");
                 worrior.upgradeNum = 7;
                 break;
-            case UpgradeType.CollisionOnFallDamage:                   //  ¶³¾îÁö¸é¼­ Àû°ú ºÎµúÈú °æ¿ì µ¥¹ÌÁö ÀÔÈû true·Î ¹Ù²ãÁÜ
+            case UpgradeType.CollisionOnFallDamage:                   //  ë–¨ì–´ì§€ë©´ì„œ ì ê³¼ ë¶€ë”ªí ê²½ìš° ë°ë¯¸ì§€ ì…í˜ trueë¡œ ë°”ê¿”ì¤Œ
                 worrior.isfallingCanAttack = true;
                 Debug.Log("Debug7 Worrior");
                 worrior.upgradeNum = 8;
                 break;
-            case UpgradeType.ShipDamageReduction:                    // ¹è¿¡ Å¸ÀÖÀ¸¸é ¹è°¡ ¹Ş´Â µ¥¹ÌÁö ÇÇÇØ ÁÙ¿©ÁÜ true·Î ¹Ù²ãÁÜ
+            case UpgradeType.ShipDamageReduction:                    // ë°°ì— íƒ€ìˆìœ¼ë©´ ë°°ê°€ ë°›ëŠ” ë°ë¯¸ì§€ í”¼í•´ ì¤„ì—¬ì¤Œ trueë¡œ ë°”ê¿”ì¤Œ
                 worrior.isShieldFlyer = true;
                 Debug.Log("Debug8 Worrior");
                 worrior.upgradeNum = 9;
                 break;
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

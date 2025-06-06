@@ -1,21 +1,20 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "TankerUpgrade", menuName = "Upgrades/TankerUpgrade")]
 public class TankerUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackSpeed,       // ÀÏ¹İ °ø°İ ¼Óµµ Áõ°¡ (ÄğÅ¸ÀÓ °¨¼Ò)
-        AttackPower,       // °ø°İ·Â Áõ°¡
-        ManaRegen,         // ¸¶³ª ÃÊ´ç Áõ°¡·® Áõ°¡
-        FallSpeed,          // ¶³¾îÁö´Â ¼Óµµ Áõ°¡
-        SkillExpansion,      // ½ºÅ³ ¹üÀ§ Áõ°¡
-        FallingSpeedToSkillDamage,     // ¶³¾îÁö´Â ¼Óµµ°¡ ºü¸¦¼ö·Ï ½ºÅ³ µ¥¹ÌÁö Áõ°¡
-        NomalAttackKnockback,       // ÀÏ¹İ°ø°İ ³Ë¹é °­ÇØÁü
-        ShipDamageReduction,       // ¹è¿¡ Å¸ÀÖÀ¸¸é ¹è°¡ ¹Ş´Â µ¥¹ÌÁö ÇÇÇØ ÁÙ¿©ÁÜ
-        HitSkillPerGetMana,        // ¹Ğ·Á³­ ÀûÀÇ ¼ö¸¸Å­ ¸¶³ª È¹µæ
-        CloserMoreDamage         // °Å¸®°¡ °¡±î¿ï ¼ö·Ï µ¥¹ÌÁö ´õ µé¾î°¨
+        AttackSpeed,       // ì¼ë°˜ ê³µê²© ì†ë„ ì¦ê°€ (ì¿¨íƒ€ì„ ê°ì†Œ)
+        AttackPower,       // ê³µê²©ë ¥ ì¦ê°€
+        ManaRegen,         // ë§ˆë‚˜ ì´ˆë‹¹ ì¦ê°€ëŸ‰ ì¦ê°€
+        FallSpeed,          // ë–¨ì–´ì§€ëŠ” ì†ë„ ì¦ê°€
+        SkillExpansion,      // ìŠ¤í‚¬ ë²”ìœ„ ì¦ê°€
+        FallingSpeedToSkillDamage,     // ë–¨ì–´ì§€ëŠ” ì†ë„ê°€ ë¹ ë¥¼ìˆ˜ë¡ ìŠ¤í‚¬ ë°ë¯¸ì§€ ì¦ê°€
+        NomalAttackKnockback,       // ì¼ë°˜ê³µê²© ë„‰ë°± ê°•í•´ì§
+        ShipDamageReduction,       // ë°°ì— íƒ€ìˆìœ¼ë©´ ë°°ê°€ ë°›ëŠ” ë°ë¯¸ì§€ í”¼í•´ ì¤„ì—¬ì¤Œ
+        HitSkillPerGetMana,        // ë°€ë ¤ë‚œ ì ì˜ ìˆ˜ë§Œí¼ ë§ˆë‚˜ íšë“
+        CloserMoreDamage         // ê±°ë¦¬ê°€ ê°€ê¹Œìš¸ ìˆ˜ë¡ ë°ë¯¸ì§€ ë” ë“¤ì–´ê°
     }
 
     public UpgradeType type;
@@ -26,57 +25,57 @@ public class TankerUpgrade : CharacterUpgrade
         Tanker tanker = character.GetComponent<Tanker>();
         switch (type)
         {
-            case UpgradeType.AttackSpeed:               // ÀÏ¹İ °ø°İ ¼Óµµ Áõ°¡ (ÄğÅ¸ÀÓ °¨¼Ò)
+            case UpgradeType.AttackSpeed:               // ì¼ë°˜ ê³µê²© ì†ë„ ì¦ê°€ (ì¿¨íƒ€ì„ ê°ì†Œ)
                 tanker.normalFireInterval -= 0.5f;             
                 Debug.Log("Debug0 Tanker");
                 break;
-            case UpgradeType.AttackPower:               // °ø°İ·Â Áõ°¡
+            case UpgradeType.AttackPower:               // ê³µê²©ë ¥ ì¦ê°€
                 tanker.attackDamage += 10;                
                 Debug.Log("Debug1 Tanker");
                 tanker.upgradeNum = 1;
                 break;
-            case UpgradeType.ManaRegen:                 // ¸¶³ª ÃÊ´ç Áõ°¡·® Áõ°¡  
+            case UpgradeType.ManaRegen:                 // ë§ˆë‚˜ ì´ˆë‹¹ ì¦ê°€ëŸ‰ ì¦ê°€  
                 tanker.mpPerSecond += 3;
                 Debug.Log("Debug2 Tanker");
                 tanker.upgradeNum = 2;
                 break;
-            case UpgradeType.FallSpeed:                  // ¶³¾îÁö´Â ¼Óµµ Áõ°¡
+            case UpgradeType.FallSpeed:                  // ë–¨ì–´ì§€ëŠ” ì†ë„ ì¦ê°€
                 tanker.maxFallSpeed += 10;
                 Debug.Log("Debug3 Tanker");
                 tanker.upgradeNum = 3;
                 break;
-            case UpgradeType.SkillExpansion:            // ½ºÅ³ ¹üÀ§ Áõ°¡
+            case UpgradeType.SkillExpansion:            // ìŠ¤í‚¬ ë²”ìœ„ ì¦ê°€
                 tanker.skillRange += 3;
                 Debug.Log("Debug9 Tanker");
                 tanker.upgradeNum = 4;
                 break;
-            case UpgradeType.FallingSpeedToSkillDamage:     // ¶³¾îÁö´Â ¼Óµµ°¡ ºü¸¦¼ö·Ï ½ºÅ³ µ¥¹ÌÁö Áõ°¡
+            case UpgradeType.FallingSpeedToSkillDamage:     // ë–¨ì–´ì§€ëŠ” ì†ë„ê°€ ë¹ ë¥¼ìˆ˜ë¡ ìŠ¤í‚¬ ë°ë¯¸ì§€ ì¦ê°€
                 tanker.isFallingSpeedToSkillDamage = true;
                 Debug.Log("Debug4 Tanker");
                 tanker.upgradeNum = 5;
                 break;
-            case UpgradeType.NomalAttackKnockback:          // ÀÏ¹İ°ø°İ ³Ë¹é °­ÇØÁü      
+            case UpgradeType.NomalAttackKnockback:          // ì¼ë°˜ê³µê²© ë„‰ë°± ê°•í•´ì§      
                 tanker.knockBackpower += 10;
                 Debug.Log("Debug5 Tanker");
                 tanker.upgradeNum = 5;
                 break;
-            case UpgradeType.ShipDamageReduction:           // ¹è¿¡ Å¸ÀÖÀ¸¸é ¹è°¡ ¹Ş´Â µ¥¹ÌÁö ÇÇÇØ ÁÙ¿©ÁÜ 
+            case UpgradeType.ShipDamageReduction:           // ë°°ì— íƒ€ìˆìœ¼ë©´ ë°°ê°€ ë°›ëŠ” ë°ë¯¸ì§€ í”¼í•´ ì¤„ì—¬ì¤Œ 
                 tanker.isShieldFlyer = true;
                 Debug.Log("Debug6 Tanker");
                 tanker.upgradeNum = 7;
                 break;
-            case UpgradeType.HitSkillPerGetMana:            // ¹Ğ·Á³­ ÀûÀÇ ¼ö¸¸Å­ ¸¶³ª È¹µæ         
+            case UpgradeType.HitSkillPerGetMana:            // ë°€ë ¤ë‚œ ì ì˜ ìˆ˜ë§Œí¼ ë§ˆë‚˜ íšë“         
                 tanker.isHitSkillPerGetMana = true;
                 Debug.Log("Debug7 Tanker");
                 tanker.upgradeNum = 8;
                 break;
-            case UpgradeType.CloserMoreDamage:               // °Å¸®°¡ °¡±î¿ï ¼ö·Ï µ¥¹ÌÁö ´õ µé¾î°¨
+            case UpgradeType.CloserMoreDamage:               // ê±°ë¦¬ê°€ ê°€ê¹Œìš¸ ìˆ˜ë¡ ë°ë¯¸ì§€ ë” ë“¤ì–´ê°
                 tanker.isCloserMoreDamage = true;
                 Debug.Log("Debug8 Tanker");
                 tanker.upgradeNum = 9;
                 break;
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

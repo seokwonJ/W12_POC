@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using UnityEditor.Build;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,7 +10,7 @@ public class JSW_UpgradeManager : MonoBehaviour
     public GameObject character1;
     public GameObject character2;
 
-    [Header("±Ã¼ö")]
+    [Header("ê¶ìˆ˜")]
     public Image icon;
     public Text naming;
     public Text description;
@@ -29,7 +28,7 @@ public class JSW_UpgradeManager : MonoBehaviour
 
 
 
-    [Header("Àü»ç")]
+    [Header("ì „ì‚¬")]
     public Image wicon;
     public Text wnaming;
     public Text wdescription;
@@ -63,8 +62,8 @@ public class JSW_UpgradeManager : MonoBehaviour
 
     private void Start()
     {
-        // Ä³¸¯ÅÍ¸¶´Ù upgradeController°¡ ÀÖÀ¸¸ç °Å±â¿¡ Á¢±ÙÇØ¼­ ¾÷±×·¹ÀÌµå ¶ç¿öÁÖ¸é µÊ
-        // ·¹º§¾÷Àº ¾ÆÁ÷ ¾øÀ¸´Ï ·¹º§¾÷Çß´Ù°í »ı°¢ÇÏ°í ÇÏ¸é µÉµí
+        // ìºë¦­í„°ë§ˆë‹¤ upgradeControllerê°€ ìˆìœ¼ë©° ê±°ê¸°ì— ì ‘ê·¼í•´ì„œ ì—…ê·¸ë ˆì´ë“œ ë„ì›Œì£¼ë©´ ë¨
+        // ë ˆë²¨ì—…ì€ ì•„ì§ ì—†ìœ¼ë‹ˆ ë ˆë²¨ì—…í–ˆë‹¤ê³  ìƒê°í•˜ê³  í•˜ë©´ ë ë“¯
 
         _ShowUpgrades = character1.GetComponent<UpgradeController>().ShowUpgradeChoices();
 
@@ -112,10 +111,10 @@ public class JSW_UpgradeManager : MonoBehaviour
     //    _availableUpgrades = allUpgrades.Except(_acquiredUpgrades).ToList();
     //    var choices = _availableUpgrades.OrderBy(x => Random.value).Take(3).ToList();
 
-    //    // UI¿¡ ¶ç¿ì°í ¼±ÅÃÇÏ°Ô ÇÔ
+    //    // UIì— ë„ìš°ê³  ì„ íƒí•˜ê²Œ í•¨
     //    foreach (var upgrade in choices)
     //    {
-    //        // upgrade.upgradeName, upgrade.description, upgrade.icon À¸·Î UI ±¸¼º
+    //        // upgrade.upgradeName, upgrade.description, upgrade.icon ìœ¼ë¡œ UI êµ¬ì„±
     //    }
     //}
 
