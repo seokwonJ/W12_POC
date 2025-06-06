@@ -3995,7 +3995,7 @@ GameObject:
   - component: {fileID: 458411223712662763}
   - component: {fileID: 7267718605263430078}
   m_Layer: 6
-  m_Name: Fox 1
+  m_Name: CharacterAfterImage
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4030,7 +4030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0e9272fb2a204babcff73f67e3d69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fadeDuration: 0.3
+  fadeDuration: 0.2
   animator: {fileID: 4116809875839684467}
 --- !u!95 &7267718605263430078
 Animator:

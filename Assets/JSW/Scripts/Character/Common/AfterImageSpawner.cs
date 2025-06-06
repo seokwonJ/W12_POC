@@ -1,10 +1,10 @@
 using UnityEngine;
 
-public class FallingAfterImageSpawner : MonoBehaviour
+public class AfterImageSpawner : MonoBehaviour
 {
     public GameObject afterImagePrefab;
-    public float spawnInterval = 0.02f;
     public Material afterImageMaterial;
+    public float spawnInterval = 0.02f;
 
     private float timer;
     private Rigidbody2D rb;
@@ -32,7 +32,7 @@ public class FallingAfterImageSpawner : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (rb.linearVelocity.y < -0.1f && timer >= spawnInterval)
+        if (rb.linearVelocity.y < -5 && timer >= spawnInterval)
         {
             SpawnAfterImage();
             timer = 0f;

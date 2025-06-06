@@ -34,7 +34,7 @@ public abstract class Character : MonoBehaviour
     [Header("VFX")]
     public GameObject skillReadyEffect;
     public GameObject skillJumpEffect;
-    public FallingAfterImageSpawner fallingAfterImageSpawner;
+    public AfterImageSpawner fallingAfterImageSpawner;
     
 
     protected Rigidbody2D rb;

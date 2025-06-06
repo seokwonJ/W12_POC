@@ -1,17 +1,21 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerHP : MonoBehaviour
 {
     public Image playerHP_Image;
-    private PlayerStatus _playerStatus;
     [HideInInspector]
     public GameObject hpBarObject;
+    public Renderer rendererFlyer;
 
     // 추가: HPBar 프리팹과 캔버스 Transform을 Inspector에서 할당
     public GameObject hpBarPrefab;
     public Transform canvasTransform;
     public Vector3 hpBarOffset;
+
+    private PlayerStatus _playerStatus;
+    private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -41,6 +45,7 @@ public class PlayerHP : MonoBehaviour
             float fill = Managers.Status.Hp / Managers.Status.MaxHp;
             playerHP_Image.fillAmount = fill;
             Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
+            StartCoroutine(CoDamagedEffect());
         }
         else
         {
@@ -53,4 +58,11 @@ public class PlayerHP : MonoBehaviour
             if (hpBarObject != null) Destroy(hpBarObject);
         }
     }
+    IEnumerator CoDamagedEffect()
+    {
+        rendererFlyer.material.EnableKeyword("_ISFLASHED");
+        yield return flashDuration;
+        rendererFlyer.material.DisableKeyword("_ISFLASHED");
+    }
+
 }
