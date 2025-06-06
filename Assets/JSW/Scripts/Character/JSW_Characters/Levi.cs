@@ -271,7 +271,7 @@ public class Levi : Character
 
     public override void EndFieldAct() // 필드전투가 종료될 때 실행
     {
-        trail.GetComponent<TrailRenderer>().enabled = false;
         base.EndFieldAct();
+        trail.GetComponent<TrailRenderer>().enabled = false;
     }
 }

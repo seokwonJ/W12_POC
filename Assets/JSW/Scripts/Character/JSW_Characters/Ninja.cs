@@ -154,20 +154,21 @@ public class Ninja : Character
 
     public override void EndFieldAct() // 필드전투가 종료될 때 실행
     {
+        base.EndFieldAct();
+
         if (isSkillActive == true)
         {
             Debug.Log("공격력 돌아옴");
             attackDamage -= skillPower;
             normalFireInterval *= skillAttackSpeed;
+            isSkillActive = false;
             isSkilling = false;
+        }
+        if (activeParticle != null)
+        {
             Destroy(activeParticle);
         }
 
-        if (isSkillLanding)
-        {
-            isSkillLanding = false;
-        }
-
-        base.EndFieldAct();
+        isSkillLanding = false;
     }
 }
