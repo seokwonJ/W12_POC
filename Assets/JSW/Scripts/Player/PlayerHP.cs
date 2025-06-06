@@ -15,7 +15,9 @@ public class PlayerHP : MonoBehaviour
     public Vector3 hpBarOffset;
 
     private PlayerStatus _playerStatus;
+    private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -45,7 +47,9 @@ public class PlayerHP : MonoBehaviour
             float fill = Managers.Status.Hp / Managers.Status.MaxHp;
             playerHP_Image.fillAmount = fill;
             Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
-            StartCoroutine(CoDamagedEffect());
+            
+            if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+            flashCoroutine = StartCoroutine(CoDamagedEffect());
         }
         else
         {
@@ -58,11 +62,11 @@ public class PlayerHP : MonoBehaviour
             if (hpBarObject != null) Destroy(hpBarObject);
         }
     }
+
     IEnumerator CoDamagedEffect()
     {
         rendererFlyer.material.EnableKeyword("_ISFLASHED");
         yield return flashDuration;
         rendererFlyer.material.DisableKeyword("_ISFLASHED");
     }
-
 }
