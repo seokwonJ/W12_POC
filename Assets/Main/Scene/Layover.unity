@@ -852,7 +852,7 @@ MonoBehaviour:
   characters:
   - {fileID: 1719247989}
   - {fileID: 1575090223}
-  - {fileID: 0}
+  - {fileID: 1859407496}
   - {fileID: 1538498073}
 --- !u!1 &1434095128
 GameObject:
@@ -1418,6 +1418,11 @@ PrefabInstance:
 --- !u!4 &1859407495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2203849580821667185, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
+  m_PrefabInstance: {fileID: 1859407494}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1859407496 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2010104840657968575, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
   m_PrefabInstance: {fileID: 1859407494}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1865555352

@@ -15,11 +15,12 @@ public class PlayerMove : MonoBehaviour
     private float dashCooldownTimer = 0f;
 
     private PlayerStatus _playerStatus;
-
+    private AfterImageSpawner DashAfterImageSpawner;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         _playerStatus = GetComponent<PlayerStatus>();
+        DashAfterImageSpawner = GetComponent<AfterImageSpawner>();
     }
 
     void Update()
@@ -40,6 +41,9 @@ public class PlayerMove : MonoBehaviour
         // 스페이스 누르면 대시 시작
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing && dashCooldownTimer <= 0)
         {
+            DashAfterImageSpawner.enabled = true;
+
+            Managers.Cam.DashPlayer();
             SoundManager.Instance.PlaySFX("PlayerDash");
             isDashing = true;
             dashTimer = dashDuration;
@@ -51,11 +55,13 @@ public class PlayerMove : MonoBehaviour
     {
         if (isDashing)
         {
+
             rb.linearVelocity = moveInput * dashSpeed;
             dashTimer -= Time.fixedDeltaTime;
 
             if (dashTimer <= 0f)
             {
+                DashAfterImageSpawner.enabled = false;
                 isDashing = false;
             }
         }

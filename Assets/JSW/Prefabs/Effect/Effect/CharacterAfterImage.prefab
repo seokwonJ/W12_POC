@@ -3995,7 +3995,7 @@ GameObject:
   - component: {fileID: 458411223712662763}
   - component: {fileID: 7267718605263430078}
   m_Layer: 6
-  m_Name: Fox 1
+  m_Name: CharacterAfterImage
   m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

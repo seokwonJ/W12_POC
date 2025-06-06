@@ -16,4 +16,10 @@ public class CameraManager
         cameraController.SetOrthographicSize(0.1f);
         cameraController.StartShake(0.1f, 0.1f);
     }
+
+    public void DashPlayer() // 플레이어가 대쉬할 때
+    {
+        cameraController.SetOrthographicSize(0.05f);
+        cameraController.StartShake(0.05f, 0.05f);
+    }
 }
