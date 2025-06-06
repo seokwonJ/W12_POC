@@ -25,7 +25,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4258908328404886801}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.388609, y: 10.064329, z: 0.08697282}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -48,6 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sfxSource: {fileID: 1404482054701137499}
   bgmSource: {fileID: 3365197863934712470}
+  sfxConfigs:
+  - {fileID: 11400000, guid: 02a995e8ac8b26841b85a1c7963410e4, type: 2}
 --- !u!1 &7590852578739044914
 GameObject:
   m_ObjectHideFlags: 0

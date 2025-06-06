@@ -16,7 +16,7 @@ public class StatusManager // 인게임 플레이 스탯 관리
         set
         {
             gold = value;
-            if (goldTxt != null) goldTxt.text = gold.ToString();
+            if (goldTxt != null) goldTxt.text = "골드: " + gold.ToString();
         }
     }
     private int gold; // 인게임 재화

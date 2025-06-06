@@ -61,3 +61,6 @@ MonoBehaviour:
   - clipName: SkillReady
     clip: {fileID: 8300000, guid: cfd20edbca108a6438ba08781fe8f0df, type: 3}
     volume: 1
+  - clipName: PickUpItem
+    clip: {fileID: 8300000, guid: bb6658f28052afa46af2c7890737f315, type: 3}
+    volume: 1
