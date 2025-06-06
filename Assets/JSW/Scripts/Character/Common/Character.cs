@@ -214,5 +214,6 @@ public abstract class Character : MonoBehaviour
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
         fallingAfterImageSpawner.enabled = false;
+        isSkillActive = false;
     }
 }
