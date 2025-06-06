@@ -109,12 +109,14 @@ public class Ninja : Character
         }
     }
 
+    private GameObject activeParticle;
+
     IEnumerator PowerUp(int power)
     {
         SoundManager.Instance.PlaySFX("NinjaSkillActive");
         SoundManager.Instance.PlaySFX("NinjaSkillDuration");
 
-        GameObject activeParticle = Instantiate(skillLandingActive,transform.position,Quaternion.identity,transform);
+        activeParticle = Instantiate(skillLandingActive,transform.position,Quaternion.identity,transform);
         isSkilling = true;
         attackDamage += power;
         normalFireInterval /= skillAttackSpeed;
@@ -148,5 +150,24 @@ public class Ninja : Character
             }
         }
         return nearest;
+    }
+
+    public override void EndFieldAct() // 필드전투가 종료될 때 실행
+    {
+        if (isSkillActive == true)
+        {
+            Debug.Log("공격력 돌아옴");
+            attackDamage -= skillPower;
+            normalFireInterval *= skillAttackSpeed;
+            isSkilling = false;
+            Destroy(activeParticle);
+        }
+
+        if (isSkillLanding)
+        {
+            isSkillLanding = false;
+        }
+
+        base.EndFieldAct();
     }
 }

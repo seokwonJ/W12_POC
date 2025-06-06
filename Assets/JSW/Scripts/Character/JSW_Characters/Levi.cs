@@ -9,7 +9,6 @@ public class Levi : Character
     public float NormalAttackProjectileDuration = 2f;
 
     [Header("스킬")]
-    public bool isSkillLanding;
     public int skillDamage;
     public float skillTargetCount;
     public float skillInterval = 0.3f;
@@ -268,5 +267,11 @@ public class Levi : Character
 
             yield return null;
         }
+    }
+
+    public override void EndFieldAct() // 필드전투가 종료될 때 실행
+    {
+        trail.GetComponent<TrailRenderer>().enabled = false;
+        base.EndFieldAct();
     }
 }
