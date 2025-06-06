@@ -139,8 +139,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffba102fd3208d64491a253e92e248ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TextPrefab: {fileID: 216451065445295477, guid: 230ad50354b33ee4e8aab78be7ad9b07, type: 3}
   value: 10
-  maxFallSpeed: 5
 --- !u!95 &2355390833063988389
 Animator:
   serializedVersion: 7
