@@ -130,6 +130,7 @@ GameObject:
   - component: {fileID: 24122727}
   - component: {fileID: 24122729}
   - component: {fileID: 24122728}
+  - component: {fileID: 24122730}
   m_Layer: 10
   m_Name: PlayerLeftWall
   m_TagString: Untagged
@@ -253,6 +254,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &24122730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 24122726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca0dd4bd028e93468da17eb2cae39c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &52021026
 GameObject:
   m_ObjectHideFlags: 0
@@ -4668,6 +4681,7 @@ GameObject:
   - component: {fileID: 1530832346}
   - component: {fileID: 1530832348}
   - component: {fileID: 1530832347}
+  - component: {fileID: 1530832349}
   m_Layer: 10
   m_Name: PlayerRightWall
   m_TagString: Untagged
@@ -4791,6 +4805,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1530832349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1530832345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca0dd4bd028e93468da17eb2cae39c8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1540373215
 GameObject:
   m_ObjectHideFlags: 0
@@ -7059,6 +7085,10 @@ PrefabInstance:
     - target: {fileID: 899013619416097568, guid: eb6457b4152b456428832c0fe5a3c0e0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1404482054701137499, guid: eb6457b4152b456428832c0fe5a3c0e0, type: 3}
+      propertyPath: m_Volume
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 4258908328404886801, guid: eb6457b4152b456428832c0fe5a3c0e0, type: 3}
       propertyPath: m_Name
