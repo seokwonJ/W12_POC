@@ -79,7 +79,6 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         set
         {
             curEnemyCount = value;
-            Debug.Log($"현재 스테이지 남아있는 적 수: {curEnemyCount}");
         }
     }
     private int curEnemyCount; // 현재 스테이지에서 남아있는 적 수
