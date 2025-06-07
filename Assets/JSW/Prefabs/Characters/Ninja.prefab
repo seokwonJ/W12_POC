@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c79f49d07bb636499169165a7e479a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxMP: 100
+  maxMP: 150
   mpPerSecond: 8
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 6537457085924451293, guid: 9b656dfe2bb050f48b58b7c7a95bcf44, type: 3}
