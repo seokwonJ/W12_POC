@@ -8,6 +8,18 @@ public class StatusManager // 인게임 플레이 스탯 관리
     // 추가: HP 변경 이벤트
     public event Action OnHpChanged;
 
+    public int DamagePlus
+    {
+        get
+        {
+            return damagePlus;
+        }
+        set
+        {
+            damagePlus = value;
+        }
+    }
+    private int damagePlus; // 모든 동료에게 영향을 주는 비행기에 귀속되는 공격력
     public int Gold
     {
         get
@@ -62,6 +74,7 @@ public class StatusManager // 인게임 플레이 스탯 관리
 
     public void StartGame() // 게임 시작
     {
+        damagePlus = 0;
         gold = 0;
         maxHp = 100;
     }

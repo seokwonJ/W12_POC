@@ -16,13 +16,15 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
     private void Start()
     {
+        Managers.Stage.controlField = this;
         nowStage = Managers.Stage.StartStage();
 
-        StartCoroutine(StageTimer(nowStage.stagePlayTime));
+        if (!nowStage.isBossStage) StartCoroutine(StageTimer(nowStage.stagePlayTime)); // 일반 스테이지는 타이머가 끝나면 자동 진행
+        else currentTimeTxt.text = ""; // 보스 스테이지는 보스가 죽어야 끝나서 타이머 필요 없음
         StartCoroutine(CoSpawnEnemyRoutine(nowStage));
     }
 
-    private IEnumerator StageTimer(float stagePlayTime)
+    private IEnumerator StageTimer(float stagePlayTime) // 일반 스테이지 타이머
     {
         float currentTime = stagePlayTime;
 
@@ -35,9 +37,7 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         }
 
         currentTimeTxt.text = "0";
-        Debug.Log("현재 스테이지 끝");
 
-        DeleteEnemy();
         Managers.Stage.OnField = false;
     }
 
@@ -123,7 +123,7 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         }
     }
 
-    public void DeleteEnemy() // 스테이지 종료 시 모든 적과 적/아군 투사체 제거
+    public void DeleteField() // 스테이지 종료 시 모든 적과 적/아군 투사체 제거
     {
         StopAllCoroutines();
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");

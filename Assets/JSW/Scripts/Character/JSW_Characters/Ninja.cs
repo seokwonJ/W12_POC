@@ -156,12 +156,11 @@ public class Ninja : Character
     {
         base.EndFieldAct();
 
-        if (isSkillActive == true)
+        if (isSkilling == true)
         {
             Debug.Log("공격력 돌아옴");
             attackDamage -= skillPower;
             normalFireInterval *= skillAttackSpeed;
-            isSkillActive = false;
             isSkilling = false;
         }
         if (activeParticle != null)
