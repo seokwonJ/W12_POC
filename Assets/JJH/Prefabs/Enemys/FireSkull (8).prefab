@@ -146,9 +146,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editorNote: 4
-  movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
+  movementSO: {fileID: 11400000, guid: fc40662e0f79e7645b952ee29acfab16, type: 2}
   attackSO: {fileID: 0}
-  speed: 4
+  speed: 20
   minPlayerDistance: 0
   isKnockbackable: 1
   isFilpping: 0

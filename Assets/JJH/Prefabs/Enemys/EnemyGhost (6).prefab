@@ -184,7 +184,7 @@ MonoBehaviour:
   editorNote: 6
   movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
   attackSO: {fileID: 11400000, guid: 9aec8e334ba37024facbb338251cce8c, type: 2}
-  speed: 3
+  speed: 6
   minPlayerDistance: 10
   isKnockbackable: 1
   isFilpping: 1

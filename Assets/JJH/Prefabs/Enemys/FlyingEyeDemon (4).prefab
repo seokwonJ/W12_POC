@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673865093
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: -2628527846636693884, guid: 34c4752ea21fdd94090eea2933385bf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -185,7 +185,7 @@ MonoBehaviour:
   editorNote: 4
   movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
   attackSO: {fileID: 0}
-  speed: 5
+  speed: 10
   minPlayerDistance: 0
   isKnockbackable: 1
   isFilpping: 1
