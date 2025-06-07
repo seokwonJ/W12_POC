@@ -32,7 +32,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Flyer"))
         {
             Managers.Status.Gold += value;
             SoundManager.Instance.PlaySFX("PickUpItem"); // 코인 획득 사운드 재생
