@@ -12,8 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
   m_Name: vertical Stage1-1
   m_EditorClassIdentifier: 
-  world: 1
+  world: 2
   stage: 1
+  isBossStage: 0
+  enemyNumLimit: 15
   stagePlayTime: 60
   enemyWave:
   - {fileID: 11400000, guid: 43d096555cb952c4c8e7cf0f3ee9215e, type: 2}
