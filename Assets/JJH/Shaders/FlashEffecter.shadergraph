@@ -1852,7 +1852,7 @@
     "m_ObjectId": "691ef907d40a47eeae540c380982a99d",
     "m_Title": "Position Base",
     "m_Position": {
-        "x": -671.0001220703125,
+        "x": -671.0,
         "y": 1040.0
     }
 }
@@ -2055,8 +2055,8 @@
     "m_ObjectId": "8201f6a2f8b6495b92ae56971ea5dad2",
     "m_Title": "Noise Base",
     "m_Position": {
-        "x": -527.0000610351563,
-        "y": 1510.0001220703125
+        "x": -527.0,
+        "y": 1510.0
     }
 }
 
