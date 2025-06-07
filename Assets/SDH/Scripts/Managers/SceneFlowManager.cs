@@ -17,18 +17,21 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
     {
         Managers.Cam.SetCameraController();
 
-        if (scene.name == "Field" || scene.name == "Shop") Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetStartPosition();
         if (scene.name == "Field") FieldSceneLoaded();
-        if (scene.name == "Shop") ShopSceneLoaded();
+        else if (scene.name == "Shop") ShopSceneLoaded();
     }
 
     private void FieldSceneLoaded() // 필드 씬이 시작될 때 실행
     {
+        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetStartPosition();
+
         Managers.Stage.Stage++;
     }
 
     private void ShopSceneLoaded() // 상점 씬이 시작될 때 실행
     {
+        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetStartPosition();
+
         Managers.Status.Gold += 200;
     }
 

@@ -80,7 +80,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673865093
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: -10
   m_Sprite: {fileID: -5572707476907577575, guid: eb62fadc91d8ebe4fa96703d3807a8bb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorNote: 6
   movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
-  attackSO: {fileID: 11400000, guid: f2d5163ee7f671746a77a5aee897285b, type: 2}
+  attackSO: {fileID: 11400000, guid: c33670cdff8d6554b9e63d15e4886934, type: 2}
   speed: 3
   minPlayerDistance: 0
   isKnockbackable: 0
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 450
+  enemyHP: 700
   isDead: 0
 --- !u!95 &8304087639445234492
 Animator:
@@ -310,7 +310,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673865093
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 10
   m_Sprite: {fileID: -2413806693520163455, guid: 012bd9ebe0c0e7d49a2a6159dacb25d4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

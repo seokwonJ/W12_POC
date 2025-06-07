@@ -26,14 +26,14 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: d533c9953381d034a8ec9590e5f08a10, type: 3}
     volume: 1
   - clipName: HitSound
-    clip: {fileID: 8300000, guid: 42c62ad1d7d23b948bb0dda6581967a6, type: 3}
+    clip: {fileID: 8300000, guid: 2afa52e33d27dc448a079a71071dafb9, type: 3}
     volume: 1
   - clipName: Jump
     clip: {fileID: 8300000, guid: dad8879f43315a64e928c5030324e35b, type: 3}
     volume: 0.5
   - clipName: Landing
     clip: {fileID: 8300000, guid: 502e7d957861151469054e29f167986f, type: 3}
-    volume: 0.5
+    volume: 0.7
   - clipName: LeviAttack
     clip: {fileID: 8300000, guid: c49de2d5f33869d409c786ea21411931, type: 3}
     volume: 1
@@ -56,7 +56,7 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: da3df7c0f02b3764691c692dba6c698d, type: 3}
     volume: 1
   - clipName: PlayerHitSound
-    clip: {fileID: 8300000, guid: 621ba338b8be6f0499e622d07affbb79, type: 3}
+    clip: {fileID: 8300000, guid: ab677171b13f59140be11b27df6f084c, type: 3}
     volume: 1
   - clipName: SkillReady
     clip: {fileID: 8300000, guid: 6a33f70aab0ca6541ba8ef9798f0900c, type: 3}
