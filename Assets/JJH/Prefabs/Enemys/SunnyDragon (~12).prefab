@@ -107,7 +107,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   editorNote: 6
   movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
-  attackSO: {fileID: 11400000, guid: f2d5163ee7f671746a77a5aee897285b, type: 2}
+  attackSO: {fileID: 11400000, guid: c33670cdff8d6554b9e63d15e4886934, type: 2}
   speed: 3
   minPlayerDistance: 0
   isKnockbackable: 0
