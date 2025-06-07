@@ -69,6 +69,21 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         }
     }
     private int enemyKill; // 이번 스테이지에서 잡은 적 수
+
+    public int CurEnemyCount
+    {
+        get
+        {
+            return curEnemyCount;
+        }
+        set
+        {
+            curEnemyCount = value;
+            Debug.Log($"현재 스테이지 남아있는 적 수: {curEnemyCount}");
+        }
+    }
+    private int curEnemyCount; // 현재 스테이지에서 남아있는 적 수
+
     public void Init()
     {
         stageTemplates = Resources.LoadAll<StageSO>("StageTemplates");
@@ -88,7 +103,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     {
         Managers.Status.Hp = Managers.Status.MaxHp;
         enemyKill = 0;
-
+        curEnemyCount = 0;
         return Array.Find(stageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
     }
 

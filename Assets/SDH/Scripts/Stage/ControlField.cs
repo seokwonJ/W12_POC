@@ -1,14 +1,14 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class ControlField : MonoBehaviour // Àû ½ºÆùÀ» ÄÁÆ®·ÑÇÏ´Â ÄÚµåÀÌ¸ç ÆíÀÇ»ó Å¸ÀÌ¸Ó ±â´Éµµ °âÇÔ (EnemySpawnerJH.cs¿¡¼­ °¡Á®¿È)
+public class ControlField : MonoBehaviour // ì  ìŠ¤í°ì„ ì»¨íŠ¸ë¡¤í•˜ëŠ” ì½”ë“œì´ë©° íŽ¸ì˜ìƒ íƒ€ì´ë¨¸ ê¸°ëŠ¥ë„ ê²¸í•¨ (EnemySpawnerJH.csì—ì„œ ê°€ì ¸ì˜´)
 {
-    private const int MIN_RIGHT_SIDE_INDEX = 5; // ¿À¸¥ÂÊ ¸é¿¡ ÀÖ´Â À§Ä¡ ÀÎµ¦½ºÀÇ ÃÖ¼Ò°ª
-    private const int MAX_RIGHT_SIDE_INDEX = 12; // ¿À¸¥ÂÊ ¸é¿¡ ÀÖ´Â À§Ä¡ ÀÎµ¦½ºÀÇ ÃÖ´ë°ª
+    private const int MIN_RIGHT_SIDE_INDEX = 5; // ì˜¤ë¥¸ìª½ ë©´ì— ìžˆëŠ” ìœ„ì¹˜ ì¸ë±ìŠ¤ì˜ ìµœì†Œê°’
+    private const int MAX_RIGHT_SIDE_INDEX = 12; // ì˜¤ë¥¸ìª½ ë©´ì— ìžˆëŠ” ìœ„ì¹˜ ì¸ë±ìŠ¤ì˜ ìµœëŒ€ê°’
 
-    public Transform[] spawnPoints; // ÀÓ½Ã !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public Transform[] spawnPoints; // ìž„ì‹œ !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
     [SerializeField] private TextMeshProUGUI currentTimeTxt;
 
@@ -35,7 +35,7 @@ public class ControlField : MonoBehaviour // Àû ½ºÆùÀ» ÄÁÆ®·ÑÇÏ´Â ÄÚµåÀÌ¸ç ÆíÀÇ»
         }
 
         currentTimeTxt.text = "0";
-        Debug.Log("ÇöÀç ½ºÅ×ÀÌÁö ³¡");
+        Debug.Log("í˜„ìž¬ ìŠ¤í…Œì´ì§€ ë");
 
         DeleteEnemy();
         Managers.Stage.OnField = false;
@@ -44,10 +44,10 @@ public class ControlField : MonoBehaviour // Àû ½ºÆùÀ» ÄÁÆ®·ÑÇÏ´Â ÄÚµåÀÌ¸ç ÆíÀÇ»
     private IEnumerator CoSpawnEnemyRoutine(StageSO nowStage)
     {
         Debug.Log("EnemySpawnerJH->StageControlDH Start Coroutine");
-        for (int waveIndex = 0; waveIndex < nowStage.enemyWave.Length; waveIndex++) // ¿þÀÌºê1, 2, 3, 4... ¸¦ ¹Ýº¹
+        for (int waveIndex = 0; waveIndex < nowStage.enemyWave.Length; waveIndex++) // ì›¨ì´ë¸Œ1, 2, 3, 4... ë¥¼ ë°˜ë³µ
         {
             EnemyWaveSO enemyWaveSO = nowStage.enemyWave[waveIndex];
-            for (int i = 0; i < nowStage.WaveCount[waveIndex]; i++) // °¢ ¿þÀÌºê¸¦ ¼ÒÈ¯ÇÏ´Â È½¼ö¸¸Å­ ¹Ýº¹
+            for (int i = 0; i < nowStage.WaveCount[waveIndex]; i++) // ê° ì›¨ì´ë¸Œë¥¼ ì†Œí™˜í•˜ëŠ” íšŸìˆ˜ë§Œí¼ ë°˜ë³µ
             {
                 SpawnEnemyWave(enemyWaveSO);
                 yield return new WaitForSeconds(nowStage.WaveInterval[waveIndex]);
@@ -60,7 +60,7 @@ public class ControlField : MonoBehaviour // Àû ½ºÆùÀ» ÄÁÆ®·ÑÇÏ´Â ÄÚµåÀÌ¸ç ÆíÀÇ»
         Debug.Log("Spawning enemy wave: " + enemyWaveSO.name);
         Dictionary<int, GameObject> spawnDictonary = new Dictionary<int, GameObject>();
 
-        for (int i = 0; i < enemyWaveSO.enemyPrefabs.Length; i++) // °¢ ¿þÀÌºêÀÇ ÀûÀ» ¼ÒÈ¯
+        for (int i = 0; i < enemyWaveSO.enemyPrefabs.Length; i++) // ê° ì›¨ì´ë¸Œì˜ ì ì„ ì†Œí™˜
         {
             GameObject enemyPrefab = enemyWaveSO.enemyPrefabs[i];
             int enemyCount = enemyWaveSO.enemyCount[i];
@@ -68,8 +68,8 @@ public class ControlField : MonoBehaviour // Àû ½ºÆùÀ» ÄÁÆ®·ÑÇÏ´Â ÄÚµåÀÌ¸ç ÆíÀÇ»
 
             for (int j = 0; j < enemyCount; j++)
             {
-                // ESpawnPositionType°¡ RandomÀÎ °æ¿ì spawnPoints Áß¿¡¼­ ·£´ýÇÑ ÀÎµ¦½º, RightSideRandomÀÎ °æ¿ì MIN_RIGHT_SIDE_INDEXÀÌ»ó MAX_RIGHT_SIDE_INDEX ÀÌÇÏÀÇ ÀÎµ¦½º¿¡¼­ ·£´ýÇÏ°Ô
-                // ÀÌ¹Ì   spawnDictonary¿¡ ÀÖ´Â ÀÎµ¦½º´Â Á¦¿ÜÇÏ°í ·£´ýÇÏ°Ô »Ì´Â´Ù.
+                // ESpawnPositionTypeê°€ Randomì¸ ê²½ìš° spawnPoints ì¤‘ì—ì„œ ëžœë¤í•œ ì¸ë±ìŠ¤, RightSideRandomì¸ ê²½ìš° MIN_RIGHT_SIDE_INDEXì´ìƒ MAX_RIGHT_SIDE_INDEX ì´í•˜ì˜ ì¸ë±ìŠ¤ì—ì„œ ëžœë¤í•˜ê²Œ
+                // ì´ë¯¸   spawnDictonaryì— ìžˆëŠ” ì¸ë±ìŠ¤ëŠ” ì œì™¸í•˜ê³  ëžœë¤í•˜ê²Œ ë½‘ëŠ”ë‹¤.
                 int spawnIndex = -1;
                 if (spawnPositionType == ESpawnPositionType.Random)
                 {
@@ -87,14 +87,14 @@ public class ControlField : MonoBehaviour // Àû ½ºÆùÀ» ÄÁÆ®·ÑÇÏ´Â ÄÚµåÀÌ¸ç ÆíÀÇ»
                 }
                 else if (spawnPositionType == ESpawnPositionType.EvenlySpaced)
                 {
-                    // ±ÕµîÇÑ °£°ÝÀ¸·Î ¹èÄ¡ÇÏ±â. 1°³¸é Áß¾Ó¿¡ ¹èÄ¡ÇÏ°í 2°³¸é À§ºÎÅÍ 1/3, 2/3 À§Ä¡¿¡ ¹èÄ¡
-                    // °¡Àå À§´Â MIN_RIGHT_SIDE_INDEX, °¡Àå ¾Æ·¡´Â MAX_RIGHT_SIDE_INDEX·Î °£ÁÖÇÏ°í,
+                    // ê· ë“±í•œ ê°„ê²©ìœ¼ë¡œ ë°°ì¹˜í•˜ê¸°. 1ê°œë©´ ì¤‘ì•™ì— ë°°ì¹˜í•˜ê³  2ê°œë©´ ìœ„ë¶€í„° 1/3, 2/3 ìœ„ì¹˜ì— ë°°ì¹˜
+                    // ê°€ìž¥ ìœ„ëŠ” MIN_RIGHT_SIDE_INDEX, ê°€ìž¥ ì•„ëž˜ëŠ” MAX_RIGHT_SIDE_INDEXë¡œ ê°„ì£¼í•˜ê³ ,
 
                     int totalCount = enemyCount;
-                    int positionIndex = j % totalCount; // ÇöÀç ¸î ¹øÂ° ÀûÀÎÁö
-                    float spacing = 1f / totalCount; // °£°Ý °è»ê
-                    float positionY = (positionIndex + 0.5f) * spacing; // Áß¾Ó¿¡ ¹èÄ¡ÇÏ±â À§ÇØ 0.5¸¦ ´õÇÔ
-                    // MIN_RIGHT_SIDE_INDEX ~ MAX_RIGHT_SIDE_INDEX ¹üÀ§ ³»¿¡¼­ ±ÕµîÇÏ°Ô ÀÎµ¦½º °è»ê
+                    int positionIndex = j % totalCount; // í˜„ìž¬ ëª‡ ë²ˆì§¸ ì ì¸ì§€
+                    float spacing = 1f / totalCount; // ê°„ê²© ê³„ì‚°
+                    float positionY = (positionIndex + 0.5f) * spacing; // ì¤‘ì•™ì— ë°°ì¹˜í•˜ê¸° ìœ„í•´ 0.5ë¥¼ ë”í•¨
+                    // MIN_RIGHT_SIDE_INDEX ~ MAX_RIGHT_SIDE_INDEX ë²”ìœ„ ë‚´ì—ì„œ ê· ë“±í•˜ê²Œ ì¸ë±ìŠ¤ ê³„ì‚°
                     spawnIndex = Mathf.RoundToInt(positionY * (MAX_RIGHT_SIDE_INDEX - MIN_RIGHT_SIDE_INDEX) + MIN_RIGHT_SIDE_INDEX);
                 }
 
@@ -105,17 +105,18 @@ public class ControlField : MonoBehaviour // Àû ½ºÆùÀ» ÄÁÆ®·ÑÇÏ´Â ÄÚµåÀÌ¸ç ÆíÀÇ»
 
         Debug.Log(spawnDictonary.Count + " enemies to spawn in this wave.");
 
-        // spawnDictonary¿¡ ÀÖ´Â ÀÎµ¦½º¿¡ ÇØ´çÇÏ´Â spawnPoints¿¡¼­ enemyPrefabÀ» Instantiate
+        // spawnDictonaryì— ìžˆëŠ” ì¸ë±ìŠ¤ì— í•´ë‹¹í•˜ëŠ” spawnPointsì—ì„œ enemyPrefabì„ Instantiate
         foreach (var kvp in spawnDictonary)
         {
             int spawnIndex = kvp.Key;
             GameObject enemyPrefab = kvp.Value;
             Transform spawnPosition = spawnPoints[spawnIndex];
             Instantiate(enemyPrefab, spawnPosition.position, enemyPrefab.transform.rotation);
+            Managers.Stage.CurEnemyCount++; // í˜„ìž¬ ìŠ¤í…Œì´ì§€ì—ì„œ ë‚¨ì•„ìžˆëŠ” ì  ìˆ˜ ì¦ê°€
         }
     }
 
-    public void DeleteEnemy() // ½ºÅ×ÀÌÁö Á¾·á ½Ã ¸ðµç Àû°ú Àû/¾Æ±º Åõ»çÃ¼ Á¦°Å
+    public void DeleteEnemy() // ìŠ¤í…Œì´ì§€ ì¢…ë£Œ ì‹œ ëª¨ë“  ì ê³¼ ì /ì•„êµ° íˆ¬ì‚¬ì²´ ì œê±°
     {
         StopAllCoroutines();
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
