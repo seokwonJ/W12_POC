@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections;
 using UnityEngine;
-// Random은 UnityEngine.Random으로 자동으로 사용하게
 
 public class StageManager // 씬 전환 관리 (전투-상점 등)
 {
+    public ControlField controlField;
     private StageSO[] stageTemplates; // 스테이지 구성 모음
     public GameObject Coin => coin;
     private GameObject coin; // 전투 도중 떨어지는 골드 오브젝트
@@ -42,6 +42,15 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         {
             onField = value;
             Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().StageEnd();
+            if (onField) // 스테이지 끝나고 상점으로
+            {
+
+            }
+            else // 상점 끝나고 스테이지로
+            {
+                Debug.Log("현재 스테이지 끝");
+                controlField.DeleteField();
+            }
         }
     }
     private bool onField = true; // true면 필드, false면 상점 이 변수가 호출되었다는 것은 스테이지나 상점이 끝났다는 의미
@@ -122,9 +131,9 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
 
     public void PlusEnemyKill(Vector3 position) // 적 처치 수 증가
     {
-        EnemyKill++;
-        EnemyTotalKill++;
-        if (EnemyKill % 10 == 0) // 10마리마다 코인 생성
+        enemyKill++;
+        enemyTotalKill++;
+        if (enemyKill % 10 == 0) // 10마리마다 코인 생성
         {
             SpawnCoin(position);
         }
@@ -134,7 +143,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     {
         for (int i = 0; i < coinCount; i++)
         {
-            GameObject coinObj = GameObject.Instantiate(coin, position, Quaternion.identity);
+            GameObject coinObj = UnityEngine.Object.Instantiate(coin, position, Quaternion.identity);
             coinObj.GetComponent<Coin>().SetCoinValue(UnityEngine.Random.Range(8, 13)); // 코인 값은 8~12 사이의 랜덤값
         }
     }
