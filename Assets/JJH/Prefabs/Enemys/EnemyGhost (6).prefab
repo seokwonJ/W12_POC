@@ -112,7 +112,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673865093
-  m_SortingLayer: 2
+  m_SortingLayer: 1
   m_SortingOrder: 5
   m_Sprite: {fileID: 4173596497735050582, guid: cc93e23bd224eff40b4c9cad5bcbcc4e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -222,7 +222,7 @@ MonoBehaviour:
   isKnockbackable: 1
   isFilpping: 1
   damage: 20
-  fireCooldown: 3
+  fireCooldown: 4
   firePoint: {fileID: 2715036829172249429}
   projectileSpeed: 8
   projectilePrefab: {fileID: 7373925757434712426, guid: 08797571f13c0a64c9015287e9b6cad7, type: 3}
