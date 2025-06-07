@@ -4126,7 +4126,7 @@ MonoBehaviour:
   skillSize: 1
   skillDamage: 1
   skillTime: 0.7
-  nomalAttackSize: 1
+  nomalAttackSize: 0.7
   isReturnDamageScalesWithHitCount: 0
   isEmpoweredAttackEvery3Hits: 0
   EmpoweredAttackEveryCount: 0
