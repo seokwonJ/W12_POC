@@ -9,7 +9,8 @@ public class FoxAttack : ProjectileBase
     private float returnTime = 0f;
     private float totalTravelTime = 1f; // 왕복 시간 조절
     private float minSpeed = 3f;
-    private float maxSpeed = 20f;
+    private float goMaxSpeed = 20f;
+    private float returnMaxSpeed = 60f;
 
     public bool isReturnDamageScalesWithHitCount;
     public int fowardCount;
@@ -28,7 +29,7 @@ public class FoxAttack : ProjectileBase
             float t = Mathf.Clamp01(travelTime / totalTravelTime);
 
             // 감속 커브 (빠르게 시작해서 점점 느려짐)
-            speed = Mathf.Lerp(maxSpeed, minSpeed, t * t);
+            speed = Mathf.Lerp(goMaxSpeed, minSpeed, t * t);
 
             
             if (speed <= minSpeed + 0.01f) // 여유 범위 줘서 깔끔하게 전환
@@ -44,7 +45,7 @@ public class FoxAttack : ProjectileBase
             if (isOrbPausesBeforeReturning && returnTime < 1) return;
 
             float t = Mathf.Clamp01(returnTime / totalTravelTime);
-            speed = Mathf.Lerp(minSpeed, maxSpeed, t);
+            speed = Mathf.Lerp(minSpeed, returnMaxSpeed, t *  0.5f);
 
             direction = ((Vector2)(owner.position - transform.position)).normalized;
 

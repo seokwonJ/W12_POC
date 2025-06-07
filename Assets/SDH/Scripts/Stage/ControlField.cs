@@ -49,7 +49,14 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
             EnemyWaveSO enemyWaveSO = nowStage.enemyWave[waveIndex];
             for (int i = 0; i < nowStage.WaveCount[waveIndex]; i++) // 각 웨이브를 소환하는 횟수만큼 반복
             {
-                SpawnEnemyWave(enemyWaveSO);
+                if (Managers.Stage.CurEnemyCount >= nowStage.enemyNumLimit) // 현재 스테이지에서 남아있는 적 수가 enemyNumLimit 이상이면 더 이상 소환하지 않음
+                {
+                    Debug.Log($"Enemy 수: {Managers.Stage.CurEnemyCount}, 숫자 한계가 넘어 이번 Wave는 소환하지 않음");
+                }
+                else
+                {
+                    SpawnEnemyWave(enemyWaveSO);
+                }
                 yield return new WaitForSeconds(nowStage.WaveInterval[waveIndex]);
             }
         }

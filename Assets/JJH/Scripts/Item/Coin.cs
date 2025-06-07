@@ -12,7 +12,7 @@ public class Coin : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
     private const float fadeInDuration = 0.3f; // 페이드인 지속 시간
-    private const float itemDuration = 15f; // 유지 지속 시간
+    private const float itemDuration = 10f; // 유지 지속 시간
     private const float BlinkDuration = 5f; // 파괴 예고로 깜박이는 시간
 
     private void Awake()
@@ -32,7 +32,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("Flyer"))
         {
             Managers.Status.Gold += value;
             SoundManager.Instance.PlaySFX("PickUpItem"); // 코인 획득 사운드 재생

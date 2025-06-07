@@ -34,6 +34,13 @@ public class EnemyHP : MonoBehaviour
 
         if (enemyHP <= 0)
         {
+
+            Boss boss = GetComponent<Boss>(); // 보스라면 StageManager의 OnField를 False로 설정
+            if (boss != null)
+            {
+                Managers.Stage.OnField = false; // 보스가 죽으면 필드 종료
+            }
+
             Managers.Stage.PlusEnemyKill(transform.position);
             Die();
         }

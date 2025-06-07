@@ -16,12 +16,18 @@ public class PlayerMove : MonoBehaviour
 
     private PlayerStatus _playerStatus;
     private PlayerAfterImageSpawner DashAfterImageSpawner;
+    private GameObject _core;
+    private CircleCollider2D _coreCollider;
+    private Vector3 _colliderSize;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         _playerStatus = GetComponent<PlayerStatus>();
         DashAfterImageSpawner = GetComponent<PlayerAfterImageSpawner>();
+        _core = GetComponentInChildren<PlayerHP>().gameObject;
+        _coreCollider = _core.GetComponent<CircleCollider2D>();
+        _colliderSize = _core.transform.localScale;
     }
 
     void Update()
@@ -46,6 +52,8 @@ public class PlayerMove : MonoBehaviour
 
             Managers.Cam.DashPlayer();
             SoundManager.Instance.PlaySFX("PlayerDash");
+            _coreCollider.enabled = false;
+
             isDashing = true;
             dashTimer = dashDuration;
             dashCooldownTimer = dashCooldown;
@@ -56,12 +64,14 @@ public class PlayerMove : MonoBehaviour
     {
         if (isDashing)
         {
-
             rb.linearVelocity = moveInput * dashSpeed;
             dashTimer -= Time.fixedDeltaTime;
 
+            _core.transform.localScale = Vector3.Lerp(_core.transform.localScale, Vector3.zero, Time.deltaTime * 20);
+
             if (dashTimer <= 0f)
             {
+                _coreCollider.enabled = true;
                 DashAfterImageSpawner.enabled = false;
                 isDashing = false;
             }
@@ -69,6 +79,8 @@ public class PlayerMove : MonoBehaviour
         else
         {
             rb.linearVelocity = moveInput * moveSpeed;
+
+            _core.transform.localScale = Vector3.Lerp(_core.transform.localScale, _colliderSize, Time.deltaTime * 30);
         }
     }
 }
