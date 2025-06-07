@@ -1,8 +1,12 @@
 ﻿using TMPro;
+using System;
 
 public class StatusManager // 인게임 플레이 스탯 관리
 {
     public TextMeshProUGUI goldTxt;
+
+    // 추가: HP 변경 이벤트
+    public event Action OnHpChanged;
 
     public int Gold
     {
@@ -38,6 +42,7 @@ public class StatusManager // 인게임 플레이 스탯 관리
         set
         {
             hp = value;
+            OnHpChanged?.Invoke(); // HP가 바뀔 때마다 이벤트 호출
         }
     }
     private float hp; // 인게임 체력
@@ -58,6 +63,6 @@ public class StatusManager // 인게임 플레이 스탯 관리
     public void StartGame() // 게임 시작
     {
         gold = 0;
-        maxHp = 1;
+        maxHp = 100;
     }
 }
