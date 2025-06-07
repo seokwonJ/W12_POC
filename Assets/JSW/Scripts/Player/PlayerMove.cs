@@ -11,14 +11,19 @@ public class PlayerMove : MonoBehaviour
     private Vector2 moveInput;
 
     private bool isDashing = false;
+    private bool isCanDashing;
+    private bool isDashInvinvible = false;
     private float dashTimer = 0f;
     private float dashCooldownTimer = 0f;
+    private float dashLateInvincibleTime = 0.2f;
+    private float dashLateInvincibleTimer = 0;
 
     private PlayerStatus _playerStatus;
     private PlayerAfterImageSpawner DashAfterImageSpawner;
     private GameObject _core;
     private CircleCollider2D _coreCollider;
-    private Vector3 _colliderSize;
+    private SpriteRenderer _coreSpriteRenderer;
+    private Vector3 _coreSize;
 
     void Start()
     {
@@ -27,7 +32,9 @@ public class PlayerMove : MonoBehaviour
         DashAfterImageSpawner = GetComponent<PlayerAfterImageSpawner>();
         _core = GetComponentInChildren<PlayerHP>().gameObject;
         _coreCollider = _core.GetComponent<CircleCollider2D>();
-        _colliderSize = _core.transform.localScale;
+        _coreSpriteRenderer = _core.GetComponent<SpriteRenderer>();
+        _coreSize = _core.transform.localScale;
+        
     }
 
     void Update()
@@ -42,8 +49,32 @@ public class PlayerMove : MonoBehaviour
         }
 
         // 대시 쿨타임 감소
-        if (dashCooldownTimer > 0)
-            dashCooldownTimer -= Time.deltaTime;
+
+        
+        if (!isCanDashing)
+        {
+            if (dashCooldownTimer > 0) dashCooldownTimer -= Time.deltaTime;
+            else
+            {
+                _coreSpriteRenderer.color = Color.green;
+                isCanDashing = true;
+            }
+        }
+
+
+        if (isDashInvinvible)
+        {
+            dashLateInvincibleTimer -= Time.deltaTime;
+            _core.transform.localScale = Vector3.Lerp(_core.transform.localScale, _coreSize, Time.deltaTime * 20);
+
+            if (dashLateInvincibleTimer <= 0)
+            {
+                isDashInvinvible = false;
+                _coreCollider.enabled = true;
+                _core.transform.localScale = _coreSize;
+            }
+        }
+       
 
         // 스페이스 누르면 대시 시작
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing && dashCooldownTimer <= 0)
@@ -53,6 +84,7 @@ public class PlayerMove : MonoBehaviour
             Managers.Cam.DashPlayer();
             SoundManager.Instance.PlaySFX("PlayerDash");
             _coreCollider.enabled = false;
+            isCanDashing = false;
 
             isDashing = true;
             dashTimer = dashDuration;
@@ -67,11 +99,14 @@ public class PlayerMove : MonoBehaviour
             rb.linearVelocity = moveInput * dashSpeed;
             dashTimer -= Time.fixedDeltaTime;
 
-            _core.transform.localScale = Vector3.Lerp(_core.transform.localScale, Vector3.zero, Time.deltaTime * 20);
+            _core.transform.localScale = Vector3.Lerp(_core.transform.localScale, Vector3.zero, Time.deltaTime * 30);
 
             if (dashTimer <= 0f)
             {
-                _coreCollider.enabled = true;
+                isDashInvinvible = true;
+                dashLateInvincibleTimer = dashLateInvincibleTime;
+                _coreSpriteRenderer.color = Color.white;
+
                 DashAfterImageSpawner.enabled = false;
                 isDashing = false;
             }
@@ -79,8 +114,6 @@ public class PlayerMove : MonoBehaviour
         else
         {
             rb.linearVelocity = moveInput * moveSpeed;
-
-            _core.transform.localScale = Vector3.Lerp(_core.transform.localScale, _colliderSize, Time.deltaTime * 30);
         }
     }
 }
