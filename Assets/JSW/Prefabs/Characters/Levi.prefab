@@ -10,12 +10,12 @@ GameObject:
   m_Component:
   - component: {fileID: 7217755437246237028}
   - component: {fileID: 1088776424018742029}
-  - component: {fileID: 7396636518571664351}
   - component: {fileID: 1240063833929272116}
   - component: {fileID: 8598952104045523919}
   - component: {fileID: 8158726512124471703}
   - component: {fileID: 1806835876949059928}
   - component: {fileID: 5793770868084524959}
+  - component: {fileID: 6812575655566041608}
   m_Layer: 6
   m_Name: Levi
   m_TagString: Character
@@ -67,43 +67,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &7396636518571664351
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038042523987487916}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.07079825}
-  m_Size: {x: 0.40959167, y: 0.6771059}
-  m_Direction: 0
 --- !u!255 &1240063833929272116
 FixedJoint2D:
   m_ObjectHideFlags: 0
@@ -177,7 +140,6 @@ MonoBehaviour:
   fallingAfterImageSpawner: {fileID: 1806835876949059928}
   dobleAttackCoolTime: 0.05
   NormalAttackProjectileDuration: 0.5
-  isSkillLanding: 0
   skillDamage: 10
   skillTargetCount: 5
   skillInterval: 0
@@ -207,8 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterImagePrefab: {fileID: 2010104840657968575, guid: 083384c8dd4d76649ac8505017ce8b0b, type: 3}
-  spawnInterval: 0.05
   afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
+  spawnInterval: 0.05
   poolSize: 20
 --- !u!210 &5793770868084524959
 SortingGroup:
@@ -222,6 +184,52 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!61 &6812575655566041608
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4038042523987487916}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.02482821, y: -0.07886571}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.2551574, y: 0.6786953}
+  m_EdgeRadius: 0
 --- !u!1 &5258655469011329452
 GameObject:
   m_ObjectHideFlags: 0
