@@ -739,6 +739,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7248276483108204716, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1768679433190182986, guid: aa2efdaeccf1cf944bcd969ecec7d397, type: 3}
     - target: {fileID: 7323909054480937571, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
       propertyPath: m_Name
       value: Player
@@ -746,6 +750,10 @@ PrefabInstance:
     - target: {fileID: 7500306673498073716, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
       propertyPath: m_Layer
       value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8424998620605127541, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.7
       objectReference: {fileID: 0}
     - target: {fileID: 8517806001407908949, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
       propertyPath: m_SortingOrder
