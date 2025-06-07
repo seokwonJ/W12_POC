@@ -1310,7 +1310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b99b7db2fe67322439f0cd89166db48d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerHP_Image: {fileID: 0}
+  playerHP_Image: {fileID: 7083369242202382315}
   hpBarObject: {fileID: 0}
   rendererFlyer: {fileID: 6889300919073748868}
   hpBarPrefab: {fileID: 676647053238153101, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
@@ -1867,6 +1867,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 8272882056480392512, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
   m_PrefabInstance: {fileID: 3327398900070506767}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7083369242202382315 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5503510209766424292, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+  m_PrefabInstance: {fileID: 3327398900070506767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3975898369312009325
 PrefabInstance:
   m_ObjectHideFlags: 0
