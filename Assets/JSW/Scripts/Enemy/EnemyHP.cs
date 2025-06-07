@@ -41,6 +41,12 @@ public class EnemyHP : MonoBehaviour
 
     public void Die()
     {
+        if (isDead)
+        {
+            return;
+        }
+
+        Managers.Stage.CurEnemyCount--; // 현재 스테이지에서 남아있는 적 수 감소
         isDead = true;
         if (collider != null)
         {

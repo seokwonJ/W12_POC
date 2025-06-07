@@ -18,6 +18,15 @@ public class PlayerHP : MonoBehaviour
     private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
+    private void OnEnable()
+    {
+        Managers.Status.OnHpChanged += RefreshHPBar;
+    }
+
+    private void OnDisable()
+    {
+        Managers.Status.OnHpChanged -= RefreshHPBar;
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -36,6 +45,14 @@ public class PlayerHP : MonoBehaviour
             }
             playerHP_Image = hpBarObject.GetComponent<Image>();
         }
+        // Start에서 fillAmount 갱신 코드는 이벤트 기반으로 대체
+    }
+
+    // HP가 바뀔 때마다 자동으로 호출되는 UI 갱신 메서드
+    public void RefreshHPBar()
+    {
+        if (playerHP_Image != null)
+            playerHP_Image.fillAmount = Managers.Status.Hp / Managers.Status.MaxHp;
     }
     
     public virtual void TakeDamage(int damage)
@@ -58,6 +75,7 @@ public class PlayerHP : MonoBehaviour
 
         if (Managers.Status.Hp <= 0)
         {
+            // GetComponent<TmpPlayerControl>().GatherCharacters(); // 주석 처리: 해당 메서드가 없음
             Managers.SceneFlow.GameOver();
             if (hpBarObject != null) Destroy(hpBarObject);
         }
