@@ -124,7 +124,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     {
         EnemyKill++;
         EnemyTotalKill++;
-        if (EnemyKill % 10 == 0) // 10마리마다 코인 생성
+        if (EnemyKill % 25 == 0) // 10마리마다 코인 생성
         {
             SpawnCoin(position);
         }
