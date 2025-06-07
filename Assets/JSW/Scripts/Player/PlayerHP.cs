@@ -13,11 +13,11 @@ public class PlayerHP : MonoBehaviour
     public GameObject hpBarPrefab;
     public Transform canvasTransform;
     public Vector3 hpBarOffset;
+    public GameObject damagedCore;
 
     private PlayerStatus _playerStatus;
     private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
-    private SpriteRenderer _spriteRenderer;
 
 
     private void OnEnable()
@@ -35,7 +35,6 @@ public class PlayerHP : MonoBehaviour
     protected virtual void Start()
     {
         _playerStatus = Managers.PlayerControl.NowPlayer.GetComponent<PlayerStatus>();
-        _spriteRenderer = GetComponent<SpriteRenderer>();
 
         // HPBar 프리팹을 직접 생성하고 연결
         if (hpBarPrefab != null && canvasTransform != null)
@@ -87,9 +86,9 @@ public class PlayerHP : MonoBehaviour
 
     IEnumerator CoDamagedEffect()
     {
-        _spriteRenderer.color = Color.red;
+        damagedCore.SetActive(true);
         yield return flashDuration;
-        _spriteRenderer.color = Color.white;
+        damagedCore.SetActive(false);
     }
 
 }
