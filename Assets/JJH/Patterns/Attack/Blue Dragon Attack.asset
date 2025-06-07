@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1619c834747efa45a72707051108083, type: 3}
   m_Name: Blue Dragon Attack
   m_EditorClassIdentifier: 
+  mediumProjectilePrefab: {fileID: 1478908389578142060, guid: 6875300baa20d7342925f1ec08f0f691, type: 3}
+  largeProjectilePrefab: {fileID: 1478908389578142060, guid: 1b3323c6fe98fd84e917682dd45026bf, type: 3}

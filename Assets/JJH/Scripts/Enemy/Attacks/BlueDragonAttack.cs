@@ -7,21 +7,26 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
 
     [Header ("공격 패턴 관련")]
     private float prevSpawnMoveTime = 2f;
-    private float attackCooldown = 3f; // 공격 패턴 사이 간격
+    private float attackCooldown = 2f; // 공격 패턴 사이 간격
     private WaitForSeconds attackWait;
+    private float easyTime = 25f; // 공격 패턴 사이 간격이 늘어나는 간격
 
     [Header("중간 크기의 발사체 입에서 발사하는 패턴 관련")]
+    public GameObject mediumProjectilePrefab; // 중간 크기 발사체 프리팹
     private int mediumProjectileCount = 4; // 중간 크기 발사 횟수
     private float mediumProjectileSpeed = 9f; // 중간 크기 발사체 속도
     private float mediumProjectileCoolDown = 0.5f; // 중간 크기 발사체 생성 간격
     private WaitForSeconds mediumProjectileWait;
 
     [Header("큰 크기의 발사체 오른쪽에서 발사하는 패턴 관련")]
-    private int largeProjectileCount = 6; // 큰 크기 발사 횟수
-    private int largeProjectileNumPerSpawn = 4; // 한 번에 생성되는 큰 크기 발사체 수
-    private float largeProjectileSpeed = 6f; // 큰 크기 발사체 속도
-    private float largeProjectileCoolDown = 1f; // 큰 크기 발사체 생성 간격
+    public GameObject largeProjectilePrefab; // 큰 크기 발사체 프리팹
+    private int largeProjectileCount = 5; // 큰 크기 발사 횟수
+    private int largeProjectileNumPerSpawn = 5; // 한 번에 생성되는 큰 크기 발사체 수
+    private float largeProjectileSpeed = 14f; // 큰 크기 발사체 속도
+    private float largeProjectileCoolDown = 0.3f; // 큰 크기 발사체 생성 간격
     private WaitForSeconds largeProjectileWait;
+    private float afterLargePjojectileCoolDown = 1.5f; // 큰 크기 발사체 생성 후 대기 시간
+    private WaitForSeconds afterLargeProjectileWait;
 
     private int min_right_side_index; // 오른쪽에서 생성되는 발사체의 최소 인덱스
     private int max_right_side_index; // 오른쪽에서 생성되는 발사체의 최대 인덱스
@@ -32,6 +37,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         attackWait = new WaitForSeconds(attackCooldown);
         mediumProjectileWait = new WaitForSeconds(mediumProjectileCoolDown);
         largeProjectileWait = new WaitForSeconds(largeProjectileCoolDown);
+        afterLargeProjectileWait = new WaitForSeconds(afterLargePjojectileCoolDown);
 
         min_right_side_index = ControlField.MIN_RIGHT_SIDE_INDEX;
         max_right_side_index = ControlField.MAX_RIGHT_SIDE_INDEX;
@@ -40,6 +46,23 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     public void Attack()
     {
         enemy.StartCoroutine(CoAttackPattern());
+        enemy.StartCoroutine(CoTimer());
+    }
+
+    IEnumerator CoTimer()
+    {
+        float timer = 0;
+        while (true)
+        {
+            timer += Time.deltaTime;
+            if (timer >= easyTime)
+            {
+                attackCooldown += 0.8f; // easyTime마다 공격 패턴 사이 간격 증가
+                Debug.Log($"Attack cooldown increased to {attackCooldown}");
+                timer = 0; // 타이머 초기화
+            }
+            yield return null;
+        }
     }
 
     IEnumerator CoAttackPattern()
@@ -87,7 +110,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
             float angle = Mathf.Lerp(-45f, 45f, (float)i / (projectileCount - 1)); // 45도에서 135도 사이의 균등한 각도
             Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.left; // 위쪽 방향과 곱해서 Vector2로 변경
             //
-            GameObject proj = Instantiate(enemy.projectilePrefab, enemy.firePoint.position, Quaternion.Euler(0, 0, angle + 180));
+            GameObject proj = Instantiate(mediumProjectilePrefab, enemy.firePoint.position, Quaternion.Euler(0, 0, angle + 180));
             proj.GetComponent<Rigidbody2D>().linearVelocity = direction * mediumProjectileSpeed;
         }
         SoundManager.Instance.PlaySFX("BlueDragonShootProjectile");
@@ -101,11 +124,11 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
             yield return enemy.StartCoroutine(CoSpawnLargeProjectilesOnce());
             yield return largeProjectileWait; // 다음 발사체 생성까지 대기
         }
+        yield return afterLargeProjectileWait; // 큰 크기 발사체 생성 후 대기
     }
 
     IEnumerator CoSpawnLargeProjectilesOnce()
     {
-
         // min_right_side_inde와 max_right_side_index 사이의 랜덤한 인덱스를 largeProjectileNumPerSpawn개수만큼 선택
         int[] randomIndices = new int[largeProjectileNumPerSpawn];
         for (int i = 0; i < largeProjectileNumPerSpawn; i++)
@@ -121,8 +144,10 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         // 큰 크기의 발사체들을 랜덤한 인덱스에서 생성
         for (int i =0; i < largeProjectileNumPerSpawn; i++)
         {
+
             Transform spawnPoint = Managers.Stage.controlField.spawnPoints[randomIndices[i]];
-            GameObject proj = Instantiate(enemy.projectilePrefab, spawnPoint.position, Quaternion.Euler(0, 0, 180));
+            Vector3 randomPosition = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0); // 약간의 랜덤 위치 조정
+            GameObject proj = Instantiate(largeProjectilePrefab, spawnPoint.position + randomPosition, Quaternion.Euler(0, 0, 180));
             proj.GetComponent<Rigidbody2D>().linearVelocity = Vector2.left * largeProjectileSpeed; 
 
         }
