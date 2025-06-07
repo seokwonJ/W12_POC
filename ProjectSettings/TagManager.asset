@@ -12,6 +12,7 @@ TagManager:
   - Item
   - PlayerProjectile
   - EnemyProjectile
+  - Flyer
   layers:
   - Default
   - TransparentFX

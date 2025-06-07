@@ -17,12 +17,13 @@ public class PlayerHP : MonoBehaviour
     private PlayerStatus _playerStatus;
     private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
-
+    private SpriteRenderer _spriteRenderer;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
-        _playerStatus = GetComponent<PlayerStatus>();
+        _playerStatus = Managers.PlayerControl.NowPlayer.GetComponent<PlayerStatus>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
 
         // HPBar 프리팹을 직접 생성하고 연결
         if (hpBarPrefab != null && canvasTransform != null)
@@ -37,7 +38,7 @@ public class PlayerHP : MonoBehaviour
             playerHP_Image = hpBarObject.GetComponent<Image>();
         }
     }
-    
+
     public virtual void TakeDamage(int damage)
     {
         Managers.Status.Hp -= (damage - _playerStatus.defensePower);
@@ -47,7 +48,7 @@ public class PlayerHP : MonoBehaviour
             float fill = Managers.Status.Hp / Managers.Status.MaxHp;
             playerHP_Image.fillAmount = fill;
             Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
-            
+
             if (flashCoroutine != null) StopCoroutine(flashCoroutine);
             flashCoroutine = StartCoroutine(CoDamagedEffect());
         }
@@ -65,8 +66,9 @@ public class PlayerHP : MonoBehaviour
 
     IEnumerator CoDamagedEffect()
     {
-        rendererFlyer.material.EnableKeyword("_ISFLASHED");
+        _spriteRenderer.color = Color.red;
         yield return flashDuration;
-        rendererFlyer.material.DisableKeyword("_ISFLASHED");
+        _spriteRenderer.color = Color.white;
     }
+
 }
