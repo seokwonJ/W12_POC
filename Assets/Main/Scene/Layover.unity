@@ -735,43 +735,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7248276483108204716, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 1768679433190182986, guid: aa2efdaeccf1cf944bcd969ecec7d397, type: 3}
     - target: {fileID: 7323909054480937571, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-<<<<<<< Updated upstream
-=======
-    - target: {fileID: 7500306673498073716, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8071185718999280073, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
-      propertyPath: canvasTransform
-      value: 
-      objectReference: {fileID: 1143216873}
-    - target: {fileID: 8424998620605127541, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8517806001407908949, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
->>>>>>> Stashed changes
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
---- !u!224 &1143216873 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 8424998620605127541, guid: f82ca730ff963a9469d7cb38cc63645c, type: 3}
-  m_PrefabInstance: {fileID: 1143216872}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1434095128
 GameObject:
   m_ObjectHideFlags: 0
