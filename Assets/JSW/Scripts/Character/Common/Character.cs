@@ -176,7 +176,7 @@ public abstract class Character : MonoBehaviour
     // 착지하는 부분 
     protected virtual void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        if (!collision.gameObject.CompareTag("Flyer")) return;
 
         ContactPoint2D contact = collision.contacts[0];
         if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
