@@ -22,9 +22,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8baf237430014d24b8d9ce7f938ea72e, type: 2}
   - {fileID: 11400000, guid: 43d096555cb952c4c8e7cf0f3ee9215e, type: 2}
   - {fileID: 11400000, guid: 43d096555cb952c4c8e7cf0f3ee9215e, type: 2}
-  WaveCount: 01000000050000000500000032000000
+  - {fileID: 11400000, guid: 43d096555cb952c4c8e7cf0f3ee9215e, type: 2}
+  WaveCount: 01000000050000000a0000000a00000032000000
   WaveInterval:
   - 1
   - 2
+  - 2
+  - 2.5
   - 3
-  - 4
