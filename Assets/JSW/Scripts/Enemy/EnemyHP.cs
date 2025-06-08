@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyHP : MonoBehaviour
 {
     public int enemyHP;
+    private int maxEnemyHP;
+    public Image playerHP_Image; // 적 HP바 프리팹
     public bool isDead = false;
 
     private Renderer renderer;
@@ -21,6 +24,7 @@ public class EnemyHP : MonoBehaviour
         collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        maxEnemyHP = enemyHP; // 최대 HP 저장
     }
 
     public void TakeDamage(int hp)
@@ -28,6 +32,11 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
 
         enemyHP -= hp;
+        if (playerHP_Image != null)
+        {
+            playerHP_Image.fillAmount = (float)enemyHP / maxEnemyHP; // HP바 갱신
+        }
+
         if (flashCoroutine != null) StopCoroutine(flashCoroutine);
         flashCoroutine = StartCoroutine(CoDamagedEffect());
         SoundManager.Instance.PlaySFX("HitSound");

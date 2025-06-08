@@ -57,8 +57,8 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
             timer += Time.deltaTime;
             if (timer >= easyTime)
             {
-                attackCooldown += 0.8f; // easyTime마다 공격 패턴 사이 간격 증가
-                Debug.Log($"Attack cooldown increased to {attackCooldown}");
+                attackCooldown += 0.7f; // easyTime마다 공격 패턴 사이 간격 증가
+                Debug.Log($"Attack cooldown이 {attackCooldown}초로 증가해 더 쉬워짐");
                 timer = 0; // 타이머 초기화
             }
             yield return null;
@@ -93,18 +93,36 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
 
     IEnumerator CoSpawnMediumProjectiles()
     {
+
+        // 4,5,6,7을 랜덤한 순서로 갖는 배열 생성
+        int[] projectileNums = { 4, 5, 6, 7 };
+        for (int i = projectileNums.Length - 1; i > 0; i--)
+        {
+            int j = Random.Range(0, i + 1);
+            int temp = projectileNums[i];
+            projectileNums[i] = projectileNums[j];
+            projectileNums[j] = temp;
+        }
+
+        if (projectileNums.Length != mediumProjectileCount)
+        {
+            Debug.LogError("mediumProjectileCount와 projectileNums크기가 다릅니다. 배열 크기를 조정하세요.");
+            yield break; // 배열 크기가 부족하면 코루틴 종료
+        }
+
+        // mediumProjectileCount의 크기만큼 반복하여 중간 크기의 발사체 생성
         for (int i = 0; i < mediumProjectileCount; i++)
         {
-            yield return enemy.StartCoroutine(CoSpawnMediumProjectilesOnce());
+
+            yield return enemy.StartCoroutine(CoSpawnMediumProjectilesOnce(projectileNums[i]));
             yield return mediumProjectileWait; // 다음 발사체 생성까지 대기
         }
     }
 
-    IEnumerator CoSpawnMediumProjectilesOnce()
+    IEnumerator CoSpawnMediumProjectilesOnce(int projectileCount)
     {
         // 발사체를 3-5개 랜덤한 수를 생성
         // 각각의 발사체가 왼쪽 위 방향부터 왼쪽 아래 방향까지 균등한 각도로 날아가도록 설정
-        int projectileCount = Random.Range(4, 7); // 4에서 6개 사이의 발사체 생성
         for (int i = 0; i < projectileCount; i++)
         {
             float angle = Mathf.Lerp(-45f, 45f, (float)i / (projectileCount - 1)); // 45도에서 135도 사이의 균등한 각도
