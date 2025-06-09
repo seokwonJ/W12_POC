@@ -2179,6 +2179,14 @@ PrefabInstance:
       propertyPath: mpPerSecond
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1280781568330686410, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
+      propertyPath: skillDamage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280781568330686410, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
+      propertyPath: abilityPower
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 2010104840657968575, guid: ba2976b098498cb4a859a66f9c86bad2, type: 3}
       propertyPath: m_Name
       value: Fox
