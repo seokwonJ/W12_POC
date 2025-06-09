@@ -1181,6 +1181,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   afterImagePrefab: {fileID: 8777183884744099591, guid: ff809c6d567077e4cbffbec4147effaa, type: 3}
+  nowFlyerSpriteRenderer: {fileID: 2249560217314633636}
   afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
   spawnInterval: 0.02
   poolSize: 20

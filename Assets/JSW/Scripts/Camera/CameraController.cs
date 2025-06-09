@@ -6,7 +6,7 @@ public class CameraController : MonoBehaviour
     private Camera _camera;
     private int originalOrthographSize = 12;
 
-    private void Start()
+    private void Awake()
     {
         _camera = GetComponent<Camera>();
     }

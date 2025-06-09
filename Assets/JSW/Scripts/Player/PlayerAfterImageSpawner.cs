@@ -3,6 +3,7 @@ using UnityEngine;
 public class PlayerAfterImageSpawner : MonoBehaviour
 {
     public GameObject afterImagePrefab;
+    public SpriteRenderer nowFlyerSpriteRenderer;
     public Material afterImageMaterial;
     public float spawnInterval = 0.02f;
 
@@ -34,6 +35,7 @@ public class PlayerAfterImageSpawner : MonoBehaviour
 
     void Init()
     {
+        //afterImagePrefab.GetComponent<SpriteRenderer>().sprite = nowFlyerSpriteRenderer.sprite;
         // 풀 초기화
         afterImagePool = new GameObject[poolSize];
         for (int i = 0; i < poolSize; i++)
@@ -70,7 +72,7 @@ public class PlayerAfterImageSpawner : MonoBehaviour
             {
                 if (cloneSR.name == original.name)
                 {
-                    cloneSR.sprite = original.sprite;
+                    cloneSR.sprite = nowFlyerSpriteRenderer.sprite;
                     cloneSR.flipX = original.flipX;
                     cloneSR.color = new Color(1f, 1f, 1f, 0.7f);
                     cloneSR.material = afterImageMaterial;
