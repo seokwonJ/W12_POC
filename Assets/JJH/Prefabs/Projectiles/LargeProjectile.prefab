@@ -11,11 +11,11 @@ GameObject:
   - component: {fileID: 6975507643033305587}
   - component: {fileID: 8231652854753007250}
   - component: {fileID: 1078921743395609582}
-  - component: {fileID: 6918699197684507735}
   - component: {fileID: 4784582981931331566}
+  - component: {fileID: 5649173944302565003}
   - component: {fileID: 7044976186949115748}
   m_Layer: 0
-  m_Name: BigProjectile
+  m_Name: LargeProjectile
   m_TagString: EnemyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,8 +30,8 @@ Transform:
   m_GameObject: {fileID: 1478908389578142060}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.82, y: 3.14, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3354672155010045274}
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -673865093
   m_SortingLayer: 1
   m_SortingOrder: 10
-  m_Sprite: {fileID: 8020143640844766479, guid: e59edbf694a3ab84ab682bdab643a155, type: 3}
+  m_Sprite: {fileID: 8020143640844766479, guid: f4e9416c1b8808c49ab70c4c5842f927, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -102,7 +102,7 @@ Animator:
   m_GameObject: {fileID: 1478908389578142060}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f5b458c5da9eb634b885486e15ed0ee4, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9c9a6e808a94800438dccf0031a174d3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -114,7 +114,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!70 &6918699197684507735
+--- !u!114 &4784582981931331566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1478908389578142060}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fb208216bb21e444958a08a7d4e4324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 30
+--- !u!70 &5649173944302565003
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,22 +161,9 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0672246, y: 0.00066901697}
-  m_Size: {x: 0.3177373, y: 0.24884538}
+  m_Offset: {x: 0.4, y: 0}
+  m_Size: {x: 1.1, y: 0.9}
   m_Direction: 1
---- !u!114 &4784582981931331566
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1478908389578142060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fb208216bb21e444958a08a7d4e4324, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 30
 --- !u!50 &7044976186949115748
 Rigidbody2D:
   serializedVersion: 5
@@ -217,7 +217,7 @@ Transform:
   m_GameObject: {fileID: 2711555378657066556}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0.4, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -236,15 +236,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ComponentVersion: 2
-  m_LightType: 2
+  m_LightType: 3
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
   m_ApplyToSortingLayers: b5f01476000000007ba2d5d7
-  m_LightCookieSprite: {fileID: 8020143640844766479, guid: e59edbf694a3ab84ab682bdab643a155, type: 3}
+  m_LightCookieSprite: {fileID: 8020143640844766479, guid: f4e9416c1b8808c49ab70c4c5842f927, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
   m_AlphaBlendOnOverlap: 0
@@ -259,11 +259,11 @@ MonoBehaviour:
   m_ShadowVolumeIntensityEnabled: 0
   m_ShadowVolumeIntensity: 0.75
   m_LocalBounds:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 0.25, y: 0.1875, z: 0}
+    m_Center: {x: 0, y: -0.00000011920929, z: 0}
+    m_Extent: {x: 0.9985302, y: 0.99853027, z: 0}
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
-  m_PointLightInnerRadius: 0
+  m_PointLightInnerRadius: 0.1
   m_PointLightOuterRadius: 1
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
