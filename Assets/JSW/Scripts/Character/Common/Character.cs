@@ -42,12 +42,16 @@ public abstract class Character : MonoBehaviour
     protected bool isGround = false;
     protected bool isSkillActive = false;
 
-    protected virtual void Start()
+    private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         fixedJoint = GetComponent<FixedJoint2D>();
-        playerTransform = Managers.PlayerControl.NowPlayer.transform;
         Managers.PlayerControl.Characters.Add(gameObject); // 시작할 때 관리용 리스트에 추가. 만약 캐릭터 삭제나 교체 기능이 생긴다면 이부분 수정 필요
+    }
+
+    protected virtual void Start()
+    {
+        playerTransform = Managers.PlayerControl.NowPlayer.transform;
     }
 
     protected void OnEnable()
@@ -210,7 +214,6 @@ public abstract class Character : MonoBehaviour
         animator.Play("IDLE", -1, 0f);
 
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
         fallingAfterImageSpawner.enabled = false;
@@ -223,7 +226,6 @@ public abstract class Character : MonoBehaviour
         animator.Play("IDLE", -1, 0f);
 
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-        Managers.Status.RiderCount++;
         fixedJoint.enabled = true;
         fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
         fallingAfterImageSpawner.enabled = false;
