@@ -6,7 +6,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     private Enemy enemy;
 
     [Header ("공격 패턴 관련")]
-    private float prevSpawnMoveTime = 2f;
+    private float prevSpawnMoveTime = 3f;
     private float attackCooldown = 2f; // 공격 패턴 사이 간격
     private WaitForSeconds attackWait;
     private float easyTime = 25f; // 공격 패턴 사이 간격이 늘어나는 간격
