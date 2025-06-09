@@ -513,6 +513,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 500
+  playerHP_Image: {fileID: 0}
   isDead: 0
 --- !u!114 &139859905
 MonoBehaviour:
@@ -1490,6 +1491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 500
+  playerHP_Image: {fileID: 0}
   isDead: 0
 --- !u!114 &483196441
 MonoBehaviour:
@@ -4216,6 +4218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 500
+  playerHP_Image: {fileID: 0}
   isDead: 0
 --- !u!114 &1570323336
 MonoBehaviour:
