@@ -875,14 +875,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1293424245}
     m_Modifications:
-    - target: {fileID: 233819641296813916, guid: d8d390ce70cdf4a40a5850b105fdd5bc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 761453900916145720, guid: d8d390ce70cdf4a40a5850b105fdd5bc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5
-      objectReference: {fileID: 0}
     - target: {fileID: 2627429946665482712, guid: d8d390ce70cdf4a40a5850b105fdd5bc, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -923,21 +915,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4711349309210933969, guid: d8d390ce70cdf4a40a5850b105fdd5bc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5582993345807950347, guid: d8d390ce70cdf4a40a5850b105fdd5bc, type: 3}
       propertyPath: m_Name
       value: BackGround 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5582993345807950347, guid: d8d390ce70cdf4a40a5850b105fdd5bc, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5588157095263524824, guid: d8d390ce70cdf4a40a5850b105fdd5bc, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 5.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
