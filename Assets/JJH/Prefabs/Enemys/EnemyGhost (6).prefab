@@ -167,8 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 25
-  playerHP_Image: {fileID: 0}
+  enemyHP: 30
   isDead: 0
 --- !u!114 &2336702892526190934
 MonoBehaviour:

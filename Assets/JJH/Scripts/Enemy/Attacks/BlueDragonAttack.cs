@@ -57,8 +57,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
             timer += Time.deltaTime;
             if (timer >= easyTime)
             {
-                attackCooldown += 1f; // easyTime마다 공격 패턴 사이 간격 증가
-                attackWait = new WaitForSeconds(attackCooldown); // 새로운 공격 대기 시간 설정
+                attackCooldown += 0.7f; // easyTime마다 공격 패턴 사이 간격 증가
                 Debug.Log($"Attack cooldown이 {attackCooldown}초로 증가해 더 쉬워짐");
                 timer = 0; // 타이머 초기화
             }
