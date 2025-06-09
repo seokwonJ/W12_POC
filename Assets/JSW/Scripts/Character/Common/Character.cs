@@ -216,4 +216,17 @@ public abstract class Character : MonoBehaviour
         fallingAfterImageSpawner.enabled = false;
         isSkillActive = false;
     }
+
+    public void FixCharacter() // 게임 시작할 때 플레이어 고정하기. EndFieldAct에서 코루틴 파트만 제외된거임
+    {
+        isGround = true;
+        animator.Play("IDLE", -1, 0f);
+
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        Managers.Status.RiderCount++;
+        fixedJoint.enabled = true;
+        fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
+        fallingAfterImageSpawner.enabled = false;
+        isSkillActive = false;
+    }
 }

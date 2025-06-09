@@ -18,6 +18,16 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         Managers.PlayerControl.NowPlayer = gameObject; // 관리용 오브젝트에 플레이어 설정. 현재 플레이어가 고정적으로 같이 실행이라 이걸 Awake에 안넣으면 코드가 꼬이는데, 나중에 매커니즘 변경하면서 Start로 옮길 것 @@@@@@@@@@@@@@@@@
     }
 
+    private void Start()
+    {
+        foreach (GameObject character in Managers.PlayerControl.Characters)
+        {
+            character.GetComponent<Character>().FixCharacter();
+        }
+
+        Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;
+    }
+
     public void StageEnd() // 필드나 상점이 끝났을 때 호출되는 함수
     {
         StartCoroutine(SetStageEnd());
@@ -33,6 +43,8 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
             character.GetComponent<Character>().EndFieldAct();
             character.GetComponent<Character>().enabled = false;
         }
+
+        Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;
 
         if (Managers.Stage.OnField) // 필드 돌입
         {
