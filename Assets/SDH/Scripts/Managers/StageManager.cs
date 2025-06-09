@@ -92,6 +92,8 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     }
     private int curEnemyCount; // 현재 스테이지에서 남아있는 적 수
 
+    private StageSO nowStage;
+
     public void Init()
     {
         stageTemplates = Resources.LoadAll<StageSO>("StageTemplates");
@@ -112,14 +114,15 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         Managers.Status.Hp = Managers.Status.MaxHp;
         enemyKill = 0;
         curEnemyCount = 0;
-        return Array.Find(stageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
+        nowStage = Array.Find(stageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
+        return nowStage;
     }
 
     public void PlusEnemyKill(Vector3 position) // 적 처치 수 증가
     {
         enemyKill++;
         enemyTotalKill++;
-        if (enemyKill % 10 == 0) // 10마리마다 코인 생성
+        if (!nowStage.isBossStage && enemyKill % 10 == 0) // 10마리마다 코인 생성
         {
             SpawnCoin(position);
         }
