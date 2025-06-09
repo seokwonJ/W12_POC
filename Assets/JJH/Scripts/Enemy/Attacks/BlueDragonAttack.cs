@@ -4,12 +4,13 @@ using UnityEngine;
 public class BlueDragonAttack : ScriptableObject, IAttackPattern
 {
     private Enemy enemy;
+    private EnemyHP enemyHp;
 
     [Header ("공격 패턴 관련")]
     private float prevSpawnMoveTime = 3f;
-    private float attackCooldown = 2f; // 공격 패턴 사이 간격
+    private float attackCooldown = 3.8f; // 공격 패턴 사이 간격
     private WaitForSeconds attackWait;
-    private float easyTime = 25f; // 공격 패턴 사이 간격이 늘어나는 간격
+    private float hardTime = 25f; // 공격 패턴 사이 간격이 늘어나는 간격
 
     [Header("중간 크기의 발사체 입에서 발사하는 패턴 관련")]
     public GameObject mediumProjectilePrefab; // 중간 크기 발사체 프리팹
@@ -34,6 +35,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     public void Init(Enemy enemy)
     {
         this.enemy = enemy;
+        this.enemyHp = enemy.GetComponent<EnemyHP>();
         attackWait = new WaitForSeconds(attackCooldown);
         mediumProjectileWait = new WaitForSeconds(mediumProjectileCoolDown);
         largeProjectileWait = new WaitForSeconds(largeProjectileCoolDown);
@@ -46,7 +48,8 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     public void Attack()
     {
         enemy.StartCoroutine(CoAttackPattern());
-        enemy.StartCoroutine(CoTimer());
+        //enemy.StartCoroutine(CoTimer());
+        enemy.StartCoroutine(CoStronger());
     }
 
     IEnumerator CoTimer()
@@ -55,16 +58,35 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         while (true)
         {
             timer += Time.deltaTime;
-            if (timer >= easyTime)
+            if (timer >= hardTime)
             {
-                attackCooldown += 0.7f; // easyTime마다 공격 패턴 사이 간격 증가
-                Debug.Log($"Attack cooldown이 {attackCooldown}초로 증가해 더 쉬워짐");
-                timer = 0; // 타이머 초기화
+                attackCooldown -= 0.7f; // easyTime마다 공격 패턴 사이 간격 증가
+                Debug.Log($"Attack cooldown이 {attackCooldown}초로 감소해 더 어려워짐");
+                break;
             }
             yield return null;
         }
     }
 
+    IEnumerator CoStronger()
+    {
+        while (true)
+        {
+            if (enemy == null || !enemy.enabled)
+            {
+                yield break; // 적이 죽었거나 존재하지 않으면 코루틴 종료
+            }
+            if (enemyHp.enemyHP <= 250)
+            {
+                attackCooldown -= 1.2f;
+                attackWait = new WaitForSeconds(attackCooldown);
+                Debug.Log($"Attack cooldown이 {attackCooldown}초로 감소해 더 어려워짐");
+                break;
+            }
+            yield return Time.deltaTime;
+        }
+
+    }
     IEnumerator CoAttackPattern()
     {
         yield return new WaitForSeconds(prevSpawnMoveTime);
