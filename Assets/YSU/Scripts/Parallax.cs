@@ -1,3 +1,4 @@
+﻿using System.Collections;
 using UnityEngine;
 
 public class Parallax : MonoBehaviour
@@ -11,6 +12,11 @@ public class Parallax : MonoBehaviour
     {
         SetupTexture();
         if(scrollLeft) moveSpeed = -moveSpeed;
+        if (Managers.Stage.World == 1 && Managers.Stage.Stage == 3)
+        {
+            StartCoroutine(CoStopMove(2f));
+            //moveSpeed = 0f; // 월드 1 스테이지 3에서는 스크롤 멈춤
+        }
     }
 
     void SetupTexture()
@@ -37,5 +43,31 @@ public class Parallax : MonoBehaviour
         Scroll();
         CheckReset();
     }
-    
+
+    IEnumerator CoStopMove(float stopMoveTime)
+    {
+        float elapsedTime = 0f;
+        while (true)
+        {
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime >= stopMoveTime)
+            {
+                yield return StartCoroutine(CoSmoothStop(1f));
+            }
+            yield return null;
+        }
+    }
+
+    IEnumerator CoSmoothStop(float smoothTime)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < smoothTime)
+        {
+            elapsedTime += Time.deltaTime;
+            moveSpeed = Mathf.Lerp(moveSpeed, 0f, elapsedTime / smoothTime);
+            yield break;
+        }
+        moveSpeed = 0f;
+        yield return null;
+    }
 }
