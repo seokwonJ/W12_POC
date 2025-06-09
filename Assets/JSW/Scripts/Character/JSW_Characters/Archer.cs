@@ -57,7 +57,7 @@ public class Archer : Character
         for (int i = 0; i < skillCount; i++)
         {
             yield return new WaitForSeconds(skillFireDelay);
-            FireSkillProjectiles();
+            FireSkillProjectiles(i);
             animator.Play("SKILL", -1, 0f);
             SoundManager.Instance.PlaySFX("ArcherSkill");
             Instantiate(skillActive, transform.position, Quaternion.identity, transform);
@@ -66,17 +66,17 @@ public class Archer : Character
     }
 
     // 궁극기 연사 오버라이드 (필요 시)
-    protected override void FireSkillProjectiles()
+    protected void FireSkillProjectiles(int skillCount)
     {
         float angleStep = 360f / skillProjectileCount;
         Vector3 startPos = transform.position;
 
-        // 스킬 데미지 받은 것들
+                // 스킬 데미지 받은 것들
         hitEnemies = new Dictionary<GameObject, int>();
 
         for (int i = 0; i < skillProjectileCount; i++)
         {
-            float angle = i * angleStep;
+            float angle = i * angleStep + 10 * skillCount;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             GameObject proj = Instantiate(skillProjectile, startPos, rotation);
             proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, attackDamage, projectileSpeed, knockbackPower, arrowSize, this, true);
