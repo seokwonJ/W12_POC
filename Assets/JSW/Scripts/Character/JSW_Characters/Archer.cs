@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ public class Archer : Character
     public float skillFireDelay = 0.1f;
     public int skillProjectileCount = 10;
     public bool isUpgradeTripleShot; // 이건 Archer 고유 옵션이니 유지
+    public Dictionary<GameObject, int> hitEnemies;
 
     [Header("강화")]
     public float knockbackPower;
@@ -33,15 +35,15 @@ public class Archer : Character
         else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<Arrow>().SetInit(direction, attackDamage, projectileSpeed, knockbackPower, arrowSize);
+        proj.GetComponent<Arrow>().SetInit(direction, attackDamage, projectileSpeed, knockbackPower, arrowSize, this, false);
 
         if (isUpgradeTripleShot)
         {
             GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 10) * direction, attackDamage, projectileSpeed, knockbackPower, arrowSize);
+            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 10) * direction, attackDamage, projectileSpeed, knockbackPower, arrowSize, this, false);
 
             GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj3.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, -10) * direction, attackDamage, projectileSpeed, knockbackPower, arrowSize);
+            proj3.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, -10) * direction, attackDamage, projectileSpeed, knockbackPower, arrowSize, this, false);
         }
 
         SoundManager.Instance.PlaySFX("ArcherAttack");
@@ -69,12 +71,15 @@ public class Archer : Character
         float angleStep = 360f / skillProjectileCount;
         Vector3 startPos = transform.position;
 
+        // 스킬 데미지 받은 것들
+        hitEnemies = new Dictionary<GameObject, int>();
+
         for (int i = 0; i < skillProjectileCount; i++)
         {
             float angle = i * angleStep;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             GameObject proj = Instantiate(skillProjectile, startPos, rotation);
-            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, attackDamage, projectileSpeed, knockbackPower, arrowSize);
+            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, attackDamage, projectileSpeed, knockbackPower, arrowSize, this, true);
         }
     }
 }

@@ -11,10 +11,13 @@ public class FoxAttack : ProjectileBase
     private float minSpeed = 3f;
     private float goMaxSpeed = 20f;
     private float returnMaxSpeed = 60f;
+    private Fox _characterFox;
 
+    public bool isSkill;
     public bool isReturnDamageScalesWithHitCount;
     public int fowardCount;
     public bool isOrbPausesBeforeReturning;
+
 
     protected override void Start()
     {
@@ -62,7 +65,7 @@ public class FoxAttack : ProjectileBase
         base.Update();
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult)
+    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult, Fox characterFox, bool isSkill)
     {
         owner = ownerTransform;
 
@@ -75,30 +78,57 @@ public class FoxAttack : ProjectileBase
         isReturnDamageScalesWithHitCount = isReturnDamageScalesWithHitCountResult;
         totalTravelTime = totalTravelTimeNum;
         isOrbPausesBeforeReturning = isOrbPausesBeforeReturningResult;
+        _characterFox = characterFox;
+        this.isSkill = isSkill;
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            var enemy = other.GetComponent<EnemyHP>();
-            if (enemy != null)
-            {
-                enemy.TakeDamage(damage);
-                
-                if (isReturnDamageScalesWithHitCount)
-                {
-                    enemy.TakeDamage(fowardCount * 2);
-                }
-            }
-            
 
-            // 아리 Q처럼, 돌아오는 중에도 데미지 줄 수 있도록
-            // 단, 파괴는 하지 않음 — projectile 살아있어야 하니까
-            if (!isReturning)
+            GameObject enemy = other.gameObject;
+
+            if (!isSkill)
             {
-                fowardCount += 1;
+                enemy.GetComponent<EnemyHP>().TakeDamage((int)damage);
+                return;
             }
+
+            int hitCount = 0;
+            if (_characterFox.hitEnemies.TryGetValue(enemy, out hitCount))
+            {
+                hitCount++;
+                _characterFox.hitEnemies[enemy] = hitCount;
+            }
+            else
+            {
+                _characterFox.hitEnemies[enemy] = 1;
+                hitCount = 1;
+            }
+
+            float nowdamage = Mathf.Max(2f, damage - 5f * (hitCount - 1));
+            enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage);
+
+
+            //var enemy = other.GetComponent<EnemyHP>();
+            //if (enemy != null)
+            //{
+            //    enemy.TakeDamage(damage);
+
+            //    //if (isReturnDamageScalesWithHitCount)
+            //    //{
+            //    //    enemy.TakeDamage(fowardCount * 2);
+            //    //}
+            //}
+
+
+            //// 아리 Q처럼, 돌아오는 중에도 데미지 줄 수 있도록
+            //// 단, 파괴는 하지 않음 — projectile 살아있어야 하니까
+            //if (!isReturning)
+            //{
+            //    fowardCount += 1;
+            //}
         }
     }
 }
