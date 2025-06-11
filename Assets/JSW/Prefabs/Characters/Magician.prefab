@@ -101,6 +101,7 @@ GameObject:
   - component: {fileID: 5766599263256601673}
   - component: {fileID: 5345938086223668459}
   - component: {fileID: 1354129338059981449}
+  - component: {fileID: 1827207826442848846}
   m_Layer: 6
   m_Name: Magician
   m_TagString: Character
@@ -118,7 +119,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 11.71, y: 2.97, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 701015371687361748}
@@ -218,11 +219,11 @@ MonoBehaviour:
   attackDamage: 10
   abilityPower: 20
   projectileSpeed: 10
-  animator: {fileID: 0}
+  animator: {fileID: 98201350519021881}
   playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 0}
-  skillJumpEffect: {fileID: 0}
-  fallingAfterImageSpawner: {fileID: 0}
+  skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
+  skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
+  fallingAfterImageSpawner: {fileID: 1827207826442848846}
   skillProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
   skillCount: 3
   skillInterval: 0.3
@@ -279,8 +280,24 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.29927444, y: 0.727468}
+  m_Size: {x: 0.2551574, y: 0.727468}
   m_EdgeRadius: 0
+--- !u!114 &1827207826442848846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895071034499481536}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a44e6a625a4ebe746b4365a23219d5c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  afterImagePrefab: {fileID: 2010104840657968575, guid: 083384c8dd4d76649ac8505017ce8b0b, type: 3}
+  afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
+  spawnInterval: 0.02
+  poolSize: 20
 --- !u!1 &5861792811945193929
 GameObject:
   m_ObjectHideFlags: 0
@@ -733,6 +750,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPUM_20250602171643875
       objectReference: {fileID: 0}
+    - target: {fileID: 5884316372825575322, guid: ca02ae7cf2774204b94fe03404840aef, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8c66366e123061c4d92c4883831c85bf, type: 2}
     - target: {fileID: 6435409461517324919, guid: ca02ae7cf2774204b94fe03404840aef, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -822,6 +843,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ca02ae7cf2774204b94fe03404840aef, type: 3}
+--- !u!95 &98201350519021881 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5884316372825575322, guid: ca02ae7cf2774204b94fe03404840aef, type: 3}
+  m_PrefabInstance: {fileID: 5833756956773248675}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &701015371687361748 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6435409461517324919, guid: ca02ae7cf2774204b94fe03404840aef, type: 3}
