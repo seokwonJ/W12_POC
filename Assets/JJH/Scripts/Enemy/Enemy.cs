@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
     protected void Init()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = Managers.PlayerControl.NowPlayer;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyHP = GetComponent<EnemyHP>();
