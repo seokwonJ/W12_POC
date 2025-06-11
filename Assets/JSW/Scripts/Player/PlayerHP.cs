@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,11 +13,11 @@ public class PlayerHP : MonoBehaviour
     public GameObject hpBarPrefab;
     public Transform canvasTransform;
     public Vector3 hpBarOffset;
-    public GameObject damagedCore;
 
     private PlayerStatus _playerStatus;
     private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
+    private SpriteRenderer spriteRendererCore;
 
 
     private void OnEnable()
@@ -30,7 +30,10 @@ public class PlayerHP : MonoBehaviour
         Managers.Status.OnHpChanged -= RefreshHPBar;
     }
 
-
+    private void Awake()
+    {
+        spriteRendererCore = GetComponent<SpriteRenderer>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
@@ -86,9 +89,9 @@ public class PlayerHP : MonoBehaviour
 
     IEnumerator CoDamagedEffect()
     {
-        damagedCore.SetActive(true);
+        spriteRendererCore.color = Color.red; // 코어 색상을 빨간색으로 변경
         yield return flashDuration;
-        damagedCore.SetActive(false);
+        spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
     }
 
 }
