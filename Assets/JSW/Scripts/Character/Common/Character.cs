@@ -232,3 +232,13 @@ public abstract class Character : MonoBehaviour
         isSkillActive = false;
     }
 }
+
+public enum ECharacterType
+{
+    None,
+    Archer,
+    Fox,
+    Levi,
+    Ninja,
+    Magician,
+}

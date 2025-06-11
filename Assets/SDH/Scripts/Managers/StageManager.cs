@@ -42,14 +42,17 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         {
             onField = value;
             Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().StageEnd();
-            if (onField) // 스테이지 끝나고 상점으로
+            if (onField) // 상점 끝나고 스테이지로
             {
-
+                Managers.Record.ClearStageDamageRecord(); // 스테이지 끝나고 기록 초기화
             }
-            else // 상점 끝나고 스테이지로
+            else // 스테이지 끝나고 상점으로
             {
                 Debug.Log("현재 스테이지 끝");
                 controlField.DeleteField();
+                Managers.Record.AddTotalDamageRecord(); // 스테이지 끝나고 총 데미지 레코드에 기록을 더하기
+                Managers.Record.PrintAllDamageRecord(isStage:true); // 스테이지에서 가한 피해량 출력
+                Managers.Record.PrintAllDamageRecord(isStage:false); // 총 가한 피해량 출력
             }
         }
     }

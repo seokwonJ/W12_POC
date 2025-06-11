@@ -1,21 +1,21 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Levi : Character
 {
-    [Header("¸®¹ÙÀÌ °ø°İ")]
+    [Header("ë¦¬ë°”ì´ ê³µê²©")]
     public float dobleAttackCoolTime = 0.05f;
     public float NormalAttackProjectileDuration = 2f;
 
-    [Header("½ºÅ³")]
+    [Header("ìŠ¤í‚¬")]
     public int skillDamage;
     public float skillTargetCount;
     public float skillInterval = 0.3f;
     public float skillDashSpeed;
     public GameObject trail;
 
-    [Header("°­È­")]
+    [Header("ê°•í™”")]
     public bool isAttackWhileFalling;
     public bool isGainPowerFromSkillDamage;
     public int GainPowerFromSkillDamageCount;
@@ -26,17 +26,17 @@ public class Levi : Character
     public bool isMoreSkillDamageWithJumpPower;
     public int upgradeNum;
 
-    [Header("ÀÌÆåÆ®")]
+    [Header("ì´í™íŠ¸")]
     public GameObject skillDashStartEffect;
     public GameObject skillActiveEffect;
 
 
-    // ÀÏ¹İ °ø°İ: ¿¬¼Ó µÎ¹ø °üÅëÇü °ø°İ ¹ß»ç
+    // ì¼ë°˜ ê³µê²©: ì—°ì† ë‘ë²ˆ ê´€í†µí˜• ê³µê²© ë°œì‚¬
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
-        // ¹æÇâ¿¡ µû¶ó Ä³¸¯ÅÍ ½ºÇÁ¶óÀÌÆ® ÁÂ¿ì ¹İÀü
+        // ë°©í–¥ì— ë”°ë¼ ìºë¦­í„° ìŠ¤í”„ë¼ì´íŠ¸ ì¢Œìš° ë°˜ì „
         if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
@@ -71,7 +71,7 @@ public class Levi : Character
         }
     }
 
-    // ½ºÅ³ : Ä³¸¯ÅÍ ±âÁØ °¡Àå ¸Ö¸®ÀÖ´Â Àû¿¡°Ô µ¹ÁøÇÏ¿© µ¥¹ÌÁö¸¦ ÁÜ
+    // ìŠ¤í‚¬ : ìºë¦­í„° ê¸°ì¤€ ê°€ì¥ ë©€ë¦¬ìˆëŠ” ì ì—ê²Œ ëŒì§„í•˜ì—¬ ë°ë¯¸ì§€ë¥¼ ì¤Œ
     protected override IEnumerator FireSkill()
     {
         trail.GetComponent<TrailRenderer>().enabled = false;
@@ -83,8 +83,8 @@ public class Levi : Character
         animator.Play("SKILL", -1, 0f);
         SoundManager.Instance.PlaySFX("LeviDashStart");
 
-        // ¹Ù¶óº¸´Â ¹æÇâ¿¡ µû¶ó ÀÌÆåÆ® ÁÂ¿ì ¹İÀü
-        if (transform.localScale.x < 0) // ¿ŞÂÊ
+        // ë°”ë¼ë³´ëŠ” ë°©í–¥ì— ë”°ë¼ ì´í™íŠ¸ ì¢Œìš° ë°˜ì „
+        if (transform.localScale.x < 0) // ì™¼ìª½
         {
             GameObject DashEffect = Instantiate(skillDashStartEffect, transform.position + Vector3.right * 2 + Vector3.up * 0.3f, Quaternion.identity, playerTransform);
             Vector3 scale = DashEffect.transform.localScale;
@@ -110,26 +110,26 @@ public class Levi : Character
 
             hitEnemies.Add(target);
 
-            // µ¹Áø
+            // ëŒì§„
             yield return StartCoroutine(DashToTarget(target));
 
-            // Áß°£¿¡ Á×¾úÀ» °æ¿ì
+            // ì¤‘ê°„ì— ì£½ì—ˆì„ ê²½ìš°
             if (target == null) continue;
 
-            // µ¥¹ÌÁö ÁÖ±â
+            // ë°ë¯¸ì§€ ì£¼ê¸°
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             SoundManager.Instance.PlaySFX("LeviSkillAttack");
 
 
             if (enemyHP != null)
             {
-                if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce));
-                else enemyHP.TakeDamage(attackDamage + skillDamage);
+                if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce), ECharacterType.Levi);
+                else enemyHP.TakeDamage(attackDamage + skillDamage, ECharacterType.Levi);
 
                 Instantiate(skillActiveEffect,enemyHP.transform.position,Quaternion.identity);
             }
 
-            yield return new WaitForSeconds(skillInterval); // ¾à°£ÀÇ µô·¹ÀÌ
+            yield return new WaitForSeconds(skillInterval); // ì•½ê°„ì˜ ë”œë ˆì´
         }
 
         transform.up = Vector3.up;
@@ -161,7 +161,7 @@ public class Levi : Character
 
             if (excluded.Contains(enemyTransform)) continue;
 
-            // Ä«¸Ş¶ó ºäÆ÷Æ® ¾È¿¡ ÀÖ´ÂÁö È®ÀÎ
+            // ì¹´ë©”ë¼ ë·°í¬íŠ¸ ì•ˆì— ìˆëŠ”ì§€ í™•ì¸
             Vector3 viewportPos = Camera.main.WorldToViewportPoint(enemyTransform.position);
 
             bool isVisible = viewportPos.z > 0 &&
@@ -170,7 +170,7 @@ public class Levi : Character
 
             if (!isVisible) continue;
 
-            // °¡±î¿î Àû °è»ê
+            // ê°€ê¹Œìš´ ì  ê³„ì‚°
             float dist = Vector2.Distance(transform.position, enemyTransform.position);
             if (dist > maxDist)
             {
@@ -198,20 +198,20 @@ public class Levi : Character
 
             Vector2 dir = (target.position - transform.position).normalized;
             Vector2 move = (Vector2)transform.position + dir * dashSpeed * Time.fixedDeltaTime;
-            rb.MovePosition(move); // °¨¼Ó ¾øÀ½
+            rb.MovePosition(move); // ê°ì† ì—†ìŒ
 
 
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, dashSpeed * Time.fixedDeltaTime, LayerMask.GetMask("Wall")); // º® ·¹ÀÌ¾î È®ÀÎ
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, dashSpeed * Time.fixedDeltaTime, LayerMask.GetMask("Wall")); // ë²½ ë ˆì´ì–´ í™•ì¸
 
             if (hit.collider != null)
             {
-                break; // ´ë½¬ Á¾·á
+                break; // ëŒ€ì‰¬ ì¢…ë£Œ
             }
 
             if (dir.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
             else if (dir.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
-            yield return new WaitForFixedUpdate(); // FixedUpdate ±âÁØ
+            yield return new WaitForFixedUpdate(); // FixedUpdate ê¸°ì¤€
         }
 
         rb.linearVelocity = Vector2.zero;
@@ -228,10 +228,10 @@ public class Levi : Character
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!isGround && collision.tag == "Enemy" && (isSkillActive || isAttackWhileFalling))            // ½ºÅ³À» ¾²°íÀÖ°Å³ª, ¶³¾îÁü ÆòÅ¸ °­È­µÇ¾úÀ» ¶§
+        if (!isGround && collision.tag == "Enemy" && (isSkillActive || isAttackWhileFalling))            // ìŠ¤í‚¬ì„ ì“°ê³ ìˆê±°ë‚˜, ë–¨ì–´ì§ í‰íƒ€ ê°•í™”ë˜ì—ˆì„ ë•Œ
         {
             if (isGainPowerFromSkillDamage && isSkillActive) GainPowerFromSkillDamageCount += 1;
-            collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
+            collision.GetComponent<EnemyHP>().TakeDamage(attackDamage, ECharacterType.Levi);
         }
     }
 
@@ -269,7 +269,7 @@ public class Levi : Character
         }
     }
 
-    public override void EndFieldAct() // ÇÊµåÀüÅõ°¡ Á¾·áµÉ ¶§ ½ÇÇà
+    public override void EndFieldAct() // í•„ë“œì „íˆ¬ê°€ ì¢…ë£Œë  ë•Œ ì‹¤í–‰
     {
         base.EndFieldAct();
         trail.GetComponent<TrailRenderer>().enabled = false;
