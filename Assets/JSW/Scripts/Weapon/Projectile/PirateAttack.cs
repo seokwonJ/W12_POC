@@ -6,14 +6,26 @@ public class PirateAttack : ProjectileBase
     public float knockbackPower;
     public GameObject explosionEffect;
     public bool isFirstHitDealsBonusDamage;
+    public float acceleration = 5f;
+    private float currentSpeed = 0f;
+    private bool isAttack;
 
     protected override void Start()
     {
         base.Start();
     }
 
-    protected override void Update() { }
-    
+    protected override void Update()
+    {
+        if (isAttack) { return; }
+        // 가속도에 따라 현재 속도 증가
+        currentSpeed = Mathf.Min(currentSpeed + acceleration * Time.deltaTime, speed);
+
+        // 현재 속도로 이동
+        transform.Translate(direction.normalized * currentSpeed * Time.deltaTime, Space.World);
+
+        //transform.Translate(direction * speed * Time.deltaTime, Space.World);
+    }
 
     public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, bool isFirstHitDealsBonus)
     {
@@ -24,7 +36,8 @@ public class PirateAttack : ProjectileBase
         transform.rotation = Quaternion.Euler(0, 0, angle);
         damage = damageNum;
         transform.localScale = Vector3.one * scaleNum;
-        rb.linearVelocity = direction * speedNum;
+        //rb.linearVelocity = direction * speedNum;
+        speed = speedNum;
         isFirstHitDealsBonusDamage = isFirstHitDealsBonus;
     }
 
@@ -53,7 +66,7 @@ public class PirateAttack : ProjectileBase
                     otherEnemyHP.TakeDamage(totalDamage);
 
                     Vector3 knockbackDirection = hit.transform.position - transform.position;
-                    if (enemy != null)
+                    if (enemy != null && otherEnemyHP.enemyHP > 0)
                     {
                         enemy.ApplyKnockback(knockbackDirection, knockbackPower);
                     }
@@ -65,6 +78,7 @@ public class PirateAttack : ProjectileBase
 
     public override void DestroyProjectile(GameObject projectile)
     {
+        isAttack = true;
         explosionEffect.SetActive(true);
         rb.linearVelocity = Vector3.zero;
         Destroy(projectile,0.1f);

@@ -5,11 +5,10 @@ public class Pirate : Character
 {
     [Header("스킬")]
     public GameObject skillProjectile;
-    public int skillCount = 3;
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillSpeed = 10f;
-    public int skillShotCount = 4;
+    public int skillShotCount = 8;
 
     [Header("강화")]
     public float nomalAttackSize;
@@ -58,13 +57,10 @@ public class Pirate : Character
     {
         yield return new WaitForSeconds(1f);
 
-        for (int i = 0; i < skillCount; i++)
-        {
-            rb.linearVelocity = Vector3.zero;
-            yield return new WaitForSeconds(skillFireDelay);
-            StartCoroutine(FireSkillCanon());
-            yield return new WaitForSeconds(skillInterval);
-        }
+
+        yield return new WaitForSeconds(skillFireDelay);
+        yield return StartCoroutine(FireSkillCanon());
+
     }
 
     // 궁극기 발사 구현
@@ -76,6 +72,8 @@ public class Pirate : Character
 
         for (int i = 0; i < skillShotCount; i++)
         {
+            rb.linearVelocity = Vector3.zero;
+
             // 균등한 베이스 각도
             float t = i / (float)(skillShotCount - 1);
             float baseAngle = Mathf.Lerp(minAngle, maxAngle, t);
@@ -89,7 +87,7 @@ public class Pirate : Character
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
             PirateAttack mb = proj.GetComponent<PirateAttack>();
             mb.SetInit(dir.normalized, (int)(abilityPower), skillSpeed, nomalAttackSize, isFirstHitDealsBonusDamage);
-            yield return new WaitForSeconds(0.05f);
+            yield return new WaitForSeconds(0.1f);
         }
     }
 }

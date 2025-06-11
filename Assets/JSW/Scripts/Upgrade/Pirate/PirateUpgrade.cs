@@ -64,7 +64,7 @@ public class PirateUpgrade : CharacterUpgrade
                 pirate.upgradeNum = 7;
                 break;
             case UpgradeType.MoreSkillShots:                    // 스킬 한번 더 씀
-                pirate.skillCount += 1;
+                //pirate.skillCount += 1;
                 Debug.Log("Debug8 Archer");
                 pirate.upgradeNum = 8;
                 break;
