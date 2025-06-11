@@ -219,22 +219,23 @@ MonoBehaviour:
   maxFallSpeed: 10
   attackDamage: 15
   abilityPower: 15
-  projectileSpeed: 25
+  projectileSpeed: 35
   animator: {fileID: 5763457938938768475}
   playerTransform: {fileID: 0}
   skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
   skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
   fallingAfterImageSpawner: {fileID: 6188880643902013997}
   skillProjectile: {fileID: 7373925757434712426, guid: c05fcadff8e056842917c38b6e7458f3, type: 3}
-  skillInterval: 0.3
-  skillFireDelay: 0.1
-  skillSpeed: 10
-  skillShotCount: 8
+  skillInterval: 0.7
+  skillFireDelay: 0.03
+  skillSpeed: 45
+  skillShotCount: 15
   nomalAttackSize: 1
   isBackwardCannonShot: 0
   isFirstHitDealsBonusDamage: 0
   upgradeNum: 0
   player: {fileID: 0}
+  skillActiveEffect: {fileID: 4115033995688084748, guid: 4e5d87b8333e7124dbf5f619ac137eb8, type: 3}
 --- !u!210 &2604360784528421220
 SortingGroup:
   m_ObjectHideFlags: 0
