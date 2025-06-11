@@ -21,6 +21,10 @@ public class TeleportGround : MonoBehaviour
         {
             collision.transform.position = new Vector3(collision.transform.position.x, topGround.transform.position.y);
         }
+        else if (collision.CompareTag("Enemy") || collision.CompareTag("EnemyCollider"))
+        {
+            return;
+        }
 
         Rigidbody2D rb = collision.GetComponent<Rigidbody2D>();
 
