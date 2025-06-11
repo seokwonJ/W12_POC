@@ -104,6 +104,8 @@ public class PirateAttack : ProjectileBase
     {
         if (other.CompareTag("Enemy"))
         {
+            SoundManager.Instance.PlaySFX("PirateAttackExplosion");
+
             EnemyHP enemyHp = other.GetComponent<EnemyHP>();
             if (enemyHp != null && isFirstHitDealsBonusDamage)
             {

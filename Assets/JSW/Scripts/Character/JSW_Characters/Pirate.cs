@@ -57,6 +57,9 @@ public class Pirate : Character
 
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
         proj.GetComponent<PirateAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize, isFirstHitDealsBonusDamage, false, enemyTarget);
+
+        SoundManager.Instance.PlaySFX("PirateAttack");
+
     }
 
     // 스킬: 점프 후 공중에 대포알들 여러발 발사
@@ -64,6 +67,8 @@ public class Pirate : Character
     {
         yield return new WaitForSeconds(skillInterval);
 
+        SoundManager.Instance.PlaySFX("PirateSkillActive");
+        SoundManager.Instance.PlaySFX("PirateAttack");
         Instantiate(skillActiveEffect, transform.position + Vector3.up, Quaternion.identity);
 
         yield return StartCoroutine(FireSkillCanon());
