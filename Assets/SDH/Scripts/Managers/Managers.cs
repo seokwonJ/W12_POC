@@ -1,4 +1,4 @@
-using UnityEngine;
+Ôªøusing UnityEngine;
 
 public class Managers : MonoBehaviour
 {
@@ -7,17 +7,19 @@ public class Managers : MonoBehaviour
     private static Managers instance;
     #region Managers
     public static StatusManager Status => instance.status;
-    private StatusManager status = new(); // ¿Œ∞‘¿” Ω∫≈» ∞¸∏Æ
+    private StatusManager status = new(); // Ïù∏Í≤åÏûÑ Ïä§ÌÉØ Í¥ÄÎ¶¨
     public static ArtifactManager Artifact => instance.artifact;
-    private ArtifactManager artifact = new(); // ¿Œ∞‘¿” ¿Øπ∞ ∞¸∏Æ
+    private ArtifactManager artifact = new(); // Ïù∏Í≤åÏûÑ Ïú†Î¨º Í¥ÄÎ¶¨
     public static StageManager Stage => instance.stage;
-    private StageManager stage = new(); // ¿¸≈ı≥™ ªÛ¡° ∞¸∏Æ
+    private StageManager stage = new(); // Ï†ÑÌà¨ÎÇò ÏÉÅÏ†ê Í¥ÄÎ¶¨
     public static PlayerControlManager PlayerControl => instance.playerControl;
-    private PlayerControlManager playerControl = new(); // «√∑π¿ÃæÓ ∞¸∏Æ
+    private PlayerControlManager playerControl = new(); // ÌîåÎ†àÏù¥Ïñ¥ Í¥ÄÎ¶¨
     public static SceneFlowManager SceneFlow => instance.sceneFlow;
-    private SceneFlowManager sceneFlow = new(); // æ¿ ¿¸»Ø π◊ sceneLoaded∞Ëø≠ ∞¸∏Æ
+    private SceneFlowManager sceneFlow = new(); // Ïî¨ Ï†ÑÌôò Î∞è sceneLoadedÍ≥ÑÏó¥ Í¥ÄÎ¶¨
     public static CameraManager Cam => instance.cam;
-    private CameraManager cam = new(); // ƒ´∏ﬁ∂Û ∞¸∏Æ
+    private CameraManager cam = new(); // Ïπ¥Î©îÎùº Í¥ÄÎ¶¨
+    public static RecordManager Record => instance.record;
+    private RecordManager record = new(); // Í≤åÏûÑ Í∏∞Î°ù Í¥ÄÎ¶¨
     #endregion
 
     private void Awake()
@@ -33,7 +35,7 @@ public class Managers : MonoBehaviour
         SetInit();
     }
 
-    private void SetInit() // Awake √ ±‚ º≥¡§
+    private void SetInit() // Awake Ï¥àÍ∏∞ ÏÑ§Ï†ï
     {
         Application.targetFrameRate = 60;
 
@@ -41,7 +43,7 @@ public class Managers : MonoBehaviour
         stage.Init();
     }
 
-    private void OnDestroy() // √ ±‚»≠
+    private void OnDestroy() // Ï¥àÍ∏∞Ìôî
     {
         sceneFlow.Clear();
     }

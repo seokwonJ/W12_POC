@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -32,9 +33,9 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
 
 
-            // 딜로그에 기록
-
-
+        // 딜로그에 기록
+        int damage = hp > enemyHP ? enemyHP : hp; // 적의 HP보다 큰 데미지는 적의 HP로 제한
+        Managers.Record.AddStageDamgeRecord(attacker, hp);
 
         enemyHP -= hp;
         if (playerHP_Image != null)
