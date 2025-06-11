@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class Archer : Character
 {
@@ -20,7 +19,7 @@ public class Archer : Character
     public int upgradeNum;
 
     [Header("이펙트")]
-    public GameObject skillActive;
+    public GameObject skillActiveEffect;
 
     // 일반 공격 : 화살 발사 
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -60,7 +59,7 @@ public class Archer : Character
             FireSkillProjectiles(i);
             animator.Play("SKILL", -1, 0f);
             SoundManager.Instance.PlaySFX("ArcherSkill");
-            Instantiate(skillActive, transform.position, Quaternion.identity, transform);
+            Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
             yield return new WaitForSeconds(skillInterval);
         }
     }
