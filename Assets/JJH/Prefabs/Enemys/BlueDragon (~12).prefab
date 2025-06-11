@@ -163,6 +163,7 @@ MonoBehaviour:
   enemyHP: 550
   playerHP_Image: {fileID: 2284735236592308728}
   isDead: 0
+  rb: {fileID: 0}
 --- !u!95 &8304087639445234492
 Animator:
   serializedVersion: 7

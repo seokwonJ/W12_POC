@@ -13,7 +13,7 @@ public class EnemyHP : MonoBehaviour
     private Renderer renderer;
     private Collider2D collider;
     private Animator animator;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
     private float dieDelay = 0.4f;
@@ -92,6 +92,12 @@ public class EnemyHP : MonoBehaviour
         if (animator != null)
         {
             animator.enabled = false;
+        }
+        // Hp Bar제거
+        Canvas hpBarCanvas = GetComponentInChildren<Canvas>();
+        if (hpBarCanvas != null)
+        {
+            hpBarCanvas.enabled = false;
         }
 
         // _DieEffectValue가  dieDelay 시간에 걸쳐 1에서 0으로 감소
