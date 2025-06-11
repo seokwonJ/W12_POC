@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class RecordManager // 적에게 가한 피해, 적 처치한 수 등을 기록
 {
