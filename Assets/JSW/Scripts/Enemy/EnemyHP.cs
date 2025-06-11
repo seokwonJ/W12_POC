@@ -13,7 +13,7 @@ public class EnemyHP : MonoBehaviour
     private Renderer renderer;
     private Collider2D collider;
     private Animator animator;
-    private Rigidbody2D rb;
+    public Rigidbody2D rb;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
 
     private float dieDelay = 0.4f;

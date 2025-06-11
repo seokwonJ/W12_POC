@@ -83,6 +83,7 @@ GameObject:
   - component: {fileID: 4314202409012214010}
   - component: {fileID: 2336702892526190934}
   - component: {fileID: 9094681419738503472}
+  - component: {fileID: 8815278889026562885}
   m_Layer: 11
   m_Name: Ghost (6)
   m_TagString: Enemy
@@ -239,6 +240,7 @@ MonoBehaviour:
   enemyHP: 110
   playerHP_Image: {fileID: 0}
   isDead: 0
+  rb: {fileID: 0}
 --- !u!114 &2336702892526190934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,8 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editorNote: 6
-  movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
-  attackSO: {fileID: 11400000, guid: 9aec8e334ba37024facbb338251cce8c, type: 2}
+  movementSO: {fileID: 0}
+  attackSO: {fileID: 0}
   speed: 5
   minPlayerDistance: 10
   isKnockbackable: 1
@@ -287,3 +289,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8815278889026562885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971542310015680529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b7ffa9e0a5b7d4cb70ae130564ed41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minPlayerDistance: 6
+  maxPlayerDistance: 11
+  changeStateCooldown: 1
+  attackCooldown: 4
