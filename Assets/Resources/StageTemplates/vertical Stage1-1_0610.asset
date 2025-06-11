@@ -10,31 +10,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
-  m_Name: vertical Stage1-2 1
+  m_Name: vertical Stage1-1_0610
   m_EditorClassIdentifier: 
-  world: 1
-  stage: 2
+  world: 2
+  stage: 1
   isBossStage: 0
-  enemyNumLimit: 30
-  stagePlayTime: 75
+  enemyNumLimit: 25
+  stagePlayTime: 65
   enemyWave:
+  - {fileID: 11400000, guid: 43d096555cb952c4c8e7cf0f3ee9215e, type: 2}
+  - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
+  - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
+  - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
   - {fileID: 11400000, guid: d6683593d02d8ea49b64dbc138aa66d9, type: 2}
-  - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
-  - {fileID: 11400000, guid: d1fdc41d9c9fd6e4a8588c14a5ff02a2, type: 2}
-  - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
-  - {fileID: 11400000, guid: 3fce02339ea731f46840dd7d722752b3, type: 2}
-  - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
-  - {fileID: 11400000, guid: 793c4ee45fb59104caa662ac638f108b, type: 2}
-  - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
-  - {fileID: 11400000, guid: 1a87dbe8e0ce4f443b477c5f811125a8, type: 2}
   - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
   - {fileID: 11400000, guid: a484020716bea464d9074e598a6c0688, type: 2}
   - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
-  - {fileID: 11400000, guid: 1a87dbe8e0ce4f443b477c5f811125a8, type: 2}
-  WaveCount: 06000000010000000600000001000000060000000100000006000000010000000600000001000000060000000100000006000000
+  - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
+  - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
+  - {fileID: 11400000, guid: 8baf237430014d24b8d9ce7f938ea72e, type: 2}
+  WaveCount: 0600000001000000060000000100000006000000010000000600000001000000060000000100000006000000
   WaveInterval:
-  - 0.5
-  - 7
   - 0.5
   - 7
   - 0.5

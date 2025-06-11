@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8304087639445234492}
   - component: {fileID: 1368834091956541019}
   m_Layer: 0
-  m_Name: SunnyDragon (~12)
+  m_Name: BlueDragon (~12)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
