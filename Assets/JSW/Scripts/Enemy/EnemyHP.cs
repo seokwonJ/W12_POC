@@ -93,6 +93,12 @@ public class EnemyHP : MonoBehaviour
         {
             animator.enabled = false;
         }
+        // Hp Bar제거
+        Canvas hpBarCanvas = GetComponentInChildren<Canvas>();
+        if (hpBarCanvas != null)
+        {
+            hpBarCanvas.enabled = false;
+        }
 
         // _DieEffectValue가  dieDelay 시간에 걸쳐 1에서 0으로 감소
         float elapsedTime = 0f;
