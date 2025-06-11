@@ -15,7 +15,7 @@ public class Arrow : ProjectileBase
 
             if (!isSkill)
             {
-                enemy.GetComponent<EnemyHP>().TakeDamage((int)damage);
+                enemy.GetComponent<EnemyHP>().TakeDamage((int)damage, ECharacterType.Archer);
             }
             else
             {
@@ -32,7 +32,7 @@ public class Arrow : ProjectileBase
                 }
 
                 float nowdamage = Mathf.Max(2f, damage - 2f * (hitCount - 1));
-                enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage);
+                enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Archer);
 
             }
 
