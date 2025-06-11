@@ -27,9 +27,14 @@ public class EnemyHP : MonoBehaviour
         maxEnemyHP = enemyHP; // 최대 HP 저장
     }
 
-    public void TakeDamage(int hp)
+    public void TakeDamage(int hp, ECharacterType attacker = ECharacterType.None)
     {
         if (isDead) return;
+
+
+            // 딜로그에 기록
+
+
 
         enemyHP -= hp;
         if (playerHP_Image != null)

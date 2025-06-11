@@ -91,7 +91,7 @@ public class FoxAttack : ProjectileBase
 
             if (!isSkill)
             {
-                enemy.GetComponent<EnemyHP>().TakeDamage((int)damage);
+                enemy.GetComponent<EnemyHP>().TakeDamage((int)damage, ECharacterType.Fox);
                 return;
             }
 
@@ -108,7 +108,7 @@ public class FoxAttack : ProjectileBase
             }
 
             float nowdamage = Mathf.Max(2f, damage - 5f * (hitCount - 1));
-            enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage);
+            enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Fox);
 
 
             //var enemy = other.GetComponent<EnemyHP>();

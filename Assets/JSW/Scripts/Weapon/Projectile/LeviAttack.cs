@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class LeviAttack : ProjectileBase
 {
@@ -14,7 +14,7 @@ public class LeviAttack : ProjectileBase
         if (other.CompareTag("Enemy"))
         {
             var enemy = other.GetComponent<EnemyHP>();
-            if (enemy != null) enemy.TakeDamage(damage);
+            if (enemy != null) enemy.TakeDamage(damage, ECharacterType.Levi);
         }
     }
 

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class ProjectileBase : MonoBehaviour
 {
@@ -34,7 +34,7 @@ public class ProjectileBase : MonoBehaviour
         {
             var enemy = other.GetComponent<EnemyHP>();
             if (enemy != null)
-                enemy.TakeDamage(damage);
+                enemy.TakeDamage(damage, ECharacterType.None);
 
             DestroyProjectile(gameObject);
         }
