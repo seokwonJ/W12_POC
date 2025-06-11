@@ -13,6 +13,7 @@ TagManager:
   - PlayerProjectile
   - EnemyProjectile
   - Flyer
+  - EnemyCollider
   layers:
   - Default
   - TransparentFX
@@ -25,8 +26,8 @@ TagManager:
   - DoSkill
   - Wall
   - PlayerWall
-  - 
-  - 
+  - Enemy
+  - Core
   - 
   - 
   - 

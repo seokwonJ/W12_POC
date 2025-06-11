@@ -10,6 +10,7 @@ public class Magician : Character
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
     public float skillDamage = 1f;
+    public float skillProjectileSpeed = 15;
 
     [Header("강화")]
     public float nomalAttackSize;
@@ -18,6 +19,9 @@ public class Magician : Character
     public bool isCanTeleport;
     public int upgradeNum;
     public GameObject player;
+
+    [Header("이펙트")]
+    public GameObject skillActiveEffect;
 
     protected override void Start()
     {
@@ -42,8 +46,10 @@ public class Magician : Character
         if (isAddAttackDamage) proj.GetComponent<MagicBall>().SetInit(direction, abilityPower + attackDamage, projectileSpeed, nownomalAttackSize);
         else
         {
-            proj.GetComponent<MagicBall>().SetInit(direction, abilityPower, projectileSpeed, nownomalAttackSize);
+            proj.GetComponent<MagicBall>().SetInit(direction, attackDamage, projectileSpeed, nownomalAttackSize);
         }
+
+        SoundManager.Instance.PlaySFX("MagicianAttack");
     }
 
     // 스킬: 느리고 커다란 관통 공격 3발 발사
@@ -54,7 +60,10 @@ public class Magician : Character
         for (int i = 0; i < skillCount; i++)
         {
             yield return new WaitForSeconds(skillFireDelay);
+            animator.Play("SKILL", -1, 0f);
             FireSkillProjectiles();
+            Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
+            SoundManager.Instance.PlaySFX("MagicianSkill");
             yield return new WaitForSeconds(skillInterval);
         }
     }
@@ -63,13 +72,17 @@ public class Magician : Character
     protected override void FireSkillProjectiles()
     {
         Transform target = FindNearestEnemy();
+
+        GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+        MagicBall mb = proj.GetComponent<MagicBall>();
+
         if (target != null)
         {
-            GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-
-            MagicBall mb = proj.GetComponent<MagicBall>();
-            mb.SetInit((target.position - firePoint.position).normalized, (int)(abilityPower * skillDamage), projectileSpeed, skillSize);
-            mb.speed = 5;
+            mb.SetInit((target.position - firePoint.position).normalized, (int)(attackDamage + skillDamage), skillProjectileSpeed, skillSize);
+        }
+        else
+        {
+            mb.SetInit((Random.insideUnitSphere).normalized, (int)(attackDamage + skillDamage), skillProjectileSpeed, skillSize);
         }
     }
 

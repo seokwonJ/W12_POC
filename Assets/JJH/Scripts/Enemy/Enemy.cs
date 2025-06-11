@@ -33,7 +33,9 @@ public class Enemy : MonoBehaviour
     private EnemyHP enemyHP; // 적의 HP 스크립트
 
     public GameObject player; // 이후 싱글턴에서 player를 가져오도록 변경
-    public Rigidbody2D rb; 
+    public Rigidbody2D rb;
+
+    public EEnemyState CurrentState { get; private set; }
 
     public Vector2 MoveDirection { get; set; } = Vector2.zero;
 
@@ -44,7 +46,7 @@ public class Enemy : MonoBehaviour
 
     protected void Init()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = Managers.PlayerControl.NowPlayer;
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyHP = GetComponent<EnemyHP>();
@@ -66,6 +68,13 @@ public class Enemy : MonoBehaviour
 
         attack?.Attack();
     }
+
+
+    public void ChangeState(EEnemyState eEnemyState)
+    {
+        CurrentState = eEnemyState;
+    }
+
 
     protected void Update()
     {
@@ -123,4 +132,11 @@ public class Enemy : MonoBehaviour
             isKnockback = false; // 넉백 상태 해제
         }
     }
+}
+
+public enum EEnemyState
+{
+    Idle,
+    Chase,
+    Escape,
 }
