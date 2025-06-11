@@ -4,7 +4,7 @@ public class AfterImageSpawner : MonoBehaviour
 {
     public GameObject afterImagePrefab;
     public Material afterImageMaterial;
-    public float spawnInterval = 0.02f;
+    public float spawnInterval = 0.05f;
 
     private float timer;
     private Rigidbody2D rb;

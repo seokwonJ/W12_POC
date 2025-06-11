@@ -10,6 +10,7 @@ public class Magician : Character
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
     public float skillDamage = 1f;
+    public float skillProjectileSpeed = 15;
 
     [Header("°­È­")]
     public float nomalAttackSize;
@@ -68,8 +69,7 @@ public class Magician : Character
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
             MagicBall mb = proj.GetComponent<MagicBall>();
-            mb.SetInit((target.position - firePoint.position).normalized, (int)(abilityPower * skillDamage), projectileSpeed, skillSize);
-            mb.speed = 5;
+            mb.SetInit((target.position - firePoint.position).normalized, (int)(abilityPower * skillDamage), skillProjectileSpeed, skillSize);
         }
     }
 

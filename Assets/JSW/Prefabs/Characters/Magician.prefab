@@ -102,6 +102,7 @@ GameObject:
   - component: {fileID: 5345938086223668459}
   - component: {fileID: 1354129338059981449}
   - component: {fileID: 1827207826442848846}
+  - component: {fileID: 7337740309242772519}
   m_Layer: 6
   m_Name: Magician
   m_TagString: Character
@@ -233,7 +234,7 @@ MonoBehaviour:
   nomalAttackSize: 2
   isAddAttackDamage: 0
   isnomalAttackSizePerMana: 0
-  isCanTeleport: 1
+  isCanTeleport: 0
   upgradeNum: 0
   player: {fileID: 0}
 --- !u!61 &1354129338059981449
@@ -298,6 +299,18 @@ MonoBehaviour:
   afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
   spawnInterval: 0.02
   poolSize: 20
+--- !u!210 &7337740309242772519
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895071034499481536}
+  m_Enabled: 1
+  m_SortingLayerID: -673865093
+  m_SortingLayer: 1
+  m_SortingOrder: 0
+  m_SortAtRoot: 0
 --- !u!1 &5861792811945193929
 GameObject:
   m_ObjectHideFlags: 0
