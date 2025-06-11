@@ -16,7 +16,7 @@ MonoBehaviour:
   stage: 1
   isBossStage: 0
   enemyNumLimit: 25
-  stagePlayTime: 65
+  stagePlayTime: 5
   enemyWave:
   - {fileID: 11400000, guid: 43d096555cb952c4c8e7cf0f3ee9215e, type: 2}
   - {fileID: 11400000, guid: e8ca2a194b42d874bb73699e8326a004, type: 2}
