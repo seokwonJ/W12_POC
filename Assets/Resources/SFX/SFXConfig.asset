@@ -67,3 +67,9 @@ MonoBehaviour:
   - clipName: BlueDragonShootProjectile
     clip: {fileID: 8300000, guid: ee21542d62a832e47a14ab794675a277, type: 3}
     volume: 1
+  - clipName: MagicianAttack
+    clip: {fileID: 8300000, guid: 3bbd27daee529a54989271ad54fe01f6, type: 3}
+    volume: 1
+  - clipName: MagicianSkill
+    clip: {fileID: 8300000, guid: 6aa5a46cb179dc7499daa890fc9b3553, type: 3}
+    volume: 1

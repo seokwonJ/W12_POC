@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class MagicBall : ProjectileBase
 {
-    public override void DestroyProjectile(GameObject projectile)
-    {
-    }
 
     public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum)
     {
@@ -14,5 +11,21 @@ public class MagicBall : ProjectileBase
         damage = damageNum;
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
+    }
+
+    protected override void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Enemy"))
+        {
+            var enemy = other.GetComponent<EnemyHP>();
+            if (enemy != null)
+                enemy.TakeDamage(damage, ECharacterType.Magician);
+
+            DestroyProjectile(gameObject);
+        }
+    }
+
+    public override void DestroyProjectile(GameObject projectile)
+    {
     }
 }

@@ -219,7 +219,7 @@ MonoBehaviour:
   maxFallSpeed: 10
   attackDamage: 10
   abilityPower: 20
-  projectileSpeed: 10
+  projectileSpeed: 20
   animator: {fileID: 98201350519021881}
   playerTransform: {fileID: 0}
   skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
@@ -231,12 +231,14 @@ MonoBehaviour:
   skillFireDelay: 0.1
   skillSize: 4
   skillDamage: 10
-  nomalAttackSize: 2
+  skillProjectileSpeed: 15
+  nomalAttackSize: 1
   isAddAttackDamage: 0
   isnomalAttackSizePerMana: 0
   isCanTeleport: 0
   upgradeNum: 0
   player: {fileID: 0}
+  skillActiveEffect: {fileID: 1956634884848028283, guid: c769fa4c3128f3b448f853ad0cefe357, type: 3}
 --- !u!61 &1354129338059981449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -297,7 +299,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   afterImagePrefab: {fileID: 2010104840657968575, guid: 083384c8dd4d76649ac8505017ce8b0b, type: 3}
   afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
-  spawnInterval: 0.02
+  spawnInterval: 0.05
   poolSize: 20
 --- !u!210 &7337740309242772519
 SortingGroup:
@@ -849,6 +851,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6435409461517324919, guid: ca02ae7cf2774204b94fe03404840aef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8638958094634914384, guid: ca02ae7cf2774204b94fe03404840aef, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
