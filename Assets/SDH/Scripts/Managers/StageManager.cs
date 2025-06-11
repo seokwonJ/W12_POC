@@ -5,9 +5,7 @@ using UnityEngine;
 public class StageManager // 씬 전환 관리 (전투-상점 등)
 {
     public ControlField controlField;
-    private StageSO[] stageTemplates; // 스테이지 구성 모음
-    public GameObject Coin => coin;
-    private GameObject coin; // 전투 도중 떨어지는 골드 오브젝트
+
     public int World
     {
         get
@@ -32,6 +30,8 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         }
     }
     private int stage; // 스테이지 번호, 1-2 일 경우 2
+    public StageSO NowStage => nowStage;
+    private StageSO nowStage; // 현재 스테이지 정보
     public bool OnField
     {
         get
@@ -95,15 +95,6 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     }
     private int curEnemyCount; // 현재 스테이지에서 남아있는 적 수
 
-    private StageSO nowStage;
-
-    public void Init()
-    {
-        stageTemplates = Resources.LoadAll<StageSO>("StageTemplates");
-        Array.Sort(stageTemplates, (a, b) => a.world == b.world ? a.stage.CompareTo(b.stage) : a.world.CompareTo(b.world)); // stageSO를 순서대로 정렬
-        coin = Resources.Load<GameObject>("Objects/Coin");
-    }
-
     public void StartGame() // 게임 시작. 현재는 스테이지 변수 초기화만 있으며 아무것도 안함 이거 수정하면서 위에 변수들 초기화 설정값 변경할 것 (필드를 시작할 때 값을 수정하므로 유의)
     {
         world = 1;
@@ -112,13 +103,12 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         onField = true;
     }
 
-    public StageSO StartStage() // 현재 스테이지 시작하며 변수를 초기화하고 EnemySpawner에 현재 스테이지 정보 전달
+    public void StartStage() // 현재 스테이지 시작하며 변수를 초기화하고 EnemySpawner에 현재 스테이지 정보 전달
     {
         Managers.Status.Hp = Managers.Status.MaxHp;
         enemyKill = 0;
         curEnemyCount = 0;
-        nowStage = Array.Find(stageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
-        return nowStage;
+        nowStage = Array.Find(Managers.Asset.StageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
     }
 
     public void PlusEnemyKill(Vector3 position) // 적 처치 수 증가
@@ -135,7 +125,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     {
         for (int i = 0; i < coinCount; i++)
         {
-            GameObject coinObj = UnityEngine.Object.Instantiate(coin, position, Quaternion.identity);
+            GameObject coinObj = UnityEngine.Object.Instantiate(Managers.Asset.Coin, position, Quaternion.identity);
             coinObj.GetComponent<Coin>().SetCoinValue(UnityEngine.Random.Range(8, 13)); // 코인 값은 8~12 사이의 랜덤값
         }
     }
