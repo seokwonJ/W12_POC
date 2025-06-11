@@ -35,7 +35,7 @@ public class EnemyHP : MonoBehaviour
 
         // 딜로그에 기록
         int damage = hp > enemyHP ? enemyHP : hp; // 적의 HP보다 큰 데미지는 적의 HP로 제한
-        Managers.Record.AddStageDamgeRecord(attacker, hp);
+        Managers.Record.AddStageDamgeRecord(attacker, damage);
 
         enemyHP -= hp;
         if (playerHP_Image != null)
