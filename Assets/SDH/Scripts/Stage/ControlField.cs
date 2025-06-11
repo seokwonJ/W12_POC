@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 
 public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의상 타이머 기능도 겸함 (EnemySpawnerJH.cs에서 가져옴)
 {
@@ -12,16 +13,14 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
     [SerializeField] private TextMeshProUGUI currentTimeTxt;
 
-    private StageSO nowStage;
-
     private void Start()
     {
         Managers.Stage.controlField = this;
-        nowStage = Managers.Stage.StartStage();
+        Managers.Stage.StartStage(); // nowStage 재설정
 
-        if (!nowStage.isBossStage) StartCoroutine(StageTimer(nowStage.stagePlayTime)); // 일반 스테이지는 타이머가 끝나면 자동 진행
+        if (!Managers.Stage.NowStage.isBossStage) StartCoroutine(StageTimer(Managers.Stage.NowStage.stagePlayTime)); // 일반 스테이지는 타이머가 끝나면 자동 진행
         else currentTimeTxt.text = ""; // 보스 스테이지는 보스가 죽어야 끝나서 타이머 필요 없음
-        StartCoroutine(CoSpawnEnemyRoutine(nowStage));
+        StartCoroutine(CoSpawnEnemyRoutine(Managers.Stage.NowStage));
     }
 
     private IEnumerator StageTimer(float stagePlayTime) // 일반 스테이지 타이머

@@ -6,6 +6,8 @@ public class Managers : MonoBehaviour
     public static Managers Instance => instance;
     private static Managers instance;
     #region Managers
+    public static AssetManager Asset => instance.asset;
+    private AssetManager asset = new(); // Resources에서 받아오는 각종 오브젝트 관리
     public static StatusManager Status => instance.status;
     private StatusManager status = new(); // 인게임 스탯 관리
     public static ArtifactManager Artifact => instance.artifact;
@@ -39,8 +41,8 @@ public class Managers : MonoBehaviour
     {
         Application.targetFrameRate = 60;
 
+        asset.Init();
         sceneFlow.Init();
-        stage.Init();
     }
 
     private void OnDestroy() // 초기화
