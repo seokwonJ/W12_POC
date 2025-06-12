@@ -142,7 +142,7 @@ MonoBehaviour:
   skillDamage: 30
   skillknockbackPower: 200
   skillInterval: 0.3
-  skillRange: 7
+  skillRange: 10
   landingSkillEffect: {fileID: 4462792705112818740, guid: 4ab5fd21f69c0eb4fa8f57b97f2a45a0, type: 3}
   nomalAttackSize: 1
   nomalAttackLifetime: 5
@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a44e6a625a4ebe746b4365a23219d5c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  afterImagePrefab: {fileID: 2010104840657968575, guid: 083384c8dd4d76649ac8505017ce8b0b, type: 3}
+  afterImagePrefab: {fileID: 2010104840657968575, guid: d3cadcabc22b7b048bc8ecf80aa0289d, type: 3}
   afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
   spawnInterval: 0.05
   poolSize: 20
@@ -765,6 +765,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8315709363824584653, guid: 3d0c997c0a444e945866cdc7534276bb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 01bfc7d2fd321d542a72c8fc86bdfc48, type: 2}
     m_RemovedComponents:
     - {fileID: 1752879994331821664, guid: 3d0c997c0a444e945866cdc7534276bb, type: 3}
     m_RemovedGameObjects: []

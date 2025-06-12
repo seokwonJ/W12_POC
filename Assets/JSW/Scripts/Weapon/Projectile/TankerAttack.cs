@@ -32,7 +32,7 @@ public class TankerAttack : ProjectileBase
         {
             var enemyHP = other.GetComponent<EnemyHP>();
 
-            if (enemyHP != null) enemyHP.TakeDamage(damage);
+            if (enemyHP != null) enemyHP.TakeDamage(damage, ECharacterType.Tanker);
             if (enemyHP != null && enemyHP.enemyHP <= 0) return;
 
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
