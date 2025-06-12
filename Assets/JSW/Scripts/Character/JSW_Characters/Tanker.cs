@@ -54,14 +54,9 @@ public class Tanker : Character
     // 착지했을 경우
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        base.OnCollisionEnter2D(collision); // 부모 로직 먼저 실행
 
-        ContactPoint2D contact = collision.contacts[0];
-        if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
-
-
-        if (isSkillActive) return;
-        isGround = true;
+        if (!isGround) return;
 
         if (isShieldFlyer) _playerStatus.defensePower += 5;
 
@@ -70,9 +65,6 @@ public class Tanker : Character
             isSkillLanding = false;
             LandingSkill(skillDamage);
         }
-        Managers.Status.RiderCount++;
-        fixedJoint.enabled = true;
-        fixedJoint.connectedBody = collision.rigidbody;
     }
 
     // 착지했을 경우 주위의 투사체 사라지고 적들은 넉백
@@ -101,20 +93,24 @@ public class Tanker : Character
                 if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);}
                 else enemyHP.TakeDamage(totalDamage);
 
+                if (enemyHP != null && enemyHP.enemyHP <= 0)  continue;
+
                 Vector3 knockbackDirection = hit.transform.position - transform.position;
+
                 if (enemy != null)
                 {
-                    enemy.ApplyKnockback(knockbackDirection, skillknockbackPower);
+                    enemy.ApplyKnockback(knockbackDirection.normalized, skillknockbackPower);
                 }
+            }
 
-            }
-            if (hit.CompareTag("EnemyAttack"))
-            {
-                Destroy(hit.gameObject);
-            }
+            //if (hit.CompareTag("EnemyAttack"))
+            //{
+            //    Destroy(hit.gameObject);
+            //}
         }
 
         if (isHitSkillPerGetMana) currentMP += 2 * hitEnemyCount;
+
         landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 2;
         Destroy(landingSkillEffectObject, 0.1f);
     }
