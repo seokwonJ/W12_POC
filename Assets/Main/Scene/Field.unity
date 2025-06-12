@@ -515,6 +515,7 @@ MonoBehaviour:
   enemyHP: 500
   playerHP_Image: {fileID: 0}
   isDead: 0
+  rb: {fileID: 0}
 --- !u!114 &139859905
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1658,6 +1659,7 @@ MonoBehaviour:
   enemyHP: 500
   playerHP_Image: {fileID: 0}
   isDead: 0
+  rb: {fileID: 0}
 --- !u!114 &483196441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3806,7 +3808,8 @@ MonoBehaviour:
   backgrounds:
   - {fileID: 619849041}
   - {fileID: 619849041}
-  - {fileID: 619849041}
+  - {fileID: 190226077}
+  - {fileID: 190226077}
   - {fileID: 190226077}
 --- !u!4 &1293424245
 Transform:
@@ -4590,6 +4593,7 @@ MonoBehaviour:
   enemyHP: 500
   playerHP_Image: {fileID: 0}
   isDead: 0
+  rb: {fileID: 0}
 --- !u!114 &1570323336
 MonoBehaviour:
   m_ObjectHideFlags: 0
