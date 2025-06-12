@@ -84,7 +84,7 @@ MonoBehaviour:
     volume: 1
   - clipName: TankerLandingSkillEffect
     clip: {fileID: 8300000, guid: 22de00f62b6ce6a4f9fad7a99ae3e93d, type: 3}
-    volume: 1
+    volume: 0.6
   - clipName: TankerAttack
     clip: {fileID: 8300000, guid: b5f94ffcaca1a5347a2c8481617743b4, type: 3}
     volume: 1
