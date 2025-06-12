@@ -20,9 +20,9 @@ public class GhostPattern : MonoBehaviour
         Init();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (enemyHP == null || enemyHP.isDead) return;
+        if (enemyHP == null || enemyHP.isDead || enemy.isKnockback) return;
         Move();
     }
 
