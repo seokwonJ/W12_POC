@@ -46,7 +46,6 @@ public abstract class Character : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         fixedJoint = GetComponent<FixedJoint2D>();
-        Managers.PlayerControl.Characters.Add(gameObject); // 시작할 때 관리용 리스트에 추가. 만약 캐릭터 삭제나 교체 기능이 생긴다면 이부분 수정 필요
     }
 
     protected virtual void Start()

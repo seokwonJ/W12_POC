@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Main/Scene/Main.unity
     guid: 11e9bb07f5e3fd240ae2ef65918a2873
   - enabled: 1
+    path: Assets/Main/Scene/Select.unity
+    guid: cea03aec0b1b4684f8b710b5403e34b4
+  - enabled: 1
     path: Assets/Main/Scene/Layover.unity
     guid: d950eedebb23cbe4ead718fdfbafb760
   - enabled: 1
