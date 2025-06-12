@@ -240,5 +240,7 @@ public enum ECharacterType
     Levi,
     Ninja,
     Magician,
-    Tanker
+    Pirate,
+    Tanker,
+    Priest
 }

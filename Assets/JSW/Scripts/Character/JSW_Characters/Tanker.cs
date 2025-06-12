@@ -147,4 +147,15 @@ public class Tanker : Character
 
         landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 0.5f;
     }
+
+    public override void EndFieldAct() // 필드전투가 종료될 때 실행
+    {
+        base.EndFieldAct();
+
+        if (isSkillLanding == true)
+        {
+            Debug.Log("공격력 돌아옴");
+            isSkillLanding = false;
+        }
+    }
 }
