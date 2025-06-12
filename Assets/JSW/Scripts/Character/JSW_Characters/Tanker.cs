@@ -124,8 +124,8 @@ public class Tanker : Character
                 int totalDamage = skillDamageNum;
                 if (isCloserMoreDamage) totalDamage += (int)(skillDamage / Vector2.Distance(hit.transform.position, transform.position));
 
-                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);}
-                else enemyHP.TakeDamage(totalDamage);
+                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude, ECharacterType.Tanker);}
+                else enemyHP.TakeDamage(totalDamage, ECharacterType.Tanker);
 
                 if (enemyHP != null && enemyHP.enemyHP <= 0)  continue;
 
