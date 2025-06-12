@@ -6,121 +6,114 @@ using UnityEngine.Assertions.Must;
 
 public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의상 타이머 기능도 겸함 (EnemySpawnerJH.cs에서 가져옴)
 {
-    public const int MIN_RIGHT_SIDE_INDEX = 5; // 오른쪽 면에 있는 위치 인덱스의 최소값
-    public const int MAX_RIGHT_SIDE_INDEX = 12; // 오른쪽 면에 있는 위치 인덱스의 최대값
+    // 맵 내/외부 스폰 영역
+    [Header("Spawn Area Bounds")]
+    [SerializeField] private Vector2 spawnAreaMin;
+    [SerializeField] private Vector2 spawnAreaMax;
 
-    public Transform[] spawnPoints; // 임시 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-    [SerializeField] private TextMeshProUGUI currentTimeTxt;
+    [Header("Spawn Indicator")]
+    [SerializeField] private GameObject spawnIndicatorPrefab; // 스폰 위치 표시를 위한 인디케이터
+    [SerializeField] private float indicatorDuration = 2f; // 인디케이터 표시 시간
 
     private void Start()
     {
         Managers.Stage.controlField = this;
         Managers.Stage.StartStage(); // nowStage 재설정
-
-        if (!Managers.Stage.NowStage.isBossStage) StartCoroutine(StageTimer(Managers.Stage.NowStage.stagePlayTime)); // 일반 스테이지는 타이머가 끝나면 자동 진행
-        else currentTimeTxt.text = ""; // 보스 스테이지는 보스가 죽어야 끝나서 타이머 필요 없음
         StartCoroutine(CoSpawnEnemyRoutine(Managers.Stage.NowStage));
-    }
-
-    private IEnumerator StageTimer(float stagePlayTime) // 일반 스테이지 타이머
-    {
-        float currentTime = stagePlayTime;
-
-        while (currentTime >= 0)
-        {
-            currentTimeTxt.text = Mathf.Ceil(currentTime).ToString();
-
-            currentTime -= Time.deltaTime;
-            yield return null;
-        }
-
-        currentTimeTxt.text = "0";
-
-        Managers.Stage.OnField = false;
     }
 
     private IEnumerator CoSpawnEnemyRoutine(StageSO nowStage)
     {
-        Debug.Log("EnemySpawnerJH->StageControlDH Start Coroutine");
-        for (int waveIndex = 0; waveIndex < nowStage.enemyWave.Length; waveIndex++) // 웨이브1, 2, 3, 4... 를 반복
+        Debug.Log("ControlField->Start Spawning Waves");
+
+        for (int waveIndex = 0; waveIndex < nowStage.enemyWave.Length; waveIndex++)
         {
-            EnemyWaveSO enemyWaveSO = nowStage.enemyWave[waveIndex];
-            for (int i = 0; i < nowStage.WaveCount[waveIndex]; i++) // 각 웨이브를 소환하는 횟수만큼 반복
+            EnemyWaveSO wave = nowStage.enemyWave[waveIndex];
+
+            // Wave 시작 전 지정된 시간 간격 전파
+            yield return new WaitForSeconds(wave.waveInterval);
+
+            // Wave 소환
+            yield return StartCoroutine(SpawnWaveRoutine(wave, nowStage.waveCount[waveIndex]));
+
+            // 모든 적 제거될 때까지 대기
+            while (Managers.Stage.CurEnemyCount > 0)
             {
-                if (Managers.Stage.CurEnemyCount >= nowStage.enemyNumLimit) // 현재 스테이지에서 남아있는 적 수가 enemyNumLimit 이상이면 더 이상 소환하지 않음
-                {
-                    Debug.Log($"Enemy 수: {Managers.Stage.CurEnemyCount}, 숫자 한계가 넘어 이번 Wave는 소환하지 않음");
-                }
-                else
-                {
-                    SpawnEnemyWave(enemyWaveSO);
-                }
-                yield return new WaitForSeconds(nowStage.WaveInterval[waveIndex]);
+                // to do: 효율적인 방법 구현
+                yield return null;
             }
+
+            Debug.Log($"Wave {waveIndex + 1} Cleared");
         }
+
+        // 모든 Wave 끝나면 Stage 종료
+        Managers.Stage.OnField = false;
+        Debug.Log("Stage Completed");
     }
 
-    private void SpawnEnemyWave(EnemyWaveSO enemyWaveSO)
+    // to do 코드 고치기
+    private IEnumerator SpawnWaveRoutine(EnemyWaveSO wave, int waveCount)
     {
-        Debug.Log("Spawning enemy wave: " + enemyWaveSO.name);
-        Dictionary<int, GameObject> spawnDictonary = new Dictionary<int, GameObject>();
-
-        for (int i = 0; i < enemyWaveSO.enemyPrefabs.Length; i++) // 각 웨이브의 적을 소환
+        for (int i = 0; i < waveCount; i++)
         {
-            GameObject enemyPrefab = enemyWaveSO.enemyPrefabs[i];
-            int enemyCount = enemyWaveSO.enemyCount[i];
-            ESpawnPositionType spawnPositionType = enemyWaveSO.spawnPositionType[i];
-
-            for (int j = 0; j < enemyCount; j++)
+            for (int j = 0; j < wave.enemyPrefabs.Length; j++)
             {
-                // ESpawnPositionType가 Random인 경우 spawnPoints 중에서 랜덤한 인덱스, RightSideRandom인 경우 MIN_RIGHT_SIDE_INDEX이상 MAX_RIGHT_SIDE_INDEX 이하의 인덱스에서 랜덤하게
-                // 이미   spawnDictonary에 있는 인덱스는 제외하고 랜덤하게 뽑는다.
-                int spawnIndex = -1;
-                if (spawnPositionType == ESpawnPositionType.Random)
-                {
-                    do
-                    {
-                        spawnIndex = Random.Range(0, spawnPoints.Length);
-                    } while (spawnDictonary.ContainsKey(spawnIndex));
-                }
-                else if (spawnPositionType == ESpawnPositionType.RightSideRandom)
-                {
-                    do
-                    {
-                        spawnIndex = Random.Range(MIN_RIGHT_SIDE_INDEX, MAX_RIGHT_SIDE_INDEX + 1);
-                    } while (spawnDictonary.ContainsKey(spawnIndex));
-                }
-                else if (spawnPositionType == ESpawnPositionType.EvenlySpaced)
-                {
-                    // 균등한 간격으로 배치하기. 1개면 중앙에 배치하고 2개면 위부터 1/3, 2/3 위치에 배치
-                    // 가장 위는 MIN_RIGHT_SIDE_INDEX, 가장 아래는 MAX_RIGHT_SIDE_INDEX로 간주하고,
+                GameObject enemyPrefab = wave.enemyPrefabs[j];
+                ESpawnPositionType type = wave.spawnPositionType[j];
 
-                    int totalCount = enemyCount;
-                    int positionIndex = j % totalCount; // 현재 몇 번째 적인지
-                    float spacing = 1f / totalCount; // 간격 계산
-                    float positionY = (positionIndex + 0.5f) * spacing; // 중앙에 배치하기 위해 0.5를 더함
-                    // MIN_RIGHT_SIDE_INDEX ~ MAX_RIGHT_SIDE_INDEX 범위 내에서 균등하게 인덱스 계산
-                    spawnIndex = Mathf.RoundToInt(positionY * (MAX_RIGHT_SIDE_INDEX - MIN_RIGHT_SIDE_INDEX) + MIN_RIGHT_SIDE_INDEX);
-                }
 
-                spawnDictonary.Add(spawnIndex, enemyPrefab);
+                Vector3 spawnPos = CalculateSpawnPosition(type, enemyPrefab, nowBoss: wave.isBossWave);
 
+                // 인디케이터 표시
+                GameObject indicator = Instantiate(spawnIndicatorPrefab, spawnPos, Quaternion.identity);
+                Destroy(indicator, indicatorDuration);
+
+                // 인디케이터 후 실제 소환
+                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, indicatorDuration));
+            
             }
+            yield return new WaitForSeconds(wave.waveInterval);
         }
-
-        Debug.Log(spawnDictonary.Count + " enemies to spawn in this wave.");
-
-        // spawnDictonary에 있는 인덱스에 해당하는 spawnPoints에서 enemyPrefab을 Instantiate
-        foreach (var kvp in spawnDictonary)
-        {
-            int spawnIndex = kvp.Key;
-            GameObject enemyPrefab = kvp.Value;
-            Transform spawnPosition = spawnPoints[spawnIndex];
-            Instantiate(enemyPrefab, spawnPosition.position, enemyPrefab.transform.rotation);
-            Managers.Stage.CurEnemyCount++; // 현재 스테이지에서 남아있는 적 수 증가
-        }
+        yield break;
     }
+
+    private IEnumerator DelayedSpawn(GameObject prefab, Vector3 position, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Instantiate(prefab, position, prefab.transform.rotation);
+        Managers.Stage.CurEnemyCount++;
+    }
+
+    private Vector3 CalculateSpawnPosition(ESpawnPositionType type, GameObject prefab, bool nowBoss)
+    {
+        Vector3 pos = Vector3.zero;
+
+        switch (type)
+        {
+            case ESpawnPositionType.OnScreenRandom:
+                float x = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+                float y = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+                pos = new Vector3(x, y, 0f);
+                break;
+        }
+
+        return pos;
+    }
+
+
+    private Vector3 GetBossFixedPosition(GameObject bossPrefab)
+    {
+        // to do
+        //// BossWaveSO에 위치 리스트가 있다고 가정
+        //// 예시로 Stage 구조체에 bossPositions가 있다면
+        //var positions = Managers.Stage.NowStage.bossPositions;
+        //if (positions != null && positions.Length > 0)
+        //    return positions[0];
+
+        // 기본 중앙 위치 반환
+        return Vector3.zero;
+    }
+
 
     public void DeleteField() // 스테이지 종료 시 모든 적과 적/아군 투사체 제거
     {
