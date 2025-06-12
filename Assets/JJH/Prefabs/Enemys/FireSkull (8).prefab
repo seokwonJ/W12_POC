@@ -134,8 +134,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 150
-  playerHP_Image: {fileID: 0}
+  enemyHP: 120
+  playerHP_Image: {fileID: 1371279748141704963}
   isDead: 0
   rb: {fileID: 0}
 --- !u!114 &2336702892526190934
@@ -543,6 +543,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+--- !u!114 &1371279748141704963 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5503510209766424292, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+  m_PrefabInstance: {fileID: 6874646743211874791}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &3290029800248777895 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8272882056480392512, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
