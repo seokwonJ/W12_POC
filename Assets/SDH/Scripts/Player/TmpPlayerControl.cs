@@ -2,7 +2,6 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.TextCore.Text;
 
 public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 컨트롤하는 스크립트
 {
@@ -11,27 +10,19 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
     private void Awake()
     {
-        playerMove = GetComponent<PlayerMove>();
-        rb = GetComponent<Rigidbody2D>();
-    }
-
-    public void StartGame() // 게임 시작할 때 불러오는 함수
-    {
         DontDestroyOnLoad(gameObject);
 
-        SetStartPosition();
+        playerMove = GetComponent<PlayerMove>();
+        rb = GetComponent<Rigidbody2D>();
 
-        Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;
+        Managers.PlayerControl.NowPlayer = gameObject; // 관리용 오브젝트에 플레이어 설정. 현재 플레이어가 고정적으로 같이 실행이라 이걸 Awake에 안넣으면 코드가 꼬이는데, 나중에 매커니즘 변경하면서 Start로 옮길 것 @@@@@@@@@@@@@@@@@
     }
 
-    public void SetPlayer() // 고용할 때마다 호출하는 함수
+    private void Start()
     {
-        SetStartPosition();
-
         foreach (GameObject character in Managers.PlayerControl.Characters)
         {
-            character.GetComponent<Character>().EndFieldAct();
-            character.GetComponent<Character>().enabled = false;
+            character.GetComponent<Character>().FixCharacter();
         }
 
         Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;

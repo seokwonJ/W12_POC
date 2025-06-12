@@ -5,6 +5,9 @@ public class TmpStartBtn : MonoBehaviour
 {
     public void StartGame()
     {
-        SceneManager.LoadScene("Select");
+        Managers.Status.StartGame();
+        Managers.Stage.StartGame();
+
+        SceneManager.LoadScene("Layover");
     }
 }
