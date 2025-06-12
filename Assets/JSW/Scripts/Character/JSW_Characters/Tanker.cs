@@ -37,7 +37,7 @@ public class Tanker : Character
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
-
+        SoundManager.Instance.PlaySFX("TankerAttack");
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
@@ -63,6 +63,7 @@ public class Tanker : Character
         if (isSkillLanding)
         {
             isSkillLanding = false;
+            SoundManager.Instance.PlaySFX("TankerLandingSkillEffect");
             LandingSkill(skillDamage);
         }
     }
@@ -111,7 +112,6 @@ public class Tanker : Character
 
         if (isHitSkillPerGetMana) currentMP += 2 * hitEnemyCount;
 
-        landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 2;
-        Destroy(landingSkillEffectObject, 0.1f);
+        landingSkillEffectObject.transform.localScale = Vector3.one * skillRange;
     }
 }

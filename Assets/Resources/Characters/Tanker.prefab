@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4409654462998481833}
   - component: {fileID: 4422227394819742883}
-  - component: {fileID: 8093006193863305024}
   - component: {fileID: 8941268217316856183}
   - component: {fileID: 8041804720807176285}
   - component: {fileID: 652484068037350524}
   - component: {fileID: 8854602819872341005}
   - component: {fileID: 5870340614903693483}
+  - component: {fileID: 7000236667354187227}
+  - component: {fileID: 7919542828310737788}
   m_Layer: 6
   m_Name: Tanker
   m_TagString: Character
@@ -67,43 +68,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 4
---- !u!70 &8093006193863305024
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1072928865997025003}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: 0.016282558, y: 0.050115228}
-  m_Size: {x: 0.4467821, y: 0.89976954}
-  m_Direction: 0
 --- !u!255 &8941268217316856183
 FixedJoint2D:
   m_ObjectHideFlags: 0
@@ -177,10 +141,10 @@ MonoBehaviour:
   fallingAfterImageSpawner: {fileID: 8854602819872341005}
   isSkillLanding: 0
   skillDamage: 30
-  skillknockbackPower: 100
+  skillknockbackPower: 200
   skillInterval: 0.3
   skillRange: 7
-  landingSkillEffect: {fileID: 5948256768726399820, guid: 02b3edf9c933d7649819df429657066e, type: 3}
+  landingSkillEffect: {fileID: 4462792705112818740, guid: 4ab5fd21f69c0eb4fa8f57b97f2a45a0, type: 3}
   nomalAttackSize: 1
   nomalAttackLifetime: 5
   knockBackpower: 10
@@ -217,6 +181,65 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!61 &7000236667354187227
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072928865997025003}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: -0.02482821, y: -0.07886571}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.2551574, y: 0.6786953}
+  m_EdgeRadius: 0
+--- !u!114 &7919542828310737788
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1072928865997025003}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762139e8d7d1b0747ae5aa720c64103d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: 0
 --- !u!1 &1883067610540857561
 GameObject:
   m_ObjectHideFlags: 0
