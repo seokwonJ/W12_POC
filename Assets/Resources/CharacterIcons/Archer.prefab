@@ -26,8 +26,8 @@ Transform:
   m_GameObject: {fileID: 6067348945300716500}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.77, y: 2.95, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 135, y: 135, z: 135}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8563013868116144819}
@@ -70,6 +70,18 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 534fa265c52643c4e92bcbd83bb77ee8, type: 2}
+    - target: {fileID: 7668224605791596893, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
+      propertyPath: m_SortingLayer
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668224605791596893, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668224605791596893, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1981083829
+      objectReference: {fileID: 0}
     - target: {fileID: 8268539385431532481, guid: 3750daafb25dca5439cb1d0d6d7968f8, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5

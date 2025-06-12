@@ -17,11 +17,14 @@ public class HireCharacter : MonoBehaviour // 상점 시작 전 동료 한 명 고용
 
         for (int i = 0; i < characterOptions.Length; i++)
         {
+            int randIdx;
             do
             {
-                characterOptions[i].CharacterOptionIdx = Random.Range(0, Managers.Asset.Characters.Length);
+                randIdx = Random.Range(0, Managers.Asset.Characters.Length);
             }
-            while (Managers.PlayerControl.CharactersCheck[characterOptions[i].CharacterOptionIdx] || TmpCheckRepetition(i)); // 이 코드는 남은 가능한 동료 수가 3미만이면 무한루프가 터질 것으로 예상
+            while (Managers.PlayerControl.CharactersCheck[randIdx] || TmpCheckRepetition(i)); // 이 코드는 남은 가능한 동료 수가 3미만이면 무한루프가 터질 것으로 예상
+
+            characterOptions[i].CharacterOptionIdx = randIdx;
         }
     }
 
