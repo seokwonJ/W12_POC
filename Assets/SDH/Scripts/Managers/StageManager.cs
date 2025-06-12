@@ -50,9 +50,9 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
             {
                 Debug.Log("현재 스테이지 끝");
                 controlField.DeleteField();
-                Managers.Record.AddTotalDamageRecord(); // 스테이지 끝나고 총 데미지 레코드에 기록을 더하기
-                Managers.Record.PrintAllDamageRecord(isStage:true); // 스테이지에서 가한 피해량 출력
-                Managers.Record.PrintAllDamageRecord(isStage:false); // 총 가한 피해량 출력
+                //Managers.Record.AddTotalDamageRecord(); // 스테이지 끝나고 총 데미지 레코드에 기록을 더하기
+                //Managers.Record.PrintAllDamageRecord(isStage:true); // 스테이지에서 가한 피해량 출력
+                //Managers.Record.PrintAllDamageRecord(isStage:false); // 총 가한 피해량 출력
             }
         }
     }

@@ -32,16 +32,6 @@ public class ShopHireItem : ShopItem
     {
         float rate = 5f / hireCanvas.transform.localScale.x;
 
-        GameObject characerIcon = Instantiate(Managers.Asset.Characters[characterOptionIdx], transform);
-
-        characerIcon.transform.localPosition = Vector3.zero;
-        characerIcon.transform.localScale = new(rate, rate, rate);
-
-        Component[] components = characerIcon.GetComponents<Component>();
-
-        for (int j = components.Length - 1; j > 0; j--) // 0번은 transform이니 제외
-        {
-            Destroy(components[j]);
-        }
+        GameObject characerIcon = Instantiate(Managers.Asset.CharacterIcons[characterOptionIdx], transform);
     }
 }
