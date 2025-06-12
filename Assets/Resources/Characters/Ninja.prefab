@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 302522663227774237}
   - component: {fileID: 2819564044618578837}
   - component: {fileID: 4862264111850001419}
+  - component: {fileID: 6829464611693607480}
   m_Layer: 6
   m_Name: Ninja
   m_TagString: Character
@@ -224,6 +225,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.25294048, y: 0.7371697}
   m_EdgeRadius: 0
+--- !u!114 &6829464611693607480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7343003592488363999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 762139e8d7d1b0747ae5aa720c64103d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  order: 0
 --- !u!1001 &4023747290777019949
 PrefabInstance:
   m_ObjectHideFlags: 0
