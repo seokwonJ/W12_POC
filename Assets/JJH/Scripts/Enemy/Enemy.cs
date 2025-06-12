@@ -139,4 +139,6 @@ public enum EEnemyState
     Idle,
     Chase,
     Escape,
+    Attack,
+    PrepareAttack,
 }

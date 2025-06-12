@@ -10,23 +10,16 @@ public class VehicleCanvas : MonoBehaviour
 
     private void Start()
     {
-        foreach(GameObject vehicle in Managers.Asset.Vehicles)
+        foreach(GameObject icon in Managers.Asset.VehicleIcons)
         {
             float rate = 1f / transform.parent.localScale.x;
 
             GameObject vehicleOption = Instantiate(Managers.Asset.OptionTemplate, transform);
 
-            GameObject vehicleIcon = Instantiate(vehicle, vehicleOption.transform);
+            GameObject vehicleIcon = Instantiate(icon, vehicleOption.transform);
 
             vehicleIcon.transform.localPosition = Vector3.zero;
             vehicleIcon.transform.localScale = new(rate, rate, rate);
-
-            Component[] components = vehicleIcon.GetComponents<Component>();
-
-            for (int i = components.Length - 1; i > 0; i--) // 0번은 transform이니 제외
-            {
-                Destroy(components[i]); // 이거 좀 이상하긴 한데... 고칠까?
-            }
         }
 
         SetNowSelectedIdx(0); // 기본 선택은 0번

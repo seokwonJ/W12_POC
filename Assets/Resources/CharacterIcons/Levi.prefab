@@ -9,13 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7217755437246237028}
-  - component: {fileID: 1088776424018742029}
-  - component: {fileID: 1240063833929272116}
-  - component: {fileID: 8598952104045523919}
-  - component: {fileID: 8158726512124471703}
-  - component: {fileID: 1806835876949059928}
-  - component: {fileID: 5793770868084524959}
-  - component: {fileID: 6812575655566041608}
+  - component: {fileID: 4639329363972734396}
   m_Layer: 6
   m_Name: Levi
   m_TagString: Character
@@ -40,53 +34,7 @@ Transform:
   - {fileID: 5982639631082132307}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &1088776424018742029
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038042523987487916}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 1
-  m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 4
---- !u!255 &1240063833929272116
-FixedJoint2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038042523987487916}
-  m_Enabled: 0
-  serializedVersion: 4
-  m_EnableCollision: 0
-  m_ConnectedRigidBody: {fileID: 0}
-  m_BreakForce: Infinity
-  m_BreakTorque: Infinity
-  m_BreakAction: 3
-  m_AutoConfigureConnectedAnchor: 1
-  m_Anchor: {x: 0, y: 0}
-  m_ConnectedAnchor: {x: 11.58, y: 3.04}
-  m_DampingRatio: 0
-  m_Frequency: 0
---- !u!114 &8598952104045523919
+--- !u!114 &4639329363972734396
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,141 +43,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 4038042523987487916}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225d7a7746a759e4b85b56c4565646b9, type: 3}
+  m_Script: {fileID: 11500000, guid: 762139e8d7d1b0747ae5aa720c64103d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  allUpgrades:
-  - {fileID: 11400000, guid: 3c8a2535867aaf74e81aec89ca3c54fa, type: 2}
-  - {fileID: 11400000, guid: ed3375fc0621c06468531536173f695f, type: 2}
-  - {fileID: 11400000, guid: dde567e73eac80748bca94d1e994d01d, type: 2}
-  - {fileID: 11400000, guid: e960af11858125749b3bfa26f0199339, type: 2}
-  - {fileID: 11400000, guid: 7a876c688314ced419d2a78bbe5d76d1, type: 2}
-  - {fileID: 11400000, guid: c8a748b414febfa4ebd262e846e00608, type: 2}
-  - {fileID: 11400000, guid: 71cb9fa17eab4924e9310f85ca561750, type: 2}
-  - {fileID: 11400000, guid: ae69e222f62cb8e4fba6ddbc1be753fd, type: 2}
-  - {fileID: 11400000, guid: 6f459227082382246b83e6aff855802f, type: 2}
-  - {fileID: 11400000, guid: 3fa383511c12bc74fae65887af01b22b, type: 2}
---- !u!114 &8158726512124471703
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038042523987487916}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4e5fce98fc809c488478767da7237bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMP: 150
-  mpPerSecond: 50
-  mpImage: {fileID: 0}
-  normalProjectile: {fileID: 6537457085924451293, guid: 1925317da1244ea408dc890970832d6e, type: 3}
-  firePoint: {fileID: 7217755437246237028}
-  normalFireInterval: 1
-  enemyDetectRadius: 20
-  jumpForce: 15
-  maxFallSpeed: 15
-  attackDamage: 10
-  abilityPower: 1
-  projectileSpeed: 20
-  animator: {fileID: 6002530475527297520}
-  playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
-  skillJumpEffect: {fileID: 0}
-  fallingAfterImageSpawner: {fileID: 1806835876949059928}
-  dobleAttackCoolTime: 0.05
-  NormalAttackProjectileDuration: 0.5
-  skillDamage: 10
-  skillTargetCount: 5
-  skillInterval: 0
-  skillDashSpeed: 120
-  trail: {fileID: 5258655469011329452}
-  isAttackWhileFalling: 0
-  isGainPowerFromSkillDamage: 0
-  GainPowerFromSkillDamageCount: 0
-  GainPowerFromSkillDamageDuration: 3
-  isManaOnLandingBasedOnTimeAway: 0
-  ManaOnLandingBasedOnTime: 0
-  isAttackSpeedBoostAfterQuickReboard: 0
-  isMoreSkillDamageWithJumpPower: 0
-  upgradeNum: 1
-  skillDashStartEffect: {fileID: 7783791973953442425, guid: ea0a5a82b7fa0f94998cc959c089444b, type: 3}
-  skillActiveEffect: {fileID: 6238808282390516260, guid: 9d500f4f38cde9247bc454e3b761b2da, type: 3}
---- !u!114 &1806835876949059928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038042523987487916}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a44e6a625a4ebe746b4365a23219d5c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  afterImagePrefab: {fileID: 2010104840657968575, guid: 083384c8dd4d76649ac8505017ce8b0b, type: 3}
-  afterImageMaterial: {fileID: 2100000, guid: f7188bff86c78654bb0cdf1148aa903b, type: 2}
-  spawnInterval: 0.05
-  poolSize: 20
---- !u!210 &5793770868084524959
-SortingGroup:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038042523987487916}
-  m_Enabled: 1
-  m_SortingLayerID: -673865093
-  m_SortingLayer: 1
-  m_SortingOrder: 0
-  m_SortAtRoot: 0
---- !u!61 &6812575655566041608
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4038042523987487916}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_CompositeOperation: 0
-  m_CompositeOrder: 0
-  m_Offset: {x: -0.02482821, y: -0.07886571}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Size: {x: 0.2551574, y: 0.6786953}
-  m_EdgeRadius: 0
+  Order: 30
 --- !u!1 &5258655469011329452
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,11 +309,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b5c487c37519da14a9cee30b00070132, type: 3}
---- !u!95 &6002530475527297520 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 7030616245758803709, guid: b5c487c37519da14a9cee30b00070132, type: 3}
-  m_PrefabInstance: {fileID: 3664946668954576653}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8005028632198254281 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6758516225888479684, guid: b5c487c37519da14a9cee30b00070132, type: 3}

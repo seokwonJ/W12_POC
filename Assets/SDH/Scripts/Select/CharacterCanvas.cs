@@ -21,21 +21,14 @@ public class CharacterCanvas : MonoBehaviour
 
         float rate = 3f / transform.parent.localScale.x;
 
-        foreach (GameObject character in Managers.Asset.Characters)
+        foreach (GameObject icon in Managers.Asset.CharacterIcons)
         {
             GameObject characterOption = Instantiate(Managers.Asset.OptionTemplate, transform);
 
-            GameObject characerIcon = Instantiate(character, characterOption.transform);
+            GameObject characterIcon = Instantiate(icon, characterOption.transform);
 
-            characerIcon.transform.localPosition = Vector3.zero;
-            characerIcon.transform.localScale = new(rate, rate, rate);
-
-            Component[] components = characerIcon.GetComponents<Component>();
-
-            for(int i = components.Length - 1; i > 0; i--) // 0번은 transform이니 제외
-            {
-                Destroy(components[i]); // 이거 좀 이상하긴 한데... 고칠까?
-            }
+            characterIcon.transform.localPosition = Vector3.zero;
+            characterIcon.transform.localScale = new(rate, rate, rate);
         }
 
         SetNowSelectedIdx(0); // 기본 선택은 0번
