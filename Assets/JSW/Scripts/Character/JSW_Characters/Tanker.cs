@@ -37,7 +37,7 @@ public class Tanker : Character
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
-
+        SoundManager.Instance.PlaySFX("TankerAttack");
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
@@ -54,25 +54,18 @@ public class Tanker : Character
     // 착지했을 경우
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        base.OnCollisionEnter2D(collision); // 부모 로직 먼저 실행
 
-        ContactPoint2D contact = collision.contacts[0];
-        if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
-
-
-        if (isSkillActive) return;
-        isGround = true;
+        if (!isGround) return;
 
         if (isShieldFlyer) _playerStatus.defensePower += 5;
 
         if (isSkillLanding)
         {
             isSkillLanding = false;
+            SoundManager.Instance.PlaySFX("TankerLandingSkillEffect");
             LandingSkill(skillDamage);
         }
-        Managers.Status.RiderCount++;
-        fixedJoint.enabled = true;
-        fixedJoint.connectedBody = collision.rigidbody;
     }
 
     // 착지했을 경우 주위의 투사체 사라지고 적들은 넉백
@@ -101,21 +94,24 @@ public class Tanker : Character
                 if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);}
                 else enemyHP.TakeDamage(totalDamage);
 
+                if (enemyHP != null && enemyHP.enemyHP <= 0)  continue;
+
                 Vector3 knockbackDirection = hit.transform.position - transform.position;
+
                 if (enemy != null)
                 {
-                    enemy.ApplyKnockback(knockbackDirection, skillknockbackPower);
+                    enemy.ApplyKnockback(knockbackDirection.normalized, skillknockbackPower);
                 }
+            }
 
-            }
-            if (hit.CompareTag("EnemyAttack"))
-            {
-                Destroy(hit.gameObject);
-            }
+            //if (hit.CompareTag("EnemyAttack"))
+            //{
+            //    Destroy(hit.gameObject);
+            //}
         }
 
         if (isHitSkillPerGetMana) currentMP += 2 * hitEnemyCount;
-        landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 2;
-        Destroy(landingSkillEffectObject, 0.1f);
+
+        landingSkillEffectObject.transform.localScale = Vector3.one * skillRange;
     }
 }

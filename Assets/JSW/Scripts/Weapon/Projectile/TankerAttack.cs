@@ -4,12 +4,11 @@ public class TankerAttack : ProjectileBase
 {
     private float knockbackPower;
 
-
-    protected override void Update()
-    {
-        transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
-        transform.up = Vector2.right;
-    }
+    //protected override void Update()
+    //{
+    //    transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
+    //    transform.up = Vector2.right;
+    //}
 
     public void SetInit(Vector2 dir, int damageNum, float speedNum, float lifetimeNum, float scaleNum, float KnockBackPowerNum)
     {
@@ -23,19 +22,18 @@ public class TankerAttack : ProjectileBase
         knockbackPower = KnockBackPowerNum;
     }
 
-
     public override void DestroyProjectile(GameObject projectile)
     {
-        Destroy(projectile);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy"))
         {
-            var enemyHp = other.GetComponent<EnemyHP>();
-            if (enemyHp != null)
-                enemyHp.TakeDamage(damage);
+            var enemyHP = other.GetComponent<EnemyHP>();
+
+            if (enemyHP != null) enemyHP.TakeDamage(damage);
+            if (enemyHP != null && enemyHP.enemyHP <= 0) return;
 
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
 
@@ -44,9 +42,6 @@ public class TankerAttack : ProjectileBase
             {
                 enemy.ApplyKnockback(knockbackDirection, knockbackPower);
             }
-
-
-            Destroy(gameObject);
         }
     }
 }

@@ -16,8 +16,9 @@ public class VehicleCanvas : MonoBehaviour
 
             GameObject vehicleOption = Instantiate(Managers.Asset.OptionTemplate, transform);
 
-            GameObject vehicleIcon = Instantiate(vehicle, Vector2.zero, Quaternion.identity, vehicleOption.transform);
+            GameObject vehicleIcon = Instantiate(vehicle, vehicleOption.transform);
 
+            vehicleIcon.transform.localPosition = Vector3.zero;
             vehicleIcon.transform.localScale = new(rate, rate, rate);
 
             Component[] components = vehicleIcon.GetComponents<Component>();
