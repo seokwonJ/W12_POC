@@ -28,7 +28,7 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) // 엔터키로 구매
+        if (Input.GetKeyDown(KeyCode.Space)) // 스페이스바로 구매. 상점에서 대시 끄는 기능 추가하기 @@@@@@@@@@@@@@@@@@
         {
             BuyItem();
         }
