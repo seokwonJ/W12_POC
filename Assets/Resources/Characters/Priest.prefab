@@ -301,10 +301,15 @@ MonoBehaviour:
   fallingAfterImageSpawner: {fileID: 1827207826442848846}
   skillProjectile: {fileID: 0}
   skillCount: 3
-  skillInterval: 0.3
-  skillFireDelay: 0.1
+  skillInterval: 0.5
+  skillFireDelay: 0.5
   skillDuration: 5
+  skillHealAmount: 10
   isSkillBuff: 0
+  priestSkillAllActiveEffect: {fileID: 6079483160803917597, guid: 13c8f3fbfa1907948af2571f2927489a, type: 3}
+  priestSkillActiveEffect: {fileID: 5030123063063868698, guid: 5bde2ab17581f0941818cf223382ced0, type: 3}
+  priestSkillDurationEffect: {fileID: 2592063396896696007, guid: 259b31fce6427f04bb5dc5272c7eb699, type: 3}
+  PriestHealEffect: {fileID: 8070168948267937700, guid: a39972667c5cd24419f598d454ec9f18, type: 3}
   nomalAttackSize: 1
   isAddAttackDamage: 0
   isnomalAttackSizePerMana: 0

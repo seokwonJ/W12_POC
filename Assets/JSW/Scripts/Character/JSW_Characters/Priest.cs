@@ -11,8 +11,14 @@ public class Priest : Character
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillDuration = 5f;
+    private bool isSkillLanding;
+    public int skillHealAmount = 10;
 
     public bool isSkillBuff;
+    public GameObject priestSkillAllActiveEffect;
+    public GameObject priestSkillActiveEffect;
+    public GameObject priestSkillDurationEffect;
+    public GameObject PriestHealEffect;
 
     [Header("강화")]
     public float nomalAttackSize;
@@ -53,7 +59,7 @@ public class Priest : Character
             proj.GetComponent<PriestAttack>().SetInit(direction, attackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
         }
 
-        SoundManager.Instance.PlaySFX("MagicianAttack");
+        SoundManager.Instance.PlaySFX("PriestAttack");
     }
 
     Coroutine skillCoroutine;
@@ -67,56 +73,52 @@ public class Priest : Character
 
         animator.Play("SKILL", -1, 0f);
 
+        Instantiate(priestSkillActiveEffect, transform.position, Quaternion.identity, transform);
+        
+        isSkillLanding = true;
+
+        SoundManager.Instance.PlaySFX("PriestSkillActive");
+
         if (skillCoroutine != null)
         {
             StopCoroutine(skillCoroutine);
-
-            isSkillBuff = false;
-
-            List<GameObject> nowCharacters = Managers.PlayerControl.Characters;
-
-            foreach (GameObject ridingCharacter in nowCharacters)
-            {
-                ridingCharacter.GetComponent<Character>().attackDamage -= 10;
-            }
-
+            PowerDown();
             skillCoroutine = StartCoroutine(CharactersAttackPowerUp());
         }
         else
         {
             skillCoroutine = StartCoroutine(CharactersAttackPowerUp());
         }
+
         //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
         SoundManager.Instance.PlaySFX("MagicianSkill");
 
         yield return new WaitForSeconds(skillInterval);
     }
 
+    List<GameObject> nowCharacters;
+    List<GameObject> nowCharactersEffects;
+
     // 스킬 공격력 업
     protected IEnumerator CharactersAttackPowerUp()
     {
-        List<GameObject> nowCharacters = Managers.PlayerControl.Characters;
+        nowCharacters = Managers.PlayerControl.Characters;
 
         isSkillBuff = true;
+
+        nowCharactersEffects = new List<GameObject>();
 
         foreach (GameObject ridingCharacter in nowCharacters)
         {
             print("데미지 파워 업!!!!");
+            Instantiate(priestSkillAllActiveEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform);
+            nowCharactersEffects.Add(Instantiate(priestSkillDurationEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform));
             ridingCharacter.GetComponent<Character>().attackDamage += 10;
         }
-        
 
         yield return new WaitForSeconds(skillDuration);
 
-        isSkillBuff = false;
-
-        foreach (GameObject ridingCharacter in nowCharacters)
-        {
-            print("데미지 파워 다운!!!!");
-            ridingCharacter.GetComponent<Character>().attackDamage -= 10;
-        }
-
-        skillCoroutine = null;
+        PowerDown();
     }
 
     IEnumerator TeleportToPlayer()
@@ -125,22 +127,56 @@ public class Priest : Character
         if (!isGround) transform.position = player.transform.position + Vector3.up;
     }
 
+    public void PowerDown()
+    {
+        isSkillBuff = false;
+
+        foreach (GameObject ridingCharacter in nowCharacters)
+        {
+            print("데미지 파워 다운!!!!");
+            ridingCharacter.GetComponent<Character>().attackDamage -= 10;
+        }
+
+        foreach (GameObject ridingCharacterEffect in nowCharactersEffects)
+        {
+            Destroy(ridingCharacterEffect);
+        }
+
+        skillCoroutine = null;
+    }
+
+
+
+    // 착지했을 경우
+    protected override void OnCollisionEnter2D(Collision2D collision)
+    {
+        base.OnCollisionEnter2D(collision); // 부모 로직 먼저 실행
+
+        // 조건 만족 안 하면 아무것도 안 하고 리턴 (부모에서 이미 isGround 처리됨)
+        if (!isGround) return;
+
+        // 추가 스킬 처리
+        if (isSkillLanding)
+        {
+            SoundManager.Instance.PlaySFX("PriestHealActive");
+            isSkillLanding = false;
+            Instantiate(PriestHealEffect, transform.position + Vector3.up * 1.7f, Quaternion.identity, transform);
+            Managers.PlayerControl.NowPlayer.GetComponentInChildren<PlayerHP>().TakeHeal(skillHealAmount);
+        }
+    }
+
+
+
     public override void EndFieldAct() // 필드전투가 종료될 때 실행
     {
         base.EndFieldAct();
 
+        isSkillLanding = false;
+
         if (isSkillBuff)
         {
-            isSkillBuff = false;
-
-            List<GameObject> nowCharacters = Managers.PlayerControl.Characters;
-
-            foreach (GameObject ridingCharacter in nowCharacters)
-            {
-                ridingCharacter.GetComponent<Character>().attackDamage -= 10;
-            }
-
-            skillCoroutine = null;
+            PowerDown();
         }
     }
+
 }

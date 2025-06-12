@@ -109,7 +109,7 @@ public class PirateAttack : ProjectileBase
             EnemyHP enemyHp = other.GetComponent<EnemyHP>();
             if (enemyHp != null && isFirstHitDealsBonusDamage)
             {
-                enemyHp.TakeDamage(damage);
+                enemyHp.TakeDamage(damage, ECharacterType.Pirate);
             }
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, transform.localScale.magnitude);
@@ -120,7 +120,7 @@ public class PirateAttack : ProjectileBase
                     Enemy enemy = hit.GetComponent<Enemy>();
                     EnemyHP otherEnemyHP = hit.GetComponent<EnemyHP>();
 
-                    otherEnemyHP.TakeDamage(damage);
+                    otherEnemyHP.TakeDamage(damage,ECharacterType.Pirate);
 
                     Vector3 knockbackDirection = hit.transform.position - transform.position;
                     if (enemy != null && otherEnemyHP.enemyHP > 0)
