@@ -2,7 +2,6 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.TextCore.Text;
 
 public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 컨트롤하는 스크립트
 {
@@ -166,7 +165,6 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
     public void SetOrderInLayer(Transform character) // 캐릭터들이 점프하거나 착지할 때마다 레이어 순서 변경
     {
-        Debug.Log(Managers.PlayerControl.Characters.Count);
         character?.SetAsLastSibling();
 
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)

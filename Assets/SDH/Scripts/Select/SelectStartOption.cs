@@ -14,6 +14,7 @@ public class SelectStartOption : SelectOption
         Managers.PlayerControl.Characters.Add(Instantiate(Managers.Asset.Characters[characterCanvas.NowSelectedIdx], Managers.PlayerControl.NowPlayer.transform));
 
         Managers.PlayerControl.StartGame();
+        Managers.PlayerControl.CharactersCheck[characterCanvas.NowSelectedIdx] = true;
 
         Managers.Status.StartGame();
         Managers.Stage.StartGame();
