@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: -673865093
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -7129419709214212761, guid: 0218345617b34c9418268f3b4421ca49, type: 3}
+  m_Sprite: {fileID: 4265933498905476162, guid: 09c0a11565293a241b1b10298715eda3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -132,7 +132,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 80
+  playerHP_Image: {fileID: 0}
   isDead: 0
+  rb: {fileID: 0}
 --- !u!114 &2336702892526190934
 MonoBehaviour:
   m_ObjectHideFlags: 0
