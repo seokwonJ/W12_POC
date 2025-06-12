@@ -25,8 +25,9 @@ public class CharacterCanvas : MonoBehaviour
         {
             GameObject characterOption = Instantiate(Managers.Asset.OptionTemplate, transform);
 
-            GameObject characerIcon = Instantiate(character, Vector3.zero, Quaternion.identity, characterOption.transform);
+            GameObject characerIcon = Instantiate(character, characterOption.transform);
 
+            characerIcon.transform.localPosition = Vector3.zero;
             characerIcon.transform.localScale = new(rate, rate, rate);
 
             Component[] components = characerIcon.GetComponents<Component>();
