@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
+using static UnityEditor.PlayerSettings;
 
-public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의상 타이머 기능도 겸함 (EnemySpawnerJH.cs에서 가져옴)
+public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코드
 {
     // 맵 내/외부 스폰 영역
     [Header("Spawn Area Bounds")]
@@ -91,12 +92,60 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         switch (type)
         {
             case ESpawnPositionType.OnScreenRandom:
-                float x = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
-                float y = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
-                pos = new Vector3(x, y, 0f);
+                pos = GetOnScreenRandomPos();
+                break;
+
+            case ESpawnPositionType.OffScreenRandom:
+                pos = GetOffScreenRandomPos();
+                break;
+
+            case ESpawnPositionType.GlobalRandom:
+                pos = Random.Range(0, 2) == 0 ? GetOnScreenRandomPos() : GetOffScreenRandomPos(); // 50% 확률로 화면 안/밖 랜덤 위치 선택
                 break;
         }
 
+        return pos;
+    }
+
+    private Vector3 GetOnScreenRandomPos()
+    {
+        float x = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+        float y = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+        return new Vector3(x, y, 0f);
+    }
+
+    private Vector3 GetOffScreenRandomPos()
+    {
+        // 화면 밖 랜덤 위치 (화면 안쪽은 제외)
+        // 화면 경계 바깥 4면 중 하나를 랜덤 선택하여 그 면에서만 소환
+        int side = Random.Range(0, 6); // 0:좌, 1:우, 2,3:상, 4,5:하
+        float xOff, yOff;
+        Vector3 pos = Vector3.zero;
+        switch (side)
+        {
+            case 0: // Left
+                xOff = spawnAreaMin.x - 5f;
+                yOff = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+            case 1: // Right
+                xOff = spawnAreaMax.x + 5f;
+                yOff = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+            case 2:
+            case 3:// Top
+                xOff = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+                yOff = spawnAreaMax.y + 5f;
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+            case 4:
+            case 5: // Bottom
+                xOff = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+                yOff = spawnAreaMin.y - 5f;
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+        }
         return pos;
     }
 

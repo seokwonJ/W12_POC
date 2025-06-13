@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4314202409012214010}
   - component: {fileID: 8304087639445234492}
   - component: {fileID: 1368834091956541019}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: BlueDragon (~12)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -112,6 +112,7 @@ MonoBehaviour:
   speed: 3
   minPlayerDistance: 0
   isKnockbackable: 0
+  isKnockback: 0
   isFilpping: 0
   damage: 40
   fireCooldown: 2
