@@ -33,6 +33,9 @@ public class PlayerHP : MonoBehaviour
     private void Awake()
     {
         spriteRendererCore = GetComponent<SpriteRenderer>();
+
+
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -40,17 +43,16 @@ public class PlayerHP : MonoBehaviour
         _playerStatus = Managers.PlayerControl.NowPlayer.GetComponent<PlayerStatus>();
 
         // HPBar 프리팹을 직접 생성하고 연결
-        if (hpBarPrefab != null && canvasTransform != null)
-        {
-            hpBarObject = Instantiate(hpBarPrefab, canvasTransform);
-            HPBar hpBarScript = hpBarObject.GetComponent<HPBar>();
-            if (hpBarScript != null)
-            {
-                hpBarScript.target = this.transform;
-                hpBarScript.offset = hpBarOffset;
-            }
-            playerHP_Image = hpBarObject.GetComponent<Image>();
-        }
+        //if (hpBarPrefab != null && canvasTransform != null)
+        //{
+        //    HPBar hpBarScript = hpBarObject.GetComponent<HPBar>();
+        //    if (hpBarScript != null)
+        //    {
+        //        hpBarScript.target = this.transform;
+        //        hpBarScript.offset = hpBarOffset;
+        //    }
+        //    playerHP_Image = hpBarObject.GetComponent<Image>();
+        //}
         // Start에서 fillAmount 갱신 코드는 이벤트 기반으로 대체
     }
 
@@ -65,19 +67,20 @@ public class PlayerHP : MonoBehaviour
     {
         Managers.Status.Hp -= (damage - _playerStatus.defensePower);
         SoundManager.Instance.PlaySFX("PlayerHitSound");
-        if (playerHP_Image != null)
-        {
-            float fill = Managers.Status.Hp / Managers.Status.MaxHp;
-            playerHP_Image.fillAmount = fill;
-            Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
 
-            if (flashCoroutine != null) StopCoroutine(flashCoroutine);
-            flashCoroutine = StartCoroutine(CoDamagedEffect());
-        }
-        else
+        if (playerHP_Image == null)
         {
-            Debug.LogWarning("[PlayerHP] playerHP_Image is null! HPBar가 할당되지 않았습니다.");
+            HPFill hpFill = transform.parent.GetComponentInChildren<HPFill>(true);
+            playerHP_Image = hpFill.GetComponent<Image>();
+
         }
+        float fill = Managers.Status.Hp / Managers.Status.MaxHp;
+        playerHP_Image.fillAmount = fill;
+        Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
+
+        if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+        flashCoroutine = StartCoroutine(CoDamagedEffect());
+
 
         if (Managers.Status.Hp <= 0)
         {
