@@ -46,6 +46,7 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
             Debug.Log($"Wave {waveIndex + 1} Cleared");
         }
 
+        yield return new WaitForSeconds(0.5f); // 마지막 웨이브 후 잠시 대기
         // 모든 Wave 끝나면 Stage 종료
         Managers.Stage.OnField = false;
         Debug.Log("Stage Completed");
