@@ -5078,52 +5078,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 121d498d2c9a4ad488717b79f48cd5dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPoints:
-  - {fileID: 1461942044}
-  - {fileID: 1344609248}
-  - {fileID: 2041631757}
-  - {fileID: 1475847080}
-  - {fileID: 1173901112}
-  - {fileID: 1754801290}
-  - {fileID: 1376754882}
-  - {fileID: 139676119}
-  - {fileID: 93653783}
-  - {fileID: 324353799}
-  - {fileID: 1540373216}
-  - {fileID: 197185916}
-  - {fileID: 659955723}
-  - {fileID: 2052477809}
-  - {fileID: 1276349031}
-  - {fileID: 792751957}
-  - {fileID: 1343338882}
-  - {fileID: 1276365599}
-  - {fileID: 1133785322}
-  - {fileID: 1232342833}
-  - {fileID: 716479920}
-  - {fileID: 869764095}
-  - {fileID: 1993315516}
-  - {fileID: 1639996542}
-  - {fileID: 2053927634}
-  - {fileID: 532372673}
-  - {fileID: 1576623155}
-  - {fileID: 1044692584}
-  - {fileID: 730449770}
-  - {fileID: 391818071}
-  - {fileID: 1594329895}
-  - {fileID: 1715371228}
-  - {fileID: 899758534}
-  - {fileID: 1323359935}
-  - {fileID: 1243505618}
-  - {fileID: 2054502198}
-  - {fileID: 366857460}
-  - {fileID: 1846365939}
-  - {fileID: 1180614843}
-  - {fileID: 1651615428}
-  - {fileID: 998773877}
-  - {fileID: 747674991}
-  - {fileID: 235229655}
-  - {fileID: 231382340}
-  currentTimeTxt: {fileID: 1685567429}
+  spawnAreaMin: {x: -21, y: -11}
+  spawnAreaMax: {x: 21, y: 11}
+  spawnIndicatorPrefab: {fileID: 1517124075059143574, guid: 98170fe73b151624b8868f4f50080962, type: 3}
+  indicatorDuration: 1
 --- !u!4 &1646955305
 Transform:
   m_ObjectHideFlags: 0

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefabs:
   - {fileID: 2971542310015680529, guid: 6f04bb04aaa06f743b9ca5338544cd29, type: 3}
+  - {fileID: 2971542310015680529, guid: 6f04bb04aaa06f743b9ca5338544cd29, type: 3}
   - {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
-  enemyCount: 0200000002000000
-  spawnPositionType: 0000000000000000
+  - {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
+  spawnPositionType: 01000000010000000100000001000000
+  waveInterval: 1
+  isBossWave: 0
