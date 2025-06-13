@@ -1,9 +1,5 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using static UnityEditor.PlayerSettings;
 
 public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코드
 {
