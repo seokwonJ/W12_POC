@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코드
@@ -9,7 +10,8 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
     [SerializeField] private Vector2 spawnAreaMax;
 
     [Header("Spawn Indicator")]
-    [SerializeField] private GameObject spawnIndicatorPrefab; // 스폰 위치 표시를 위한 인디케이터
+    [SerializeField] private GameObject onScreenSpawnIndicatorPrefab; // 화면 안 스폰 위치 표시를 위한 인디케이터
+    [SerializeField] private GameObject offScreenSpawnIndicatorPrefab; // 화면 밖 스폰 위치 표시를 위한 인디케이터
     [SerializeField] private float indicatorDuration = 2f; // 인디케이터 표시 시간
 
     private void Start()
@@ -49,7 +51,6 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         Debug.Log("Stage Completed");
     }
 
-    // to do 코드 고치기
     private IEnumerator SpawnWaveRoutine(EnemyWaveSO wave, int waveCount)
     {
         for (int i = 0; i < waveCount; i++)
@@ -61,9 +62,17 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
 
                 Vector3 spawnPos = CalculateSpawnPosition(type, enemyPrefab, nowBoss: wave.isBossWave);
+                Vector3 IndicatorPos = spawnPos;
+
+                if (type == ESpawnPositionType.OffScreenRandom)
+                {
+                    IndicatorPos.x = Mathf.Clamp(IndicatorPos.x, spawnAreaMin.x, spawnAreaMax.x);
+                    IndicatorPos.y = Mathf.Clamp(IndicatorPos.y, spawnAreaMin.y, spawnAreaMax.y);
+                }
 
                 // 인디케이터 표시
-                GameObject indicator = Instantiate(spawnIndicatorPrefab, spawnPos, Quaternion.identity);
+                GameObject IndcatorPrefab = type == ESpawnPositionType.OnScreenRandom ? onScreenSpawnIndicatorPrefab : offScreenSpawnIndicatorPrefab;
+                GameObject indicator = Instantiate(IndcatorPrefab, IndicatorPos, Quaternion.identity);
                 Destroy(indicator, indicatorDuration);
 
                 // 인디케이터 후 실제 소환
@@ -95,9 +104,9 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
                 pos = GetOffScreenRandomPos();
                 break;
 
-            case ESpawnPositionType.GlobalRandom:
-                pos = Random.Range(0, 2) == 0 ? GetOnScreenRandomPos() : GetOffScreenRandomPos(); // 50% 확률로 화면 안/밖 랜덤 위치 선택
-                break;
+            //case ESpawnPositionType.GlobalRandom:
+            //    pos = Random.Range(0, 2) == 0 ? GetOnScreenRandomPos() : GetOffScreenRandomPos(); // 50% 확률로 화면 안/밖 랜덤 위치 선택
+            //    break;
         }
 
         return pos;

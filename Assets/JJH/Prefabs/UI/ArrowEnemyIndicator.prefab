@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1054980973619171056}
   - component: {fileID: 6622575195913346741}
   m_Layer: 0
-  m_Name: XEnemyIndicator
+  m_Name: ArrowEnemyIndicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -76,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: -673865093
   m_SortingLayer: 1
   m_SortingOrder: 100
-  m_Sprite: {fileID: -2965393001259691005, guid: 616879a536d9c5c4a8d63ab436fa4e9e, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.78431374}
+  m_Sprite: {fileID: -6664401197559929378, guid: 115aa93727331d743ab55d8d93d091a5, type: 3}
+  m_Color: {r: 1, g: 0.7466958, b: 0, a: 0.78431374}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

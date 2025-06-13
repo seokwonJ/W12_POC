@@ -2925,7 +2925,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1544246020}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c538674fa988b1479f017a051ab1428, type: 3}
   m_Name: 
@@ -3290,7 +3290,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spawnAreaMin: {x: -21, y: -11}
   spawnAreaMax: {x: 21, y: 11}
-  spawnIndicatorPrefab: {fileID: 1517124075059143574, guid: 98170fe73b151624b8868f4f50080962, type: 3}
+  onScreenSpawnIndicatorPrefab: {fileID: 1517124075059143574, guid: 98170fe73b151624b8868f4f50080962, type: 3}
+  offScreenSpawnIndicatorPrefab: {fileID: 1517124075059143574, guid: 9a87341d9c82ca34bb7ffacc57044963, type: 3}
   indicatorDuration: 1
 --- !u!4 &1646955305
 Transform:

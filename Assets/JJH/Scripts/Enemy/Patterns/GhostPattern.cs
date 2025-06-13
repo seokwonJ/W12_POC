@@ -49,7 +49,6 @@ public class GhostPattern : MonoBehaviour
             {
                 enemy.ChangeState(EEnemyState.Chase);
             }
-            // 클래스 내에 아래 메서드 추가
             else if (Vector2.Distance(enemyHP.transform.position, player.transform.position) > maxPlayerDistance)
             {
                 enemy.ChangeState(EEnemyState.Chase);
