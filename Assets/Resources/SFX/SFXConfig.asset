@@ -97,3 +97,9 @@ MonoBehaviour:
   - clipName: PriestSkillActive
     clip: {fileID: 8300000, guid: e2220fb7c2fb7b645a8589f1a1ac3e5a, type: 3}
     volume: 0.6
+  - clipName: SniperAttack
+    clip: {fileID: 8300000, guid: c549f3ad60d9b944a9c77be6852445fa, type: 3}
+    volume: 1
+  - clipName: SniperSkillActive
+    clip: {fileID: 8300000, guid: 689bbd360aaa6cb42ace4e2206384e1d, type: 3}
+    volume: 1

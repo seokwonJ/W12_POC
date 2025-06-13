@@ -302,17 +302,20 @@ MonoBehaviour:
   skillProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
   skillCount: 3
   skillInterval: 1
-  skillFireDelay: 0.05
+  skillFireDelay: 0.1
   skillSize: 1
   skillDamage: 1
-  skillProjectileSpeed: 15
-  skillEndDelay: 0.35
+  skillProjectileSpeed: 300
+  skillSlowDelay: 0.6
   AttackMaxCount: 3
   realoadTime: 3
   nomalAttackSize: 1
   upgradeNum: 0
   player: {fileID: 0}
-  skillActiveEffect: {fileID: 0}
+  dim: {fileID: 0}
+  sniperSkillActive1: {fileID: 16016434045391788, guid: f4182d49b616c824f8a372d5ed631ac9, type: 3}
+  sniperSkillActive2: {fileID: 5520664732398860473, guid: 96f66a029b30b03448ffb4e2d1b4f493, type: 3}
+  sniperActiveShot: {fileID: 1143770707561689224, guid: 32ff590d6f99a454e85d9eaf386e2e94, type: 3}
 --- !u!1 &5861792811945193929
 GameObject:
   m_ObjectHideFlags: 0
