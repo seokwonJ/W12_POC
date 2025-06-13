@@ -13,7 +13,7 @@ public class GhostPattern : MonoBehaviour
     private WaitForSeconds changeStateWait;
     public float attackCooldown; // 공격 쿨타임
     public WaitForSeconds attackWait;
-    private bool isBrave;
+
 
     private void Awake()
     {
@@ -32,7 +32,6 @@ public class GhostPattern : MonoBehaviour
         enemyHP = GetComponent<EnemyHP>();
         player = Managers.PlayerControl.NowPlayer;
 
-        isBrave = Random.Range(0f, 1f) < 0.3f;
 
         changeStateWait = new WaitForSeconds(changeStateCooldown);
         attackWait = new WaitForSeconds(attackCooldown);
@@ -57,25 +56,11 @@ public class GhostPattern : MonoBehaviour
             }
             else if (Vector2.Distance(enemyHP.transform.position, player.transform.position) < minPlayerDistance)
             {
-                if (isBrave)
-                {
-                    enemy.ChangeState(EEnemyState.Chase);
-                }
-                else
-                {
-                    enemy.ChangeState(EEnemyState.Escape);
-                }
+                enemy.ChangeState(EEnemyState.Escape);               
             }
             else
             {
-                if (isBrave)
-                {
-                    enemy.ChangeState(EEnemyState.Chase);
-                }
-                else
-                {
-                    enemy.ChangeState(EEnemyState.Idle);
-                }
+                enemy.ChangeState(EEnemyState.Idle);             
             }
 
             yield return changeStateWait;
