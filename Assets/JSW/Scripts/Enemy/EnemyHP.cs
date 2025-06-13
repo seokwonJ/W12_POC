@@ -19,6 +19,15 @@ public class EnemyHP : MonoBehaviour
     private float dieDelay = 0.4f;
     private Coroutine flashCoroutine;
 
+    private void OnEnable()
+    {
+        Managers.Stage.CurEnemyCount++;
+    }
+
+    private void OnDisable()
+    {
+        Managers.Stage.CurEnemyCount--;
+    }
     private void Awake()
     {
         renderer = GetComponent<Renderer>();
@@ -68,7 +77,6 @@ public class EnemyHP : MonoBehaviour
             return;
         }
 
-        Managers.Stage.CurEnemyCount--; // 현재 스테이지에서 남아있는 적 수 감소
         isDead = true;
         if (collider != null)
         {

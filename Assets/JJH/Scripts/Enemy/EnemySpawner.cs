@@ -1,0 +1,177 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Assertions.Must;
+using static UnityEditor.PlayerSettings;
+
+public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코드
+{
+    // 맵 내/외부 스폰 영역
+    [Header("Spawn Area Bounds")]
+    [SerializeField] private Vector2 spawnAreaMin;
+    [SerializeField] private Vector2 spawnAreaMax;
+
+    [Header("Spawn Indicator")]
+    [SerializeField] private GameObject spawnIndicatorPrefab; // 스폰 위치 표시를 위한 인디케이터
+    [SerializeField] private float indicatorDuration = 2f; // 인디케이터 표시 시간
+
+    private void Start()
+    {
+        Managers.Stage.controlField = this;
+        Managers.Stage.StartStage(); // nowStage 재설정
+        StartCoroutine(CoSpawnEnemyRoutine(Managers.Stage.NowStage));
+    }
+
+    private IEnumerator CoSpawnEnemyRoutine(StageSO nowStage)
+    {
+        Debug.Log("ControlField->Start Spawning Waves");
+
+        for (int waveIndex = 0; waveIndex < nowStage.enemyWave.Length; waveIndex++)
+        {
+            EnemyWaveSO wave = nowStage.enemyWave[waveIndex];
+
+            // Wave 시작 전 지정된 시간 간격 전파
+            yield return new WaitForSeconds(wave.waveInterval);
+
+            // Wave 소환
+            yield return StartCoroutine(SpawnWaveRoutine(wave, nowStage.waveCount[waveIndex]));
+
+            // 모든 적 제거될 때까지 대기
+            while (Managers.Stage.CurEnemyCount > 0)
+            {
+                // to do: 효율적인 방법 구현
+                yield return null;
+            }
+
+            Debug.Log($"Wave {waveIndex + 1} Cleared");
+        }
+
+        yield return new WaitForSeconds(0.5f); // 마지막 웨이브 후 잠시 대기
+        // 모든 Wave 끝나면 Stage 종료
+        Managers.Stage.OnField = false;
+        Debug.Log("Stage Completed");
+    }
+
+    // to do 코드 고치기
+    private IEnumerator SpawnWaveRoutine(EnemyWaveSO wave, int waveCount)
+    {
+        for (int i = 0; i < waveCount; i++)
+        {
+            for (int j = 0; j < wave.enemyPrefabs.Length; j++)
+            {
+                GameObject enemyPrefab = wave.enemyPrefabs[j];
+                ESpawnPositionType type = wave.spawnPositionType[j];
+
+
+                Vector3 spawnPos = CalculateSpawnPosition(type, enemyPrefab, nowBoss: wave.isBossWave);
+
+                // 인디케이터 표시
+                GameObject indicator = Instantiate(spawnIndicatorPrefab, spawnPos, Quaternion.identity);
+                Destroy(indicator, indicatorDuration);
+
+                // 인디케이터 후 실제 소환
+                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, indicatorDuration));
+            
+            }
+            yield return new WaitForSeconds(wave.waveInterval);
+        }
+        yield break;
+    }
+
+    private IEnumerator DelayedSpawn(GameObject prefab, Vector3 position, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        Instantiate(prefab, position, prefab.transform.rotation);
+    }
+
+    private Vector3 CalculateSpawnPosition(ESpawnPositionType type, GameObject prefab, bool nowBoss)
+    {
+        Vector3 pos = Vector3.zero;
+
+        switch (type)
+        {
+            case ESpawnPositionType.OnScreenRandom:
+                pos = GetOnScreenRandomPos();
+                break;
+
+            case ESpawnPositionType.OffScreenRandom:
+                pos = GetOffScreenRandomPos();
+                break;
+
+            case ESpawnPositionType.GlobalRandom:
+                pos = Random.Range(0, 2) == 0 ? GetOnScreenRandomPos() : GetOffScreenRandomPos(); // 50% 확률로 화면 안/밖 랜덤 위치 선택
+                break;
+        }
+
+        return pos;
+    }
+
+    private Vector3 GetOnScreenRandomPos()
+    {
+        float x = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+        float y = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+        return new Vector3(x, y, 0f);
+    }
+
+    private Vector3 GetOffScreenRandomPos()
+    {
+        // 화면 밖 랜덤 위치 (화면 안쪽은 제외)
+        // 화면 경계 바깥 4면 중 하나를 랜덤 선택하여 그 면에서만 소환
+        int side = Random.Range(0, 6); // 0:좌, 1:우, 2,3:상, 4,5:하
+        float xOff, yOff;
+        Vector3 pos = Vector3.zero;
+        switch (side)
+        {
+            case 0: // Left
+                xOff = spawnAreaMin.x - 5f;
+                yOff = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+            case 1: // Right
+                xOff = spawnAreaMax.x + 5f;
+                yOff = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+            case 2:
+            case 3:// Top
+                xOff = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+                yOff = spawnAreaMax.y + 5f;
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+            case 4:
+            case 5: // Bottom
+                xOff = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
+                yOff = spawnAreaMin.y - 5f;
+                pos = new Vector3(xOff, yOff, 0f);
+                break;
+        }
+        return pos;
+    }
+
+
+    private Vector3 GetBossFixedPosition(GameObject bossPrefab)
+    {
+        // to do
+        //// BossWaveSO에 위치 리스트가 있다고 가정
+        //// 예시로 Stage 구조체에 bossPositions가 있다면
+        //var positions = Managers.Stage.NowStage.bossPositions;
+        //if (positions != null && positions.Length > 0)
+        //    return positions[0];
+
+        // 기본 중앙 위치 반환
+        return Vector3.zero;
+    }
+
+
+    public void DeleteField() // 스테이지 종료 시 모든 적과 적/아군 투사체 제거
+    {
+        StopAllCoroutines();
+        GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
+        for (int i = enemys.Length - 1; i >= 0; i--) Destroy(enemys[i]);
+        GameObject[] enemyProjectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
+        for (int i = enemyProjectiles.Length - 1; i >= 0; i--) Destroy(enemyProjectiles[i]);
+        GameObject[] playerProjectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");
+        for (int i = playerProjectiles.Length - 1; i >= 0; i--) Destroy(playerProjectiles[i]);
+    }
+}

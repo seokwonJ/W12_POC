@@ -12,19 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
   m_Name: temp 1-2
   m_EditorClassIdentifier: 
-  world: 1
+  world: 5
   stage: 2
   isBossStage: 0
   enemyNumLimit: 10
-  stagePlayTime: 35
   enemyWave:
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
   - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
   - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
-  WaveCount: 02000000010000000300000001000000
-  WaveInterval:
-  - 2.5
-  - 7.5
-  - 2.5
-  - 7.5
+  waveCount: 
+  wavePreparationTime: []

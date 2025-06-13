@@ -91,7 +91,7 @@ public class Priest : Character
         }
 
         //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
-        SoundManager.Instance.PlaySFX("MagicianSkill");
+        //SoundManager.Instance.PlaySFX("MagicianSkill");
 
         yield return new WaitForSeconds(skillInterval);
     }
