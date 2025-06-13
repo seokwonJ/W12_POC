@@ -283,15 +283,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 7
+  mpPerSecond: 100
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
   firePoint: {fileID: 91693443383765436}
   normalFireInterval: 1
-  enemyDetectRadius: 10
+  enemyDetectRadius: 25
   jumpForce: 10
   maxFallSpeed: 10
-  attackDamage: 5
+  attackDamage: 30
   abilityPower: 5
   projectileSpeed: 200
   animator: {fileID: 3907605951427573454}
@@ -301,11 +301,14 @@ MonoBehaviour:
   fallingAfterImageSpawner: {fileID: 1827207826442848846}
   skillProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
   skillCount: 3
-  skillInterval: 0.3
-  skillFireDelay: 0.1
+  skillInterval: 1
+  skillFireDelay: 0.05
   skillSize: 1
   skillDamage: 1
   skillProjectileSpeed: 15
+  skillEndDelay: 0.35
+  AttackMaxCount: 3
+  realoadTime: 3
   nomalAttackSize: 1
   upgradeNum: 0
   player: {fileID: 0}

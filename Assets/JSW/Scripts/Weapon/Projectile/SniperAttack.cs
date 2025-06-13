@@ -3,6 +3,12 @@ using UnityEngine;
 public class SniperAttack : ProjectileBase
 {
 
+    protected virtual void Update()
+    {
+        transform.Translate(direction * speed * Time.unscaledDeltaTime, Space.World);
+    }
+
+
     public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum)
     {
         direction = dir.normalized;
