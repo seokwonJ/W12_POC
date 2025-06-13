@@ -2,7 +2,7 @@
 using UnityEngine.Rendering;
 using UnityEngine.UI;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner_Prev : MonoBehaviour
 {
     public GameObject enemy1;
     public GameObject enemy2;

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Assertions.Must;
 
-public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코드이며 편의상 타이머 기능도 겸함 (EnemySpawnerJH.cs에서 가져옴)
+public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코드
 {
     // 맵 내/외부 스폰 영역
     [Header("Spawn Area Bounds")]
