@@ -78,7 +78,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 8020143640844766479, guid: 68ee1c53b7abcce45bdd05e0b20b8739, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 3858440568518256342}
   m_Layer: 0
   m_Name: PriestAttack
-  m_TagString: Untagged
+  m_TagString: PlayerProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -223,3 +223,4 @@ MonoBehaviour:
   speed: 10
   lifetime: 5
   damage: 10
+  target: {fileID: 0}

@@ -765,6 +765,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 91693443383765436}
     m_Modifications:
+    - target: {fileID: 4243941579536458786, guid: 9e816dec5716430479a62ffa4a407679, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed2d6cad32298d24b88c6b2a75af672f, type: 2}
     - target: {fileID: 6694910629584607174, guid: 9e816dec5716430479a62ffa4a407679, type: 3}
       propertyPath: m_Name
       value: SPUM_20250611155419690
