@@ -301,10 +301,15 @@ MonoBehaviour:
   fallingAfterImageSpawner: {fileID: 1827207826442848846}
   skillProjectile: {fileID: 0}
   skillCount: 3
-  skillInterval: 0.3
-  skillFireDelay: 0.1
+  skillInterval: 0.5
+  skillFireDelay: 0.5
   skillDuration: 5
+  skillHealAmount: 10
   isSkillBuff: 0
+  priestSkillAllActiveEffect: {fileID: 6079483160803917597, guid: 13c8f3fbfa1907948af2571f2927489a, type: 3}
+  priestSkillActiveEffect: {fileID: 5030123063063868698, guid: 5bde2ab17581f0941818cf223382ced0, type: 3}
+  priestSkillDurationEffect: {fileID: 2592063396896696007, guid: 259b31fce6427f04bb5dc5272c7eb699, type: 3}
+  PriestHealEffect: {fileID: 8070168948267937700, guid: a39972667c5cd24419f598d454ec9f18, type: 3}
   nomalAttackSize: 1
   isAddAttackDamage: 0
   isnomalAttackSizePerMana: 0
@@ -760,6 +765,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 91693443383765436}
     m_Modifications:
+    - target: {fileID: 4243941579536458786, guid: 9e816dec5716430479a62ffa4a407679, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ed2d6cad32298d24b88c6b2a75af672f, type: 2}
     - target: {fileID: 6694910629584607174, guid: 9e816dec5716430479a62ffa4a407679, type: 3}
       propertyPath: m_Name
       value: SPUM_20250611155419690
