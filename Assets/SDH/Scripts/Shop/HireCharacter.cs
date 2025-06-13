@@ -17,22 +17,24 @@ public class HireCharacter : MonoBehaviour // 상점 시작 전 동료 한 명 고용
 
         for (int i = 0; i < characterOptions.Length; i++)
         {
-            int randIdx;
+            int randIdx, tmp = 0;
             do
             {
                 randIdx = Random.Range(0, Managers.Asset.Characters.Length);
+                tmp++;
             }
-            while (Managers.PlayerControl.CharactersCheck[randIdx] || TmpCheckRepetition(i)); // 이 코드는 남은 가능한 동료 수가 3미만이면 무한루프가 터질 것으로 예상
+            while (tmp<500 && (Managers.PlayerControl.CharactersCheck[randIdx] || TmpCheckRepetition(i, randIdx)));
 
+            Debug.Log("tmp: " + tmp.ToString());
             characterOptions[i].CharacterOptionIdx = randIdx;
         }
     }
 
-    private bool TmpCheckRepetition(int idx) // 중복 확인하는 임시 함수. true면 겹침
+    private bool TmpCheckRepetition(int idx, int randIdx) // 중복 확인하는 임시 함수. true면 겹침
     {
         for(int i = 0; i < idx; i++)
         {
-            if (characterOptions[i].CharacterOptionIdx == characterOptions[idx].CharacterOptionIdx) return true;
+            if (characterOptions[i].CharacterOptionIdx == randIdx) return true;
         }
 
         return false;

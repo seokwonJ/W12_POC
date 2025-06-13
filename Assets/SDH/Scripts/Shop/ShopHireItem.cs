@@ -22,6 +22,7 @@ public class ShopHireItem : ShopItem
     public override void BuyItem() // 동료 고용
     {
         Managers.PlayerControl.Characters.Add(Instantiate(Managers.Asset.Characters[characterOptionIdx], Managers.PlayerControl.NowPlayer.transform));
+        Managers.PlayerControl.CharactersCheck[characterOptionIdx] = true;
         Managers.PlayerControl.SetPlayer();
 
         shopControl.IsHired = true;
