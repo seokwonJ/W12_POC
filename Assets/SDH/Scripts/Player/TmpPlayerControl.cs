@@ -47,10 +47,10 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         rb.bodyType = RigidbodyType2D.Static;
         playerMove.enabled = false;
 
-        foreach (GameObject character in Managers.PlayerControl.Characters)
+        for(int i=0;i< Managers.PlayerControl.Characters.Count; i++)
         {
-            character.GetComponent<Character>().EndFieldAct();
-            character.GetComponent<Character>().enabled = false;
+            Managers.PlayerControl.Characters[i].GetComponent<Character>().EndFieldAct();
+            Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = false;
         }
 
         Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;
@@ -141,9 +141,9 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
             yield return null;
         }
 
-        foreach (GameObject character in Managers.PlayerControl.Characters) // 켜두기
+        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
-            character.GetComponent<Character>().enabled = true;
+            Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = true;
         }
 
         Managers.SceneFlow.GotoScene("Field");
@@ -166,7 +166,6 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
     public void SetOrderInLayer(Transform character) // 캐릭터들이 점프하거나 착지할 때마다 레이어 순서 변경
     {
-        Debug.Log(Managers.PlayerControl.Characters.Count);
         character?.SetAsLastSibling();
 
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)

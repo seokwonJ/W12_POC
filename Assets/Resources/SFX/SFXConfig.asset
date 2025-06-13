@@ -83,8 +83,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: a4edc3d49b985674f9bcd5a02aeda849, type: 3}
     volume: 1
   - clipName: TankerLandingSkillEffect
-    clip: {fileID: 8300000, guid: 22de00f62b6ce6a4f9fad7a99ae3e93d, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 143a0c10d100e51478a21185e5f65c86, type: 3}
+    volume: 0.6
   - clipName: TankerAttack
     clip: {fileID: 8300000, guid: b5f94ffcaca1a5347a2c8481617743b4, type: 3}
     volume: 1
+  - clipName: PriestAttack
+    clip: {fileID: 8300000, guid: 592fbfb6651b54342a2e61825247cabf, type: 3}
+    volume: 1
+  - clipName: PriestHealActive
+    clip: {fileID: 8300000, guid: ba3d928659685594696a2e57460a31da, type: 3}
+    volume: 0.6
+  - clipName: PriestSkillActive
+    clip: {fileID: 8300000, guid: e2220fb7c2fb7b645a8589f1a1ac3e5a, type: 3}
+    volume: 0.6

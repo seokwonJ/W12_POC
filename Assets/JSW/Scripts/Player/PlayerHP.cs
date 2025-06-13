@@ -87,6 +87,35 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
+    public virtual void TakeHeal(int damage)
+    {
+        if (Managers.Status.Hp + (damage - _playerStatus.defensePower) >= Managers.Status.MaxHp) Managers.Status.Hp = Managers.Status.MaxHp;
+        else { Managers.Status.Hp += (damage - _playerStatus.defensePower); }
+
+        SoundManager.Instance.PlaySFX("PlayerHitSound");
+
+        if (playerHP_Image != null)
+        {
+            float fill = Managers.Status.Hp / Managers.Status.MaxHp;
+            playerHP_Image.fillAmount = fill;
+            Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
+
+            if (flashCoroutine != null) StopCoroutine(flashCoroutine);
+            flashCoroutine = StartCoroutine(CoDamagedEffect());
+        }
+        else
+        {
+            Debug.LogWarning("[PlayerHP] playerHP_Image is null! HPBar가 할당되지 않았습니다.");
+        }
+
+        if (Managers.Status.Hp <= 0)
+        {
+            // GetComponent<TmpPlayerControl>().GatherCharacters(); // 주석 처리: 해당 메서드가 없음
+            Managers.SceneFlow.GameOver();
+            if (hpBarObject != null) Destroy(hpBarObject);
+        }
+    }
+
     IEnumerator CoDamagedEffect()
     {
         spriteRendererCore.color = Color.red; // 코어 색상을 빨간색으로 변경

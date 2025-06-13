@@ -33,10 +33,42 @@ public class Tanker : Character
         _playerStatus = FindAnyObjectByType<PlayerStatus>();
     }
 
+    protected override void Update()
+    {
+        if (!isGround && !isSkillActive)
+        {
+            if (!isSkillLanding)
+            {
+                Vector3 direction = playerTransform.position - transform.position;
+                if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+                else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+            }
+            animator.SetBool("5_Fall", true);
+        }
+        if (!isGround) return;
+
+        currentMP += Time.deltaTime * mpPerSecond;
+        currentMP = Mathf.Min(currentMP, maxMP);
+        if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
+
+        if (currentMP >= maxMP && !isSkillActive)
+        {
+            StartCoroutine(ActiveSkill());
+            isSkillActive = true;
+        }
+    }
+
+
     // 일반 공격: 직진형 투사체 발사
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         Vector2 direction = (targetPos - firePoint.position).normalized;
+
+        // 방향에 따라 캐릭터 스프라이트 좌우 반전
+        if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+        else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
+
+
         SoundManager.Instance.PlaySFX("TankerAttack");
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
@@ -45,10 +77,11 @@ public class Tanker : Character
     // 스킬: 커다란 직진형 투사체 3발 연속 발사
     protected override IEnumerator FireSkill()
     {
+        yield return new WaitForSeconds(skillInterval);
+
         if (isShieldFlyer) _playerStatus.defensePower -= 5;
         isSkillLanding = true;
-
-        yield return new WaitForSeconds(skillInterval);
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
 
     // 착지했을 경우
@@ -91,8 +124,8 @@ public class Tanker : Character
                 int totalDamage = skillDamageNum;
                 if (isCloserMoreDamage) totalDamage += (int)(skillDamage / Vector2.Distance(hit.transform.position, transform.position));
 
-                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude);}
-                else enemyHP.TakeDamage(totalDamage);
+                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude, ECharacterType.Tanker);}
+                else enemyHP.TakeDamage(totalDamage, ECharacterType.Tanker);
 
                 if (enemyHP != null && enemyHP.enemyHP <= 0)  continue;
 
@@ -100,7 +133,7 @@ public class Tanker : Character
 
                 if (enemy != null)
                 {
-                    enemy.ApplyKnockback(knockbackDirection.normalized, skillknockbackPower);
+                    enemy.ApplyKnockback(knockbackDirection.normalized, skillknockbackPower / Vector2.Distance(hit.transform.position, transform.position));
                 }
             }
 
@@ -112,6 +145,17 @@ public class Tanker : Character
 
         if (isHitSkillPerGetMana) currentMP += 2 * hitEnemyCount;
 
-        landingSkillEffectObject.transform.localScale = Vector3.one * skillRange;
+        landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 0.5f;
+    }
+
+    public override void EndFieldAct() // 필드전투가 종료될 때 실행
+    {
+        base.EndFieldAct();
+
+        if (isSkillLanding == true)
+        {
+            Debug.Log("공격력 돌아옴");
+            isSkillLanding = false;
+        }
     }
 }

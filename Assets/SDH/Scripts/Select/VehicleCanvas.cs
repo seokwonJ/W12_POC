@@ -1,35 +1,26 @@
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class VehicleCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject vehicleCanvas;
+    [SerializeField] private Transform thumbnail;
 
     public int NowSelectedIdx => nowSelectedIdx;
     private int nowSelectedIdx; // 지금 선택한 캐릭터
 
     private void Start()
     {
-        foreach(GameObject vehicle in Managers.Asset.Vehicles)
+        foreach(GameObject icon in Managers.Asset.VehicleIcons)
         {
-            float rate = 1f / transform.parent.localScale.x;
-
             GameObject vehicleOption = Instantiate(Managers.Asset.OptionTemplate, transform);
 
-            GameObject vehicleIcon = Instantiate(vehicle, vehicleOption.transform);
-
-            vehicleIcon.transform.localPosition = Vector3.zero;
-            vehicleIcon.transform.localScale = new(rate, rate, rate);
-
-            Component[] components = vehicleIcon.GetComponents<Component>();
-
-            for (int i = components.Length - 1; i > 0; i--) // 0번은 transform이니 제외
-            {
-                Destroy(components[i]); // 이거 좀 이상하긴 한데... 고칠까?
-            }
+            Instantiate(icon, vehicleOption.transform);
         }
 
         SetNowSelectedIdx(0); // 기본 선택은 0번
+        SetThumbnail();
         vehicleCanvas.SetActive(false);
     }
 
@@ -38,6 +29,7 @@ public class VehicleCanvas : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Managers.PlayerControl.IsSelecting = false;
+            SetThumbnail();
             vehicleCanvas.SetActive(false);
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
@@ -58,12 +50,21 @@ public class VehicleCanvas : MonoBehaviour
         }
     }
 
-    private void SetNowSelectedIdx(int newSelectedIdx) // 왼쪽 옵션으로 넘어가고 색을 변경
+    private void SetNowSelectedIdx(int newSelectedIdx) // 다른 옵션으로 넘어가고 색을 변경
     {
         if (newSelectedIdx < 0 || newSelectedIdx > transform.childCount - 1) return; // 인덱스 밖
 
         transform.GetChild(nowSelectedIdx).GetComponent<Image>().color = Color.white; // 원래 선택한 옵션 강조 해제
         nowSelectedIdx = newSelectedIdx;
         transform.GetChild(nowSelectedIdx).GetComponent<Image>().color = Color.green; // 새로 선택한 옵션 강조 설정
+    }
+
+    private void SetThumbnail()
+    {
+        if (thumbnail.childCount > 0) Destroy(thumbnail.GetChild(0).gameObject);
+
+        GameObject thumbnailIcon = Instantiate(Managers.Asset.VehicleIcons[nowSelectedIdx], thumbnail);
+        SortingGroup sortingGroup = thumbnailIcon.AddComponent<SortingGroup>();
+        sortingGroup.sortingLayerName = "BackGround";
     }
 }
