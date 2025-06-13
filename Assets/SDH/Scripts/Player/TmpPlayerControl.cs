@@ -24,7 +24,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;
     }
 
-    public void SetPlayer() // 고용할 때마다 호출하는 함수
+    public void SetPlayer() // 고용할 때마다 호출하는 함수 (상점 씬에서 호출된다는 점을 명심)
     {
         SetStartPosition();
 
@@ -158,6 +158,9 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
             Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f);
+            Managers.PlayerControl.Characters[i].GetComponent<Character>().EndFieldAct();
+            Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = false;
+            Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = true; // 껐다 켜서 OnEnable 실행되게 하기
             Managers.PlayerControl.Characters[i].transform.SetAsLastSibling();
         }
 
