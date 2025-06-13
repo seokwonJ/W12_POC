@@ -95,7 +95,7 @@ public class PlayerHP : MonoBehaviour
         if (Managers.Status.Hp + (damage - _playerStatus.defensePower) >= Managers.Status.MaxHp) Managers.Status.Hp = Managers.Status.MaxHp;
         else { Managers.Status.Hp += (damage - _playerStatus.defensePower); }
 
-        SoundManager.Instance.PlaySFX("PlayerHitSound");
+        //SoundManager.Instance.PlaySFX("PlayerHitSound");
 
         if (playerHP_Image != null)
         {

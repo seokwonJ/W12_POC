@@ -16,6 +16,8 @@ public class PriestAttack : ProjectileBase
             // 각도 계산해서 회전
             float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
             transform.rotation = Quaternion.Euler(0, 0, angle);
+
+            if (Vector2.Distance(target.position, transform.position) < 0.1f && target.GetComponent<EnemyHP>().enemyHP <= 0) target = null;   
         }
 
         // 이동
