@@ -1405,7 +1405,7 @@ MonoBehaviour:
   hpBarObject: {fileID: 0}
   rendererFlyer: {fileID: 6889300919073748868}
   hpBarPrefab: {fileID: 676647053238153101, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
-  canvasTransform: {fileID: 0}
+  canvasTransform: {fileID: 8424998620605127541}
   hpBarOffset: {x: 0, y: 0, z: 0}
 --- !u!58 &440657779836701576
 CircleCollider2D:
@@ -1437,7 +1437,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0

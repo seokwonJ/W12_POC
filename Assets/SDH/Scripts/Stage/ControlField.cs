@@ -82,7 +82,6 @@ public class ControlField : MonoBehaviour // 적 스폰을 컨트롤하는 코�
     {
         yield return new WaitForSeconds(delay);
         Instantiate(prefab, position, prefab.transform.rotation);
-        Managers.Stage.CurEnemyCount++;
     }
 
     private Vector3 CalculateSpawnPosition(ESpawnPositionType type, GameObject prefab, bool nowBoss)
