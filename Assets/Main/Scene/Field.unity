@@ -5081,7 +5081,7 @@ MonoBehaviour:
   spawnAreaMin: {x: -21, y: -11}
   spawnAreaMax: {x: 21, y: 11}
   spawnIndicatorPrefab: {fileID: 1517124075059143574, guid: 98170fe73b151624b8868f4f50080962, type: 3}
-  indicatorDuration: 1.5
+  indicatorDuration: 1
 --- !u!4 &1646955305
 Transform:
   m_ObjectHideFlags: 0
