@@ -40,6 +40,7 @@ public class Sniper : Character
     {
         base.Start();
         player = FindAnyObjectByType<PlayerMove>().gameObject;
+        skillTargetList = new List<Transform>();
     }
 
     protected override void FixedUpdate()
@@ -69,6 +70,16 @@ public class Sniper : Character
             yield return new WaitForSeconds(normalFireInterval);
             if (!isGround) continue;
 
+            if (_AttackCurrentCount <= 0)
+            {
+                Debug.Log("스나이퍼 장전 중");
+                SoundManager.Instance.PlaySFX("SniperReloadStart");
+
+                yield return new WaitForSeconds(realoadTime);
+
+                _AttackCurrentCount = AttackMaxCount;
+            }
+
             Transform target = FindMuchHPEnemy();
             if (target != null)
             {
@@ -77,12 +88,7 @@ public class Sniper : Character
                 FireNormalProjectile(target.position);
             }
 
-            if (_AttackCurrentCount <= 0)
-            {
-                Debug.Log("스나이퍼 장전 중");
-                yield return new WaitForSeconds(realoadTime);
-                _AttackCurrentCount = AttackMaxCount;
-            }
+           
         }
     }
 
@@ -126,6 +132,7 @@ public class Sniper : Character
 
         StopCoroutine(dimDarking);
         StartCoroutine(FadeAlphaTo(dim, dimOriginAlpha, 0.5f));
+        _AttackCurrentCount = AttackMaxCount;
         _isSkillReady = false;
     }
 
@@ -146,6 +153,7 @@ public class Sniper : Character
 
         // 마지막 값 보정
         sr.color = new Color(color.r, color.g, color.b, targetAlpha);
+
     }
 
     // 스킬 발사 구현
@@ -167,13 +175,17 @@ public class Sniper : Character
         // 시각적으로 보일 투사체
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
-        if (isSkillActive)
+        if (_isSkillReady)
         {
-            proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, skillProjectileSpeed, nomalAttackSize);
+            proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, skillProjectileSpeed, skillSize);
+
+            SoundManager.Instance.PlaySFX("SniperSkillAttack");
         }
         else
         {
             proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize);
+
+            SoundManager.Instance.PlaySFX("SniperAttack");
         }
 
         // 캐릭터 스프라이트 방향 반전
@@ -198,8 +210,6 @@ public class Sniper : Character
                 print("현재 데미지 : " + currentDamage);
             }
         }
-
-        SoundManager.Instance.PlaySFX("SniperAttack");
     }
 
 
