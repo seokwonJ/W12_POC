@@ -99,10 +99,10 @@ GameObject:
   - component: {fileID: 3982422550381133346}
   - component: {fileID: 525986363015056106}
   - component: {fileID: 5766599263256601673}
-  - component: {fileID: 5345938086223668459}
   - component: {fileID: 1354129338059981449}
   - component: {fileID: 1827207826442848846}
   - component: {fileID: 7337740309242772519}
+  - component: {fileID: 5531808246364763257}
   m_Layer: 6
   m_Name: Sniper
   m_TagString: Character
@@ -196,49 +196,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3245f24d51a01794e9dc6d357aed01f0, type: 2}
   - {fileID: 11400000, guid: b8b9e5fc944fecc4b925d05f5675f552, type: 2}
   - {fileID: 11400000, guid: fe982710373cb594da7fa0c8cdab64dd, type: 2}
---- !u!114 &5345938086223668459
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3895071034499481536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13b6d38710039dc429ff4644d63bee36, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxMP: 100
-  mpPerSecond: 15
-  mpImage: {fileID: 0}
-  normalProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
-  firePoint: {fileID: 91693443383765436}
-  normalFireInterval: 1
-  enemyDetectRadius: 30
-  jumpForce: 10
-  maxFallSpeed: 10
-  attackDamage: 10
-  abilityPower: 20
-  projectileSpeed: 20
-  animator: {fileID: 0}
-  playerTransform: {fileID: 0}
-  skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
-  skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
-  fallingAfterImageSpawner: {fileID: 1827207826442848846}
-  skillProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
-  skillCount: 3
-  skillInterval: 0.3
-  skillFireDelay: 0.1
-  skillSize: 4
-  skillDamage: 10
-  skillProjectileSpeed: 15
-  nomalAttackSize: 1
-  isAddAttackDamage: 0
-  isnomalAttackSizePerMana: 0
-  isCanTeleport: 0
-  upgradeNum: 0
-  player: {fileID: 0}
-  skillActiveEffect: {fileID: 1956634884848028283, guid: c769fa4c3128f3b448f853ad0cefe357, type: 3}
 --- !u!61 &1354129338059981449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -313,6 +270,52 @@ SortingGroup:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_SortAtRoot: 0
+--- !u!114 &5531808246364763257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3895071034499481536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: acf119a507cd7a34e8411aa14ba92351, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMP: 100
+  mpPerSecond: 100
+  mpImage: {fileID: 0}
+  normalProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
+  firePoint: {fileID: 91693443383765436}
+  normalFireInterval: 1
+  enemyDetectRadius: 25
+  jumpForce: 10
+  maxFallSpeed: 10
+  attackDamage: 30
+  abilityPower: 5
+  projectileSpeed: 200
+  animator: {fileID: 3907605951427573454}
+  playerTransform: {fileID: 0}
+  skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
+  skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
+  fallingAfterImageSpawner: {fileID: 1827207826442848846}
+  skillProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
+  skillCount: 3
+  skillInterval: 1
+  skillFireDelay: 0.1
+  skillSize: 1
+  skillDamage: 1
+  skillProjectileSpeed: 300
+  skillSlowDelay: 0.6
+  AttackMaxCount: 3
+  realoadTime: 3
+  nomalAttackSize: 1
+  upgradeNum: 0
+  player: {fileID: 0}
+  dim: {fileID: 0}
+  sniperSkillActive1: {fileID: 16016434045391788, guid: f4182d49b616c824f8a372d5ed631ac9, type: 3}
+  sniperSkillActive2: {fileID: 5520664732398860473, guid: 96f66a029b30b03448ffb4e2d1b4f493, type: 3}
+  sniperActiveShot: {fileID: 1143770707561689224, guid: 32ff590d6f99a454e85d9eaf386e2e94, type: 3}
 --- !u!1 &5861792811945193929
 GameObject:
   m_ObjectHideFlags: 0
@@ -854,6 +857,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 62409fea72d7d4a48bc3d3336d1758cb, type: 3}
+--- !u!95 &3907605951427573454 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 2266294928529689441, guid: 62409fea72d7d4a48bc3d3336d1758cb, type: 3}
+  m_PrefabInstance: {fileID: 2975161719938284975}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6870064361933218219 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8511445891894959108, guid: 62409fea72d7d4a48bc3d3336d1758cb, type: 3}
