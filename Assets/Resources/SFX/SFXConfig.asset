@@ -98,8 +98,17 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: e2220fb7c2fb7b645a8589f1a1ac3e5a, type: 3}
     volume: 0.6
   - clipName: SniperAttack
-    clip: {fileID: 8300000, guid: c549f3ad60d9b944a9c77be6852445fa, type: 3}
+    clip: {fileID: 8300000, guid: 4b8f4b9fe41f791428c4f043128e14e9, type: 3}
     volume: 1
   - clipName: SniperSkillActive
     clip: {fileID: 8300000, guid: 689bbd360aaa6cb42ace4e2206384e1d, type: 3}
+    volume: 1
+  - clipName: SniperReloadStart
+    clip: {fileID: 8300000, guid: 33bb9954b0c908a48b8d3cdf97ef7fe8, type: 3}
+    volume: 1
+  - clipName: SniperReloadEnd
+    clip: {fileID: 8300000, guid: ecea9d3610ad1854d831e1789ee40d0b, type: 3}
+    volume: 1
+  - clipName: SniperSkillAttack
+    clip: {fileID: 8300000, guid: f1579ac5d4967eb4a858520fc0bd5d63, type: 3}
     volume: 1

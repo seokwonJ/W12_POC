@@ -2,10 +2,11 @@ using UnityEngine;
 
 public class SniperAttack : ProjectileBase
 {
+    public TrailRenderer trailRenderer;
 
-    protected virtual void Update()
+    protected override void Update()
     {
-        transform.Translate(direction * speed * Time.unscaledDeltaTime, Space.World);
+        transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
 
@@ -16,7 +17,7 @@ public class SniperAttack : ProjectileBase
         transform.rotation = Quaternion.Euler(0, 0, angle);
         damage = damageNum;
         speed = speedNum;
-        transform.localScale = Vector3.one * scaleNum;
+        trailRenderer.widthMultiplier = trailRenderer.widthMultiplier * scaleNum;
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)

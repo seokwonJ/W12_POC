@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 100
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
   firePoint: {fileID: 91693443383765436}
@@ -303,9 +303,9 @@ MonoBehaviour:
   skillCount: 3
   skillInterval: 1
   skillFireDelay: 0.1
-  skillSize: 1
+  skillSize: 3
   skillDamage: 1
-  skillProjectileSpeed: 300
+  skillProjectileSpeed: 200
   skillSlowDelay: 0.6
   AttackMaxCount: 3
   realoadTime: 3
@@ -313,8 +313,8 @@ MonoBehaviour:
   upgradeNum: 0
   player: {fileID: 0}
   dim: {fileID: 0}
-  sniperSkillActive1: {fileID: 16016434045391788, guid: f4182d49b616c824f8a372d5ed631ac9, type: 3}
-  sniperSkillActive2: {fileID: 5520664732398860473, guid: 96f66a029b30b03448ffb4e2d1b4f493, type: 3}
+  sniperSkillActive1: {fileID: 2236812792954234349, guid: ac9a5b6670544154b97aa4f508608ee7, type: 3}
+  sniperSkillActive2: {fileID: 6201557171582174831, guid: 7665a9da7dd75744d85a3ed8418a67e6, type: 3}
   sniperActiveShot: {fileID: 1143770707561689224, guid: 32ff590d6f99a454e85d9eaf386e2e94, type: 3}
 --- !u!1 &5861792811945193929
 GameObject:
