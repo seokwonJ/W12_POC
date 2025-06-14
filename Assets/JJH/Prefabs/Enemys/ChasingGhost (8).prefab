@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 4314202409012214010}
   - component: {fileID: 2336702892526190934}
   - component: {fileID: 5567966203980436605}
-  - component: {fileID: 7557386378122409067}
   - component: {fileID: 3568830137141020924}
+  - component: {fileID: 7047135635181087248}
   m_Layer: 11
-  m_Name: FireSkull (8)
+  m_Name: ChasingGhost (8)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,12 +84,12 @@ SpriteRenderer:
   m_SortingLayerID: -673865093
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 4093529123795720158, guid: 2b68cf2fac6736e4fa9ce88661f619ca, type: 3}
+  m_Sprite: {fileID: -807330917, guid: 7e5822e4d897d904989ddfee9698ffa3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 2}
+  m_Size: {x: 0.5692308, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -153,7 +153,7 @@ MonoBehaviour:
   editorNote: 4
   movementSO: {fileID: 0}
   attackSO: {fileID: 0}
-  speed: 3
+  speed: 4
   minPlayerDistance: 0
   isKnockbackable: 1
   isKnockback: 0
@@ -175,7 +175,7 @@ Animator:
   m_GameObject: {fileID: 2971542310015680529}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 92b532c81b569854f8e4495730815de8, type: 2}
+  m_Controller: {fileID: 9100000, guid: e8646b37da1771747aa4838736efdd35, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -187,8 +187,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!58 &7557386378122409067
-CircleCollider2D:
+--- !u!114 &3568830137141020924
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971542310015680529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51b7ffa9e0a5b7d4cb70ae130564ed41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dashSpeed: 9
+  dashDuration: 2
+  attackPlayerDistance: 6
+  dashCooldown: 1.5
+  changeStateCooldown: 0.2
+  isChasingDash: 1
+--- !u!70 &7047135635181087248
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -221,25 +239,9 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_Radius: 0.7
---- !u!114 &3568830137141020924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2971542310015680529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51b7ffa9e0a5b7d4cb70ae130564ed41, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dashSpeed: 14
-  dashDuration: 1
-  attackPlayerDistance: 6
-  dashCooldown: 2
-  changeStateCooldown: 1
+  m_Offset: {x: 0, y: -0.25}
+  m_Size: {x: 1, y: 2.5}
+  m_Direction: 0
 --- !u!1 &3638872975738369694
 GameObject:
   m_ObjectHideFlags: 0
@@ -276,7 +278,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -1.5}
+  m_AnchoredPosition: {x: 0, y: -2.5}
   m_SizeDelta: {x: 2.5, y: 0.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &204967812206015584
@@ -351,7 +353,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8622767906798983951}
-  - component: {fileID: 4896183030946921}
+  - component: {fileID: 41721279254038282}
   m_Layer: 11
   m_Name: Collider
   m_TagString: EnemyCollider
@@ -374,8 +376,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 2715036829172249429}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!58 &4896183030946921
-CircleCollider2D:
+--- !u!70 &41721279254038282
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -408,8 +410,9 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: -0.1}
-  m_Radius: 0.7
+  m_Offset: {x: 0, y: -0.25}
+  m_Size: {x: 1, y: 2.5}
+  m_Direction: 0
 --- !u!1001 &6874646743211874791
 PrefabInstance:
   m_ObjectHideFlags: 0

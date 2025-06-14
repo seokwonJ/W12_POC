@@ -306,6 +306,7 @@ MonoBehaviour:
   minPlayerDistance: 6
   maxPlayerDistance: 10
   changeStateCooldown: 0.5
+  attackProjectileCount: 1
   attackCooldown: 2
 --- !u!1 &5630817761245543485
 GameObject:

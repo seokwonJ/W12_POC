@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: ff36e42b1793b2d4eb6efabd0b90360a
+guid: 7e5822e4d897d904989ddfee9698ffa3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 5546537419476804523
-    second: ghost-halo_0
+      213: 560740049028433649
+    second: ghost_chasing_0
+  - first:
+      213: -34764145949381371
+    second: ghost_chasing_1
+  - first:
+      213: -4864283181017514484
+    second: ghost_chasing_2
+  - first:
+      213: 6490136540939948902
+    second: ghost_chasing_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +46,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +60,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -75,7 +84,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -113,23 +122,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ghost-halo_0
+      name: ghost_chasing_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 2
-        width: 35
-        height: 57
+        y: 67
+        width: 36
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: ba3a35d656249fc40800000000000000
-      internalID: 5546537419476804523
+      spriteID: fb6a85bb6aa76de4e9b7305a85e806cb
+      internalID: -807330917
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_chasing_1
+      rect:
+        serializedVersion: 2
+        x: 38
+        y: 67
+        width: 36
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 584658a9c0f556041b4509ef9605c1f7
+      internalID: 689902225
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_chasing_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 67
+        width: 36
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 16ec9f3876689ff469896fcf7c2445e5
+      internalID: -1439902013
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ghost_chasing_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 36
+        height: 64
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 365e410fa51e80844b33c98f2e29e281
+      internalID: -1441058613
       vertices: []
       indices: 
       edges: []
@@ -138,7 +213,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: cedffcc8baadbf449ae196200da09dfe
     internalID: 0
     vertices: []
     indices: 
@@ -148,7 +223,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ghost-halo_0: 5546537419476804523
+      ghost_chasing_0: -807330917
+      ghost_chasing_1: 689902225
+      ghost_chasing_2: -1439902013
+      ghost_chasing_3: -1441058613
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

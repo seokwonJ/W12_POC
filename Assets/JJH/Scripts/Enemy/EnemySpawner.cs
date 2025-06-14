@@ -12,7 +12,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
     [Header("Spawn Indicator")]
     public GameObject onScreenSpawnIndicatorPrefab; // 화면 안 스폰 위치 표시를 위한 인디케이터
     public GameObject offScreenSpawnIndicatorPrefab; // 화면 밖 스폰 위치 표시를 위한 인디케이터
-    private float onScreenindicatorDuration = 3.2f; // 인디케이터 표시 시간
+    private float onScreenindicatorDuration = 1.4f; // 인디케이터 표시 시간
     private float offScreenindicatorDuration = 1f; // 인디케이터 표시 시간
 
     private void Start()
@@ -78,7 +78,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
                 Destroy(indicator, indicatorDuration);
 
                 // 인디케이터 후 실제 소환
-                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, 1f));
+                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, 0.6f));
             
             }
             yield return new WaitForSeconds(wave.waveInterval);

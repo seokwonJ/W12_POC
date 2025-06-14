@@ -22,6 +22,7 @@ public class EnemyHP : MonoBehaviour
     private void OnEnable()
     {
         Managers.Stage.CurEnemyCount++;
+        collider.enabled = false;
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
         StartCoroutine(CoAlphaChange(1f, 0.2f)); // 활성화 시 알파값을 1로 변경
     }
@@ -38,6 +39,7 @@ public class EnemyHP : MonoBehaviour
             yield return null;
         }
         spriteRenderer.color = targetColor; // 최종 색상 적용
+        collider.enabled = true;
     }
     private void OnDisable()
     {
