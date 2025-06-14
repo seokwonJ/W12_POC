@@ -68,17 +68,22 @@ public class Sniper : Character
         while (true)
         {
             yield return new WaitForSeconds(normalFireInterval);
-            if (!isGround) continue;
 
             if (_AttackCurrentCount <= 0)
             {
                 Debug.Log("스나이퍼 장전 중");
                 SoundManager.Instance.PlaySFX("SniperReloadStart");
 
-                yield return new WaitForSeconds(realoadTime);
+                yield return new WaitForSeconds(realoadTime - 1);
+
+                SoundManager.Instance.PlaySFX("SniperReloadEnd");
+
+                yield return new WaitForSeconds(1);
 
                 _AttackCurrentCount = AttackMaxCount;
             }
+
+            if (!isGround) continue;
 
             Transform target = FindMuchHPEnemy();
             if (target != null)
@@ -123,7 +128,6 @@ public class Sniper : Character
 
         for (int i = 0; i < skillCount; i++)
         {
-            Instantiate(sniperActiveShot, transform.position, Quaternion.identity);
             animator.Play("SKILL", -1, 0f);
             FireSkillProjectiles();
             //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
@@ -174,6 +178,7 @@ public class Sniper : Character
 
         // 시각적으로 보일 투사체
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+        Instantiate(sniperActiveShot, transform.position, Quaternion.identity);
 
         if (_isSkillReady)
         {

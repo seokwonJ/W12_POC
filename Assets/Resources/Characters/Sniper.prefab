@@ -308,7 +308,7 @@ MonoBehaviour:
   skillProjectileSpeed: 200
   skillSlowDelay: 0.6
   AttackMaxCount: 3
-  realoadTime: 3
+  realoadTime: 1
   nomalAttackSize: 1
   upgradeNum: 0
   player: {fileID: 0}
