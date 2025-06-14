@@ -303,8 +303,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 926121a240910b64b80536c6d9d65285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minPlayerDistance: 4
-  maxPlayerDistance: 6
+  minPlayerDistance: 6
+  maxPlayerDistance: 10
   changeStateCooldown: 0.5
   attackCooldown: 2
 --- !u!1 &5630817761245543485

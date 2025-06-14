@@ -362,6 +362,7 @@ MonoBehaviour:
   speed: 6
   minPlayerDistance: 0
   isKnockbackable: 1
+  isKnockback: 0
   isFilpping: 1
   damage: 20
   fireCooldown: 4

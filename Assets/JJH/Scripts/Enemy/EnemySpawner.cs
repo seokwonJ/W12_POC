@@ -6,13 +6,14 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 {
     // 맵 내/외부 스폰 영역
     [Header("Spawn Area Bounds")]
-    [SerializeField] private Vector2 spawnAreaMin;
-    [SerializeField] private Vector2 spawnAreaMax;
+    public Vector2 spawnAreaMin;
+    public Vector2 spawnAreaMax;
 
     [Header("Spawn Indicator")]
-    [SerializeField] private GameObject onScreenSpawnIndicatorPrefab; // 화면 안 스폰 위치 표시를 위한 인디케이터
-    [SerializeField] private GameObject offScreenSpawnIndicatorPrefab; // 화면 밖 스폰 위치 표시를 위한 인디케이터
-    [SerializeField] private float indicatorDuration = 2f; // 인디케이터 표시 시간
+    public GameObject onScreenSpawnIndicatorPrefab; // 화면 안 스폰 위치 표시를 위한 인디케이터
+    public GameObject offScreenSpawnIndicatorPrefab; // 화면 밖 스폰 위치 표시를 위한 인디케이터
+    private float onScreenindicatorDuration = 3.2f; // 인디케이터 표시 시간
+    private float offScreenindicatorDuration = 1f; // 인디케이터 표시 시간
 
     private void Start()
     {
@@ -72,11 +73,12 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
                 // 인디케이터 표시
                 GameObject IndcatorPrefab = type == ESpawnPositionType.OnScreenRandom ? onScreenSpawnIndicatorPrefab : offScreenSpawnIndicatorPrefab;
+                float indicatorDuration = type == ESpawnPositionType.OnScreenRandom ? onScreenindicatorDuration : offScreenindicatorDuration;
                 GameObject indicator = Instantiate(IndcatorPrefab, IndicatorPos, Quaternion.identity);
                 Destroy(indicator, indicatorDuration);
 
                 // 인디케이터 후 실제 소환
-                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, indicatorDuration));
+                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, 1f));
             
             }
             yield return new WaitForSeconds(wave.waveInterval);
