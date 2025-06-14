@@ -90,10 +90,10 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    public virtual void TakeHeal(int damage)
+    public virtual void TakeHeal(int Num)
     {
-        if (Managers.Status.Hp + (damage - _playerStatus.defensePower) >= Managers.Status.MaxHp) Managers.Status.Hp = Managers.Status.MaxHp;
-        else { Managers.Status.Hp += (damage - _playerStatus.defensePower); }
+        if (Managers.Status.Hp + (Num) >= Managers.Status.MaxHp) Managers.Status.Hp = Managers.Status.MaxHp;
+        else { Managers.Status.Hp += (Num); }
 
         //SoundManager.Instance.PlaySFX("PlayerHitSound");
 
