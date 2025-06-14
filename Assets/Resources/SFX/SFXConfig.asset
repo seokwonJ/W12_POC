@@ -112,3 +112,12 @@ MonoBehaviour:
   - clipName: SniperSkillAttack
     clip: {fileID: 8300000, guid: f1579ac5d4967eb4a858520fc0bd5d63, type: 3}
     volume: 1
+  - clipName: BlackHoleAttack
+    clip: {fileID: 8300000, guid: 7392eed830b9d7f4c911a6f445699103, type: 3}
+    volume: 1
+  - clipName: BlackHoleSkillActive
+    clip: {fileID: 8300000, guid: 2cd01b21b18eb6c449556053f8ec1cdd, type: 3}
+    volume: 1
+  - clipName: BlackHoleSkillDuration
+    clip: {fileID: 8300000, guid: a2233964e7aefd346aeafc036b2b30df, type: 3}
+    volume: 0.5

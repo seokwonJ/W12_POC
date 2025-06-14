@@ -773,6 +773,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SPUM_20250611155419690
       objectReference: {fileID: 0}
+    - target: {fileID: 7218631435603083721, guid: 9e816dec5716430479a62ffa4a407679, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7566875192734906237, guid: 9e816dec5716430479a62ffa4a407679, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
