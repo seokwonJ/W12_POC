@@ -55,7 +55,7 @@ public class BlackHole : Character
         yield return new WaitForSeconds(skillFireDelay);
         animator.Play("SKILL", -1, 0f);
         FireSkillProjectiles();
-        Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
+        //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
         SoundManager.Instance.PlaySFX("MagicianSkill");
         yield return new WaitForSeconds(skillInterval);
     }
@@ -63,18 +63,18 @@ public class BlackHole : Character
     // 스킬 발사 구현
     protected override void FireSkillProjectiles()
     {
-        Transform target = FindNearestEnemy();
-
+        Transform target = FindFarestEnemy();
+        if (target == null) target = transform;
         GameObject proj = Instantiate(skillProjectile, target.position, Quaternion.identity);
-        BlackHoleAttack mb = proj.GetComponent<BlackHoleAttack>();
+        BlackHoleSkill mb = proj.GetComponent<BlackHoleSkill>();
 
         if (target != null)
         {
-            mb.SetInit((target.position - firePoint.position).normalized, (int)(attackDamage + skillDamage), skillProjectileSpeed, skillSize);
+            mb.SetInit(skillSize, skillDamage);
         }
         else
         {
-            mb.SetInit((Random.insideUnitSphere).normalized, (int)(attackDamage + skillDamage), skillProjectileSpeed, skillSize);
+            mb.SetInit(skillSize,skillDamage);
         }
     }
 

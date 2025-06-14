@@ -285,7 +285,7 @@ MonoBehaviour:
   maxMP: 100
   mpPerSecond: 7
   mpImage: {fileID: 0}
-  normalProjectile: {fileID: 7373925757434712426, guid: e22ed658969fca540b96ea40f2793303, type: 3}
+  normalProjectile: {fileID: 2401018389404660828, guid: 29f7f19ec4ff39c499a210806016fee6, type: 3}
   firePoint: {fileID: 91693443383765436}
   normalFireInterval: 1
   enemyDetectRadius: 10
@@ -299,11 +299,11 @@ MonoBehaviour:
   skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
   skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
   fallingAfterImageSpawner: {fileID: 1827207826442848846}
-  skillProjectile: {fileID: 744334896860250367, guid: 2c162e3ee23a4e443a9683ecbec62689, type: 3}
+  skillProjectile: {fileID: 1715735522759283130, guid: 2c162e3ee23a4e443a9683ecbec62689, type: 3}
   skillCount: 3
   skillInterval: 0.3
   skillFireDelay: 0.1
-  skillSize: 1
+  skillSize: 3
   skillDamage: 1
   skillProjectileSpeed: 15
   nomalAttackSize: 1
