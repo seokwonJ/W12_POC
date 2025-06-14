@@ -15,14 +15,19 @@ public enum EArtifacts // 아티팩트 Enum
 public class ArtifactManager // 인게임 유물 관리
 {
     public bool[] Artifacts => artifacts;
-    private bool[] artifacts = new bool[(int)EArtifacts.Length];
+    private bool[] artifacts; // 아티팩트 중복 체크
     public bool IsFullArtifact => isFullArtifact;
     private bool isFullArtifact; // 아티팩트를 전부 채웠다면
+
+    public void StartGame()
+    {
+        artifacts = new bool[(int)EArtifacts.Length]; // 게임 
+    }
 
     public void BuyArtifact(EArtifacts artifactCode)
     {
         if (artifacts[(int)artifactCode]) Debug.Log("유물 중복 구매됨");
-        artifacts[(int)artifactCode] = true;
+        //artifacts[(int)artifactCode] = true; // 등장 시 
 
         switch (artifactCode)
         {
