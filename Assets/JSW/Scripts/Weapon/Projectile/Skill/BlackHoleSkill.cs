@@ -28,7 +28,15 @@ public class BlackHoleSkill : MonoBehaviour
 
     private IEnumerator DestroyAfterDuration()
     {
-        yield return new WaitForSeconds(duration);
+        int count = 0;
+
+        while(true)
+        {
+            count += 1;
+            SoundManager.Instance.PlaySFX("BlackHoleSkillDuration");
+            yield return new WaitForSeconds(1);
+            if (count / duration >= 1) break;
+        }
 
         if (pullCoroutine != null) StopCoroutine(pullCoroutine);
         _animator.SetBool("isBlackHole", true);

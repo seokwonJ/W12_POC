@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 7
+  mpPerSecond: 30
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 2401018389404660828, guid: 29f7f19ec4ff39c499a210806016fee6, type: 3}
   firePoint: {fileID: 91693443383765436}
@@ -312,7 +312,7 @@ MonoBehaviour:
   isCanTeleport: 0
   upgradeNum: 0
   player: {fileID: 0}
-  skillActiveEffect: {fileID: 0}
+  skillActiveEffect: {fileID: 8450041876755101773, guid: 0723e72f978adcb4981bf66cf4161654, type: 3}
 --- !u!1 &5861792811945193929
 GameObject:
   m_ObjectHideFlags: 0

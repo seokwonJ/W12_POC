@@ -8,8 +8,6 @@ public class BlackHoleAttack : ProjectileBase
     public float pullDelay = 0.3f;
     public float pullForce = 10f;
 
-    private bool hasPulled = false;
-
     public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum)
     {
         direction = dir.normalized;

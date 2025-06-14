@@ -45,8 +45,8 @@ public class BlackHole : Character
         if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
 
         proj.GetComponent<BlackHoleAttack>().SetInit(direction, attackDamage, projectileSpeed, nownomalAttackSize);
-        
-        SoundManager.Instance.PlaySFX("MagicianAttack");
+
+        SoundManager.Instance.PlaySFX("BlackHoleAttack");
     }
 
     // 스킬: 느리고 커다란 관통 공격 3발 발사
@@ -55,15 +55,15 @@ public class BlackHole : Character
         yield return new WaitForSeconds(skillFireDelay);
         animator.Play("SKILL", -1, 0f);
         FireSkillProjectiles();
-        //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
-        SoundManager.Instance.PlaySFX("MagicianSkill");
+        Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
+        SoundManager.Instance.PlaySFX("BlackHoleSkillActive");
         yield return new WaitForSeconds(skillInterval);
     }
 
     // 스킬 발사 구현
     protected override void FireSkillProjectiles()
     {
-        Transform target = FindFarestEnemy();
+        Transform target = FindClusteredEnemy();
         if (target == null) target = transform;
         GameObject proj = Instantiate(skillProjectile, target.position, Quaternion.identity);
         BlackHoleSkill mb = proj.GetComponent<BlackHoleSkill>();
@@ -74,38 +74,49 @@ public class BlackHole : Character
         }
         else
         {
-            mb.SetInit(skillSize,skillDamage);
+            mb.SetInit(skillSize, skillDamage);
         }
     }
 
-    private Transform FindFarestEnemy()
+    private Transform FindClusteredEnemy()
     {
-        Transform farest = null;
-        float maxDist = 0;
+        Transform bestTarget = null;
+        int maxCount = 0;
 
-        foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Enemy"))
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        foreach (GameObject centerObj in enemies)
         {
-            Transform enemyTransform = obj.transform;
+            Transform center = centerObj.transform;
 
-            // 카메라 뷰포트 안에 있는지 확인
-            Vector3 viewportPos = Camera.main.WorldToViewportPoint(enemyTransform.position);
-
+            // 카메라 뷰 안에 있는 적만 대상으로 함
+            Vector3 viewportPos = Camera.main.WorldToViewportPoint(center.position);
             bool isVisible = viewportPos.z > 0 &&
                              viewportPos.x >= 0 && viewportPos.x <= 1 &&
                              viewportPos.y >= 0 && viewportPos.y <= 1;
 
             if (!isVisible) continue;
 
-            // 가까운 적 계산
-            float dist = Vector2.Distance(transform.position, enemyTransform.position);
-            if (dist > maxDist)
+            int nearbyCount = 0;
+
+            foreach (GameObject otherObj in enemies)
             {
-                maxDist = dist;
-                farest = enemyTransform;
+                if (centerObj == otherObj) continue;
+
+                float dist = Vector2.Distance(center.position, otherObj.transform.position);
+                if (dist <= skillSize)
+                {
+                    nearbyCount++;
+                }
+            }
+
+            if (nearbyCount > maxCount)
+            {
+                maxCount = nearbyCount;
+                bestTarget = center;
             }
         }
-
-        return farest;
+        return bestTarget;
     }
 
 }
