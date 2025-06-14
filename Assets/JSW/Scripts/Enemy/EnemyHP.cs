@@ -10,7 +10,7 @@ public class EnemyHP : MonoBehaviour
     public Image playerHP_Image; // 적 HP바 프리팹
     public bool isDead = false;
 
-    private Renderer renderer;
+    private SpriteRenderer spriteRenderer;
     private Collider2D collider;
     private Animator animator;
     public Rigidbody2D rb;
@@ -22,15 +22,32 @@ public class EnemyHP : MonoBehaviour
     private void OnEnable()
     {
         Managers.Stage.CurEnemyCount++;
+        collider.enabled = false;
+        spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
+        StartCoroutine(CoAlphaChange(1f, 0.2f)); // 활성화 시 알파값을 1로 변경
     }
 
+    IEnumerator CoAlphaChange(float targetAlpha, float duration)
+    {
+        float elapsedTime = 0f;
+        Color startColor = spriteRenderer.color;
+        Color targetColor = new Color(startColor.r, startColor.g, startColor.b, targetAlpha);
+        while (elapsedTime < duration)
+        {
+            spriteRenderer.color = Color.Lerp(startColor, targetColor, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        spriteRenderer.color = targetColor; // 최종 색상 적용
+        collider.enabled = true;
+    }
     private void OnDisable()
     {
         Managers.Stage.CurEnemyCount--;
     }
     private void Awake()
     {
-        renderer = GetComponent<Renderer>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         collider = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -86,12 +103,13 @@ public class EnemyHP : MonoBehaviour
         rb.linearVelocity = Vector2.zero; // 죽을 때 속도 초기화
        
         StartCoroutine(CoDieEffect());
+        StartCoroutine(CoAlphaChange(0f, dieDelay + 0.1f)); // 활성화 시 알파값을 1로 변경
     }
     IEnumerator CoDamagedEffect()
     {
-        renderer.material.EnableKeyword("_ISFLASHED");
+        spriteRenderer.material.EnableKeyword("_ISFLASHED");
         yield return flashDuration;
-        renderer.material.DisableKeyword("_ISFLASHED");
+        spriteRenderer.material.DisableKeyword("_ISFLASHED");
     }
 
     IEnumerator CoDieEffect()
@@ -114,7 +132,7 @@ public class EnemyHP : MonoBehaviour
         {
             // sin에 의한 부드러운 감소 효과
             float dieEffectValue = Mathf.Sin((1f - (elapsedTime / dieDelay)) * Mathf.PI * 0.5f);
-            renderer.material.SetFloat("_DieEffectValue", dieEffectValue);
+            spriteRenderer.material.SetFloat("_DieEffectValue", dieEffectValue);
             elapsedTime += Time.deltaTime;
             yield return null;
         }

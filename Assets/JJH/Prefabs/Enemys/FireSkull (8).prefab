@@ -157,7 +157,7 @@ MonoBehaviour:
   minPlayerDistance: 0
   isKnockbackable: 1
   isKnockback: 0
-  isFilpping: 0
+  isFilpping: 1
   damage: 30
   fireCooldown: 0
   firePoint: {fileID: 0}

@@ -15,6 +15,7 @@ public class SkullPattern : MonoBehaviour
     private bool isDashReady = true;
     private WaitForSeconds dashWait;
     public float changeStateCooldown; // 공격 쿨타임
+    public bool isChasingDash; // Dash를 하면서 플레이어를 계속 따라갈 것인지 여부
     public WaitForSeconds changeStateWait;
 
 
@@ -106,6 +107,10 @@ public class SkullPattern : MonoBehaviour
         while (elapsedTime < dashDuration)
         {
             elapsedTime += Time.deltaTime;
+            if (isChasingDash)
+            {
+                directionToPlayer = (player.transform.position - enemyHP.transform.position).normalized; // IsChasingDash이면 대쉬를 하면서 플레이어를 계속 쫓아감
+            }
             enemyHP.rb.linearVelocity = directionToPlayer * dashSpeed;
             yield return null;
         }

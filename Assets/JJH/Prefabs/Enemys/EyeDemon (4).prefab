@@ -340,7 +340,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 40
+  enemyHP: 20
   playerHP_Image: {fileID: 4981368077165404448}
   isDead: 0
   rb: {fileID: 0}
@@ -362,6 +362,7 @@ MonoBehaviour:
   speed: 6
   minPlayerDistance: 0
   isKnockbackable: 1
+  isKnockback: 0
   isFilpping: 1
   damage: 20
   fireCooldown: 4

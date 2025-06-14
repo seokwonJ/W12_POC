@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: d03edba2bd92f3b4897e43fabe9f8a73
+guid: 616879a536d9c5c4a8d63ab436fa4e9e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 4448715427215634006
-    second: ghost_0
+      213: -2965393001259691005
+    second: Warning_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -51,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ghost_0
+      name: Warning_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 4
-        width: 29
-        height: 48
+        x: 0
+        y: 0
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 65eecf95c130dbd30800000000000000
-      internalID: 4448715427215634006
+      spriteID: 3049c74d6cec8d6d0800000000000000
+      internalID: -2965393001259691005
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ghost_0: 4448715427215634006
+      Warning_0: -2965393001259691005
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
