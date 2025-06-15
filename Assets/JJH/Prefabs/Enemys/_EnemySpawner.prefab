@@ -48,4 +48,3 @@ MonoBehaviour:
   spawnAreaMax: {x: 21, y: 11}
   onScreenSpawnIndicatorPrefab: {fileID: 8688127097074211777, guid: a092c01fb3a48e34ba76b82a8cd85cb0, type: 3}
   offScreenSpawnIndicatorPrefab: {fileID: 1517124075059143574, guid: 98170fe73b151624b8868f4f50080962, type: 3}
-  indicatorDuration: 1

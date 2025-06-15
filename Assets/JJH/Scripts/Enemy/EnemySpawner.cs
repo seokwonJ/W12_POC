@@ -36,6 +36,12 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
             // Wave 소환
             yield return StartCoroutine(SpawnWaveRoutine(wave, nowStage.waveCount[waveIndex]));
 
+            // 보스 스테이지의 경우에는 모든 적이 제거될 때까지 대기하지 않고 다음 웨이브 소환
+            if (nowStage.isBossStage)
+            {
+                continue;
+            }
+
             // 모든 적 제거될 때까지 대기
             while (Managers.Stage.CurEnemyCount > 0)
             {

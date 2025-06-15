@@ -8,6 +8,7 @@ public class EnemyHP : MonoBehaviour
     public int enemyHP;
     private int maxEnemyHP;
     public Image playerHP_Image; // 적 HP바 프리팹
+    public bool isSpawning = true;
     public bool isDead = false;
 
     private SpriteRenderer spriteRenderer;
@@ -40,6 +41,7 @@ public class EnemyHP : MonoBehaviour
         }
         spriteRenderer.color = targetColor; // 최종 색상 적용
         collider.enabled = true;
+        isSpawning = false;
     }
     private void OnDisable()
     {

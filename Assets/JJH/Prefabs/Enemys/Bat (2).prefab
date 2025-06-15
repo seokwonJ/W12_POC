@@ -253,7 +253,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673865093
   m_SortingLayer: 1
-  m_SortingOrder: 10
+  m_SortingOrder: 70
   m_Sprite: {fileID: 3309719141475895791, guid: 73150ffc8b1b29c44ae51c3de29c72be, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -342,6 +342,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHP: 50
   playerHP_Image: {fileID: 4981368077165404448}
+  isSpawning: 1
   isDead: 0
   rb: {fileID: 0}
 --- !u!114 &-9145300269846539496

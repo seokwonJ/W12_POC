@@ -26,7 +26,7 @@ public class SkullPattern : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (enemyHP == null || enemyHP.isDead || enemy.isKnockback) return;
+        if (enemyHP == null || enemyHP.isDead || enemy.isKnockback || enemyHP.isSpawning) return;
         Move();
     }
 

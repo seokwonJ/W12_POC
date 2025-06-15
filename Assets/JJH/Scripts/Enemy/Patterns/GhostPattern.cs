@@ -69,7 +69,7 @@ public class GhostPattern : MonoBehaviour
     }
     private void Move()
     {
-        if (enemyHP == null || enemyHP.isDead) return;
+        if (enemyHP == null || enemyHP.isDead || enemyHP.isSpawning) return;
         // 플레이어를 향한 방향 변수 이름
 
         Vector2 directionToPlayer = (player.transform.position - enemyHP.transform.position).normalized;
