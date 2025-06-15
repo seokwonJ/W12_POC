@@ -11,9 +11,10 @@ public class GhostPattern : MonoBehaviour
     public float maxPlayerDistance;
     public float changeStateCooldown;
     private WaitForSeconds changeStateWait;
+    public int attackProjectileCount; // 공격 시 발사할 투사체 개수
     public float attackCooldown; // 공격 쿨타임
     public WaitForSeconds attackWait;
-    private bool isBrave;
+
 
     private void Awake()
     {
@@ -32,7 +33,6 @@ public class GhostPattern : MonoBehaviour
         enemyHP = GetComponent<EnemyHP>();
         player = Managers.PlayerControl.NowPlayer;
 
-        isBrave = Random.Range(0f, 1f) < 0.3f;
 
         changeStateWait = new WaitForSeconds(changeStateCooldown);
         attackWait = new WaitForSeconds(attackCooldown);
@@ -50,32 +50,18 @@ public class GhostPattern : MonoBehaviour
             {
                 enemy.ChangeState(EEnemyState.Chase);
             }
-            // 클래스 내에 아래 메서드 추가
             else if (Vector2.Distance(enemyHP.transform.position, player.transform.position) > maxPlayerDistance)
             {
                 enemy.ChangeState(EEnemyState.Chase);
             }
-            else if (Vector2.Distance(enemyHP.transform.position, player.transform.position) < minPlayerDistance)
+            else if (Vector2.Distance(enemyHP.transform.position, player.transform.position) < minPlayerDistance) 
             {
-                if (isBrave)
-                {
-                    enemy.ChangeState(EEnemyState.Chase);
-                }
-                else
-                {
-                    enemy.ChangeState(EEnemyState.Escape);
-                }
+                // minPlayerDistance을 0이하로 하면 도망가지 않음
+                enemy.ChangeState(EEnemyState.Escape);               
             }
             else
             {
-                if (isBrave)
-                {
-                    enemy.ChangeState(EEnemyState.Chase);
-                }
-                else
-                {
-                    enemy.ChangeState(EEnemyState.Idle);
-                }
+                enemy.ChangeState(EEnemyState.Idle);             
             }
 
             yield return changeStateWait;
@@ -83,7 +69,7 @@ public class GhostPattern : MonoBehaviour
     }
     private void Move()
     {
-        if (enemyHP == null || enemyHP.isDead) return;
+        if (enemyHP == null || enemyHP.isDead || enemyHP.isSpawning) return;
         // 플레이어를 향한 방향 변수 이름
 
         Vector2 directionToPlayer = (player.transform.position - enemyHP.transform.position).normalized;
@@ -114,9 +100,19 @@ public class GhostPattern : MonoBehaviour
             // 공격가능한 상태일 때만 공격
             if (enemy.CurrentState == EEnemyState.Chase || enemy.CurrentState == EEnemyState.Idle)
             {
-                GameObject proj = Instantiate(enemy.projectilePrefab, enemy.firePoint.position, Quaternion.identity);
-                Vector2 dir = (enemy.player.transform.position - enemy.transform.position).normalized;
-                proj.GetComponent<Rigidbody2D>().linearVelocity = dir * enemy.projectileSpeed;
+                // attackProjectileCount만큼 투사체를 발사
+                for (int i = 0; i < attackProjectileCount; i++)
+                {
+                    GameObject proj = Instantiate(enemy.projectilePrefab, enemy.firePoint.position, Quaternion.identity);
+                    //Vector2 dir = (enemy.player.transform.position - enemy.transform.position).normalized;
+                    // 발사 각도가 플레이어를 향해 60도 이내에서 attackProjectileCount만큼 균등하게 퍼져서 발사
+                    float angle = 60f / (attackProjectileCount + 1) * (i + 1) - 30f; // -30f ~ +30f 범위로 각도 설정
+                    Vector2 dir = Quaternion.Euler(0, 0, angle) * (enemy.player.transform.position - enemy.transform.position).normalized;
+                    proj.transform.rotation = Quaternion.LookRotation(Vector3.forward, dir); // 투사체의 방향을 설정
+                    proj.GetComponent<Rigidbody2D>().linearVelocity = dir * enemy.projectileSpeed;
+
+                }
+
             }
         }
     }

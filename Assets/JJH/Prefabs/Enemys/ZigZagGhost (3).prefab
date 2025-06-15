@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: 2336702892526190934}
   - component: {fileID: 7524122668698337539}
   - component: {fileID: 7440373058563792587}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: ZigZagGhost (3)
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673865093
   m_SortingLayer: 1
-  m_SortingOrder: 2
+  m_SortingOrder: 70
   m_Sprite: {fileID: 4061831710963179756, guid: 3a6ba824009ce7a4383417251be44a96, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -217,7 +217,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 15
+  playerHP_Image: {fileID: 0}
+  isSpawning: 1
   isDead: 0
+  rb: {fileID: 0}
 --- !u!114 &2336702892526190934
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -236,6 +239,7 @@ MonoBehaviour:
   speed: 8
   minPlayerDistance: 0
   isKnockbackable: 1
+  isKnockback: 0
   isFilpping: 0
   damage: 20
   fireCooldown: 0

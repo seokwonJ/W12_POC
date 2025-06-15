@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StageManager // 씬 전환 관리 (전투-상점 등)
 {
-    public ControlField controlField;
+    public EnemySpawner controlField;
 
     public int World
     {

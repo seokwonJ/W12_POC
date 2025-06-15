@@ -15,6 +15,6 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
   - {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
-  spawnPositionType: 0100000001000000
+  spawnPositionType: 0100000000000000
   waveInterval: 1
   isBossWave: 0
