@@ -71,6 +71,9 @@ public class Sniper : Character
 
             if (_AttackCurrentCount <= 0)
             {
+                animator.SetBool("isEndTReload", false);
+                animator.Play("Reload", -1, 0.1f);
+
                 Debug.Log("스나이퍼 장전 중");
                 SoundManager.Instance.PlaySFX("SniperReloadStart");
 
@@ -81,6 +84,7 @@ public class Sniper : Character
                 yield return new WaitForSeconds(1);
 
                 _AttackCurrentCount = AttackMaxCount;
+                animator.SetBool("isEndTReload", true);
             }
 
             if (!isGround) continue;
@@ -108,6 +112,7 @@ public class Sniper : Character
     // 스킬: 느리고 커다란 관통 공격 3발 발사
     protected override IEnumerator FireSkill()
     {
+        animator.Play("IDLE", -1, 0.1f);
         skillTargetList = new List<Transform>();
 
         if (dim == null)
@@ -117,6 +122,7 @@ public class Sniper : Character
         }
         yield return new WaitForSeconds(skillInterval);
         SoundManager.Instance.PlaySFX("SniperSkillActive");
+        animator.Play("SKILL", -1, 0f);
         Instantiate(sniperSkillActive2, transform.position, Quaternion.identity,transform);
 
         _isSkillReady = true;
@@ -128,7 +134,7 @@ public class Sniper : Character
 
         for (int i = 0; i < skillCount; i++)
         {
-            animator.Play("SKILL", -1, 0f);
+            animator.Play("ATTACK", -1, 0f);
             FireSkillProjectiles();
             //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
             yield return new WaitForSeconds(skillFireDelay);

@@ -81,7 +81,8 @@ public class BlackHole : Character
     private Transform FindClusteredEnemy()
     {
         Transform bestTarget = null;
-        int maxCount = 0;
+        int maxCount = -1;
+        float closestToPlayer = float.MaxValue;
 
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
@@ -104,18 +105,25 @@ public class BlackHole : Character
                 if (centerObj == otherObj) continue;
 
                 float dist = Vector2.Distance(center.position, otherObj.transform.position);
-                if (dist <= skillSize)
+                if (dist <= skillSize * 2)
                 {
                     nearbyCount++;
                 }
             }
 
-            if (nearbyCount > maxCount)
+            float distToPlayer = Vector2.Distance(center.position, player.transform.position);
+
+            // 우선순위: 적 수 > 플레이어와의 거리
+            if (nearbyCount > maxCount || (nearbyCount == maxCount && distToPlayer < closestToPlayer))
             {
                 maxCount = nearbyCount;
+                closestToPlayer = distToPlayer;
                 bestTarget = center;
             }
+
+            print($"[{center.name}] 주변 적 수: {nearbyCount}, 플레이어 거리: {distToPlayer}");
         }
+
         return bestTarget;
     }
 

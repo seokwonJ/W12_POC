@@ -80,6 +80,8 @@ public class Pirate : Character
         List<Transform> originalTargets = GetFarthestEnemies(skillShotCount);
         List<Transform> activeTargets = new List<Transform>(originalTargets);
 
+        animator.Play("SKILL", -1, 0f);
+
         for (int i = 0; i < skillShotCount; i++)
         {
             rb.linearVelocity = Vector3.zero;
