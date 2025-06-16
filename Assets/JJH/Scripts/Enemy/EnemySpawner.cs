@@ -6,8 +6,8 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 {
     // 맵 내/외부 스폰 영역
     [Header("Spawn Area Bounds")]
-    public static Vector2 SPAWN_AREA_MIN = new Vector2(-21, -11);
-    public static Vector2 SPAWN_AREA_MAX = new Vector2(21, 11);
+    public static Vector2 SPAWN_AREA_MIN = new Vector2(-20, -11);
+    public static Vector2 SPAWN_AREA_MAX = new Vector2(20, 11);
 
     [Header("Spawn Indicator")]
     public GameObject onScreenSpawnIndicatorPrefab; // 화면 안 스폰 위치 표시를 위한 인디케이터
@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
     private void Start()
     {
-        Managers.Stage.controlField = this;
+        Managers.Stage.enemySpawner = this;
         Managers.Stage.StartStage(); // nowStage 재설정
         StartCoroutine(CoSpawnEnemyRoutine(Managers.Stage.NowStage));
     }
@@ -31,7 +31,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
             EnemyWaveSO wave = nowStage.enemyWave[waveIndex];
 
             // Wave 시작 전 지정된 시간 간격 전파
-            yield return new WaitForSeconds(wave.waveInterval);
+            yield return new WaitForSeconds(nowStage.wavePreparationTime[waveIndex]);
 
             // Wave 소환
             yield return StartCoroutine(SpawnWaveRoutine(wave, nowStage.waveCount[waveIndex]));
@@ -116,7 +116,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
                 break;
 
             case ESpawnPositionType.RightSideCenter:
-                pos = new Vector3(SPAWN_AREA_MAX.x + 5f, 0f, 0f);
+                pos = new Vector3(SPAWN_AREA_MAX.x + 6f, 0f, 0f);
                 break;
         }
 
@@ -171,7 +171,10 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
     {
         StopAllCoroutines();
         GameObject[] enemys = GameObject.FindGameObjectsWithTag("Enemy");
-        for (int i = enemys.Length - 1; i >= 0; i--) Destroy(enemys[i]);
+        for (int i = enemys.Length - 1; i >= 0; i--)
+        {
+            enemys[i].GetComponent<EnemyHP>().Die();
+        }
         GameObject[] enemyProjectiles = GameObject.FindGameObjectsWithTag("EnemyProjectile");
         for (int i = enemyProjectiles.Length - 1; i >= 0; i--) Destroy(enemyProjectiles[i]);
         GameObject[] playerProjectiles = GameObject.FindGameObjectsWithTag("PlayerProjectile");

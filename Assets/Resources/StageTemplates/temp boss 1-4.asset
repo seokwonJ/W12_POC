@@ -17,6 +17,8 @@ MonoBehaviour:
   isBossStage: 1
   enemyWave:
   - {fileID: 11400000, guid: 13a9dab26c3b53146b1b707cecca7bbd, type: 2}
-  waveCount: 01000000
+  - {fileID: 11400000, guid: da75aa60349bbf84ba603cf9ac54405d, type: 2}
+  waveCount: 0100000064000000
   wavePreparationTime:
   - 1
+  - 15
