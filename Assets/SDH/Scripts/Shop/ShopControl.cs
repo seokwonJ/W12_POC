@@ -36,7 +36,8 @@ public class ShopControl : MonoBehaviour // 아이템 구매하고 적용하는 상점 시스템
 
     private void BuyItem() // 버튼을 누르면 아이템 구매
     {
-        Collider2D collider = isHired ? Physics2D.OverlapPoint(Managers.PlayerControl.NowPlayer.transform.position, shopLayerMask) : Physics2D.OverlapPoint(Managers.PlayerControl.NowPlayer.transform.position, hireLayerMask);
+        LayerMask nowLayerMask = isHired ? shopLayerMask : hireLayerMask;
+        Collider2D collider = Physics2D.OverlapPoint(Managers.PlayerControl.NowPlayer.transform.position, nowLayerMask);
 
         collider?.GetComponent<ShopItem>()?.BuyItem();
     }

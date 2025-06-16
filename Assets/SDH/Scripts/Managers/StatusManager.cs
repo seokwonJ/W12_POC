@@ -72,7 +72,7 @@ public class StatusManager // 인게임 플레이 스탯 관리
     }
     private int riderCount = 0; // 비행체에 탄 인원 수
 
-    public void StartGame() // 게임 시작
+    public void StartGame() // 게임 시작. 루트 함수는 Stage임
     {
         damagePlus = 0;
         gold = 0;

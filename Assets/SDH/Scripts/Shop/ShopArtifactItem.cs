@@ -16,6 +16,7 @@ public class ShopArtifactItm : ShopItem
         }
         while (Managers.Artifact.Artifacts[artifactIdx]);
 
+        Managers.Artifact.Artifacts[artifactIdx] = true;
         artifactTxt.text = ((EArtifacts)artifactIdx).ToString() + "\n100¿ø";
     }
 

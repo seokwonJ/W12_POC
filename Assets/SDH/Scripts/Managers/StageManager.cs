@@ -95,12 +95,15 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
     }
     private int curEnemyCount; // 현재 스테이지에서 남아있는 적 수
 
-    public void StartGame() // 게임 시작. 현재는 스테이지 변수 초기화만 있으며 아무것도 안함 이거 수정하면서 위에 변수들 초기화 설정값 변경할 것 (필드를 시작할 때 값을 수정하므로 유의)
+    public void StartGame() // 게임 시작. 다른 매니저의 게임 시작도 이곳에서
     {
         world = 1;
         stage = 0; // 시작할때마다 값을 1씩 더해주므로 0부터 시작할 것
         enemyTotalKill = 0;
         onField = true;
+
+        Managers.Status.StartGame();
+        Managers.Artifact.StartGame();
     }
 
     public void StartStage() // 현재 스테이지 시작하며 변수를 초기화하고 EnemySpawner에 현재 스테이지 정보 전달

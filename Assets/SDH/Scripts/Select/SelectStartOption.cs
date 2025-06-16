@@ -16,7 +16,6 @@ public class SelectStartOption : SelectOption
         Managers.PlayerControl.StartGame();
         Managers.PlayerControl.CharactersCheck[characterCanvas.NowSelectedIdx] = true;
 
-        Managers.Status.StartGame();
         Managers.Stage.StartGame();
 
         Managers.SceneFlow.GotoScene("Field");
