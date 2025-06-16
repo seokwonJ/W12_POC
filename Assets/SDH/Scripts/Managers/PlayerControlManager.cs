@@ -1,7 +1,7 @@
-using System.Collections.Generic;
+ï»¿using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControlManager // ÇÃ·¹ÀÌ¾î °ü¸®
+public class PlayerControlManager // í”Œë ˆì´ì–´ ê´€ë¦¬
 {
     public bool IsSelecting
     {
@@ -14,7 +14,7 @@ public class PlayerControlManager // ÇÃ·¹ÀÌ¾î °ü¸®
             isSelecting = value;
         }
     }
-    private bool isSelecting; // (½ÃÀÛ Àü ¼±ÅÃÃ¢¿¡¼­) Æ¯Á¤ ¿É¼ÇÀ» °Çµå¸®°í ÀÖ´ÂÁö ¿©ºÎ
+    private bool isSelecting; // (ì‹œì‘ ì „ ì„ íƒì°½ì—ì„œ) íŠ¹ì • ì˜µì…˜ì„ ê±´ë“œë¦¬ê³  ìˆëŠ”ì§€ ì—¬ë¶€
     public GameObject NowPlayer
     {
         get
@@ -26,19 +26,19 @@ public class PlayerControlManager // ÇÃ·¹ÀÌ¾î °ü¸®
             nowPlayer = value;
         }
     }
-    private GameObject nowPlayer; // ÇöÀç ºñÇàÃ¼ ¿ÀºêÁ§Æ®
+    private GameObject nowPlayer; // í˜„ì¬ ë¹„í–‰ì²´ ì˜¤ë¸Œì íŠ¸
     public bool[] CharactersCheck => charactersCheck;
-    private bool[] charactersCheck; // µ¿·á ¿ÀºêÁ§Æ® Áßº¹ È®ÀÎ
+    private bool[] charactersCheck; // ë™ë£Œ ì˜¤ë¸Œì íŠ¸ ì¤‘ë³µ í™•ì¸
     public List<GameObject> Characters => characters;
-    private List<GameObject> characters = new(); // ÇöÀç µ¿·á ¿ÀºêÁ§Æ®µé
+    private List<GameObject> characters = new(); // í˜„ì¬ ë™ë£Œ ì˜¤ë¸Œì íŠ¸ë“¤
 
-    public void StartGame() // °ÔÀÓ ½ÃÀÛ (nowPlayer¿Í characters¸¦ ¼³Á¤ÇÑ µÚ ½ÇÇàÇØ¾ß ÇÔ)
+    public void StartGame() // ê²Œì„ ì‹œì‘ (nowPlayerì™€ charactersë¥¼ ì„¤ì •í•œ ë’¤ ì‹¤í–‰í•´ì•¼ í•¨)
     {
         charactersCheck = new bool[Managers.Asset.Characters.Length];
         nowPlayer.GetComponent<TmpPlayerControl>().StartGame();
     }
 
-    public void SetPlayer() // °í¿ëÇÒ ¶§¸¶´Ù È£Ãâ
+    public void SetPlayer() // ê³ ìš©í•  ë•Œë§ˆë‹¤ í˜¸ì¶œ
     {
         nowPlayer.GetComponent<TmpPlayerControl>().SetPlayer();
     }
@@ -47,5 +47,13 @@ public class PlayerControlManager // ÇÃ·¹ÀÌ¾î °ü¸®
     {
         nowPlayer = null;
         characters = new();
+    }
+
+    public bool IsOnRightSide() // í˜„ì¬ í”Œë ˆì´ì–´ê°€ í™”ë©´ ì˜¤ë¥¸ìª½ì— ìˆëŠ”ì§€ í™•ì¸
+    {
+        if (nowPlayer == null) return false;
+        Debug.Log("IsOnRightSide ì‹¤í–‰");
+        //return nowPlayer.transform.position.x > Camera.main.transform.position.x;
+        return nowPlayer.transform.position.x > 0;
     }
 }

@@ -3334,6 +3334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hireCanvas: {fileID: 970521945}
+  shopControl: {fileID: 659055506}
   characterOptions:
   - {fileID: 1836391296}
   - {fileID: 1921104705}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
+  m_Name: temp boss 1-4
+  m_EditorClassIdentifier: 
+  world: 1
+  stage: 4
+  isBossStage: 1
+  enemyWave:
+  - {fileID: 11400000, guid: 13a9dab26c3b53146b1b707cecca7bbd, type: 2}
+  - {fileID: 11400000, guid: da75aa60349bbf84ba603cf9ac54405d, type: 2}
+  waveCount: 0100000064000000
+  wavePreparationTime:
+  - 1
+  - 15
