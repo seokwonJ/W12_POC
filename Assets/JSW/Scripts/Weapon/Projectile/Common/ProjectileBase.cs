@@ -5,6 +5,7 @@ public class ProjectileBase : MonoBehaviour
     public float speed = 10f;
     public float lifetime = 5f;
     public float damage = 10;
+    public float knockbackPower = 1;
 
     protected Vector2 direction;
 

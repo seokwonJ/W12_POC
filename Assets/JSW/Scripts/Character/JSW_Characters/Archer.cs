@@ -35,15 +35,15 @@ public class Archer : Character
 
         float totalAttackDamage = TotalAttackDamage();
 
-        proj.GetComponent<Arrow>().SetInit(direction, totalAttackDamage, projectileSpeed, knockbackPower, projectileSize, this, false);
+        proj.GetComponent<Arrow>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false);
 
         if (isUpgradeTripleShot)
         {
             GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 10) * direction, totalAttackDamage, projectileSpeed, knockbackPower, projectileSize, this, false);
+            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 10) * direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false);
 
             GameObject proj3 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj3.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, -10) * direction, totalAttackDamage, projectileSpeed, knockbackPower, projectileSize, this, false);
+            proj3.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, -10) * direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false);
         }
 
         SoundManager.Instance.PlaySFX("ArcherAttack");
@@ -81,7 +81,7 @@ public class Archer : Character
             float angle = i * angleStep + 10 * skillCount;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             GameObject proj = Instantiate(skillProjectile, startPos, rotation);
-            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, totalSkillDamage, projectileSpeed, knockbackPower, projectileSize, this, true);
+            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, true);
         }
     }
 }

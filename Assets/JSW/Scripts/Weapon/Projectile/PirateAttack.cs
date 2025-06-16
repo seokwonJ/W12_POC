@@ -5,7 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 public class PirateAttack : ProjectileBase
 {
     public Rigidbody2D rb;
-    public float knockbackPower;
     public GameObject explosionEffect;
     public bool isFirstHitDealsBonusDamage;
     public float acceleration = 5f;
@@ -55,7 +54,7 @@ public class PirateAttack : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, bool isFirstHitDealsBonus, bool isSkill, Transform homingTarget = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum , bool isFirstHitDealsBonus, bool isSkill, Transform homingTarget = null)
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -65,6 +64,8 @@ public class PirateAttack : ProjectileBase
         damage = damageNum;
         transform.localScale = Vector3.one * scaleNum;
         speed = speedNum;
+        knockbackPower = knockbackPowerNum;
+
         isFirstHitDealsBonusDamage = isFirstHitDealsBonus;
 
         if (homingTarget != null)

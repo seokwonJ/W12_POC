@@ -6,16 +6,16 @@ using UnityEngine.UI;
 public abstract class Character : MonoBehaviour
 {
     [Header("기본 업그레이드")]
-    public float attackPowerUpNum = 0;
-    public float attackSpeedUpNum = 0;
-    public float projectileSpeedUpNum = 0;
-    public float projectileSizeUpNum = 0;
-    public float knockbackPowerUpNum = 0;
-    public float criticalProbabilityUpNum = 0;
-    public float criticalDamageUpNum = 0;
-    public float attackRangeUpNum = 0;
-    public float manaRegenSpeedUpNum = 0;
-    public float abilityPowerUpNum = 0;
+    public float attackPowerUpNum = 100;
+    public float attackSpeedUpNum = 100;
+    public float projectileSpeedUpNum = 100;
+    public float projectileSizeUpNum = 100;
+    public float knockbackPowerUpNum = 100;
+    public float criticalProbabilityUpNum = 100;
+    public float criticalDamageUpNum = 100;
+    public float attackRangeUpNum = 100;
+    public float manaRegenSpeedUpNum = 100;
+    public float abilityPowerUpNum = 100;
 
     // 캐릭터 기본 능력치
     [Header("MP 시스템")]
@@ -97,8 +97,9 @@ public abstract class Character : MonoBehaviour
         }
         if (!isGround) return;
 
-        currentMP += Time.deltaTime * mpPerSecond;
+        currentMP += Time.deltaTime * (mpPerSecond * (manaRegenSpeedUpNum / 100));
         currentMP = Mathf.Min(currentMP, maxMP);
+
         if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
 
         if (currentMP >= maxMP && !isSkillActive)
@@ -176,7 +177,7 @@ public abstract class Character : MonoBehaviour
     // 사정거리내에 적을 발견하는 함수
     protected Transform FindNearestEnemy()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius * (attackRangeUpNum / 100));
         float minDist = float.MaxValue;
         Transform nearest = null;
 

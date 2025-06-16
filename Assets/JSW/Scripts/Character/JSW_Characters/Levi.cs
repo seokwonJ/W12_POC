@@ -43,7 +43,7 @@ public class Levi : Character
 
         float totalAttackDamage = TotalAttackDamage();
 
-        proj.GetComponent<LeviAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, NormalAttackProjectileDuration);
+        proj.GetComponent<LeviAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), NormalAttackProjectileDuration);
 
         SoundManager.Instance.PlaySFX("LeviAttack");
     }

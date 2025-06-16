@@ -10,6 +10,7 @@ public class Ninja : Character
     public int skillPower;
     public float skillAttackSpeed;
     public float skillPowerDuration;
+    public float skillProjectileSpeed;
     public float skillInterval = 0.3f;
 
     [Header("°­È­")]
@@ -47,7 +48,7 @@ public class Ninja : Character
 
             float totalSkillDamage = TotalSkillDamage();
 
-            proj.GetComponent<Kunai>().SetInit(direction, totalSkillDamage, projectileSpeed * 2.5f);
+            proj.GetComponent<Kunai>().SetInit(direction, totalSkillDamage, projectileSpeed * skillProjectileSpeed, projectileSize, knockbackPower);
         }
         else
         {
@@ -55,8 +56,8 @@ public class Ninja : Character
 
             float totalAttackDamage = TotalAttackDamage();
 
-            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed); nomalAttackCount = 0; }
-            else proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
+            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0; }
+            else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
         }
 
         SoundManager.Instance.PlaySFX("NinjaAttack");

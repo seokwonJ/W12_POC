@@ -12,10 +12,8 @@ public class Magician : Character
     public float skillProjectileSpeed = 15;
 
     [Header("강화")]
-    public float nomalAttackSize;
     public bool isAddAttackDamage;
     public bool isnomalAttackSizePerMana;
-    public bool isCanTeleport;
     public int upgradeNum;
     public GameObject player;
 
@@ -41,13 +39,13 @@ public class Magician : Character
 
         float totalAttackDamage = TotalAttackDamage();
         
-        float nownomalAttackSize = nomalAttackSize;
-        if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
 
-        if (isAddAttackDamage) proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize);
+        if (isnomalAttackSizePerMana) projectileSize *= currentMP / 50;
+
+        if (isAddAttackDamage) proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
         else
         {
-            proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize);
+            proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
         }
 
         SoundManager.Instance.PlaySFX("MagicianAttack");
@@ -56,8 +54,6 @@ public class Magician : Character
     // 스킬: 느리고 커다란 관통 공격 3발 발사
     protected override IEnumerator FireSkill()
     {
-        if (isCanTeleport) StartCoroutine(TeleportToPlayer());
-
         for (int i = 0; i < skillCount; i++)
         {
             yield return new WaitForSeconds(skillFireDelay);
@@ -81,17 +77,13 @@ public class Magician : Character
 
         if (target != null)
         {
-            mb.SetInit((target.position - firePoint.position).normalized, totalSkillDamage, skillProjectileSpeed, skillSize);
+            mb.SetInit((target.position - firePoint.position).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100));
         }
         else
         {
-            mb.SetInit((Random.insideUnitSphere).normalized, totalSkillDamage, skillProjectileSpeed, skillSize);
+            mb.SetInit((Random.insideUnitSphere).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100));
+
         }
     }
 
-    IEnumerator TeleportToPlayer()
-    {
-        yield return new WaitForSeconds(5f);
-        if (!isGround) transform.position = player.transform.position + Vector3.up;
-    }
 }

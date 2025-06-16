@@ -10,15 +10,13 @@ public class BlackHole : Character
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
-    public float skillDamage = 1f;
-    public float skillProjectileSpeed = 15;
 
     [Header("∞≠»≠")]
-    public float nomalAttackSize;
     public bool isAddAttackDamage;
     public bool isnomalAttackSizePerMana;
     public bool isCanTeleport;
     public int upgradeNum;
+
     public GameObject player;
 
     [Header("¿Ã∆Â∆Æ")]
@@ -41,11 +39,9 @@ public class BlackHole : Character
 
         GameObject proj = Instantiate(normalProjectile, targetPos, Quaternion.identity);
 
-        float nownomalAttackSize = nomalAttackSize;
-
         float totalAttackDamage = TotalAttackDamage();
 
-        proj.GetComponent<BlackHoleAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize);
+        proj.GetComponent<BlackHoleAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
 
         SoundManager.Instance.PlaySFX("BlackHoleAttack");
     }

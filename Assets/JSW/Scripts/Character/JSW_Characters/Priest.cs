@@ -21,8 +21,6 @@ public class Priest : Character
     public GameObject PriestHealEffect;
 
     [Header("강화")]
-    public float nomalAttackSize;
-    public bool isAddAttackDamage;
     public bool isnomalAttackSizePerMana;
     public bool isCanTeleport;
     public int upgradeNum;
@@ -50,16 +48,11 @@ public class Priest : Character
 
         float totalAttackDamage = TotalAttackDamage();
 
-        float nownomalAttackSize = nomalAttackSize;
-        //if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
-
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
 
-        if (isAddAttackDamage) proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
-        else
-        {
-            proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
-        }
+
+       proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), enemyTarget);
+        
 
         SoundManager.Instance.PlaySFX("PriestAttack");
     }

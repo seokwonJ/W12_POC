@@ -2,7 +2,6 @@
 
 public class Arrow : ProjectileBase
 {
-    private float knockbackPower = 1;
     private Archer _characterArcher;
     private bool isSkill;
     protected override void OnTriggerEnter2D(Collider2D other)

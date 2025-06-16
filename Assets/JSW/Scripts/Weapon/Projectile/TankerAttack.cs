@@ -2,13 +2,6 @@
 
 public class TankerAttack : ProjectileBase
 {
-    private float knockbackPower;
-
-    //protected override void Update()
-    //{
-    //    transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
-    //    transform.up = Vector2.right;
-    //}
 
     public void SetInit(Vector2 dir, float damageNum, float speedNum, float lifetimeNum, float scaleNum, float KnockBackPowerNum)
     {

@@ -98,14 +98,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPowerUpNum: 100
-  attackSpeedUpNum: 0
-  projectileSpeedUpNum: 0
-  projectileSizeUpNum: 0
-  knockbackPowerUpNum: 0
+  attackSpeedUpNum: 100
+  projectileSpeedUpNum: 100
+  projectileSizeUpNum: 100
+  knockbackPowerUpNum: 100
   criticalProbabilityUpNum: 100
-  criticalDamageUpNum: 0
-  attackRangeUpNum: 0
-  manaRegenSpeedUpNum: 0
+  criticalDamageUpNum: 100
+  attackRangeUpNum: 100
+  manaRegenSpeedUpNum: 100
   abilityPowerUpNum: 100
   maxMP: 150
   mpPerSecond: 12
@@ -118,7 +118,7 @@ MonoBehaviour:
   maxFallSpeed: 15
   attackBase: 100
   attackDamage: 75
-  abilityPower: 0
+  abilityPower: 150
   projectileSpeed: 30
   criticalProbability: 0
   criticalDamage: 200
