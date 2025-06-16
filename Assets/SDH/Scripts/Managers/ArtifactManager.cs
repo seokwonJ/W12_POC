@@ -19,9 +19,9 @@ public class ArtifactManager // 인게임 유물 관리
     public bool IsFullArtifact => isFullArtifact;
     private bool isFullArtifact; // 아티팩트를 전부 채웠다면
 
-    public void StartGame()
+    public void StartGame() // 게임 시작. 루트 함수는 Stage임
     {
-        artifacts = new bool[(int)EArtifacts.Length]; // 게임 
+        artifacts = new bool[(int)EArtifacts.Length];
     }
 
     public void BuyArtifact(EArtifacts artifactCode)
