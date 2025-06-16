@@ -103,7 +103,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 1
+    filterMode: 0
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -117,7 +117,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 64
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -141,7 +141,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -182,12 +182,12 @@ TextureImporter:
       name: demon-attack_0
       rect:
         serializedVersion: 2
-        x: 89
-        y: 20
-        width: 136
-        height: 126
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 0
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -204,12 +204,12 @@ TextureImporter:
       name: demon-attack_1
       rect:
         serializedVersion: 2
-        x: 329
-        y: 30
-        width: 98
-        height: 106
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 240
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -226,12 +226,12 @@ TextureImporter:
       name: demon-attack_2
       rect:
         serializedVersion: 2
-        x: 566
-        y: 32
-        width: 96
-        height: 94
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 480
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -248,12 +248,12 @@ TextureImporter:
       name: demon-attack_3
       rect:
         serializedVersion: 2
-        x: 794
-        y: 25
-        width: 149
-        height: 90
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 720
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -270,12 +270,12 @@ TextureImporter:
       name: demon-attack_4
       rect:
         serializedVersion: 2
-        x: 1042
-        y: 27
-        width: 144
-        height: 80
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 960
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -292,12 +292,12 @@ TextureImporter:
       name: demon-attack_5
       rect:
         serializedVersion: 2
-        x: 1292
-        y: 26
-        width: 121
-        height: 79
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1200
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -314,12 +314,12 @@ TextureImporter:
       name: demon-attack_6
       rect:
         serializedVersion: 2
-        x: 1518
-        y: 22
-        width: 127
-        height: 158
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1440
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -336,12 +336,12 @@ TextureImporter:
       name: demon-attack_7
       rect:
         serializedVersion: 2
-        x: 1703
-        y: 10
-        width: 182
-        height: 169
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1680
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -358,12 +358,12 @@ TextureImporter:
       name: demon-attack_8
       rect:
         serializedVersion: 2
-        x: 1933
-        y: 8
-        width: 192
-        height: 172
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 1920
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -380,12 +380,12 @@ TextureImporter:
       name: demon-attack_9
       rect:
         serializedVersion: 2
-        x: 2171
-        y: 10
-        width: 194
-        height: 169
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2160
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -402,12 +402,12 @@ TextureImporter:
       name: demon-attack_10
       rect:
         serializedVersion: 2
-        x: 2426
-        y: 66
-        width: 8
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 2400
+        y: 0
+        width: 240
+        height: 192
+      alignment: 9
+      pivot: {x: 0.55, y: 0.48958334}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -420,275 +420,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: demon-attack_11
-      rect:
-        serializedVersion: 2
-        x: 2441
-        y: 70
-        width: 15
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 458ed5da802c6d9f0800000000000000
-      internalID: -443954170725275564
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_12
-      rect:
-        serializedVersion: 2
-        x: 2458
-        y: 66
-        width: 19
-        height: 12
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: afe32c3a5935bdee0800000000000000
-      internalID: -1235301770620420358
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_13
-      rect:
-        serializedVersion: 2
-        x: 2497
-        y: 18
-        width: 108
-        height: 161
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: fb3fcba512714a970800000000000000
-      internalID: 8765156206793520063
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_14
-      rect:
-        serializedVersion: 2
-        x: 1686
-        y: 22
-        width: 18
-        height: 27
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 113246e915dc8ca50800000000000000
-      internalID: 6541704209189053201
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_15
-      rect:
-        serializedVersion: 2
-        x: 1923
-        y: 37
-        width: 8
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6df049b7667119840800000000000000
-      internalID: 5228986371281260502
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_16
-      rect:
-        serializedVersion: 2
-        x: 2415
-        y: 30
-        width: 19
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 69adde242b4e97ac0800000000000000
-      internalID: -3856800151587923306
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_17
-      rect:
-        serializedVersion: 2
-        x: 2438
-        y: 33
-        width: 18
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 3072e385fe41580b0800000000000000
-      internalID: -5727148332921510141
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_18
-      rect:
-        serializedVersion: 2
-        x: 2473
-        y: 35
-        width: 10
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0429914305723e1c0800000000000000
-      internalID: -4475690379251183040
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_19
-      rect:
-        serializedVersion: 2
-        x: 1692
-        y: 19
-        width: 6
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 05bdf0fd81af8dcd0800000000000000
-      internalID: -2532999805667386544
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_20
-      rect:
-        serializedVersion: 2
-        x: 2440
-        y: 18
-        width: 10
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2fb667c2aa78bcdc0800000000000000
-      internalID: -3617648710701913102
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_21
-      rect:
-        serializedVersion: 2
-        x: 2443
-        y: 10
-        width: 44
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 0bbc1c9bdde8a1320800000000000000
-      internalID: 2529491223677356976
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: demon-attack_22
-      rect:
-        serializedVersion: 2
-        x: 2494
-        y: 25
-        width: 13
-        height: 11
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b4c636acd793e3350800000000000000
-      internalID: 5998294966133288011
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: e07d8f80798c62d48870665c296c42ae
     internalID: 0
     vertices: []
     indices: 
@@ -701,19 +437,7 @@ TextureImporter:
       demon-attack_0: 4830101959132194629
       demon-attack_1: -4271147063164771560
       demon-attack_10: 3732180292136803729
-      demon-attack_11: -443954170725275564
-      demon-attack_12: -1235301770620420358
-      demon-attack_13: 8765156206793520063
-      demon-attack_14: 6541704209189053201
-      demon-attack_15: 5228986371281260502
-      demon-attack_16: -3856800151587923306
-      demon-attack_17: -5727148332921510141
-      demon-attack_18: -4475690379251183040
-      demon-attack_19: -2532999805667386544
       demon-attack_2: -7799362553759336465
-      demon-attack_20: -3617648710701913102
-      demon-attack_21: 2529491223677356976
-      demon-attack_22: 5998294966133288011
       demon-attack_3: 3464098051191881274
       demon-attack_4: -485573400809545533
       demon-attack_5: 3534393129997317530

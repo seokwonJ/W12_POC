@@ -48,6 +48,11 @@ public class Enemy : MonoBehaviour
     {
         player = Managers.PlayerControl.NowPlayer;
         rb = GetComponent<Rigidbody2D>();
+        if (rb == null)
+        {
+            Debug.Log("Rigidbody2D가 없으므로 부모 오브젝트에서 가져옵니다.");
+            rb = GetComponentInParent<Rigidbody2D>();
+        }
         spriteRenderer = GetComponent<SpriteRenderer>();
         enemyHP = GetComponent<EnemyHP>();
 
