@@ -5,6 +5,17 @@ using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
 {
+    [Header("기본 업그레이드")]
+    public float AttackPowerUpNum = 0;
+    public float AttackSpeedUpNum = 0;
+    public float ProjectileSpeedUpNum = 0;
+    public float ProjectileSizeUpNum = 0;
+    public float KnockbackPowerUpNum = 0;
+    public float CriticalProbabilityUpNum = 0;
+    public float CriticalDamageUpNum = 0;
+    public float AttackRangeUpNum = 0;
+    public float ManaRegenSpeedUpNum = 0;
+
     // 캐릭터 기본 능력치
     [Header("MP 시스템")]
     public float maxMP = 100f;

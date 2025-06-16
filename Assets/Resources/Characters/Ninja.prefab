@@ -51,6 +51,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c79f49d07bb636499169165a7e479a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AttackPowerUpNum: 0
+  AttackSpeedUpNum: 0
+  ProjectileSpeedUpNum: 0
+  ProjectileSizeUpNum: 0
+  KnockbackPowerUpNum: 0
+  CriticalProbabilityUpNum: 0
+  CriticalDamageUp: 0
+  AttackRangeUp: 0
+  ManaRegenSpeedUp: 0
   maxMP: 150
   mpPerSecond: 8
   mpImage: {fileID: 0}
