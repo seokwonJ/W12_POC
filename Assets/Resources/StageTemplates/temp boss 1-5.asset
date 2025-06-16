@@ -10,17 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
-  m_Name: new temp 5-5
+  m_Name: temp boss 1-5
   m_EditorClassIdentifier: 
-  world: 10
+  world: 1
   stage: 5
-  isBossStage: 0
+  isBossStage: 1
   enemyWave:
-  - {fileID: 11400000, guid: 2a6b9577ee0ad0348a775282a452ff3b, type: 2}
-  - {fileID: 11400000, guid: 9048a7dd496134f4c93498f8cda4d81a, type: 2}
-  - {fileID: 11400000, guid: 2a6b9577ee0ad0348a775282a452ff3b, type: 2}
-  waveCount: 040000000400000004000000
+  - {fileID: 11400000, guid: 13a9dab26c3b53146b1b707cecca7bbd, type: 2}
+  - {fileID: 11400000, guid: da75aa60349bbf84ba603cf9ac54405d, type: 2}
+  waveCount: 0100000064000000
   wavePreparationTime:
-  - 0.5
   - 1
-  - 1
+  - 15
