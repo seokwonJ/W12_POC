@@ -121,8 +121,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9ede63a99cc68479cbee089142c69a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPowerUpNum: 100
+  attackSpeedUpNum: 100
+  projectileSpeedUpNum: 100
+  projectileSizeUpNum: 100
+  knockbackPowerUpNum: 100
+  criticalProbabilityUpNum: 100
+  criticalDamageUpNum: 100
+  attackRangeUpNum: 100
+  manaRegenSpeedUpNum: 100
+  abilityPowerUpNum: 100
   maxMP: 100
-  mpPerSecond: 25
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: cb7507f2c2a20df4ea74bf0c3a6ab5ed, type: 3}
   firePoint: {fileID: 4409654462998481833}
@@ -130,9 +140,14 @@ MonoBehaviour:
   enemyDetectRadius: 20
   jumpForce: 10
   maxFallSpeed: 15
-  attackDamage: 30
-  abilityPower: 0
+  attackBase: 10
+  attackDamage: 100
+  abilityPower: 100
   projectileSpeed: 10
+  criticalProbability: 0
+  criticalDamage: 0
+  knockbackPower: 1
+  projectileSize: 1
   animator: {fileID: 677551384205977037}
   playerTransform: {fileID: 0}
   skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
@@ -146,7 +161,7 @@ MonoBehaviour:
   landingSkillEffect: {fileID: 4462792705112818740, guid: 4ab5fd21f69c0eb4fa8f57b97f2a45a0, type: 3}
   nomalAttackSize: 1
   nomalAttackLifetime: 1
-  knockBackpower: 10
+  knockBackpower: 50
   isFallingSpeedToSkillDamage: 0
   isShieldFlyer: 0
   isHitSkillPerGetMana: 0

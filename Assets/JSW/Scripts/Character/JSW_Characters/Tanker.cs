@@ -74,7 +74,7 @@ public class Tanker : Character
 
         float totalAttackDamage = TotalAttackDamage();
 
-        proj.GetComponent<TankerAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+        proj.GetComponent<TankerAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), nomalAttackLifetime, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
 
     // 스킬: 커다란 직진형 투사체 3발 연속 발사

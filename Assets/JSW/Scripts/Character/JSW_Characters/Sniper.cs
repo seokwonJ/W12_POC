@@ -224,9 +224,21 @@ public class Sniper : Character
                     enemy.TakeDamage((int)totalAttackDamage, ECharacterType.Sniper);
                 }
                 totalAttackDamage *= 0.9f; // 10% 감소
+
+                // 넉백
+                Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
+
+                Enemy enemyComponenet = enemy.GetComponent<Enemy>();
+                if (enemyComponenet != null)
+                {
+                    enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower * (knockbackPowerUpNum / 100));
+                }
+
                 print("현재 데미지 : " + totalAttackDamage);
             }
         }
+
+
     }
 
 
