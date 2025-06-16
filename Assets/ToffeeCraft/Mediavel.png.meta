@@ -6418,10 +6418,10 @@ TextureImporter:
       name: Mediavel_116
       rect:
         serializedVersion: 2
-        x: 291
-        y: 705
-        width: 10
-        height: 14
+        x: 292
+        y: 706
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -6440,10 +6440,10 @@ TextureImporter:
       name: Mediavel_117
       rect:
         serializedVersion: 2
-        x: 303
-        y: 704
-        width: 15
-        height: 15
+        x: 309
+        y: 706
+        width: 8
+        height: 12
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -8706,13 +8706,13 @@ TextureImporter:
       name: Mediavel_220
       rect:
         serializedVersion: 2
-        x: 320
-        y: 640
-        width: 92
-        height: 29
+        x: 321
+        y: 641
+        width: 90
+        height: 27
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 4, y: 3, z: 4, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -8728,13 +8728,13 @@ TextureImporter:
       name: Mediavel_221
       rect:
         serializedVersion: 2
-        x: 417
-        y: 640
-        width: 92
-        height: 28
+        x: 418
+        y: 641
+        width: 90
+        height: 26
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 4, y: 4, z: 4, w: 3}
       customData: 
       outline: []
       physicsShape: []
@@ -10026,13 +10026,13 @@ TextureImporter:
       name: Mediavel_280
       rect:
         serializedVersion: 2
-        x: 339
-        y: 578
-        width: 54
-        height: 60
+        x: 340
+        y: 579
+        width: 52
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 13, z: 0, w: 14}
       customData: 
       outline: []
       physicsShape: []
@@ -10642,13 +10642,13 @@ TextureImporter:
       name: Mediavel_308
       rect:
         serializedVersion: 2
-        x: 943
-        y: 548
-        width: 67
-        height: 91
+        x: 944
+        y: 549
+        width: 65
+        height: 89
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 18, z: 0, w: 17}
       customData: 
       outline: []
       physicsShape: []
@@ -12578,13 +12578,13 @@ TextureImporter:
       name: Mediavel_396
       rect:
         serializedVersion: 2
-        x: 3
+        x: 4
         y: 465
-        width: 73
+        width: 72
         height: 94
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 11, y: 13, z: 13, w: 13}
       customData: 
       outline: []
       physicsShape: []
@@ -12600,13 +12600,13 @@ TextureImporter:
       name: Mediavel_397
       rect:
         serializedVersion: 2
-        x: 83
-        y: 465
-        width: 73
-        height: 94
+        x: 84
+        y: 466
+        width: 71
+        height: 92
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 12, y: 12, z: 12, w: 11}
       customData: 
       outline: []
       physicsShape: []
@@ -12754,13 +12754,13 @@ TextureImporter:
       name: Mediavel_404
       rect:
         serializedVersion: 2
-        x: 165
-        y: 465
-        width: 73
-        height: 74
+        x: 166
+        y: 466
+        width: 71
+        height: 72
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 12, y: 12, z: 12, w: 12}
       customData: 
       outline: []
       physicsShape: []
@@ -12886,13 +12886,13 @@ TextureImporter:
       name: Mediavel_410
       rect:
         serializedVersion: 2
-        x: 949
-        y: 457
-        width: 55
-        height: 82
+        x: 950
+        y: 458
+        width: 53
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 0, y: 18, z: 0, w: 19}
       customData: 
       outline: []
       physicsShape: []
@@ -13194,13 +13194,13 @@ TextureImporter:
       name: Mediavel_424
       rect:
         serializedVersion: 2
-        x: 618
-        y: 402
-        width: 50
-        height: 88
+        x: 619
+        y: 403
+        width: 48
+        height: 86
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 6, y: 6, z: 6, w: 6}
       customData: 
       outline: []
       physicsShape: []
@@ -13436,13 +13436,13 @@ TextureImporter:
       name: Mediavel_435
       rect:
         serializedVersion: 2
-        x: 679
-        y: 402
-        width: 50
-        height: 70
+        x: 680
+        y: 403
+        width: 48
+        height: 68
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -14206,13 +14206,13 @@ TextureImporter:
       name: Mediavel_470
       rect:
         serializedVersion: 2
-        x: 746
-        y: 401
-        width: 70
-        height: 37
+        x: 747
+        y: 402
+        width: 68
+        height: 35
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 7, y: 7, z: 7, w: 7}
       customData: 
       outline: []
       physicsShape: []
@@ -19684,10 +19684,10 @@ TextureImporter:
       name: Mediavel_719
       rect:
         serializedVersion: 2
-        x: 805
-        y: 308
-        width: 8
-        height: 9
+        x: 806
+        y: 309
+        width: 6
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19706,10 +19706,10 @@ TextureImporter:
       name: Mediavel_720
       rect:
         serializedVersion: 2
-        x: 814
-        y: 308
-        width: 7
-        height: 9
+        x: 815
+        y: 309
+        width: 5
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19728,10 +19728,10 @@ TextureImporter:
       name: Mediavel_721
       rect:
         serializedVersion: 2
-        x: 822
-        y: 308
-        width: 7
-        height: 9
+        x: 823
+        y: 309
+        width: 5
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19750,10 +19750,10 @@ TextureImporter:
       name: Mediavel_722
       rect:
         serializedVersion: 2
-        x: 830
-        y: 308
-        width: 7
-        height: 9
+        x: 831
+        y: 309
+        width: 5
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19772,10 +19772,10 @@ TextureImporter:
       name: Mediavel_723
       rect:
         serializedVersion: 2
-        x: 837
-        y: 308
-        width: 6
-        height: 9
+        x: 838
+        y: 309
+        width: 4
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19794,10 +19794,10 @@ TextureImporter:
       name: Mediavel_724
       rect:
         serializedVersion: 2
-        x: 843
-        y: 308
-        width: 7
-        height: 9
+        x: 844
+        y: 309
+        width: 5
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19816,10 +19816,10 @@ TextureImporter:
       name: Mediavel_725
       rect:
         serializedVersion: 2
-        x: 850
-        y: 308
-        width: 7
-        height: 9
+        x: 851
+        y: 309
+        width: 5
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19838,10 +19838,10 @@ TextureImporter:
       name: Mediavel_726
       rect:
         serializedVersion: 2
-        x: 857
-        y: 308
-        width: 9
-        height: 9
+        x: 858
+        y: 309
+        width: 7
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -19860,10 +19860,10 @@ TextureImporter:
       name: Mediavel_727
       rect:
         serializedVersion: 2
-        x: 867
-        y: 308
-        width: 12
-        height: 14
+        x: 868
+        y: 309
+        width: 2
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
