@@ -283,7 +283,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxMP: 100
-  mpPerSecond: 100
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
   firePoint: {fileID: 91693443383765436}
@@ -302,17 +302,20 @@ MonoBehaviour:
   skillProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
   skillCount: 3
   skillInterval: 1
-  skillFireDelay: 0.05
-  skillSize: 1
+  skillFireDelay: 0.1
+  skillSize: 3
   skillDamage: 1
-  skillProjectileSpeed: 15
-  skillEndDelay: 0.35
+  skillProjectileSpeed: 200
+  skillSlowDelay: 0.6
   AttackMaxCount: 3
   realoadTime: 3
   nomalAttackSize: 1
   upgradeNum: 0
   player: {fileID: 0}
-  skillActiveEffect: {fileID: 0}
+  dim: {fileID: 0}
+  sniperSkillActive1: {fileID: 2236812792954234349, guid: ac9a5b6670544154b97aa4f508608ee7, type: 3}
+  sniperSkillActive2: {fileID: 6201557171582174831, guid: 7665a9da7dd75744d85a3ed8418a67e6, type: 3}
+  sniperActiveShot: {fileID: 1143770707561689224, guid: 32ff590d6f99a454e85d9eaf386e2e94, type: 3}
 --- !u!1 &5861792811945193929
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,6 +764,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 91693443383765436}
     m_Modifications:
+    - target: {fileID: 2266294928529689441, guid: 62409fea72d7d4a48bc3d3336d1758cb, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 14eff7847ae43464887742c6f79694f2, type: 2}
     - target: {fileID: 5238153231004073721, guid: 62409fea72d7d4a48bc3d3336d1758cb, type: 3}
       propertyPath: m_Name
       value: SPUM_20250611155419979

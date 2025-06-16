@@ -78,7 +78,7 @@ public class Enemy : MonoBehaviour
 
     protected void Update()
     {
-        if (spriteRenderer != null && isFilpping && !enemyHP.isDead)
+        if (spriteRenderer != null && isFilpping && !enemyHP.isDead && !enemyHP.isSpawning)
         {
             //  방향에 따라 스프라이트를 뒤집음
             float directionX = transform.position.x - player.transform.position.x;
@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
 
     protected void FixedUpdate()
     {
-        if (isKnockback || enemyHP.isDead)
+        if (isKnockback || enemyHP.isDead || enemyHP.isSpawning)
         {
             // 넉백 중에는 이동하지 않음
             return;

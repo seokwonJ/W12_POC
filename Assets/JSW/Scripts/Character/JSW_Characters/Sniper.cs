@@ -1,9 +1,10 @@
-using System.Collections;
+ï»¿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Sniper : Character
 {
-    [Header("½ºÅ³")]
+    [Header("ìŠ¤í‚¬")]
     public GameObject skillProjectile;
     public int skillCount = 3;
     public float skillInterval = 0.3f;
@@ -15,25 +16,31 @@ public class Sniper : Character
     public float skillSlowDelay = 0.3f;
     private Vector3 _beforeSkillVelocity = Vector3.zero;
 
-    [Header("Àú°İ¼ö °ø°İ")]
+    [Header("ì €ê²©ìˆ˜ ê³µê²©")]
     public int AttackMaxCount = 3;
     private int _AttackCurrentCount;
     public float realoadTime;
 
-    [Header("°­È­")]
+    [Header("ê°•í™”")]
     public float nomalAttackSize;
 
     public int upgradeNum;
 
     public GameObject player;
 
-    [Header("ÀÌÆåÆ®")]
-    public GameObject skillActiveEffect;
+    [Header("ì´í™íŠ¸")]
+    public SpriteRenderer dim;
+    private float dimOriginAlpha;
+    private Coroutine dimDarking;
+    public GameObject sniperSkillActive1;
+    public GameObject sniperSkillActive2;
+    public GameObject sniperActiveShot;
 
     protected override void Start()
     {
         base.Start();
         player = FindAnyObjectByType<PlayerMove>().gameObject;
+        skillTargetList = new List<Transform>();
     }
 
     protected override void FixedUpdate()
@@ -61,6 +68,25 @@ public class Sniper : Character
         while (true)
         {
             yield return new WaitForSeconds(normalFireInterval);
+
+            if (_AttackCurrentCount <= 0)
+            {
+                animator.SetBool("isEndTReload", false);
+                animator.Play("Reload", -1, 0.1f);
+
+                Debug.Log("ìŠ¤ë‚˜ì´í¼ ì¥ì „ ì¤‘");
+                SoundManager.Instance.PlaySFX("SniperReloadStart");
+
+                yield return new WaitForSeconds(realoadTime - 1);
+
+                SoundManager.Instance.PlaySFX("SniperReloadEnd");
+
+                yield return new WaitForSeconds(1);
+
+                _AttackCurrentCount = AttackMaxCount;
+                animator.SetBool("isEndTReload", true);
+            }
+
             if (!isGround) continue;
 
             Transform target = FindMuchHPEnemy();
@@ -71,45 +97,76 @@ public class Sniper : Character
                 FireNormalProjectile(target.position);
             }
 
-            if (_AttackCurrentCount <= 0)
-            {
-                Debug.Log("½º³ªÀÌÆÛ ÀåÀü Áß");
-                yield return new WaitForSeconds(realoadTime);
-                _AttackCurrentCount = AttackMaxCount;
-            }
+           
         }
     }
 
-    // ÀÏ¹İ °ø°İ: °¡±î¿î Àû¿¡°Ô °üÅë °ø°İ
+    // ì¼ë°˜ ê³µê²©: ê°€ê¹Œìš´ ì ì—ê²Œ ê´€í†µ ê³µê²©
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
         FireSniper();
     }
 
-    // ½ºÅ³: ´À¸®°í Ä¿´Ù¶õ °üÅë °ø°İ 3¹ß ¹ß»ç
+    List<Transform> skillTargetList;
+
+    // ìŠ¤í‚¬: ëŠë¦¬ê³  ì»¤ë‹¤ë€ ê´€í†µ ê³µê²© 3ë°œ ë°œì‚¬
     protected override IEnumerator FireSkill()
     {
+        animator.Play("IDLE", -1, 0.1f);
+        skillTargetList = new List<Transform>();
+
+        if (dim == null)
+        {
+            dim = FindAnyObjectByType<Dim>().GetComponent<SpriteRenderer>();
+            dimOriginAlpha = dim.color.a;
+        }
         yield return new WaitForSeconds(skillInterval);
+        SoundManager.Instance.PlaySFX("SniperSkillActive");
+        animator.Play("SKILL", -1, 0f);
+        Instantiate(sniperSkillActive2, transform.position, Quaternion.identity,transform);
 
         _isSkillReady = true;
         _beforeSkillVelocity = rb.linearVelocity;
-
+        dimDarking = StartCoroutine(FadeAlphaTo(dim,0.8f,0.3f));
+    
         yield return new WaitForSeconds(skillSlowDelay);
-
+        Instantiate(sniperSkillActive1, transform.position, Quaternion.identity, transform);
 
         for (int i = 0; i < skillCount; i++)
         {
-            animator.Play("SKILL", -1, 0f);
+            animator.Play("ATTACK", -1, 0f);
             FireSkillProjectiles();
             //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
-            SoundManager.Instance.PlaySFX("MagicianSkill");
             yield return new WaitForSeconds(skillFireDelay);
         }
 
+        StopCoroutine(dimDarking);
+        StartCoroutine(FadeAlphaTo(dim, dimOriginAlpha, 0.5f));
+        _AttackCurrentCount = AttackMaxCount;
         _isSkillReady = false;
     }
 
-    // ½ºÅ³ ¹ß»ç ±¸Çö
+    public IEnumerator FadeAlphaTo(SpriteRenderer sr, float targetAlpha, float duration)
+    {
+        Color color = sr.color;
+        float startAlpha = color.a;
+        float time = 0f;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float t = time / duration;
+            float newAlpha = Mathf.Lerp(startAlpha, targetAlpha, t);
+            sr.color = new Color(color.r, color.g, color.b, newAlpha);
+            yield return null;
+        }
+
+        // ë§ˆì§€ë§‰ ê°’ ë³´ì •
+        sr.color = new Color(color.r, color.g, color.b, targetAlpha);
+
+    }
+
+    // ìŠ¤í‚¬ ë°œì‚¬ êµ¬í˜„
     protected override void FireSkillProjectiles()
     {
         FireSniper();
@@ -119,24 +176,38 @@ public class Sniper : Character
     {
         Transform newTargetPos = FindMuchHPEnemy();
 
+        if (isSkillActive) skillTargetList.Add(newTargetPos);
+
         if (newTargetPos == null) return;
         
         Vector2 direction = (newTargetPos.position - firePoint.position).normalized;
 
-        // ½Ã°¢ÀûÀ¸·Î º¸ÀÏ Åõ»çÃ¼
+        // ì‹œê°ì ìœ¼ë¡œ ë³´ì¼ íˆ¬ì‚¬ì²´
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+        Instantiate(sniperActiveShot, transform.position, Quaternion.identity);
 
-        proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize);
+        if (_isSkillReady)
+        {
+            proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, skillProjectileSpeed, skillSize);
 
-        // Ä³¸¯ÅÍ ½ºÇÁ¶óÀÌÆ® ¹æÇâ ¹İÀü
+            SoundManager.Instance.PlaySFX("SniperSkillAttack");
+        }
+        else
+        {
+            proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize);
+
+            SoundManager.Instance.PlaySFX("SniperAttack");
+        }
+
+        // ìºë¦­í„° ìŠ¤í”„ë¼ì´íŠ¸ ë°©í–¥ ë°˜ì „
         if (direction.x > 0)
             transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         else if (direction.x < 0)
             transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
-        // Raycast·Î Àû °üÅë Ã³¸®
-        float maxDistance = 100f; // ¿øÇÏ´Â »ç°Å¸® ¼³Á¤
-        RaycastHit2D[] hits = Physics2D.RaycastAll(firePoint.position, direction, maxDistance, LayerMask.GetMask("Enemy")); // "Enemy" ·¹ÀÌ¾î´Â Àû¿¡°Ô¸¸ ¼³Á¤µÇ¾î¾ß ÇÔ
+        // Raycastë¡œ ì  ê´€í†µ ì²˜ë¦¬
+        float maxDistance = 100f; // ì›í•˜ëŠ” ì‚¬ê±°ë¦¬ ì„¤ì •
+        RaycastHit2D[] hits = Physics2D.RaycastAll(firePoint.position, direction, maxDistance, LayerMask.GetMask("Enemy")); // "Enemy" ë ˆì´ì–´ëŠ” ì ì—ê²Œë§Œ ì„¤ì •ë˜ì–´ì•¼ í•¨
 
         float currentDamage = attackDamage;
 
@@ -146,40 +217,66 @@ public class Sniper : Character
             if (enemy != null)
             {
                 enemy.TakeDamage(Mathf.RoundToInt(currentDamage), ECharacterType.Sniper);
-                currentDamage *= 0.9f; // 10% °¨¼Ò
-                print("ÇöÀç µ¥¹ÌÁö : " + currentDamage);
+                currentDamage *= 0.9f; // 10% ê°ì†Œ
+                print("í˜„ì¬ ë°ë¯¸ì§€ : " + currentDamage);
             }
         }
-
-        SoundManager.Instance.PlaySFX("MagicianAttack");
     }
 
 
     protected Transform FindMuchHPEnemy()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
-        float maxHP = 0;
-        Transform nearest = null;
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius, LayerMask.GetMask("Enemy"));
+
+        EnemyHP highestHPNotInList = null;
+        EnemyHP highestHPInList = null;
 
         foreach (var hit in hits)
         {
             if (hit.CompareTag("Enemy"))
-            {   
-                float hp = hit.GetComponent<EnemyHP>().enemyHP;
-                if (hp > maxHP)
+            {
+                EnemyHP enemy = hit.GetComponent<EnemyHP>();
+                if (enemy == null) continue;
+
+                // ì¹´ë©”ë¼ ì•ˆì— ìˆëŠ”ì§€ ì²´í¬
+                Vector3 viewportPos = Camera.main.WorldToViewportPoint(enemy.transform.position);
+                bool isInCamera = viewportPos.z > 0 && viewportPos.x >= 0 && viewportPos.x <= 1 && viewportPos.y >= 0 && viewportPos.y <= 1;
+                if (!isInCamera) continue;
+
+                if (!skillTargetList.Contains(enemy.transform))
                 {
-                    maxHP = hp;
-                    nearest = hit.transform;
+                    if (highestHPNotInList == null || enemy.enemyHP > highestHPNotInList.enemyHP)
+                    {
+                        highestHPNotInList = enemy;
+                    }
+                }
+                else
+                {
+                    if (highestHPInList == null || enemy.enemyHP > highestHPInList.enemyHP)
+                    {
+                        highestHPInList = enemy;
+                    }
                 }
             }
         }
-        return nearest;
+
+        // ì œì™¸ ëŒ€ìƒì— ì—†ëŠ” ì• ê°€ ìˆìœ¼ë©´ ê·¸ ì¤‘ ìµœê³  ì²´ë ¥ ë°˜í™˜
+        if (highestHPNotInList != null) return highestHPNotInList.transform;
+
+        // ë‹¤ ì œì™¸ ëŒ€ìƒì´ë©´ ê·¸ ì¤‘ ìµœê³  ì²´ë ¥ ë°˜í™˜
+        return highestHPInList != null ? highestHPInList.transform : null;
     }
 
-    public override void EndFieldAct() // ÇÊµåÀüÅõ°¡ Á¾·áµÉ ¶§ ½ÇÇà
+    public override void EndFieldAct() // í•„ë“œì „íˆ¬ê°€ ì¢…ë£Œë  ë•Œ ì‹¤í–‰
     {
         base.EndFieldAct();
 
         if (_isSkillReady) _isSkillReady = false;
+
+        if (dim != null)
+        {
+            dim.color = new Color(dim.color.r, dim.color.g, dim.color.b, dimOriginAlpha);
+            dim = null;
+        }
     }
 }

@@ -243,5 +243,6 @@ public enum ECharacterType
     Pirate,
     Tanker,
     Priest,
-    Sniper
+    Sniper,
+    BlackHole
 }

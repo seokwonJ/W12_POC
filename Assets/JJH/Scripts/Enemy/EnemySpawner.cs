@@ -1,20 +1,19 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using static UnityEditor.PlayerSettings;
 
 public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코드
 {
     // 맵 내/외부 스폰 영역
     [Header("Spawn Area Bounds")]
-    [SerializeField] private Vector2 spawnAreaMin;
-    [SerializeField] private Vector2 spawnAreaMax;
+    public Vector2 spawnAreaMin;
+    public Vector2 spawnAreaMax;
 
     [Header("Spawn Indicator")]
-    [SerializeField] private GameObject spawnIndicatorPrefab; // 스폰 위치 표시를 위한 인디케이터
-    [SerializeField] private float indicatorDuration = 2f; // 인디케이터 표시 시간
+    public GameObject onScreenSpawnIndicatorPrefab; // 화면 안 스폰 위치 표시를 위한 인디케이터
+    public GameObject offScreenSpawnIndicatorPrefab; // 화면 밖 스폰 위치 표시를 위한 인디케이터
+    private float onScreenindicatorDuration = 1.4f; // 인디케이터 표시 시간
+    private float offScreenindicatorDuration = 1f; // 인디케이터 표시 시간
 
     private void Start()
     {
@@ -37,6 +36,12 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
             // Wave 소환
             yield return StartCoroutine(SpawnWaveRoutine(wave, nowStage.waveCount[waveIndex]));
 
+            // 보스 스테이지의 경우에는 모든 적이 제거될 때까지 대기하지 않고 다음 웨이브 소환
+            if (nowStage.isBossStage)
+            {
+                continue;
+            }
+
             // 모든 적 제거될 때까지 대기
             while (Managers.Stage.CurEnemyCount > 0)
             {
@@ -53,7 +58,6 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         Debug.Log("Stage Completed");
     }
 
-    // to do 코드 고치기
     private IEnumerator SpawnWaveRoutine(EnemyWaveSO wave, int waveCount)
     {
         for (int i = 0; i < waveCount; i++)
@@ -65,13 +69,22 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
 
                 Vector3 spawnPos = CalculateSpawnPosition(type, enemyPrefab, nowBoss: wave.isBossWave);
+                Vector3 IndicatorPos = spawnPos;
+
+                if (type == ESpawnPositionType.OffScreenRandom)
+                {
+                    IndicatorPos.x = Mathf.Clamp(IndicatorPos.x, spawnAreaMin.x, spawnAreaMax.x);
+                    IndicatorPos.y = Mathf.Clamp(IndicatorPos.y, spawnAreaMin.y, spawnAreaMax.y);
+                }
 
                 // 인디케이터 표시
-                GameObject indicator = Instantiate(spawnIndicatorPrefab, spawnPos, Quaternion.identity);
+                GameObject IndcatorPrefab = type == ESpawnPositionType.OnScreenRandom ? onScreenSpawnIndicatorPrefab : offScreenSpawnIndicatorPrefab;
+                float indicatorDuration = type == ESpawnPositionType.OnScreenRandom ? onScreenindicatorDuration : offScreenindicatorDuration;
+                GameObject indicator = Instantiate(IndcatorPrefab, IndicatorPos, Quaternion.identity);
                 Destroy(indicator, indicatorDuration);
 
                 // 인디케이터 후 실제 소환
-                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, indicatorDuration));
+                StartCoroutine(DelayedSpawn(enemyPrefab, spawnPos, 0.6f));
             
             }
             yield return new WaitForSeconds(wave.waveInterval);
@@ -99,9 +112,9 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
                 pos = GetOffScreenRandomPos();
                 break;
 
-            case ESpawnPositionType.GlobalRandom:
-                pos = Random.Range(0, 2) == 0 ? GetOnScreenRandomPos() : GetOffScreenRandomPos(); // 50% 확률로 화면 안/밖 랜덤 위치 선택
-                break;
+            //case ESpawnPositionType.GlobalRandom:
+            //    pos = Random.Range(0, 2) == 0 ? GetOnScreenRandomPos() : GetOffScreenRandomPos(); // 50% 확률로 화면 안/밖 랜덤 위치 선택
+            //    break;
         }
 
         return pos;

@@ -119,10 +119,10 @@ TextureImporter:
       name: alien-enemy-2-flying_0
       rect:
         serializedVersion: 2
-        x: 4
-        y: 8
-        width: 47
-        height: 56
+        x: 0
+        y: 0
+        width: 64
+        height: 64
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,33 +137,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: alien-enemy-2-flying_1
-      rect:
-        serializedVersion: 2
-        x: 25
-        y: 33
-        width: 33
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 6c8c939b640929160800000000000000
-      internalID: 7030840601708447942
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 833a8bec6a73205429d264a093bdeef8
     internalID: 0
     vertices: []
     indices: 
@@ -174,7 +152,6 @@ TextureImporter:
       entries: []
     nameFileIdTable:
       alien-enemy-2-flying_0: 8241568651597726423
-      alien-enemy-2-flying_1: 7030840601708447942
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
