@@ -230,7 +230,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         spriteRenderer.transform.rotation = Quaternion.Euler(0, isOnRight ? 0 : 180, 0); // 스프라이트 방향 변경
 
         Vector3 newPos = isOnRight ? new Vector3(spawnAreaMax.x + 5f, 0, 0) : new Vector3(spawnAreaMin.x - 5f, 0, 0);
-        enemy.transform.position = newPos; // 대쉬 후 위치를 오른쪽 혹은 왼쪽으로 이동
+        enemy.transform.parent.position = newPos; // 대쉬 후 위치를 오른쪽 혹은 왼쪽으로 이동
         Vector2 direction = isOnRight ? Vector2.left : Vector2.right;
         enemy.rb.linearVelocity = direction * enemy.speed * 2;
         yield return new WaitForSeconds(1.5f);

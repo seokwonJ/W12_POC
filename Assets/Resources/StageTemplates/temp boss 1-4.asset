@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
-  m_Name: new temp 1-5
+  m_Name: temp boss 1-4
   m_EditorClassIdentifier: 
   world: 1
-  stage: 5
+  stage: 4
   isBossStage: 1
   enemyWave:
   - {fileID: 11400000, guid: 13a9dab26c3b53146b1b707cecca7bbd, type: 2}

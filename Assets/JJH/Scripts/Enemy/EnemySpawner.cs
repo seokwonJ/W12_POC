@@ -53,8 +53,11 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         }
 
         yield return new WaitForSeconds(0.5f); // 마지막 웨이브 후 잠시 대기
-        // 모든 Wave 끝나면 Stage 종료
-        Managers.Stage.OnField = false;
+        // 보스스테이지가 아닌 경우 모든 Wave 끝나면 Stage 종료
+        if (!nowStage.isBossStage)
+        {
+            Managers.Stage.OnField = false;
+        }
         Debug.Log("Stage Completed");
     }
 
