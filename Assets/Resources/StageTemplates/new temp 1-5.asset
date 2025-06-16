@@ -13,14 +13,10 @@ MonoBehaviour:
   m_Name: new temp 1-5
   m_EditorClassIdentifier: 
   world: 1
-  stage: 4
-  isBossStage: 0
+  stage: 5
+  isBossStage: 1
   enemyWave:
-  - {fileID: 11400000, guid: 2a6b9577ee0ad0348a775282a452ff3b, type: 2}
-  - {fileID: 11400000, guid: 9048a7dd496134f4c93498f8cda4d81a, type: 2}
-  - {fileID: 11400000, guid: 2a6b9577ee0ad0348a775282a452ff3b, type: 2}
-  waveCount: 040000000400000004000000
+  - {fileID: 11400000, guid: 13a9dab26c3b53146b1b707cecca7bbd, type: 2}
+  waveCount: 01000000
   wavePreparationTime:
-  - 0.5
-  - 1
   - 1

@@ -6,8 +6,8 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 {
     // 맵 내/외부 스폰 영역
     [Header("Spawn Area Bounds")]
-    public Vector2 spawnAreaMin;
-    public Vector2 spawnAreaMax;
+    public static Vector2 SPAWN_AREA_MIN = new Vector2(-21, -11);
+    public static Vector2 SPAWN_AREA_MAX = new Vector2(21, 11);
 
     [Header("Spawn Indicator")]
     public GameObject onScreenSpawnIndicatorPrefab; // 화면 안 스폰 위치 표시를 위한 인디케이터
@@ -73,8 +73,8 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
                 if (type == ESpawnPositionType.OffScreenRandom)
                 {
-                    IndicatorPos.x = Mathf.Clamp(IndicatorPos.x, spawnAreaMin.x, spawnAreaMax.x);
-                    IndicatorPos.y = Mathf.Clamp(IndicatorPos.y, spawnAreaMin.y, spawnAreaMax.y);
+                    IndicatorPos.x = Mathf.Clamp(IndicatorPos.x, SPAWN_AREA_MIN.x, SPAWN_AREA_MAX.x);
+                    IndicatorPos.y = Mathf.Clamp(IndicatorPos.y, SPAWN_AREA_MIN.y, SPAWN_AREA_MAX.y);
                 }
 
                 // 인디케이터 표시
@@ -112,9 +112,9 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
                 pos = GetOffScreenRandomPos();
                 break;
 
-            //case ESpawnPositionType.GlobalRandom:
-            //    pos = Random.Range(0, 2) == 0 ? GetOnScreenRandomPos() : GetOffScreenRandomPos(); // 50% 확률로 화면 안/밖 랜덤 위치 선택
-            //    break;
+            case ESpawnPositionType.RightSideCenter:
+                pos = new Vector3(SPAWN_AREA_MAX.x + 5f, 0f, 0f);
+                break;
         }
 
         return pos;
@@ -122,8 +122,8 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
     private Vector3 GetOnScreenRandomPos()
     {
-        float x = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
-        float y = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+        float x = Random.Range(SPAWN_AREA_MIN.x, SPAWN_AREA_MAX.x);
+        float y = Random.Range(SPAWN_AREA_MIN.y, SPAWN_AREA_MAX.y);
         return new Vector3(x, y, 0f);
     }
 
@@ -137,44 +137,31 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         switch (side)
         {
             case 0: // Left
-                xOff = spawnAreaMin.x - 5f;
-                yOff = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+                xOff = SPAWN_AREA_MIN.x - 5f;
+                yOff = Random.Range(SPAWN_AREA_MIN.y, SPAWN_AREA_MAX.y);
                 pos = new Vector3(xOff, yOff, 0f);
                 break;
             case 1: // Right
-                xOff = spawnAreaMax.x + 5f;
-                yOff = Random.Range(spawnAreaMin.y, spawnAreaMax.y);
+                xOff = SPAWN_AREA_MAX.x + 5f;
+                yOff = Random.Range(SPAWN_AREA_MIN.y, SPAWN_AREA_MAX.y);
                 pos = new Vector3(xOff, yOff, 0f);
                 break;
             case 2:
             case 3:// Top
-                xOff = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
-                yOff = spawnAreaMax.y + 5f;
+                xOff = Random.Range(SPAWN_AREA_MIN.x, SPAWN_AREA_MAX.x);
+                yOff = SPAWN_AREA_MAX.y + 5f;
                 pos = new Vector3(xOff, yOff, 0f);
                 break;
             case 4:
             case 5: // Bottom
-                xOff = Random.Range(spawnAreaMin.x, spawnAreaMax.x);
-                yOff = spawnAreaMin.y - 5f;
+                xOff = Random.Range(SPAWN_AREA_MIN.x, SPAWN_AREA_MAX.x);
+                yOff = SPAWN_AREA_MIN.y - 5f;
                 pos = new Vector3(xOff, yOff, 0f);
                 break;
         }
         return pos;
     }
 
-
-    private Vector3 GetBossFixedPosition(GameObject bossPrefab)
-    {
-        // to do
-        //// BossWaveSO에 위치 리스트가 있다고 가정
-        //// 예시로 Stage 구조체에 bossPositions가 있다면
-        //var positions = Managers.Stage.NowStage.bossPositions;
-        //if (positions != null && positions.Length > 0)
-        //    return positions[0];
-
-        // 기본 중앙 위치 반환
-        return Vector3.zero;
-    }
 
 
     public void DeleteField() // 스테이지 종료 시 모든 적과 적/아군 투사체 제거
