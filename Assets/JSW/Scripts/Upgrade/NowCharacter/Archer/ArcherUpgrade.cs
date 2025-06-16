@@ -14,7 +14,7 @@ public class ArcherUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAttackPowerDown             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
     }
 
     public UpgradeType type;
@@ -26,53 +26,53 @@ public class ArcherUpgrade : CharacterUpgrade
         {
             //-------------- 기본 업그레이드 --------------
             case UpgradeType.AttackPowerUp:
-                archer.AttackPowerUpNum += attackPowerUpPercent;                                    // 기본 데미지 상승
+                archer.attackPowerUpNum += attackPowerUpPercent;                                    // 기본 데미지 상승
                 Debug.Log("Debug0 archer");
                 break;
             case UpgradeType.AttackSpeedUp:
-                archer.AttackSpeedUpNum += attackSpeedUpPercent;                                    // 평타 간격
+                archer.attackSpeedUpNum += attackSpeedUpPercent;                                    // 평타 간격
                 Debug.Log("Debug1 archer");
                 archer.upgradeNum = 1;
                 break;
             case UpgradeType.ProjectileSpeedUp:                                                     // 투사체 이동속도 증가
-                archer.ProjectileSpeedUpNum += ProjectileSpeedUpPercent;
+                archer.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 archer");
                 archer.upgradeNum = 2;
                 break;
             case UpgradeType.ProjectileSizeUp:                                                      // 탄 크기 증가
-                archer.ProjectileSizeUpNum += ProjectileSizeUpPercent;
+                archer.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 archer");
                 archer.upgradeNum = 3;
                 break;
             case UpgradeType.KnockbackPowerUp:                                                      // 적 밀어내기 효율 증가
-                archer.KnockbackPowerUpNum += KnockbackPowerUpPercent;
+                archer.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 archer");
                 archer.upgradeNum = 4;
                 break;
             case UpgradeType.CriticalProbabilityUp:                                                 // 크리 확률 상승
-                archer.CriticalProbabilityUpNum += CriticalProbabilityUpPercent;
+                archer.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 archer");
                 archer.upgradeNum = 5;
                 break;
             case UpgradeType.CriticalDamageUp:                                                      // 크리 피해 배수 증가
-                archer.CriticalDamageUpNum += CriticalDamageUpPercent;
+                archer.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 archer");
                 archer.upgradeNum = 6;          
                 break;
             case UpgradeType.AttackRangeUp:                                                         // 적 감지/공격 가능 거리 확대
-                archer.AttackRangeUpNum += AttackRangeUpPercent;
+                archer.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 archer");
                 archer.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                archer.ManaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
-                archer.AttackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
+                archer.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                archer.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 archer");
                 archer.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAttackPowerDown:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
-                archer.ManaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                archer.AttackPowerUpNum += ManaRegenSpeedUPAttackPowerDown_AttackPowerPercent;
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
+                archer.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
+                archer.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
                 Debug.Log("Debug9 archer");
                 archer.upgradeNum = 9;
                 break;

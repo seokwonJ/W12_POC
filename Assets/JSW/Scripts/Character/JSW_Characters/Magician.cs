@@ -9,7 +9,6 @@ public class Magician : Character
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
-    public float skillDamage = 1f;
     public float skillProjectileSpeed = 15;
 
     [Header("°­È­")]
@@ -40,13 +39,15 @@ public class Magician : Character
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
+        float totalAttackDamage = TotalAttackDamage();
+        
         float nownomalAttackSize = nomalAttackSize;
         if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
 
-        if (isAddAttackDamage) proj.GetComponent<MagicBall>().SetInit(direction, abilityPower + attackDamage, projectileSpeed, nownomalAttackSize);
+        if (isAddAttackDamage) proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize);
         else
         {
-            proj.GetComponent<MagicBall>().SetInit(direction, attackDamage, projectileSpeed, nownomalAttackSize);
+            proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize);
         }
 
         SoundManager.Instance.PlaySFX("MagicianAttack");
@@ -76,13 +77,15 @@ public class Magician : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         MagicBall mb = proj.GetComponent<MagicBall>();
 
+        float totalSkillDamage = TotalSkillDamage();
+
         if (target != null)
         {
-            mb.SetInit((target.position - firePoint.position).normalized, (int)(attackDamage + skillDamage), skillProjectileSpeed, skillSize);
+            mb.SetInit((target.position - firePoint.position).normalized, totalSkillDamage, skillProjectileSpeed, skillSize);
         }
         else
         {
-            mb.SetInit((Random.insideUnitSphere).normalized, (int)(attackDamage + skillDamage), skillProjectileSpeed, skillSize);
+            mb.SetInit((Random.insideUnitSphere).normalized, totalSkillDamage, skillProjectileSpeed, skillSize);
         }
     }
 

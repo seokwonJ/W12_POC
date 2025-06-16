@@ -65,7 +65,7 @@ public class FoxAttack : ProjectileBase
         base.Update();
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult, Fox characterFox, bool isSkill)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult, Fox characterFox, bool isSkill)
     {
         owner = ownerTransform;
 

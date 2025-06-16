@@ -14,7 +14,7 @@ public class PriestUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAttackPowerDown             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
     }
 
     public UpgradeType type;
@@ -26,53 +26,53 @@ public class PriestUpgrade : CharacterUpgrade
         {
             //-------------- 기본 업그레이드 --------------
             case UpgradeType.AttackPowerUp:
-                priest.AttackPowerUpNum += attackPowerUpPercent;                                    // 기본 데미지 상승
+                priest.attackPowerUpNum += attackPowerUpPercent;                                    // 기본 데미지 상승
                 Debug.Log("Debug0 priest");
                 break;
             case UpgradeType.AttackSpeedUp:
-                priest.AttackSpeedUpNum += attackSpeedUpPercent;                                    // 평타 간격
+                priest.attackSpeedUpNum += attackSpeedUpPercent;                                    // 평타 간격
                 Debug.Log("Debug1 priest");
                 priest.upgradeNum = 1;
                 break;
             case UpgradeType.ProjectileSpeedUp:                                                     // 투사체 이동속도 증가
-                priest.ProjectileSpeedUpNum += ProjectileSpeedUpPercent;
+                priest.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 priest");
                 priest.upgradeNum = 2;
                 break;
             case UpgradeType.ProjectileSizeUp:                                                      // 탄 크기 증가
-                priest.ProjectileSizeUpNum += ProjectileSizeUpPercent;
+                priest.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 priest");
                 priest.upgradeNum = 3;
                 break;
             case UpgradeType.KnockbackPowerUp:                                                      // 적 밀어내기 효율 증가
-                priest.KnockbackPowerUpNum += KnockbackPowerUpPercent;
+                priest.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 priest");
                 priest.upgradeNum = 4;
                 break;
             case UpgradeType.CriticalProbabilityUp:                                                 // 크리 확률 상승
-                priest.CriticalProbabilityUpNum += CriticalProbabilityUpPercent;
+                priest.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 priest");
                 priest.upgradeNum = 5;
                 break;
             case UpgradeType.CriticalDamageUp:                                                      // 크리 피해 배수 증가
-                priest.CriticalDamageUpNum += CriticalDamageUpPercent;
+                priest.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 priest");
                 priest.upgradeNum = 6;
                 break;
             case UpgradeType.AttackRangeUp:                                                         // 적 감지/공격 가능 거리 확대
-                priest.AttackRangeUpNum += AttackRangeUpPercent;
+                priest.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 priest");
                 priest.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                priest.ManaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
-                priest.AttackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
+                priest.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                priest.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 priest");
                 priest.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAttackPowerDown:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
-                priest.ManaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                priest.AttackPowerUpNum += ManaRegenSpeedUPAttackPowerDown_AttackPowerPercent;
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
+                priest.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
+                priest.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
                 Debug.Log("Debug9 priest");
                 priest.upgradeNum = 9;
                 break;

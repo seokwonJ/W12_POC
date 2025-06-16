@@ -42,9 +42,10 @@ public class BlackHole : Character
         GameObject proj = Instantiate(normalProjectile, targetPos, Quaternion.identity);
 
         float nownomalAttackSize = nomalAttackSize;
-        if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
 
-        proj.GetComponent<BlackHoleAttack>().SetInit(direction, attackDamage, projectileSpeed, nownomalAttackSize);
+        float totalAttackDamage = TotalAttackDamage();
+
+        proj.GetComponent<BlackHoleAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize);
 
         SoundManager.Instance.PlaySFX("BlackHoleAttack");
     }
@@ -68,13 +69,15 @@ public class BlackHole : Character
         GameObject proj = Instantiate(skillProjectile, target.position, Quaternion.identity);
         BlackHoleSkill mb = proj.GetComponent<BlackHoleSkill>();
 
+        float totalSkillDamage = TotalSkillDamage();
+
         if (target != null)
         {
-            mb.SetInit(skillSize, skillDamage);
+            mb.SetInit(skillSize, totalSkillDamage);
         }
         else
         {
-            mb.SetInit(skillSize, skillDamage);
+            mb.SetInit(skillSize, totalSkillDamage);
         }
     }
 

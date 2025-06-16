@@ -9,7 +9,6 @@ public class Levi : Character
     public float NormalAttackProjectileDuration = 2f;
 
     [Header("스킬")]
-    public int skillDamage;
     public float skillTargetCount;
     public float skillInterval = 0.3f;
     public float skillDashSpeed;
@@ -41,7 +40,10 @@ public class Levi : Character
         else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<LeviAttack>().SetInit(direction, attackDamage, projectileSpeed, NormalAttackProjectileDuration);
+
+        float totalAttackDamage = TotalAttackDamage();
+
+        proj.GetComponent<LeviAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, NormalAttackProjectileDuration);
 
         SoundManager.Instance.PlaySFX("LeviAttack");
     }
@@ -97,7 +99,7 @@ public class Levi : Character
         }
 
 
-            List<Transform> hitEnemies = new List<Transform>();
+        List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
 
@@ -120,13 +122,14 @@ public class Levi : Character
             EnemyHP enemyHP = target.GetComponent<EnemyHP>();
             SoundManager.Instance.PlaySFX("LeviSkillAttack");
 
+            float totalSkillDamage = TotalSkillDamage();
 
             if (enemyHP != null)
             {
-                if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + skillDamage + jumpForce), ECharacterType.Levi);
-                else enemyHP.TakeDamage(attackDamage + skillDamage, ECharacterType.Levi);
+                if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + totalSkillDamage + jumpForce), ECharacterType.Levi);
+                else enemyHP.TakeDamage((int)(attackDamage + totalSkillDamage), ECharacterType.Levi);
 
-                Instantiate(skillActiveEffect,enemyHP.transform.position,Quaternion.identity);
+                Instantiate(skillActiveEffect, enemyHP.transform.position, Quaternion.identity);
             }
 
             yield return new WaitForSeconds(skillInterval); // 약간의 딜레이
@@ -228,10 +231,13 @@ public class Levi : Character
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        float totalAttackDamage = TotalAttackDamage();
+
         if (!isGround && collision.tag == "Enemy" && (isSkillActive || isAttackWhileFalling))            // 스킬을 쓰고있거나, 떨어짐 평타 강화되었을 때
         {
             if (isGainPowerFromSkillDamage && isSkillActive) GainPowerFromSkillDamageCount += 1;
-            collision.GetComponent<EnemyHP>().TakeDamage(attackDamage, ECharacterType.Levi);
+            collision.GetComponent<EnemyHP>().TakeDamage((int)totalAttackDamage, ECharacterType.Levi);
         }
     }
 

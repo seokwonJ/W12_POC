@@ -3,7 +3,7 @@ using UnityEngine;
 public class MagicBall : ProjectileBase
 {
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -19,7 +19,7 @@ public class MagicBall : ProjectileBase
         {
             var enemy = other.GetComponent<EnemyHP>();
             if (enemy != null)
-                enemy.TakeDamage(damage, ECharacterType.Magician);
+                enemy.TakeDamage((int)damage, ECharacterType.Magician);
 
             DestroyProjectile(gameObject);
         }

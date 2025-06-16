@@ -39,9 +39,9 @@ public class Pirate : Character
 
             GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
-            float nownomalAttackSize2 = nomalAttackSize;
+            float totalAttackDamage = TotalAttackDamage();
 
-            proj2.GetComponent<PirateAttack>().SetInit(direction2, attackDamage, projectileSpeed, nomalAttackSize, false,isFirstHitDealsBonusDamage);
+            proj2.GetComponent<PirateAttack>().SetInit(direction2, totalAttackDamage, projectileSpeed, nomalAttackSize, false,isFirstHitDealsBonusDamage);
         }
 
         Vector2 direction = (targetPos + Vector3.up - firePoint.position).normalized;
@@ -96,19 +96,22 @@ public class Pirate : Character
             }
 
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+
+            float totalSkillDamage = TotalSkillDamage();
+
             PirateAttack mb = proj.GetComponent<PirateAttack>();
 
             if (target != null)
             {
                 Vector3 dir = target.position - proj.transform.position;
-                mb.SetInit(dir.normalized, (int)(abilityPower), skillSpeed, nomalAttackSize, isFirstHitDealsBonusDamage, true, target);
+                mb.SetInit(dir.normalized, totalSkillDamage, skillSpeed, nomalAttackSize, isFirstHitDealsBonusDamage, true, target);
             }
             else
             {
                 // 유효한 타겟이 없으면 랜덤 방향 발사
                 float randomAngle = Random.Range(0f, 360f);
                 Vector2 randomDir = Quaternion.Euler(0, 0, randomAngle) * Vector2.right;
-                mb.SetInit(randomDir.normalized, (int)(abilityPower), skillSpeed, nomalAttackSize, isFirstHitDealsBonusDamage,true, null);
+                mb.SetInit(randomDir.normalized, totalSkillDamage, skillSpeed, nomalAttackSize, isFirstHitDealsBonusDamage,true, null);
             }
 
             

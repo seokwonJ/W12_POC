@@ -48,15 +48,17 @@ public class Priest : Character
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
+        float totalAttackDamage = TotalAttackDamage();
+
         float nownomalAttackSize = nomalAttackSize;
         //if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
 
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
 
-        if (isAddAttackDamage) proj.GetComponent<PriestAttack>().SetInit(direction, abilityPower + attackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
+        if (isAddAttackDamage) proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
         else
         {
-            proj.GetComponent<PriestAttack>().SetInit(direction, attackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
+            proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
         }
 
         SoundManager.Instance.PlaySFX("PriestAttack");
@@ -113,7 +115,7 @@ public class Priest : Character
             print("데미지 파워 업!!!!");
             Instantiate(priestSkillAllActiveEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform);
             nowCharactersEffects.Add(Instantiate(priestSkillDurationEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform));
-            ridingCharacter.GetComponent<Character>().attackDamage += 10;
+            ridingCharacter.GetComponent<Character>().attackBase += TotalSkillDamage();
         }
 
         yield return new WaitForSeconds(skillDuration);
@@ -134,7 +136,7 @@ public class Priest : Character
         foreach (GameObject ridingCharacter in nowCharacters)
         {
             print("데미지 파워 다운!!!!");
-            ridingCharacter.GetComponent<Character>().attackDamage -= 10;
+            ridingCharacter.GetComponent<Character>().attackBase -= TotalSkillDamage(); ;
         }
 
         foreach (GameObject ridingCharacterEffect in nowCharactersEffects)

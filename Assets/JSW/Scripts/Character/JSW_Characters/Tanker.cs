@@ -71,7 +71,10 @@ public class Tanker : Character
 
         SoundManager.Instance.PlaySFX("TankerAttack");
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<TankerAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+
+        float totalAttackDamage = TotalAttackDamage();
+
+        proj.GetComponent<TankerAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize, knockBackpower); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
 
     // 스킬: 커다란 직진형 투사체 3발 연속 발사
@@ -121,11 +124,12 @@ public class Tanker : Character
                 Enemy enemy = hit.GetComponent<Enemy>();
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
-                int totalDamage = skillDamageNum;
-                if (isCloserMoreDamage) totalDamage += (int)(skillDamage / Vector2.Distance(hit.transform.position, transform.position));
+                float totalSkillDamage = TotalSkillDamage();
 
-                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage(totalDamage + (int)rb.linearVelocity.magnitude, ECharacterType.Tanker);}
-                else enemyHP.TakeDamage(totalDamage, ECharacterType.Tanker);
+                if (isCloserMoreDamage) totalSkillDamage += (int)(skillDamage / Vector2.Distance(hit.transform.position, transform.position));
+
+                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage((int)(totalSkillDamage + rb.linearVelocity.magnitude), ECharacterType.Tanker);}
+                else enemyHP.TakeDamage((int)totalSkillDamage, ECharacterType.Tanker);
 
                 if (enemyHP != null && enemyHP.enemyHP <= 0)  continue;
 

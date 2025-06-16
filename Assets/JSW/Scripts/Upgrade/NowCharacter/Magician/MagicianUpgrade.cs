@@ -1,3 +1,4 @@
+using UnityEditor.Searcher;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "MagicianUpgrade", menuName = "Upgrades/MagicianUpgrade")]
@@ -14,7 +15,7 @@ public class MagicianUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAttackPowerDown             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
     }
 
     public UpgradeType type;
@@ -26,53 +27,53 @@ public class MagicianUpgrade : CharacterUpgrade
         {
             //-------------- 기본 업그레이드 --------------
             case UpgradeType.AttackPowerUp:
-                magician.AttackPowerUpNum += attackPowerUpPercent;                                    // 기본 데미지 상승
+                magician.attackPowerUpNum += attackPowerUpPercent;                                    // 기본 데미지 상승
                 Debug.Log("Debug0 magician");
                 break;
             case UpgradeType.AttackSpeedUp:
-                magician.AttackSpeedUpNum += attackSpeedUpPercent;                                    // 평타 간격
+                magician.attackSpeedUpNum += attackSpeedUpPercent;                                    // 평타 간격
                 Debug.Log("Debug1 magician");
                 magician.upgradeNum = 1;
                 break;
             case UpgradeType.ProjectileSpeedUp:                                                     // 투사체 이동속도 증가
-                magician.ProjectileSpeedUpNum += ProjectileSpeedUpPercent;
+                magician.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 magician");
                 magician.upgradeNum = 2;
                 break;
             case UpgradeType.ProjectileSizeUp:                                                      // 탄 크기 증가
-                magician.ProjectileSizeUpNum += ProjectileSizeUpPercent;
+                magician.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 magician");
                 magician.upgradeNum = 3;
                 break;
             case UpgradeType.KnockbackPowerUp:                                                      // 적 밀어내기 효율 증가
-                magician.KnockbackPowerUpNum += KnockbackPowerUpPercent;
+                magician.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 magician");
                 magician.upgradeNum = 4;
                 break;
             case UpgradeType.CriticalProbabilityUp:                                                 // 크리 확률 상승
-                magician.CriticalProbabilityUpNum += CriticalProbabilityUpPercent;
+                magician.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 magician");
                 magician.upgradeNum = 5;
                 break;
             case UpgradeType.CriticalDamageUp:                                                      // 크리 피해 배수 증가
-                magician.CriticalDamageUpNum += CriticalDamageUpPercent;
+                magician.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 magician");
                 magician.upgradeNum = 6;
                 break;
             case UpgradeType.AttackRangeUp:                                                         // 적 감지/공격 가능 거리 확대
-                magician.AttackRangeUpNum += AttackRangeUpPercent;
+                magician.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 magician");
                 magician.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                magician.ManaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
-                magician.AttackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
+                magician.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                magician.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 magician");
                 magician.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAttackPowerDown:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
-                magician.ManaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                magician.AttackPowerUpNum += ManaRegenSpeedUPAttackPowerDown_AttackPowerPercent;
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
+                magician.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
+                magician.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
                 Debug.Log("Debug9 magician");
                 magician.upgradeNum = 9;
                 break;

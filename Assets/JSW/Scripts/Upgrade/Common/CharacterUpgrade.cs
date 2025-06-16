@@ -18,7 +18,7 @@ public abstract class CharacterUpgrade : ScriptableObject
     protected float ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
     protected float ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
     protected float ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-    protected float ManaRegenSpeedUPAttackPowerDown_AttackPowerPercent;
+    protected float ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
 
     public abstract void ApplyUpgrade(GameObject character);
 }

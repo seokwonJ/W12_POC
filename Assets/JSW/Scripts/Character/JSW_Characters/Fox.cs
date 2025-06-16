@@ -40,9 +40,8 @@ public class Fox : Character
 
         float nownomalAttackSize = nomalAttackSize;
 
-        float totalAttackDamage = 0;
+        float totalAttackDamage = TotalAttackDamage();
 
-        totalAttackDamage += abilityPower;
 
 //<<<<<<< HEAD
 
@@ -56,17 +55,17 @@ public class Fox : Character
             EmpoweredAttackEveryCount += 1;
             if (EmpoweredAttackEveryCount == 3)
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage * 2, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage * 2, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
                 EmpoweredAttackEveryCount = 0;
             }
             else
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
             }
         }
         else
         {
-            proj.GetComponent<FoxAttack>().SetInit(direction, (int)totalAttackDamage, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
+            proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed, nomalAttackSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
         }
 
         SoundManager.Instance.PlaySFX("FoxAttack");
@@ -93,6 +92,8 @@ public class Fox : Character
     {
         float angleStep = 360f / skillCount;
 
+        float totalSkillDamage = TotalSkillDamage();
+
         // 스킬 데미지 받은 것들
         hitEnemies = new Dictionary<GameObject, int>();
 
@@ -103,7 +104,7 @@ public class Fox : Character
 
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
             FoxAttack mb = proj.GetComponent<FoxAttack>();
-            mb.SetInit(dir.normalized, (int)(abilityPower + skillDamage), projectileSpeed, skillSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, true);
+            mb.SetInit(dir.normalized, totalSkillDamage, projectileSpeed, skillSize, transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, true);
             mb.speed = 5;
         }
     }

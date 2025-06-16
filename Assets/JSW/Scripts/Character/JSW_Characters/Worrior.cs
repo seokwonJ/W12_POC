@@ -32,7 +32,7 @@ public class Worrior : Character
         Vector2 direction = (targetPos - firePoint.position).normalized;
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-        proj.GetComponent<SwordAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackLifetime, nomalAttackSize); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+        proj.GetComponent<SwordAttack>().SetInit(direction, TotalAttackDamage(), projectileSpeed, nomalAttackLifetime, nomalAttackSize); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
 
     // 스킬: 커다란 직진형 투사체 3발 연속 발사
@@ -83,7 +83,7 @@ public class Worrior : Character
     {
         if (isfallingCanAttack && collision.tag == "Enemy" && !isGround)
         {
-            collision.GetComponent<EnemyHP>().TakeDamage(attackDamage);
+            //collision.GetComponent<EnemyHP>().TakeDamage(attackPower);
         }
     }
 }

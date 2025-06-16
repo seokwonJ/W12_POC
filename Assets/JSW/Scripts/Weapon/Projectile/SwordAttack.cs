@@ -8,7 +8,7 @@ public class SwordAttack : ProjectileBase
         transform.up = Vector2.right;
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float lifetimeNum, float scaleNum)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float lifetimeNum, float scaleNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

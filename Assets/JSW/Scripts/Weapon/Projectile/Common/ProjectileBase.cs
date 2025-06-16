@@ -4,7 +4,7 @@ public class ProjectileBase : MonoBehaviour
 {
     public float speed = 10f;
     public float lifetime = 5f;
-    public int damage = 10;
+    public float damage = 10;
 
     protected Vector2 direction;
 
@@ -18,7 +18,7 @@ public class ProjectileBase : MonoBehaviour
         transform.Translate(direction * speed * Time.deltaTime, Space.World);
     }
 
-    public virtual void SetInit(Vector2 dir, int damageNum, float speedNum)
+    public virtual void SetInit(Vector2 dir, float damageNum, float speedNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -34,7 +34,7 @@ public class ProjectileBase : MonoBehaviour
         {
             var enemy = other.GetComponent<EnemyHP>();
             if (enemy != null)
-                enemy.TakeDamage(damage, ECharacterType.None);
+                enemy.TakeDamage((int)damage, ECharacterType.None);
 
             DestroyProjectile(gameObject);
         }

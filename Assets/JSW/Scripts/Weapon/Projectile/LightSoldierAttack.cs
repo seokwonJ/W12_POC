@@ -37,7 +37,7 @@ public class LightSoldierAttack : ProjectileBase
             var enemy = other.GetComponent<EnemyHP>();
             if (enemy != null)
             {
-                enemy.TakeDamage(damage);
+                //enemy.TakeDamage(damage);
                 if (isGain1ManaPerHit) lightSoldier.GainMp();
             }
             DestroyProjectile(gameObject);

@@ -14,11 +14,11 @@ public class LeviAttack : ProjectileBase
         if (other.CompareTag("Enemy"))
         {
             var enemy = other.GetComponent<EnemyHP>();
-            if (enemy != null) enemy.TakeDamage(damage, ECharacterType.Levi);
+            if (enemy != null) enemy.TakeDamage((int)damage, ECharacterType.Levi);
         }
     }
 
-    public  void SetInit(Vector2 dir, int damageNum, float speedNum, float lifeTimeNum)
+    public  void SetInit(Vector2 dir, float damageNum, float speedNum, float lifeTimeNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

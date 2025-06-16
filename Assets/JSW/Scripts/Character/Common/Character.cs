@@ -6,21 +6,22 @@ using UnityEngine.UI;
 public abstract class Character : MonoBehaviour
 {
     [Header("기본 업그레이드")]
-    public float AttackPowerUpNum = 0;
-    public float AttackSpeedUpNum = 0;
-    public float ProjectileSpeedUpNum = 0;
-    public float ProjectileSizeUpNum = 0;
-    public float KnockbackPowerUpNum = 0;
-    public float CriticalProbabilityUpNum = 0;
-    public float CriticalDamageUpNum = 0;
-    public float AttackRangeUpNum = 0;
-    public float ManaRegenSpeedUpNum = 0;
+    public float attackPowerUpNum = 0;
+    public float attackSpeedUpNum = 0;
+    public float projectileSpeedUpNum = 0;
+    public float projectileSizeUpNum = 0;
+    public float knockbackPowerUpNum = 0;
+    public float criticalProbabilityUpNum = 0;
+    public float criticalDamageUpNum = 0;
+    public float attackRangeUpNum = 0;
+    public float manaRegenSpeedUpNum = 0;
+    public float abilityPowerUpNum = 0;
 
     // 캐릭터 기본 능력치
     [Header("MP 시스템")]
-    public float maxMP = 100f;
+    public float maxMP = 100f;            // 최대 마나량
     public float mpPerSecond = 7;         // 초당 마나회복량
-    protected float currentMP = 0f;       // 
+    protected float currentMP = 0f;       
     public Image mpImage;
 
     [Header("일반 공격")]
@@ -34,9 +35,16 @@ public abstract class Character : MonoBehaviour
     public float maxFallSpeed = 10f;           // 최대 떨어지는 속도
 
     [Header("공격력")]
-    public int attackDamage;      // ad 물리공격력
-    public int abilityPower;      // ap 주문력
+    public float attackBase;        // base 공격력
+    public float attackDamage;      // 기본공격 공격력 계수
+    public float abilityPower;      // 스킬 공격력 계수
     public float projectileSpeed;       // 투사체 속도
+    public float criticalProbability;   // 크리티컬 확률
+    public float criticalDamage;        //크리티컬 피해 배수
+
+    [Header("기타 효과")]
+    public float knockbackPower;   // 넉백 정도
+    public float projectileSize;   // 투사체 크기 
 
     [Header("애니메이션")]
     public Animator animator;
@@ -240,6 +248,43 @@ public abstract class Character : MonoBehaviour
         fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
         fallingAfterImageSpawner.enabled = false;
         isSkillActive = false;
+    }
+
+    public float TotalAttackDamage()
+    {
+        float totalDamage;
+
+        totalDamage = attackBase * (attackPowerUpNum/100) * (attackDamage/100);
+
+        bool isCritical = IsCriticalHit();
+
+        if (isCritical) totalDamage *= (criticalDamage / 100);
+
+
+
+        print("평타 데미지 !!!!! + " + totalDamage);
+        return totalDamage;
+    }
+
+    public float TotalSkillDamage()
+    {
+        float totalDamage;
+
+        totalDamage = attackBase * (abilityPowerUpNum / 100) * (abilityPower / 100);
+
+        bool isCritical = IsCriticalHit();
+
+        if (isCritical) totalDamage *= (criticalDamage / 100);
+
+
+        print("스킬 데미지 !!!!! + " + totalDamage);
+        return totalDamage;
+    }
+
+
+    public bool IsCriticalHit()
+    {
+        return Random.value < (criticalProbability * criticalProbabilityUpNum/100) / 100;
     }
 }
 

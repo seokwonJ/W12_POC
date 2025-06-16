@@ -14,7 +14,7 @@ public class Kunai : ProjectileBase
         {
             var enemy = other.GetComponent<EnemyHP>();
             if (enemy != null)
-                enemy.TakeDamage(damage, ECharacterType.Ninja);
+                enemy.TakeDamage((int)damage, ECharacterType.Ninja);
 
             DestroyProjectile(gameObject);
         }
