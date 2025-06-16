@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9115df6ca1f1834d80763db84d57c09, type: 3}
   m_Name: NinjaUpgrade 8
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: n8
+  description: n8
   icon: {fileID: 0}
-  type: 0
-  value: 0
+  type: 8

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f8ef6fc20f5dc84d87834746ef98945, type: 3}
   m_Name: MagicianUpgrade 3
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: m3
+  description: m3
   icon: {fileID: 0}
-  type: 0
-  value: 0
+  type: 3

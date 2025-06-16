@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fde7c8796298d8140a0ec643a174ccf8, type: 3}
   m_Name: TankerUpgrade 8
   m_EditorClassIdentifier: 
-  upgradeName: 
-  description: 
+  upgradeName: t8
+  description: t8
   icon: {fileID: 0}
   type: 8
-  value: 0
