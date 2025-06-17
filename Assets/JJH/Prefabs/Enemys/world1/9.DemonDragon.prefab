@@ -357,6 +357,7 @@ MonoBehaviour:
   editorNote: 6
   movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
   attackSO: {fileID: 11400000, guid: c33670cdff8d6554b9e63d15e4886934, type: 2}
+  isBoss: 1
   speed: 5
   minPlayerDistance: 0
   isKnockbackable: 0
@@ -382,7 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 22
+  enemyHP: 2200
   playerHP_Image: {fileID: 2284735236592308728}
   isSpawning: 1
   isDead: 0
