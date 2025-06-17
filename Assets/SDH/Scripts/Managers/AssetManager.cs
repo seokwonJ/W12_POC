@@ -57,4 +57,14 @@ public class AssetManager // Resources에서 받아오는 각종 오브젝트 관리
 
         coin = Resources.Load<GameObject>("Objects/Coin");
     }
+
+    public int FindIcon(GameObject character) // 동료 게임오브젝트를 보고 에셋매니저 내 인덱스를 찾는 함수 (인덱스가 같은 Icon을 불러오기 위해)
+    {
+        for(int i = 0; i < characters.Length; i++)
+        {
+            if (character.Equals(characters[i])) return i;
+        }
+
+        return -1;
+    }
 }

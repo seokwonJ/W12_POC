@@ -12,13 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
   m_Name: new temp 1-1
   m_EditorClassIdentifier: 
-  world: 1
+  world: 10
   stage: 1
   isBossStage: 0
   enemyWave:
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
-  waveCount: 0200000002000000
+  waveCount: 0100000001000000
   wavePreparationTime:
   - 1
   - 1

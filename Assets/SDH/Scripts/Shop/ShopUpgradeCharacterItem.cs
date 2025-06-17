@@ -13,9 +13,9 @@ public class ShopUpgradeCharacterItem : ShopItem
     public override void BuyItem()
     {
         if (Managers.Status.Gold < 100) return;
-        if (Managers.SceneFlow.SetUpgradeCanvasCS == null) Debug.Log("SetUpgradeCanvas 못찾음");
+        //if (Managers.SceneFlow.SetUpgradeCanvasCS == null) Debug.Log("SetUpgradeCanvas 못찾음");
 
         Managers.Status.Gold -= 100;
-        Managers.SceneFlow.SetUpgradeCanvasCS.SetUpgrades(Managers.PlayerControl.Characters[upgradeCharacterIndex]);
+        //Managers.SceneFlow.SetUpgradeCanvasCS.SetUpgrades(Managers.PlayerControl.Characters[upgradeCharacterIndex]);
     }
 }

@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
 #endif
     public ScriptableObject movementSO;
     public ScriptableObject attackSO;
+    public bool isBoss; // 보스 여부
 
     [Header("움직임 관련")]
     public float speed;
