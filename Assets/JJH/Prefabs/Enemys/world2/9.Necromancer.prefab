@@ -184,7 +184,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: -7}
+  m_AnchoredPosition: {x: 0, y: -4.5}
   m_SizeDelta: {x: 6.6, y: 0.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7230823132008248138
@@ -279,14 +279,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8993054750733140521}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: -1, z: 0, w: 0}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 12, y: 12, z: 1}
+  m_LocalScale: {x: 8, y: 8, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2046528189498637755}
   m_Father: {fileID: 2715036829172249429}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -180, z: 0}
 --- !u!212 &7480905425486172864
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -355,8 +355,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   editorNote: 6
-  movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
-  attackSO: {fileID: 11400000, guid: c33670cdff8d6554b9e63d15e4886934, type: 2}
+  movementSO: {fileID: 11400000, guid: a4a02015195b9e24bba8b5a938e53685, type: 2}
+  attackSO: {fileID: 11400000, guid: a4307e50aa4367c46b4fa6887b09ae78, type: 2}
   isBoss: 1
   speed: 5
   minPlayerDistance: 0
@@ -455,6 +455,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2160106750986877758}
     m_Modifications:
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 676647053238153101, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
       propertyPath: m_Name
       value: HPBar

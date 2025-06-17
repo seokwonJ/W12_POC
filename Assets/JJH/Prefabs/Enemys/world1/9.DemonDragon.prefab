@@ -454,6 +454,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 2160106750986877758}
     m_Modifications:
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.04
+      objectReference: {fileID: 0}
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 452605057694346372, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 676647053238153101, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
       propertyPath: m_Name
       value: HPBar
