@@ -96,7 +96,7 @@ public class ArcherUpgrade : CharacterUpgrade
                 archer.upgradeNum = 11;
                 break;
             case UpgradeType.DieInstantly:                                                          // 보스를 제외한 몬스터 타격 시 일정 확률로 즉사 시킵니다
-
+                archer.isUpgradeDieInstantly = true;
                 Debug.Log("Debug12 archer");
                 archer.upgradeNum = 12;
                 break;
@@ -106,7 +106,7 @@ public class ArcherUpgrade : CharacterUpgrade
                 archer.upgradeNum = 13;
                 break;
             case UpgradeType.SkillProjectileCountUp:                                                // 스킬 투사체 갯수 증가
-
+                archer.skillProjectileCount += 6;
                 Debug.Log("Debug14 archer");
                 archer.upgradeNum = 14;
                 break;

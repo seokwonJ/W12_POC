@@ -134,8 +134,15 @@ MonoBehaviour:
   skillInterval: 0.9
   skillFireDelay: 0.1
   skillProjectileCount: 10
-  isUpgradeTripleShot: 0
   upgradeNum: 0
+  isUpgradeTwoShot: 0
+  isUpgradeDieInstantly: 0
+  dieInstantlyProbability: 1
+  isUpgradeSameEnemyDamage: 0
+  attackedEnemy: {fileID: 0}
+  sameEnemyCount: 0
+  sameEnemyDamageDuration: 5
+  nowSameEnemyDamageDuration: 0
   skillActiveEffect: {fileID: 4984979348290971514, guid: a54ec04446debd948b043903fccedaf8, type: 3}
 --- !u!114 &4301628890503601283
 MonoBehaviour:

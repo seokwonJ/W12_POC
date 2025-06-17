@@ -5,17 +5,27 @@ public class Arrow : ProjectileBase
     private Archer _characterArcher;
     private bool isSkill;
     private bool isDieInstantly;
+    private bool isSameEnemyDamage;
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-
-
         if (other.CompareTag("Enemy"))
         {
             GameObject enemy = other.gameObject;
 
             if (!isSkill)
             {
-                enemy.GetComponent<EnemyHP>().TakeDamage((int)damage, ECharacterType.Archer);
+                if (isSameEnemyDamage)
+                {
+                    float bonusDamage = _characterArcher.SameEnemyTotalDamage(enemy);
+                    damage *= bonusDamage;
+                }
+
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+
+                if (isDieInstantly && !enemyComponent.isBoss) enemy.GetComponent<EnemyHP>().TakeDamage(9999, ECharacterType.Archer);
+                else enemy.GetComponent<EnemyHP>().TakeDamage((int)(damage), ECharacterType.Archer);
+
             }
             else
             {
@@ -33,11 +43,13 @@ public class Arrow : ProjectileBase
 
                 float nowdamage = Mathf.Max(2f, damage - 2f * (hitCount - 1));
 
-                // 보스 불리언 체크 해줘야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                if (isDieInstantly) enemy.GetComponent<EnemyHP>().TakeDamage(9999, ECharacterType.Archer);
-                else enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Archer);
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
 
+                if (isDieInstantly && !enemyComponent.isBoss) enemy.GetComponent<EnemyHP>().TakeDamage(9999, ECharacterType.Archer);
+                else enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Archer);
             }
+
+
 
             // 넉백
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
@@ -52,7 +64,7 @@ public class Arrow : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float knockbackPowerNum, float scaleNum, Archer archer, bool isSkill, bool isUpgradeDieInstantly)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float knockbackPowerNum, float scaleNum, Archer archer, bool isSkill, bool isUpgradeDieInstantly, bool isUpgradeSameEnemyDamage)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -63,6 +75,8 @@ public class Arrow : ProjectileBase
         transform.localScale = Vector3.one * scaleNum;
         _characterArcher = archer;
         this.isSkill = isSkill;
+        isDieInstantly = isUpgradeDieInstantly;
+        isSameEnemyDamage = isUpgradeSameEnemyDamage;
     }
 
 }

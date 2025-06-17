@@ -17,9 +17,35 @@ public class Archer : Character
     public bool isUpgradeTwoShot;
     public bool isUpgradeDieInstantly;
     public float dieInstantlyProbability;
+    public bool isUpgradeSameEnemyDamage;
+    public GameObject attackedEnemy;
+    public int sameEnemyCount = 0;
+    public int sameEnemyCountLimit = 20;
+    public float sameEnemyDamageDuration = 5;
+    public float nowSameEnemyDamageDuration;
 
     [Header("이펙트")]
     public GameObject skillActiveEffect;
+
+
+
+    protected override void Update()
+    {
+        base.Update();
+
+        if (isUpgradeSameEnemyDamage)
+        {
+            if (nowSameEnemyDamageDuration < sameEnemyDamageDuration)
+            {
+                nowSameEnemyDamageDuration += Time.deltaTime;
+            }
+            else
+            {
+                attackedEnemy = null;
+                sameEnemyCount = 0;
+            }
+        }
+    }
 
     // 일반 공격 : 화살 발사 
     protected override void FireNormalProjectile(Vector3 targetPos)
@@ -32,7 +58,7 @@ public class Archer : Character
         // 방향에 따라 캐릭터 스프라이트 좌우 반전
         if (direction.x > 0) transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
         else if (direction.x < 0) transform.localScale = new Vector3(-Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
-    
+
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
@@ -41,7 +67,7 @@ public class Archer : Character
         if (isUpgradeDieInstantly && Random.value < dieInstantlyProbability / 100) instantlyDie = true;
         else instantlyDie = false;
 
-        proj.GetComponent<Arrow>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false, instantlyDie);
+        proj.GetComponent<Arrow>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false, instantlyDie, isUpgradeSameEnemyDamage);
 
         if (isUpgradeTwoShot)
         {
@@ -49,7 +75,7 @@ public class Archer : Character
             else instantlyDie = false;
 
             GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 5) * direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false, instantlyDie);
+            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 5) * direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false, instantlyDie, isUpgradeSameEnemyDamage);
         }
 
         SoundManager.Instance.PlaySFX("ArcherAttack");
@@ -87,7 +113,23 @@ public class Archer : Character
             float angle = i * angleStep + 10 * skillCount;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             GameObject proj = Instantiate(skillProjectile, startPos, rotation);
-            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, true,false);
+            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, true, false, false);
         }
+    }
+
+    public float SameEnemyTotalDamage(GameObject enemy)
+    {
+        nowSameEnemyDamageDuration = 0;
+        float sameEnemyStack = 1;
+        if (attackedEnemy == enemy)
+        {
+            if (sameEnemyCount < sameEnemyCountLimit) sameEnemyCount += 1;
+        }
+        else
+        {
+            attackedEnemy = enemy;
+            sameEnemyCount = 0;
+        }
+        return (sameEnemyStack + sameEnemyCount * 0.1f);
     }
 }
