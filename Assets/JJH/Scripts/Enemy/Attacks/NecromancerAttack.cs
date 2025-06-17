@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.LightTransport;
 [CreateAssetMenu(menuName = "Patterns/Attack/NecromancerAttack")]
 public class NecromancerAttack : ScriptableObject, IAttackPattern
 {
@@ -45,7 +46,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
     [Header("해골 발사체 발사하는 패턴 관련")]
     public EnemyWaveSO skullProjectileWave; // 해골 발사 웨이브
     private int skullProjectileCount = 2; // 해골 발사 횟수
-    private WaitForSeconds afterSkullProjectileWait = new WaitForSeconds(6f);
+    private WaitForSeconds afterSkullProjectileWait = new WaitForSeconds(8f);
 
 
 
@@ -99,7 +100,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
                 yield break; // 적이 죽었거나 존재하지 않으면 코루틴 종료
             }
 
-            int randomNum = 1;
+            int randomNum = Random.Range(0, 2);
 
             switch (randomNum)
             {

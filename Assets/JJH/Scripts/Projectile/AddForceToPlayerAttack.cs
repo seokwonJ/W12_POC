@@ -1,16 +1,16 @@
 ﻿using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class AddForceToPlayerAttack : EnemyAttack1
 {
     private GameObject player;
     private Rigidbody2D rb;
-    private WaitForSeconds changeDirectionWait = new WaitForSeconds(0.3f);
-    private WaitForSeconds beforeAddForceWait = new WaitForSeconds(0.01f);
-    private float addForceDurationTime = 4f;
-    private float force = 2f;
-    Vector2 direction;
-    float elaspedTime = 0;
+
+    private float acceleration = 3f;   // 가속도 (초당 속도 증가량)
+    private float maxSpeed = 12f;      // 최대 속도
+    private float turnSpeed = 100f;    // 회전 속도 (Degrees per second)
+    private float currentSpeed = 0f;  // 현재 속도
 
     private void Awake()
     {
@@ -19,36 +19,31 @@ public class AddForceToPlayerAttack : EnemyAttack1
     private void Start()
     {
         player = Managers.PlayerControl.NowPlayer;
-        StartCoroutine(CoWaitForAddForce());
     }
 
-    private void Update()
+    void FixedUpdate()
     {
-        // 플레이어 방향으로 회전
-        float angle = Mathf.Atan2(rb.linearVelocityY, rb.linearVelocityX) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle)); // 180도 회전 보정
+        if (player == null) return;
 
-        elaspedTime += Time.deltaTime;
-        if (elaspedTime > addForceDurationTime)
+        // 1) 가속도 적용
+        currentSpeed += acceleration * Time.fixedDeltaTime;
+        currentSpeed = Mathf.Min(currentSpeed, maxSpeed);
+
+        // 2) 목표 방향 구하기
+        Vector2 direction = ((Vector2)player.transform.position - rb.position).normalized;
+
+        // 3) 현재 회전 각도와 목표 회전 각도의 차이를 부드럽게 보간
+        float targetAngle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        float angle = Mathf.MoveTowardsAngle(rb.rotation, targetAngle, turnSpeed * Time.fixedDeltaTime);
+        rb.MoveRotation(angle);
+
+        // 4) 전진력 적용 (속도 기반)
+        rb.linearVelocity = transform.right * currentSpeed;
+
+        // 5) 회전 속도 감소
+        if (turnSpeed > 0)
         {
-            StopAllCoroutines();
-        }
-    }
-
-    IEnumerator CoWaitForAddForce()
-    {
-        yield return beforeAddForceWait;
-        StartCoroutine (CoAddForceToPlayer());
-    }
-
-    IEnumerator CoAddForceToPlayer()
-    {
-        while (player != null)
-        {
-            direction = (player.transform.position - transform.position).normalized;
-            rb.AddForce(direction * force, ForceMode2D.Impulse);
-            yield return changeDirectionWait;
-            force += 0.1f;
+            turnSpeed -= 10f * Time.fixedDeltaTime; // 속도를 감소시켜서 부드러운 감속 효과
         }
     }
 }
