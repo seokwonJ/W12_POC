@@ -4,6 +4,7 @@ public class Arrow : ProjectileBase
 {
     private Archer _characterArcher;
     private bool isSkill;
+    private bool isDieInstantly;
     protected override void OnTriggerEnter2D(Collider2D other)
     {
 
@@ -31,7 +32,10 @@ public class Arrow : ProjectileBase
                 }
 
                 float nowdamage = Mathf.Max(2f, damage - 2f * (hitCount - 1));
-                enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Archer);
+
+                // 보스 불리언 체크 해줘야함!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                if (isDieInstantly) enemy.GetComponent<EnemyHP>().TakeDamage(9999, ECharacterType.Archer);
+                else enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Archer);
 
             }
 
@@ -48,7 +52,7 @@ public class Arrow : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float knockbackPowerNum, float scaleNum, Archer archer, bool isSkill)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float knockbackPowerNum, float scaleNum, Archer archer, bool isSkill, bool isUpgradeDieInstantly)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

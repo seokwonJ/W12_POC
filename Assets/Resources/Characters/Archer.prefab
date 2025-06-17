@@ -131,7 +131,7 @@ MonoBehaviour:
   fallingAfterImageSpawner: {fileID: 6600013392549901474}
   skillProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
   skillCount: 3
-  skillInterval: 0.3
+  skillInterval: 0.9
   skillFireDelay: 0.1
   skillProjectileCount: 10
   isUpgradeTripleShot: 0
