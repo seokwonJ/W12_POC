@@ -15,7 +15,14 @@ public class NinjaUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp,             // 마나 회복 속도 증가 + 스킬 대미지 증가
+
+        SkillDurationUp,                            // 스킬의 지속시간이 증가합니다.
+        SkillDamageUp,                              // 스킬로 상승하는 공격력 증가량이 증가합니다.
+        SkillCriticalDamageUp,                      // 스킬 사용시 치명타 피해율이 증가합니다.
+        AttackFiveDamageUp,                         // 평타 5번째 기본공격의 데미지가 강화됩니다.
+        LongAttackDamageUp,                         // 거리가 멀 수록 기본공격의 데미지가 증가합니다 
+        ManaPerDamageUp                             // 소모한 마나량에 따라 데미지가 증가합니다.
     }
 
     public UpgradeType type;
@@ -71,13 +78,44 @@ public class NinjaUpgrade : CharacterUpgrade
                 Debug.Log("Debug8 ninja");
                 ninja.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // 마나 회복 속도 증가 + 스킬 대미지 증가
                 ninja.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
                 ninja.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
                 Debug.Log("Debug9 ninja");
                 ninja.upgradeNum = 9;
                 break;
-                //-------------- 특수 업그레이드 --------------
+
+            //-------------- 특수 업그레이드 --------------
+
+            case UpgradeType.SkillDurationUp:                                                        // 스킬의 지속시간이 증가합니다.
+                ninja.skillPowerDuration += 3;
+                Debug.Log("Debug10 ninja");
+                ninja.upgradeNum = 10;
+                break; 
+            case UpgradeType.SkillDamageUp:                                                         // 스킬로 상승하는 공격력 증가량이 증가합니다.
+                ninja.skillDamageUp = 10;
+                Debug.Log("Debug11 ninja");
+                ninja.upgradeNum = 11;
+                break;
+            case UpgradeType.SkillCriticalDamageUp:                                                 // 스킬 사용시 치명타 피해율이 증가합니다.
+                ninja.isSkillCriticalDamageUp = true;
+                Debug.Log("Debug12 ninja");
+                ninja.upgradeNum = 12;
+                break;
+            case UpgradeType.AttackFiveDamageUp:                                                    // 평타 5번째 기본공격의 데미지가 강화됩니다.
+                ninja.isNomalAttackFive = true;
+                ninja.upgradeNum = 13;
+                break;
+            case UpgradeType.LongAttackDamageUp:                                                    // 거리가 멀 수록 기본공격의 데미지가 증가합니다 
+                ninja.isLongAttackDamageUp = true;
+                Debug.Log("Debug14 ninja");
+                ninja.upgradeNum = 14;
+                break;
+            case UpgradeType.ManaPerDamageUp:                                                       // 소모한 마나량에 따라 데미지가 증가합니다.
+                ninja.isManaPerDamageUp = true;
+                Debug.Log("Debug14 ninja");
+                ninja.upgradeNum = 15;
+                break;
 
         }
 

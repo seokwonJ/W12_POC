@@ -2,6 +2,8 @@
 
 public class LeviAttack : ProjectileBase
 {
+    private float _attackPerDamageMinus;
+
     protected override void Start()
     {
         
@@ -22,10 +24,13 @@ public class LeviAttack : ProjectileBase
                 enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
             }
 
+            if (damage - _attackPerDamageMinus > 5) damage -= _attackPerDamageMinus;
+            else damage = 5;
+
         }
     }
 
-    public  void SetInit(Vector2 dir, float damageNum, float speedNum, float sizeNum, float knockbackPowerNum, float lifeTimeNum)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float sizeNum, float knockbackPowerNum, float lifeTimeNum, float attackPerDamageMinus)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -33,6 +38,7 @@ public class LeviAttack : ProjectileBase
         damage = damageNum;
         speed = speedNum;
         knockbackPower = knockbackPowerNum;
+        _attackPerDamageMinus = attackPerDamageMinus;
         Destroy(gameObject, lifeTimeNum);
     }
 

@@ -101,7 +101,7 @@ public class ArcherUpgrade : CharacterUpgrade
                 archer.upgradeNum = 12;
                 break;
             case UpgradeType.SameEnemyDamageUp:                                                     // 같은 대상을 공격 할 시 일정시간 대미지가 증가합니다. 지속시간 : N초
-
+                archer.isUpgradeSameEnemyDamage = true;
                 Debug.Log("Debug13 archer");
                 archer.upgradeNum = 13;
                 break;

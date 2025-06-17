@@ -7,6 +7,7 @@ public class Levi : Character
     [Header("리바이 공격")]
     public float dobleAttackCoolTime = 0.05f;
     public float NormalAttackProjectileDuration = 2f;
+    public float attackPerDamageMinus = 5;
 
     [Header("스킬")]
     public float skillTargetCount;
@@ -43,7 +44,7 @@ public class Levi : Character
 
         float totalAttackDamage = TotalAttackDamage();
 
-        proj.GetComponent<LeviAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), NormalAttackProjectileDuration);
+        proj.GetComponent<LeviAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), NormalAttackProjectileDuration, attackPerDamageMinus);
 
         SoundManager.Instance.PlaySFX("LeviAttack");
     }

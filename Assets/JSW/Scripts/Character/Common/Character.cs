@@ -277,7 +277,6 @@ public abstract class Character : MonoBehaviour
 
         //if (isCritical) totalDamage *= (criticalDamage / 100);
 
-
         print("스킬 데미지 !!!!! + " + totalDamage);
         return totalDamage;
     }
@@ -287,6 +286,7 @@ public abstract class Character : MonoBehaviour
     {
         return Random.value < (criticalProbability * criticalProbabilityUpNum/100) / 100;
     }
+
 }
 
 public enum ECharacterType

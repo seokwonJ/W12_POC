@@ -1,4 +1,5 @@
 using System.Collections;
+using UnityEditor;
 using UnityEngine;
 
 public class Ninja : Character
@@ -12,12 +13,19 @@ public class Ninja : Character
     public float skillPowerDuration;
     public float skillProjectileSpeed;
     public float skillInterval = 0.3f;
+    public float skillDamageUp = 0;
 
     [Header("강화")]
+    public bool isSkillCriticalDamageUp;
+    public float SkillCriticalDamageUpNum = 50;
     public bool isNomalAttackFive;
+    public float nomalAttackFiveUpPercent;
     public int nomalAttackCount = 0;
-    public bool isFirstLowHPEnemy;
-    public bool isAttackSpeedPerMana;
+    public bool isLongAttackDamageUp;
+    public float longAttackDamageUpPercent = 100;
+    public bool isManaPerDamageUp;
+    public float ManaPerDamageUpPercent = 80;
+
     public int upgradeNum;
 
     [Header("이펙트")]
@@ -27,11 +35,6 @@ public class Ninja : Character
     // 일반 공격: 원거리 투사체 표창 가까운 적에게 던지기
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
-        if (isFirstLowHPEnemy)
-        {
-            targetPos = FindLowHPEnemy().position;
-        }
-
         nomalAttackCount += 1;
 
         Vector2 direction = (targetPos - firePoint.position).normalized;
@@ -42,23 +45,18 @@ public class Ninja : Character
 
         GameObject proj;
 
-        if (isSkilling)
+        float totalAttackDamage = TotalAttackDamage();
+
+        if (isManaPerDamageUp) totalAttackDamage *= maxMP / ManaPerDamageUpPercent;
+        if (isLongAttackDamageUp)
         {
-            proj = Instantiate(skillKunai, firePoint.position, Quaternion.identity);
-
-            float totalSkillDamage = TotalSkillDamage();
-
-            proj.GetComponent<Kunai>().SetInit(direction, totalSkillDamage, projectileSpeed * skillProjectileSpeed, projectileSize, knockbackPower);
+            float distance = Vector2.Distance(targetPos, transform.position);
+            totalAttackDamage += distance * longAttackDamageUpPercent / 100;
         }
-        else
-        {
-            proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+        proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
-            float totalAttackDamage = TotalAttackDamage();
-
-            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0; }
-            else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
-        }
+        if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage * nomalAttackFiveUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0; }
+        else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
 
         SoundManager.Instance.PlaySFX("NinjaAttack");
     }
@@ -69,8 +67,7 @@ public class Ninja : Character
 
         while (true)
         {
-            if (isAttackSpeedPerMana) currnetNormalFireInterval = normalFireInterval - currentMP / 600;
-            else currnetNormalFireInterval = normalFireInterval;
+            currnetNormalFireInterval = normalFireInterval;
 
             yield return new WaitForSeconds(currnetNormalFireInterval);
             if (!isGround) continue;
@@ -122,38 +119,25 @@ public class Ninja : Character
         SoundManager.Instance.PlaySFX("NinjaSkillActive");
         SoundManager.Instance.PlaySFX("NinjaSkillDuration");
 
-        activeParticle = Instantiate(skillLandingActive,transform.position,Quaternion.identity,transform);
+        activeParticle = Instantiate(skillLandingActive, transform.position, Quaternion.identity, transform);
         isSkilling = true;
+        attackBase += (TotalSkillDamage() + skillDamageUp);
         normalFireInterval /= skillAttackSpeed;
+
+        if (isSkillCriticalDamageUp) criticalDamage += SkillCriticalDamageUpNum;
+
         Debug.Log("공격속도 업!");
 
         yield return new WaitForSeconds(skillPowerDuration);
 
         Debug.Log("공격속도 돌아옴");
+        attackBase -= (TotalSkillDamage() + skillDamageUp);
         normalFireInterval *= skillAttackSpeed;
+
+        if (isSkillCriticalDamageUp) criticalDamage -= SkillCriticalDamageUpNum;
+
         isSkilling = false;
         Destroy(activeParticle);
-    }
-
-    protected Transform FindLowHPEnemy()
-    {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
-        float minHP = float.MaxValue;
-        Transform nearest = null;
-
-        foreach (var hit in hits)
-        {
-            if (hit.CompareTag("Enemy"))
-            {
-                float hp = hit.GetComponent<EnemyHP>().enemyHP;
-                if (hp < minHP)
-                {
-                    minHP = hp;
-                    nearest = hit.transform;
-                }
-            }
-        }
-        return nearest;
     }
 
     public override void EndFieldAct() // 필드전투가 종료될 때 실행
@@ -163,7 +147,9 @@ public class Ninja : Character
         if (isSkilling == true)
         {
             Debug.Log("공격속도 돌아옴");
+            attackBase -= TotalSkillDamage();
             normalFireInterval *= skillAttackSpeed;
+            if (isSkillCriticalDamageUp) criticalDamage -= SkillCriticalDamageUpNum;
             isSkilling = false;
         }
         if (activeParticle != null)
