@@ -13,7 +13,9 @@ public class Managers : MonoBehaviour
     public static ArtifactManager Artifact => instance.artifact;
     private ArtifactManager artifact = new(); // 인게임 유물 관리
     public static StageManager Stage => instance.stage;
-    private StageManager stage = new(); // 전투나 상점 관리
+    private StageManager stage = new(); // 전투 관리 및 씬 흐름 관리 (상점이여도 이곳에서 관리할 수 있다는 의미)
+    public static ShopManager Shop => instance.shop;
+    private ShopManager shop = new(); // 상점 관리 (stageManager와는 다르게 상점 내 기능에 초점)
     public static PlayerControlManager PlayerControl => instance.playerControl;
     private PlayerControlManager playerControl = new(); // 플레이어 관리
     public static SceneFlowManager SceneFlow => instance.sceneFlow;
