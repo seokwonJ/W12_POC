@@ -5,11 +5,23 @@ using UnityEngine.UI;
 
 public abstract class Character : MonoBehaviour
 {
+    [Header("기본 업그레이드")]
+    public float attackPowerUpNum = 100;
+    public float attackSpeedUpNum = 100;
+    public float projectileSpeedUpNum = 100;
+    public float projectileSizeUpNum = 100;
+    public float knockbackPowerUpNum = 100;
+    public float criticalProbabilityUpNum = 100;
+    public float criticalDamageUpNum = 100;
+    public float attackRangeUpNum = 100;
+    public float manaRegenSpeedUpNum = 100;
+    public float abilityPowerUpNum = 100;
+
     // 캐릭터 기본 능력치
     [Header("MP 시스템")]
-    public float maxMP = 100f;
+    public float maxMP = 100f;            // 최대 마나량
     public float mpPerSecond = 7;         // 초당 마나회복량
-    protected float currentMP = 0f;       // 
+    protected float currentMP = 0f;       
     public Image mpImage;
 
     [Header("일반 공격")]
@@ -23,9 +35,16 @@ public abstract class Character : MonoBehaviour
     public float maxFallSpeed = 10f;           // 최대 떨어지는 속도
 
     [Header("공격력")]
-    public int attackDamage;      // ad 물리공격력
-    public int abilityPower;      // ap 주문력
+    public float attackBase;        // base 공격력
+    public float attackDamage;      // 기본공격 공격력 계수
+    public float abilityPower;      // 스킬 공격력 계수
     public float projectileSpeed;       // 투사체 속도
+    public float criticalProbability;   // 크리티컬 확률
+    public float criticalDamage;        //크리티컬 피해 배수
+
+    [Header("기타 효과")]
+    public float knockbackPower;   // 넉백 정도
+    public float projectileSize;   // 투사체 크기 
 
     [Header("애니메이션")]
     public Animator animator;
@@ -78,8 +97,9 @@ public abstract class Character : MonoBehaviour
         }
         if (!isGround) return;
 
-        currentMP += Time.deltaTime * mpPerSecond;
+        currentMP += Time.deltaTime * (mpPerSecond * (manaRegenSpeedUpNum / 100));
         currentMP = Mathf.Min(currentMP, maxMP);
+
         if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
 
         if (currentMP >= maxMP && !isSkillActive)
@@ -157,7 +177,7 @@ public abstract class Character : MonoBehaviour
     // 사정거리내에 적을 발견하는 함수
     protected Transform FindNearestEnemy()
     {
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius * (attackRangeUpNum / 100));
         float minDist = float.MaxValue;
         Transform nearest = null;
 
@@ -229,6 +249,43 @@ public abstract class Character : MonoBehaviour
         fixedJoint.connectedBody = Managers.PlayerControl.NowPlayer.GetComponent<Rigidbody2D>();
         fallingAfterImageSpawner.enabled = false;
         isSkillActive = false;
+    }
+
+    public float TotalAttackDamage()
+    {
+        float totalDamage;
+
+        totalDamage = attackBase * (attackPowerUpNum/100) * (attackDamage/100);
+
+        bool isCritical = IsCriticalHit();
+
+        if (isCritical) totalDamage *= (criticalDamage / 100);
+
+
+
+        print("평타 데미지 !!!!! + " + totalDamage);
+        return totalDamage;
+    }
+
+    public float TotalSkillDamage()
+    {
+        float totalDamage;
+
+        totalDamage = attackBase * (abilityPowerUpNum / 100) * (abilityPower / 100);
+
+        bool isCritical = IsCriticalHit();
+
+        //if (isCritical) totalDamage *= (criticalDamage / 100);
+
+
+        print("스킬 데미지 !!!!! + " + totalDamage);
+        return totalDamage;
+    }
+
+
+    public bool IsCriticalHit()
+    {
+        return Random.value < (criticalProbability * criticalProbabilityUpNum/100) / 100;
     }
 }
 

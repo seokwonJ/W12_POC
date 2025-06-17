@@ -8,7 +8,7 @@ public class BlackHoleAttack : ProjectileBase
     public float pullDelay = 0.3f;
     public float pullForce = 10f;
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float nockbackPower)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -16,6 +16,8 @@ public class BlackHoleAttack : ProjectileBase
         damage = damageNum;
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
+        pullForce = nockbackPower;
+
 
         // 블랙홀 활성화 즉시 타이머 시작
         StartCoroutine(DelayedPull());
@@ -60,7 +62,7 @@ public class BlackHoleAttack : ProjectileBase
                 EnemyHP hp = enemy.GetComponent<EnemyHP>();
                 if (hp != null)
                 {
-                    hp.TakeDamage(damage, ECharacterType.Magician);
+                    hp.TakeDamage((int)damage, ECharacterType.Magician);
                 }
             }
         }

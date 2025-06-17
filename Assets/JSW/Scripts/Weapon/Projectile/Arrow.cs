@@ -2,7 +2,6 @@
 
 public class Arrow : ProjectileBase
 {
-    private float knockbackPower = 1;
     private Archer _characterArcher;
     private bool isSkill;
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -49,7 +48,7 @@ public class Arrow : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float knockbackPowerNum, float scaleNum, Archer archer, bool isSkill)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float knockbackPowerNum, float scaleNum, Archer archer, bool isSkill)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;

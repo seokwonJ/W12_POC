@@ -5,7 +5,6 @@ using static UnityEngine.GraphicsBuffer;
 public class PirateAttack : ProjectileBase
 {
     public Rigidbody2D rb;
-    public float knockbackPower;
     public GameObject explosionEffect;
     public bool isFirstHitDealsBonusDamage;
     public float acceleration = 5f;
@@ -55,7 +54,7 @@ public class PirateAttack : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, bool isFirstHitDealsBonus, bool isSkill, Transform homingTarget = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum , bool isFirstHitDealsBonus, bool isSkill, Transform homingTarget = null)
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -65,6 +64,8 @@ public class PirateAttack : ProjectileBase
         damage = damageNum;
         transform.localScale = Vector3.one * scaleNum;
         speed = speedNum;
+        knockbackPower = knockbackPowerNum;
+
         isFirstHitDealsBonusDamage = isFirstHitDealsBonus;
 
         if (homingTarget != null)
@@ -109,7 +110,7 @@ public class PirateAttack : ProjectileBase
             EnemyHP enemyHp = other.GetComponent<EnemyHP>();
             if (enemyHp != null && isFirstHitDealsBonusDamage)
             {
-                enemyHp.TakeDamage(damage, ECharacterType.Pirate);
+                enemyHp.TakeDamage((int)damage, ECharacterType.Pirate);
             }
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, transform.localScale.magnitude);
@@ -120,7 +121,7 @@ public class PirateAttack : ProjectileBase
                     Enemy enemy = hit.GetComponent<Enemy>();
                     EnemyHP otherEnemyHP = hit.GetComponent<EnemyHP>();
 
-                    otherEnemyHP.TakeDamage(damage,ECharacterType.Pirate);
+                    otherEnemyHP.TakeDamage((int)damage,ECharacterType.Pirate);
 
                     Vector3 knockbackDirection = hit.transform.position - transform.position;
                     if (enemy != null && otherEnemyHP.enemyHP > 0)

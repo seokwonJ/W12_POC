@@ -2,15 +2,8 @@
 
 public class TankerAttack : ProjectileBase
 {
-    private float knockbackPower;
 
-    //protected override void Update()
-    //{
-    //    transform.Translate(Vector3.right * speed * Time.deltaTime, Space.World);
-    //    transform.up = Vector2.right;
-    //}
-
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float lifetimeNum, float scaleNum, float KnockBackPowerNum)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float lifetimeNum, float scaleNum, float KnockBackPowerNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -32,7 +25,7 @@ public class TankerAttack : ProjectileBase
         {
             var enemyHP = other.GetComponent<EnemyHP>();
 
-            if (enemyHP != null) enemyHP.TakeDamage(damage, ECharacterType.Tanker);
+            if (enemyHP != null) enemyHP.TakeDamage((int)damage, ECharacterType.Tanker);
             if (enemyHP != null && enemyHP.enemyHP <= 0) return;
 
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;

@@ -40,7 +40,7 @@ public class Protecter : Character
 
         float nownomalAttackSize = nomalAttackSize;
 
-        proj.GetComponent<ProtecterAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize, isShieldCancelsProjectiles);
+        //proj.GetComponent<ProtecterAttack>().SetInit(direction, attackPower, projectileSpeed, nomalAttackSize, isShieldCancelsProjectiles);
 
     }
 
@@ -113,9 +113,9 @@ public class Protecter : Character
             {
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
-                int totalDamage = abilityPower;
+                //int totalDamage = abilityPower;
                 print("Æø¹ß µ¥¹ÌÁö ¹Þ¾Æ¶ù!!!");
-                enemyHP.TakeDamage(totalDamage);
+                //enemyHP.TakeDamage(totalDamage);
 
             }
             if (hit.CompareTag("EnemyAttack"))

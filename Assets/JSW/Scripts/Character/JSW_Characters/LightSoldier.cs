@@ -30,15 +30,15 @@ public class LightSoldier : Character
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position + Vector3.up, Quaternion.identity);
         GameObject proj2 = Instantiate(normalProjectile, firePoint.position + Vector3.down, Quaternion.identity);
-        proj.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);
-        proj2.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);
+        //proj.GetComponent<LightSoldierAttack>().SetInit(direction, attackPower, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);
+        //proj2.GetComponent<LightSoldierAttack>().SetInit(direction, attackPower, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit);
 
         if (isFires4NormalAttackProjectiles)
         {
             GameObject proj3 = Instantiate(normalProjectile, firePoint.position + Vector3.up * 2, Quaternion.identity);
             GameObject proj4 = Instantiate(normalProjectile, firePoint.position + Vector3.down * 2, Quaternion.identity);
-            proj3.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
-            proj4.GetComponent<LightSoldierAttack>().SetInit(direction, attackDamage, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+            //proj3.GetComponent<LightSoldierAttack>().SetInit(direction, attackPower, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+            //proj4.GetComponent<LightSoldierAttack>().SetInit(direction, attackPower, projectileSpeed, normalAttackLifetime, normalAttackSize, this, isGain1ManaPerHit); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
         }
     }
 
@@ -65,7 +65,7 @@ public class LightSoldier : Character
             if (sword != null)
             {
                 sword.speed = 20;
-                sword.SetInit(Vector3.right, attackDamage, 30, 10, normalAttackSize * skillSize, this, false);
+                //sword.SetInit(Vector3.right, attackPower, 30, 10, normalAttackSize * skillSize, this, false);
             }
 
             rb.linearVelocity = new Vector2(0, 2f);

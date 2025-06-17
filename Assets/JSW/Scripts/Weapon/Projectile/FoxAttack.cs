@@ -65,7 +65,7 @@ public class FoxAttack : ProjectileBase
         base.Update();
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult, Fox characterFox, bool isSkill)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult, Fox characterFox, bool isSkill)
     {
         owner = ownerTransform;
 
@@ -74,6 +74,7 @@ public class FoxAttack : ProjectileBase
         transform.rotation = Quaternion.Euler(0, 0, angle - 90);
         damage = damageNum;
         speed = speedNum;
+        this.knockbackPower = knockbackPowerNum;
         transform.localScale = Vector3.one * scaleNum;
         isReturnDamageScalesWithHitCount = isReturnDamageScalesWithHitCountResult;
         totalTravelTime = totalTravelTimeNum;
@@ -88,6 +89,18 @@ public class FoxAttack : ProjectileBase
         {
 
             GameObject enemy = other.gameObject;
+
+            if (!isReturning)
+            {
+                // 넉백
+                Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
+
+                Enemy enemyComponenet = enemy.GetComponent<Enemy>();
+                if (enemyComponenet != null)
+                {
+                    enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
+                }
+            }
 
             if (!isSkill)
             {
@@ -109,6 +122,7 @@ public class FoxAttack : ProjectileBase
 
             float nowdamage = Mathf.Max(2f, damage - 5f * (hitCount - 1));
             enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Fox);
+
 
 
             //var enemy = other.GetComponent<EnemyHP>();

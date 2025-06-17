@@ -4,6 +4,7 @@ using UnityEngine;
 public class BlueDragonAttack : ScriptableObject, IAttackPattern
 {
     private Enemy enemy;
+    private EnemyHP enemyHP;
     private Animator anim;
     private GameObject player;
     private SpriteRenderer spriteRenderer;
@@ -26,18 +27,20 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
 
     [Header("큰 크기의 발사체 오른쪽에서 발사하는 패턴 관련")]
     public GameObject largeProjectilePrefab; // 큰 크기 발사체 프리팹
-    private int largeProjectileCount = 5; // 큰 크기 발사 횟수
+    private int largeProjectileCount = 9; // 큰 크기 발사 횟수
     private int largeProjectileNumPerSpawn = 5; // 한 번에 생성되는 큰 크기 발사체 수
-    private float largeProjectileSpeed = 14f; // 큰 크기 발사체 속도
+    private float largeProjectileSpeed = 16f; // 큰 크기 발사체 속도
     private float largeProjectileCoolDown = 0.3f; // 큰 크기 발사체 생성 간격
     private WaitForSeconds largeProjectileWait;
-    private float afterLargePjojectileCoolDown = 1.5f; // 큰 크기 발사체 생성 후 대기 시간
+    private float afterLargePjojectileCoolDown = 2.5f; // 큰 크기 발사체 생성 후 대기 시간
     private WaitForSeconds afterLargeProjectileWait;
 
-    private Vector2 spawnAreaMin; // 오른쪽에서 생성되는 발사체의 최소 인덱스
-    private Vector2 spawnAreaMax; // 오른쪽에서 생성되는 발사체의 최대 인덱스
+    private Vector2 spawnMissleMin; 
+    private Vector2 spawnMissileMax; 
 
     [Header("대쉬 패턴 관련")]
+
+    private int dashActivateCount = 0; // 대쉬 패턴을 실행한 횟수
     private float dashSpeed = 30f; // 대쉬 속도
     private float beforeDashCoolDown = 1f; // 대쉬 전 애니메이션만 바뀌는 시간
     private WaitForSeconds beforeDashCoolDownWait;
@@ -46,6 +49,8 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
 
     public void Init(Enemy enemy)
     {
+        dashActivateCount = 0;
+        enemyHP = enemy.GetComponent<EnemyHP>();
         this.enemy = enemy;
         anim = enemy.GetComponent<Animator>();
         spriteRenderer = enemy.GetComponent<SpriteRenderer>();
@@ -59,8 +64,8 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         beforeDashCoolDownWait = new WaitForSeconds(beforeDashCoolDown);
         dashDurationWait = new WaitForSeconds(dashDuration);
 
-        spawnAreaMin = EnemySpawner.SPAWN_AREA_MIN;
-        spawnAreaMax = EnemySpawner.SPAWN_AREA_MAX;
+        spawnMissleMin = EnemySpawner.SPAWN_AREA_MIN + new Vector2(-2f, -1f);
+        spawnMissileMax = EnemySpawner.SPAWN_AREA_MAX + new Vector2(+2f, +1f);
     }
 
     public void Attack()
@@ -69,29 +74,13 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         //enemy.StartCoroutine(CoTimer());
     }
 
-    IEnumerator CoTimer()
-    {
-        float timer = 0;
-        while (true)
-        {
-            timer += Time.deltaTime;
-            if (timer >= easyTime)
-            {
-                attackCooldown += 0.7f; // easyTime마다 공격 패턴 사이 간격 증가
-                Debug.Log($"Attack cooldown이 {attackCooldown}초로 증가해 더 쉬워짐");
-                timer = 0; // 타이머 초기화
-            }
-            yield return null;
-        }
-    }
-
     IEnumerator CoAttackPattern()
     {
         Debug.Log("BlueDragonAttack->CoAttackPattern Start");
         yield return new WaitForSeconds(prevSpawnMoveTime);
         while (true)
         {
-            if (enemy == null || !enemy.enabled)
+            if (enemy == null || !enemy.enabled || enemyHP.isDead)
             {
                 yield break; // 적이 죽었거나 존재하지 않으면 코루틴 종료
             }
@@ -99,7 +88,18 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
             int randomNum;
             if (isOnRight ^ Managers.PlayerControl.IsOnRightSide()) // 플레이어와 적이 다른쪽에 있다면 대쉬패턴을 포함한 랜덤 
             {
-                randomNum = Random.Range(0, 3);
+                if (dashActivateCount == 0) // 대쉬를 0번 했다면 대쉬
+                {
+                    randomNum = 3;
+                }
+                else if (dashActivateCount == 1) // 대쉬를 한 번 했다면 50% 확률로 대쉬
+                {
+                    randomNum = Random.Range(0, 4);
+                }
+                else // 대쉬를 두 번 이상 했다면 33% 확률로 대쉬
+                {
+                    randomNum = Random.Range(0, 3);
+                }
             }
             else  // 플레이어와 적이 모두 오른쪽 혹은 왼쪽에 있다면 대쉬 패턴은 하지 않음
             {
@@ -118,6 +118,8 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
                     yield return enemy.StartCoroutine(CoSpawnLargeProjectiles());
                     break;
                 case 2:
+                case 3:
+                    // 대쉬
                     yield return enemy.StartCoroutine(CoDash());
                     break;
             }
@@ -130,8 +132,8 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         anim.SetBool("IsOnAttack", true); // 공격 애니메이션 시작    
         yield return beforeMediumProjectileWait; // 중간 크기 발사체 생성 전 대기
 
-        // 18, 19, 20, 21, 22, 23을 랜덤한 순서로 갖는 배열 생성
-        int[] projectileNums = { 18, 19, 20, 21, 22, 23 };
+        // 23, 24, 25, 26, 27, 28을 랜덤한 순서로 갖는 배열 생성
+        int[] projectileNums = { 23, 24, 25, 26, 27, 28 };
         for (int i = projectileNums.Length - 1; i > 0; i--)
         {
             int j = Random.Range(0, i + 1);
@@ -192,17 +194,17 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
             int randomYPos;
             do
             {
-                randomYPos = Random.Range((int)spawnAreaMin.y, (int)spawnAreaMax.y + 1);
+                randomYPos = Random.Range((int)spawnMissleMin.y, (int)spawnMissileMax.y + 1);
             } while (System.Array.IndexOf(randomYPositions, randomYPos) != -1); // 중복 방지
             randomYPositions[i] = randomYPos;
         }
 
-        float Xpos = isOnRight ? spawnAreaMax.x : spawnAreaMin.x; // 오른쪽에서 생성할지 왼쪽에서 생성할지 결정 
+        float Xpos = isOnRight ? spawnMissileMax.x : spawnMissleMin.x; // 오른쪽에서 생성할지 왼쪽에서 생성할지 결정 
         // 큰 크기의 발사체들을 랜덤한 인덱스에서 생성
         for (int i = 0; i < largeProjectileNumPerSpawn; i++)
         {
             Vector3 spawnPos = new Vector3(Xpos, randomYPositions[i], 0);
-            Vector3 randomPosition = new Vector3(Random.Range(-1.5f, 1.5f), Random.Range(-1.5f, 1.5f), 0); // 약간의 랜덤 위치 조정
+            Vector3 randomPosition = new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-1.5f, 1.5f), 0); // 약간의 랜덤 위치 조정
             Quaternion rotate = isOnRight ? Quaternion.Euler(0, 0, 180) : Quaternion.Euler(0, 0, 0); // 오른쪽에서 생성할 때는 180도, 왼쪽에서 생성할 때는 0도 회전
             Vector2 velocityDirection = isOnRight ? Vector2.left : Vector2.right; // 오른쪽에서 생성할 때는 왼쪽 방향, 왼쪽에서 생성할 때는 오른쪽 방향
             GameObject proj = Instantiate(largeProjectilePrefab, spawnPos+ randomPosition, rotate);
@@ -217,6 +219,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
 
     IEnumerator CoDash()
     {
+        dashActivateCount++; // 대쉬 패턴을 실행한 횟수 증가
         anim.SetBool("IsOnFast", true); // 대쉬 애니메이션 시작
         yield return beforeDashCoolDownWait;
         anim.SetBool("IsOnFast", false); // 대쉬 애니메이션 끝
@@ -229,7 +232,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         isOnRight = !isOnRight; // 대쉬 후 방향을 반대로 변경
         spriteRenderer.transform.rotation = Quaternion.Euler(0, isOnRight ? 0 : 180, 0); // 스프라이트 방향 변경
 
-        Vector3 newPos = isOnRight ? new Vector3(spawnAreaMax.x + 5f, 0, 0) : new Vector3(spawnAreaMin.x - 5f, 0, 0);
+        Vector3 newPos = isOnRight ? new Vector3(spawnMissileMax.x + 4f, 0, 0) : new Vector3(spawnMissleMin.x - 4f, 0, 0);
         enemy.transform.parent.position = newPos; // 대쉬 후 위치를 오른쪽 혹은 왼쪽으로 이동
         Vector2 direction = isOnRight ? Vector2.left : Vector2.right;
         enemy.rb.linearVelocity = direction * enemy.speed * 2;

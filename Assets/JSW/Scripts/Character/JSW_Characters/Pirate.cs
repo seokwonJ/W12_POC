@@ -12,7 +12,6 @@ public class Pirate : Character
     public int skillShotCount = 8;
 
     [Header("강화")]
-    public float nomalAttackSize;
     public bool isBackwardCannonShot;
     public bool isFirstHitDealsBonusDamage;
 
@@ -33,16 +32,6 @@ public class Pirate : Character
     // 일반 공격: 대포알 한발씩 발사 대포알 경우 광역 넉백
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
-        if (isBackwardCannonShot)
-        {
-            Vector2 direction2 = -1 * (targetPos + Vector3.up - firePoint.position).normalized;
-
-            GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-
-            float nownomalAttackSize2 = nomalAttackSize;
-
-            proj2.GetComponent<PirateAttack>().SetInit(direction2, attackDamage, projectileSpeed, nomalAttackSize, false,isFirstHitDealsBonusDamage);
-        }
 
         Vector2 direction = (targetPos + Vector3.up - firePoint.position).normalized;
 
@@ -52,11 +41,10 @@ public class Pirate : Character
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
-        float nownomalAttackSize = nomalAttackSize;
-        //proj.GetComponent<PirateAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize, isFirstHitDealsBonusDamage);
+        float totalAttackDamage = TotalAttackDamage();
 
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
-        proj.GetComponent<PirateAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize, isFirstHitDealsBonusDamage, false, enemyTarget);
+        proj.GetComponent<PirateAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isFirstHitDealsBonusDamage, false, enemyTarget);
 
         SoundManager.Instance.PlaySFX("PirateAttack");
 
@@ -96,19 +84,22 @@ public class Pirate : Character
             }
 
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+
+            float totalSkillDamage = TotalSkillDamage();
+
             PirateAttack mb = proj.GetComponent<PirateAttack>();
 
             if (target != null)
             {
                 Vector3 dir = target.position - proj.transform.position;
-                mb.SetInit(dir.normalized, (int)(abilityPower), skillSpeed, nomalAttackSize, isFirstHitDealsBonusDamage, true, target);
+                mb.SetInit(dir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isFirstHitDealsBonusDamage, true, target);
             }
             else
             {
                 // 유효한 타겟이 없으면 랜덤 방향 발사
                 float randomAngle = Random.Range(0f, 360f);
                 Vector2 randomDir = Quaternion.Euler(0, 0, randomAngle) * Vector2.right;
-                mb.SetInit(randomDir.normalized, (int)(abilityPower), skillSpeed, nomalAttackSize, isFirstHitDealsBonusDamage,true, null);
+                mb.SetInit(randomDir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isFirstHitDealsBonusDamage,true, null);
             }
 
             

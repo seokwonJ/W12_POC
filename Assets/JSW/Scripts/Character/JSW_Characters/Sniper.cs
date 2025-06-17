@@ -96,8 +96,6 @@ public class Sniper : Character
                 _AttackCurrentCount -= 1;
                 FireNormalProjectile(target.position);
             }
-
-           
         }
     }
 
@@ -188,13 +186,13 @@ public class Sniper : Character
 
         if (_isSkillReady)
         {
-            proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, skillProjectileSpeed, skillSize);
+            proj.GetComponent<SniperAttack>().SetInit(direction, skillProjectileSpeed, skillSize);
 
             SoundManager.Instance.PlaySFX("SniperSkillAttack");
         }
         else
         {
-            proj.GetComponent<SniperAttack>().SetInit(direction, attackDamage, projectileSpeed, nomalAttackSize);
+            proj.GetComponent<SniperAttack>().SetInit(direction, projectileSpeed, nomalAttackSize);
 
             SoundManager.Instance.PlaySFX("SniperAttack");
         }
@@ -209,18 +207,38 @@ public class Sniper : Character
         float maxDistance = 100f; // 원하는 사거리 설정
         RaycastHit2D[] hits = Physics2D.RaycastAll(firePoint.position, direction, maxDistance, LayerMask.GetMask("Enemy")); // "Enemy" 레이어는 적에게만 설정되어야 함
 
-        float currentDamage = attackDamage;
+        float totalAttackDamage = TotalAttackDamage();
+        float totalSkillDamage = TotalSkillDamage();
 
         foreach (var hit in hits)
         {
             EnemyHP enemy = hit.collider.GetComponent<EnemyHP>();
             if (enemy != null)
             {
-                enemy.TakeDamage(Mathf.RoundToInt(currentDamage), ECharacterType.Sniper);
-                currentDamage *= 0.9f; // 10% 감소
-                print("현재 데미지 : " + currentDamage);
+                if (_isSkillReady)
+                {
+                    enemy.TakeDamage((int)totalSkillDamage, ECharacterType.Sniper);
+                }
+                else
+                {
+                    enemy.TakeDamage((int)totalAttackDamage, ECharacterType.Sniper);
+                }
+                totalAttackDamage *= 0.9f; // 10% 감소
+
+                // 넉백
+                Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
+
+                Enemy enemyComponenet = enemy.GetComponent<Enemy>();
+                if (enemyComponenet != null)
+                {
+                    enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower * (knockbackPowerUpNum / 100));
+                }
+
+                print("현재 데미지 : " + totalAttackDamage);
             }
         }
+
+
     }
 
 

@@ -24,7 +24,7 @@ public class PriestAttack : ProjectileBase
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum, Transform target = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum, Transform target = null)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -32,6 +32,7 @@ public class PriestAttack : ProjectileBase
         damage = damageNum;
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
+        knockbackPower = knockbackPowerNum;
 
         if (target != null)
         {
@@ -45,7 +46,17 @@ public class PriestAttack : ProjectileBase
         {
             var enemy = other.GetComponent<EnemyHP>();
             if (enemy != null)
-                enemy.TakeDamage(damage, ECharacterType.Priest);
+                enemy.TakeDamage((int)damage, ECharacterType.Priest);
+
+
+            // ³Ë¹é
+            Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
+
+            Enemy enemyComponenet = enemy.GetComponent<Enemy>();
+            if (enemyComponenet != null)
+            {
+                enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
+            }
 
             DestroyProjectile(gameObject);
         }

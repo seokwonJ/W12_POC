@@ -51,6 +51,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c79f49d07bb636499169165a7e479a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  attackPowerUpNum: 100
+  attackSpeedUpNum: 100
+  projectileSpeedUpNum: 100
+  projectileSizeUpNum: 100
+  knockbackPowerUpNum: 100
+  criticalProbabilityUpNum: 100
+  criticalDamageUpNum: 100
+  attackRangeUpNum: 100
+  manaRegenSpeedUpNum: 100
+  abilityPowerUpNum: 100
   maxMP: 150
   mpPerSecond: 8
   mpImage: {fileID: 0}
@@ -60,9 +70,14 @@ MonoBehaviour:
   enemyDetectRadius: 20
   jumpForce: 13
   maxFallSpeed: 15
-  attackDamage: 5
-  abilityPower: 5
+  attackBase: 5
+  attackDamage: 100
+  abilityPower: 150
   projectileSpeed: 15
+  criticalProbability: 1
+  criticalDamage: 200
+  knockbackPower: 0.1
+  projectileSize: 1
   animator: {fileID: 5282197696764482722}
   playerTransform: {fileID: 0}
   skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
@@ -74,6 +89,7 @@ MonoBehaviour:
   skillPower: 5
   skillAttackSpeed: 2.5
   skillPowerDuration: 4
+  skillProjectileSpeed: 2.5
   skillInterval: 0.15
   isNomalAttackFive: 0
   nomalAttackCount: 0

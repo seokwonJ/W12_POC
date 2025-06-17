@@ -10,12 +10,11 @@ public class SniperAttack : ProjectileBase
     }
 
 
-    public void SetInit(Vector2 dir, int damageNum, float speedNum, float scaleNum)
+    public override void SetInit(Vector2 dir, float speedNum, float scaleNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle);
-        damage = damageNum;
         speed = speedNum;
         trailRenderer.widthMultiplier = trailRenderer.widthMultiplier * scaleNum;
     }

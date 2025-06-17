@@ -21,8 +21,6 @@ public class Priest : Character
     public GameObject PriestHealEffect;
 
     [Header("강화")]
-    public float nomalAttackSize;
-    public bool isAddAttackDamage;
     public bool isnomalAttackSizePerMana;
     public bool isCanTeleport;
     public int upgradeNum;
@@ -48,21 +46,19 @@ public class Priest : Character
 
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
-        float nownomalAttackSize = nomalAttackSize;
-        //if (isnomalAttackSizePerMana) nownomalAttackSize *= currentMP / 50;
+        float totalAttackDamage = TotalAttackDamage();
 
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
 
-        if (isAddAttackDamage) proj.GetComponent<PriestAttack>().SetInit(direction, abilityPower + attackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
-        else
-        {
-            proj.GetComponent<PriestAttack>().SetInit(direction, attackDamage, projectileSpeed, nownomalAttackSize, enemyTarget);
-        }
+
+       proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), enemyTarget);
+        
 
         SoundManager.Instance.PlaySFX("PriestAttack");
     }
 
     Coroutine skillCoroutine;
+    float skillUpNum;
 
     // 스킬: 동료들 공격력 업
     protected override IEnumerator FireSkill()
@@ -113,7 +109,9 @@ public class Priest : Character
             print("데미지 파워 업!!!!");
             Instantiate(priestSkillAllActiveEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform);
             nowCharactersEffects.Add(Instantiate(priestSkillDurationEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform));
-            ridingCharacter.GetComponent<Character>().attackDamage += 10;
+            float nowSkillUpNum = TotalSkillDamage();
+            ridingCharacter.GetComponent<Character>().attackBase += nowSkillUpNum;
+            skillUpNum = nowSkillUpNum;
         }
 
         yield return new WaitForSeconds(skillDuration);
@@ -134,7 +132,7 @@ public class Priest : Character
         foreach (GameObject ridingCharacter in nowCharacters)
         {
             print("데미지 파워 다운!!!!");
-            ridingCharacter.GetComponent<Character>().attackDamage -= 10;
+            ridingCharacter.GetComponent<Character>().attackBase -= skillUpNum;
         }
 
         foreach (GameObject ridingCharacterEffect in nowCharactersEffects)
@@ -178,5 +176,4 @@ public class Priest : Character
             PowerDown();
         }
     }
-
 }

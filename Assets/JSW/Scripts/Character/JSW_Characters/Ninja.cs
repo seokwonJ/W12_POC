@@ -10,6 +10,7 @@ public class Ninja : Character
     public int skillPower;
     public float skillAttackSpeed;
     public float skillPowerDuration;
+    public float skillProjectileSpeed;
     public float skillInterval = 0.3f;
 
     [Header("강화")]
@@ -44,14 +45,19 @@ public class Ninja : Character
         if (isSkilling)
         {
             proj = Instantiate(skillKunai, firePoint.position, Quaternion.identity);
-            proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed * 2.5f);
+
+            float totalSkillDamage = TotalSkillDamage();
+
+            proj.GetComponent<Kunai>().SetInit(direction, totalSkillDamage, projectileSpeed * skillProjectileSpeed, projectileSize, knockbackPower);
         }
         else
         {
             proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            // 만약 투사체 에셋이 적용된다면 강화공격이 이곳에 적용되어야할 듯
-            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, attackDamage + skillPower, projectileSpeed); nomalAttackCount = 0; }
-            else proj.GetComponent<Kunai>().SetInit(direction, attackDamage, projectileSpeed);
+
+            float totalAttackDamage = TotalAttackDamage();
+
+            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0; }
+            else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
         }
 
         SoundManager.Instance.PlaySFX("NinjaAttack");
@@ -118,14 +124,12 @@ public class Ninja : Character
 
         activeParticle = Instantiate(skillLandingActive,transform.position,Quaternion.identity,transform);
         isSkilling = true;
-        attackDamage += power;
         normalFireInterval /= skillAttackSpeed;
-        Debug.Log("공격력 업!");
+        Debug.Log("공격속도 업!");
 
         yield return new WaitForSeconds(skillPowerDuration);
 
-        Debug.Log("공격력 돌아옴");
-        attackDamage -= power;
+        Debug.Log("공격속도 돌아옴");
         normalFireInterval *= skillAttackSpeed;
         isSkilling = false;
         Destroy(activeParticle);
@@ -158,8 +162,7 @@ public class Ninja : Character
 
         if (isSkilling == true)
         {
-            Debug.Log("공격력 돌아옴");
-            attackDamage -= skillPower;
+            Debug.Log("공격속도 돌아옴");
             normalFireInterval *= skillAttackSpeed;
             isSkilling = false;
         }
