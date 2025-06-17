@@ -6,7 +6,7 @@ public class PirateAttack : ProjectileBase
 {
     public Rigidbody2D rb;
     public GameObject explosionEffect;
-    public bool isFirstHitDealsBonusDamage;
+    private bool _isNoMoreExplosionAttackDamageUp;
     public float acceleration = 5f;
     private float currentSpeed = 0f;
     private bool isAttack;
@@ -17,6 +17,10 @@ public class PirateAttack : ProjectileBase
 
     public float spiralDuration = 0.3f;
     private bool isSpiraling = false;
+
+    private bool _isAttackPerMana;
+    private Pirate _characterPirate;
+    private bool _isSkill;
 
     protected override void Update()
     {
@@ -54,7 +58,7 @@ public class PirateAttack : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum , bool isFirstHitDealsBonus, bool isSkill, Transform homingTarget = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isNoMoreExplosionAttackDamageUp, bool isSkill, bool isAttackPerMana, Pirate pirate, Transform homingTarget = null)
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -66,14 +70,18 @@ public class PirateAttack : ProjectileBase
         speed = speedNum;
         knockbackPower = knockbackPowerNum;
 
-        isFirstHitDealsBonusDamage = isFirstHitDealsBonus;
+        this._isNoMoreExplosionAttackDamageUp = isNoMoreExplosionAttackDamageUp;
+
+        this._isAttackPerMana = isAttackPerMana;
+        _isSkill = isSkill;
+        _characterPirate = pirate;
 
         if (homingTarget != null)
         {
             isHoming = true;
             target = homingTarget;
         }
-        if (isSkill) StartCoroutine(SpiralThenHoming());
+        if (_isSkill) StartCoroutine(SpiralThenHoming());
     }
    
     private IEnumerator SpiralThenHoming()
@@ -108,28 +116,34 @@ public class PirateAttack : ProjectileBase
             SoundManager.Instance.PlaySFX("PirateAttackExplosion");
 
             EnemyHP enemyHp = other.GetComponent<EnemyHP>();
-            if (enemyHp != null && isFirstHitDealsBonusDamage)
+            if (enemyHp != null && _isNoMoreExplosionAttackDamageUp)
             {
-                enemyHp.TakeDamage((int)damage, ECharacterType.Pirate);
+                enemyHp.TakeDamage((int)(damage), ECharacterType.Pirate);
             }
-
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, transform.localScale.magnitude);
-            foreach (var hit in hits)
+            else
             {
-                if (hit.CompareTag("Enemy"))
+                if (!_isSkill && _isAttackPerMana) _characterPirate.AttackMana();
+
+                Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, transform.localScale.magnitude);
+                foreach (var hit in hits)
                 {
-                    Enemy enemy = hit.GetComponent<Enemy>();
-                    EnemyHP otherEnemyHP = hit.GetComponent<EnemyHP>();
-
-                    otherEnemyHP.TakeDamage((int)damage,ECharacterType.Pirate);
-
-                    Vector3 knockbackDirection = hit.transform.position - transform.position;
-                    if (enemy != null && otherEnemyHP.enemyHP > 0)
+                    if (hit.CompareTag("Enemy"))
                     {
-                        enemy.ApplyKnockback(knockbackDirection, knockbackPower);
+                        Enemy enemy = hit.GetComponent<Enemy>();
+                        EnemyHP otherEnemyHP = hit.GetComponent<EnemyHP>();
+
+                        otherEnemyHP.TakeDamage((int)damage, ECharacterType.Pirate);
+
+                        Vector3 knockbackDirection = hit.transform.position - transform.position;
+                        if (enemy != null && otherEnemyHP.enemyHP > 0)
+                        {
+                            enemy.ApplyKnockback(knockbackDirection, knockbackPower);
+                        }
                     }
                 }
             }
+
+            
 
             DestroyProjectile(gameObject);
         }

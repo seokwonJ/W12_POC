@@ -101,9 +101,9 @@ public class MagicianUpgrade : CharacterUpgrade
                 magician.upgradeNum = 12;
                 break;
             case UpgradeType.SkillExplosionAttack:                                                  // 지속시간이 끝나면 터지며 대미지를 준다
-              //  archer.isUpgradeSameEnemyDamage = true;
+                magician.isUpgradeSkillExplosionAttack = true;
                 Debug.Log("Debug13 magician");
-               // archer.upgradeNum = 13;
+                magician.upgradeNum = 13;
                 break;
         }
 

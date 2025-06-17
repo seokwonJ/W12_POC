@@ -1,3 +1,4 @@
+using UnityEditor.Searcher;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "SniperUpgrade", menuName = "Upgrades/SniperUpgrade")]
@@ -14,7 +15,13 @@ public class SniperUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp,             // 마나 회복 속도 증가 + 스킬 대미지 증가
+
+        SkillCountUp,                               // 스킬의 투사체 + 1
+        ReloadTimeDown,                             // 무한탄창 : 장전 시간이 N% 줄어든다
+        NoMoreSkill,                                // 더 이상 스킬을 사용 할 수 없다(마나 재생량이 0이 된다 )
+        NoMorePenetrationAttackUp,                  // 더 이상 관통이 되지 않지만 공격력이 비약적으로 증가한다
+        PenetrationPerDamageUp                      // 관통 될 때마다 대미지가 증가한다
     }
 
     public UpgradeType type;
@@ -70,14 +77,42 @@ public class SniperUpgrade : CharacterUpgrade
                 Debug.Log("Debug8 sniper");
                 sniper.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // 마나 회복 속도 증가 + 스킬 대미지 증가
                 sniper.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
                 sniper.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
                 Debug.Log("Debug9 sniper");
                 sniper.upgradeNum = 9;
                 break;
-                //-------------- 특수 업그레이드 --------------
 
+
+            //-------------- 특수 업그레이드 --------------
+
+            case UpgradeType.SkillCountUp:                                                          // 스킬의 투사체 + 1
+                sniper.skillCount += 1;
+                Debug.Log("Debug10 archer");
+                sniper.upgradeNum = 10;
+                break;
+            case UpgradeType.ReloadTimeDown:                                                        // 무한탄창 : 장전 시간이 N% 줄어든다
+                sniper.realoadTime -= sniper.realoadTime * 0.3f;
+                Debug.Log("Debug11 archer");
+                sniper.upgradeNum = 11;
+                break;
+            case UpgradeType.NoMoreSkill:                                                           // 더 이상 스킬을 사용 할 수 없다(마나 재생량이 0이 된다 )
+                sniper.mpPerSecond = 0;
+                Debug.Log("Debug12 archer");
+                sniper.upgradeNum = 12;
+                break;
+            case UpgradeType.NoMorePenetrationAttackUp:                                             // 더 이상 관통이 되지 않지만 공격력이 비약적으로 증가한다
+                sniper.isNoMorePenetrationAttackUp = true;
+                sniper.attackBase += 30;
+                Debug.Log("Debug13 archer");
+                sniper.upgradeNum = 13;
+                break;
+            case UpgradeType.PenetrationPerDamageUp:                                                // 관통 될 때마다 대미지가 증가한다
+                sniper.isPenetrationPerDamageUp = true;
+                Debug.Log("Debug13 archer");
+                sniper.upgradeNum = 13;
+                break;
         }
 
         Debug.Log("업그레이드 성공");

@@ -22,7 +22,9 @@ public class Sniper : Character
     public float realoadTime;
 
     [Header("강화")]
-    public float nomalAttackSize;
+    public bool isNoMorePenetrationAttackUp;
+    public bool isPenetrationPerDamageUp;
+    public float penetrationPerDamageUpPercent = 110;
 
     public int upgradeNum;
 
@@ -71,7 +73,7 @@ public class Sniper : Character
 
             if (_AttackCurrentCount <= 0)
             {
-                animator.SetBool("isEndTReload", false);
+                animator.SetBool("isEndReload", false);
                 animator.Play("Reload", -1, 0.1f);
 
                 Debug.Log("스나이퍼 장전 중");
@@ -84,7 +86,7 @@ public class Sniper : Character
                 yield return new WaitForSeconds(1);
 
                 _AttackCurrentCount = AttackMaxCount;
-                animator.SetBool("isEndTReload", true);
+                animator.SetBool("isEndReload", true);
             }
 
             if (!isGround) continue;
@@ -184,18 +186,6 @@ public class Sniper : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         Instantiate(sniperActiveShot, transform.position, Quaternion.identity);
 
-        if (_isSkillReady)
-        {
-            proj.GetComponent<SniperAttack>().SetInit(direction, skillProjectileSpeed, skillSize);
-
-            SoundManager.Instance.PlaySFX("SniperSkillAttack");
-        }
-        else
-        {
-            proj.GetComponent<SniperAttack>().SetInit(direction, projectileSpeed, nomalAttackSize);
-
-            SoundManager.Instance.PlaySFX("SniperAttack");
-        }
 
         // 캐릭터 스프라이트 방향 반전
         if (direction.x > 0)
@@ -206,6 +196,19 @@ public class Sniper : Character
         // Raycast로 적 관통 처리
         float maxDistance = 100f; // 원하는 사거리 설정
         RaycastHit2D[] hits = Physics2D.RaycastAll(firePoint.position, direction, maxDistance, LayerMask.GetMask("Enemy")); // "Enemy" 레이어는 적에게만 설정되어야 함
+
+        if (_isSkillReady)
+        {
+            proj.GetComponent<SniperAttack>().SetInit(direction, skillProjectileSpeed, skillSize, isNoMorePenetrationAttackUp, hits[0].transform.position);
+
+            SoundManager.Instance.PlaySFX("SniperSkillAttack");
+        }
+        else
+        {
+            proj.GetComponent<SniperAttack>().SetInit(direction, projectileSpeed, projectileSize, isNoMorePenetrationAttackUp, hits[0].transform.position);
+
+            SoundManager.Instance.PlaySFX("SniperAttack");
+        }
 
         float totalAttackDamage = TotalAttackDamage();
         float totalSkillDamage = TotalSkillDamage();
@@ -223,7 +226,9 @@ public class Sniper : Character
                 {
                     enemy.TakeDamage((int)totalAttackDamage, ECharacterType.Sniper);
                 }
-                totalAttackDamage *= 0.9f; // 10% 감소
+
+                if (isPenetrationPerDamageUp) totalAttackDamage *= penetrationPerDamageUpPercent/100; // 퍼센트 증가
+                else totalAttackDamage *= 0.9f; // 10% 감소
 
                 // 넉백
                 Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
@@ -234,11 +239,11 @@ public class Sniper : Character
                     enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower * (knockbackPowerUpNum / 100));
                 }
 
+                if (isNoMorePenetrationAttackUp) break;
                 print("현재 데미지 : " + totalAttackDamage);
             }
+
         }
-
-
     }
 
 

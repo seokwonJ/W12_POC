@@ -1,3 +1,4 @@
+using UnityEditor.Searcher;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PirateUpgrade", menuName = "Upgrades/PirateUpgrade")]
@@ -14,7 +15,12 @@ public class PirateUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp,             // 마나 회복 속도 증가 + 스킬 대미지 증가
+
+        SkillProjectileCountUp,                     // 스킬의 투사체 +3
+        AttackPerMana,                              // 기본 공격 적중시 마나를 n% 채워준다
+        ManaMultipleSkillProjectileMultiple,        // 최대 마나량 2배 해적의 스킬 투사체가 2배
+        NoMoreExplosionAttackDamageUp,              // 더 이상 대포가 터지면서 범위 대미지를 주지 않음 공격력이 대폭 증가한다
     }
 
     public UpgradeType type;
@@ -76,7 +82,30 @@ public class PirateUpgrade : CharacterUpgrade
                 Debug.Log("Debug9 pirate");
                 pirate.upgradeNum = 9;
                 break;
-                //-------------- 특수 업그레이드 --------------
+            //-------------- 특수 업그레이드 --------------
+
+
+            case UpgradeType.SkillProjectileCountUp:                                                // 스킬의 투사체 +3
+                pirate.skillShotCount += 3;
+                Debug.Log("Debug10 pirate");
+                pirate.upgradeNum = 10;
+                break;
+            case UpgradeType.AttackPerMana:                                                         // 기본 공격 적중시 마나를 n% 채워준다
+                pirate.isAttackPerMana = true;
+                Debug.Log("Debug11 pirate");
+                pirate.upgradeNum = 11;
+                break;
+            case UpgradeType.ManaMultipleSkillProjectileMultiple:                                   // 최대 마나량 2배 해적의 스킬 투사체가 2배
+                pirate.isManaMultipleSkillProjectileMultiple = true;
+                Debug.Log("Debug12 pirate");
+                pirate.upgradeNum = 12;
+                break;
+            case UpgradeType.NoMoreExplosionAttackDamageUp:                                         // 더 이상 대포가 터지면서 범위 대미지를 주지 않음 공격력이 대폭 증가한다
+                pirate.isManaMultipleSkillProjectileMultiple = true;
+                pirate.attackBase += 100;
+                Debug.Log("Debug13 pirate");
+                pirate.upgradeNum = 13;
+                break;
 
         }
 
