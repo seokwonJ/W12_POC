@@ -26,7 +26,6 @@ public class LeviAttack : ProjectileBase
 
             if (damage - _attackPerDamageMinus > 5) damage -= _attackPerDamageMinus;
             else damage = 5;
-
         }
     }
 

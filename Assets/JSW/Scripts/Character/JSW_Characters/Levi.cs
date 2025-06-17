@@ -5,25 +5,22 @@ using UnityEngine;
 public class Levi : Character
 {
     [Header("리바이 공격")]
+    public int attackNum = 2;
     public float dobleAttackCoolTime = 0.05f;
     public float NormalAttackProjectileDuration = 2f;
     public float attackPerDamageMinus = 5;
 
     [Header("스킬")]
-    public float skillTargetCount;
+    public int skillTargetCount;
+    private int _nowskillTargetCount;
     public float skillInterval = 0.3f;
     public float skillDashSpeed;
     public GameObject trail;
 
     [Header("강화")]
-    public bool isAttackWhileFalling;
-    public bool isGainPowerFromSkillDamage;
-    public int GainPowerFromSkillDamageCount;
-    public float GainPowerFromSkillDamageDuration;
-    public bool isManaOnLandingBasedOnTimeAway;
-    public float ManaOnLandingBasedOnTime;
-    public bool isAttackSpeedBoostAfterQuickReboard;
-    public bool isMoreSkillDamageWithJumpPower;
+    public bool isSkillEndPlusSkillCountUp;
+    public bool isAttackWhileSkillUpgrade;
+    public int maximumSkillEndPlusSkillCountUp = 10;
     public int upgradeNum;
 
     [Header("이펙트")]
@@ -49,14 +46,10 @@ public class Levi : Character
         SoundManager.Instance.PlaySFX("LeviAttack");
     }
 
-    protected override void Update()
-    {
-        if (isManaOnLandingBasedOnTimeAway && !isGround) ManaOnLandingBasedOnTime += Time.deltaTime;
-        base.Update();
-    }
-
     protected override IEnumerator NormalAttackRoutine()
     {
+
+        _nowskillTargetCount = skillTargetCount;
         while (true)
         {
             yield return new WaitForSeconds(normalFireInterval);
@@ -67,9 +60,12 @@ public class Levi : Character
             {
                 Vector3 targetpos = target.position;
                 animator.Play("ATTACK", -1, 0f);
-                FireNormalProjectile(targetpos);
-                yield return new WaitForSeconds(dobleAttackCoolTime);
-                FireNormalProjectile(targetpos);
+
+                for (int i = 0; i < attackNum;i++)
+                {
+                    FireNormalProjectile(targetpos);
+                    yield return new WaitForSeconds(dobleAttackCoolTime);
+                }
             }
         }
     }
@@ -106,7 +102,7 @@ public class Levi : Character
 
         Transform target;
 
-        for (int i = 0; i < skillTargetCount; i++)
+        for (int i = 0; i < _nowskillTargetCount; i++)
         {
             target = FindFarestEnemyExcluding(hitEnemies);
             if (target == null) break;
@@ -127,8 +123,7 @@ public class Levi : Character
 
             if (enemyHP != null)
             {
-                if (isMoreSkillDamageWithJumpPower) enemyHP.TakeDamage((int)(attackDamage + totalSkillDamage + jumpForce), ECharacterType.Levi);
-                else enemyHP.TakeDamage((int)(attackDamage + totalSkillDamage), ECharacterType.Levi);
+                enemyHP.TakeDamage((int)(totalSkillDamage), ECharacterType.Levi);
 
                 Instantiate(skillActiveEffect, enemyHP.transform.position, Quaternion.identity);
             }
@@ -146,9 +141,6 @@ public class Levi : Character
         animator.Play("SKILLEND", -1, 0f);
 
         yield return new WaitForSeconds(0.5f);
-
-        if (isAttackSpeedBoostAfterQuickReboard) StartCoroutine(AttackSpeedBoostAfterQuickReboard());
-        if (isGainPowerFromSkillDamage) StartCoroutine(GainPowerFromSkillDamageCountUpGrade());
 
         //animator.SetBool("5_FALL", true);
         gameObject.layer = LayerMask.NameToLayer("Character");
@@ -223,10 +215,14 @@ public class Levi : Character
 
     protected override void OnCollisionEnter2D(Collision2D collision)
     {
-        base.OnCollisionEnter2D(collision);
-        if (collision.gameObject.tag == "Player")
+        base.OnCollisionEnter2D(collision); // 부모 로직 먼저 실행
+
+        // 조건 만족 안 하면 아무것도 안 하고 리턴 (부모에서 이미 isGround 처리됨)
+        if (!isGround) return;
+        
+        if (isSkillEndPlusSkillCountUp && _nowskillTargetCount < maximumSkillEndPlusSkillCountUp)
         {
-            if (isManaOnLandingBasedOnTimeAway) currentMP += Mathf.Clamp(ManaOnLandingBasedOnTime * 3, 0, 50); ManaOnLandingBasedOnTime = 0;
+            _nowskillTargetCount += 1;
         }
     }
 
@@ -235,50 +231,18 @@ public class Levi : Character
 
         float totalAttackDamage = TotalAttackDamage();
 
-        if (!isGround && collision.tag == "Enemy" && (isSkillActive || isAttackWhileFalling))            // 스킬을 쓰고있거나, 떨어짐 평타 강화되었을 때
+        if (!isGround && collision.tag == "Enemy" && (isSkillActive && isAttackWhileSkillUpgrade))            // 스킬을 쓰고 강화되었을 때
         {
-            if (isGainPowerFromSkillDamage && isSkillActive) GainPowerFromSkillDamageCount += 1;
             collision.GetComponent<EnemyHP>().TakeDamage((int)totalAttackDamage, ECharacterType.Levi);
         }
     }
 
-    IEnumerator GainPowerFromSkillDamageCountUpGrade()
-    {
-        attackDamage += GainPowerFromSkillDamageCount;
-        yield return new WaitForSeconds(GainPowerFromSkillDamageDuration);
-        attackDamage -= GainPowerFromSkillDamageCount;
-        GainPowerFromSkillDamageCount = 0;
-    }
 
-    IEnumerator AttackSpeedBoostAfterQuickReboard()
-    {
-        float timer = 0;
-        float minusNormalFireInterval = 0.4f;
-
-        while (true)
-        {
-
-            if (isGround)
-            {
-                normalFireInterval -= minusNormalFireInterval;
-
-                yield return new WaitForSeconds(2f);
-
-                normalFireInterval += minusNormalFireInterval;
-
-                break;
-            }
-
-            if (timer > 3) break;
-            timer += Time.deltaTime;
-
-            yield return null;
-        }
-    }
 
     public override void EndFieldAct() // 필드전투가 종료될 때 실행
     {
         base.EndFieldAct();
         trail.GetComponent<TrailRenderer>().enabled = false;
+        gameObject.layer = LayerMask.NameToLayer("Character");
     }
 }
