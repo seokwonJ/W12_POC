@@ -15,7 +15,12 @@ public class MagicianUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp,             // 마나 회복 속도 증가 + 스킬 대미지 증가
+
+        TenAttackSkillAttack,                       // 기본공격을 10회 후 평타로 스킬 투사체를 발사한다
+        SkillAttackCountUp,                         // 스킬을 1회 더 시전합니다
+        SkillAttackSizeUp,                          // 스킬 투사체의 크기가 증가합니다
+        SkillExplosionAttack,                         // 지속시간이 끝나면 터지며 대미지를 준다
     }
 
     public UpgradeType type;
@@ -77,8 +82,29 @@ public class MagicianUpgrade : CharacterUpgrade
                 Debug.Log("Debug9 magician");
                 magician.upgradeNum = 9;
                 break;
-                //-------------- 특수 업그레이드 --------------
 
+            //-------------- 특수 업그레이드 --------------
+
+            case UpgradeType.TenAttackSkillAttack:                                                  // 기본공격을 10회 후 평타로 스킬 투사체를 발사한다
+                magician.isUpgradeTenAttackSkillAttack = true;
+                Debug.Log("Debug10 magician");
+                magician.upgradeNum = 10;
+                break;
+            case UpgradeType.SkillAttackCountUp:                                                    // 스킬을 1회 더 시전합니다
+                magician.skillCount += 1;
+                Debug.Log("Debug11 magician");
+                magician.upgradeNum = 11;
+                break;
+            case UpgradeType.SkillAttackSizeUp:                                                     // 스킬 투사체의 크기가 증가합니다
+                magician.skillSize += 1;
+                Debug.Log("Debug12 magician");
+                magician.upgradeNum = 12;
+                break;
+            case UpgradeType.SkillExplosionAttack:                                                  // 지속시간이 끝나면 터지며 대미지를 준다
+              //  archer.isUpgradeSameEnemyDamage = true;
+                Debug.Log("Debug13 magician");
+               // archer.upgradeNum = 13;
+                break;
         }
 
         Debug.Log("업그레이드 성공");

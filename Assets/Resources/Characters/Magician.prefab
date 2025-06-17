@@ -246,9 +246,11 @@ MonoBehaviour:
   skillFireDelay: 0.1
   skillSize: 4
   skillProjectileSpeed: 15
-  isAddAttackDamage: 0
-  isnomalAttackSizePerMana: 0
   upgradeNum: 0
+  isUpgradeTenAttackSkillAttack: 0
+  tenAttackSkillAttackCountMax: 10
+  isUpgradeSkillExplosionAttack: 0
+  SkillExplosionAttackTime: 0.8
   player: {fileID: 0}
   skillActiveEffect: {fileID: 1956634884848028283, guid: c769fa4c3128f3b448f853ad0cefe357, type: 3}
 --- !u!61 &1354129338059981449

@@ -187,6 +187,8 @@ MonoBehaviour:
   speed: 10
   lifetime: 5
   damage: 15
+  knockbackPower: 1
+  exlosionEffect: {fileID: 2941369600116093898, guid: f5034585376b4cb4f9791239430ef16b, type: 3}
 --- !u!58 &4101064047448758779
 CircleCollider2D:
   m_ObjectHideFlags: 0

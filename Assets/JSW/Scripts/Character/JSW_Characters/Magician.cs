@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 public class Magician : Character
 {
@@ -12,9 +13,13 @@ public class Magician : Character
     public float skillProjectileSpeed = 15;
 
     [Header("∞≠»≠")]
-    public bool isAddAttackDamage;
-    public bool isnomalAttackSizePerMana;
     public int upgradeNum;
+    public bool isUpgradeTenAttackSkillAttack;
+    public int tenAttackSkillAttackCountMax = 10;
+    private int _nowTenAttackSkillAttackCount = 0;
+    public bool isUpgradeSkillExplosionAttack;
+    public float SkillExplosionAttackTime = 1.5f;
+
     public GameObject player;
 
     [Header("¿Ã∆Â∆Æ")]
@@ -40,12 +45,19 @@ public class Magician : Character
         float totalAttackDamage = TotalAttackDamage();
         
 
-        if (isnomalAttackSizePerMana) projectileSize *= currentMP / 50;
-
-        if (isAddAttackDamage) proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
+        if(_nowTenAttackSkillAttackCount >= tenAttackSkillAttackCountMax)
+        {
+            float totalSkillDamage = TotalSkillDamage();
+            proj.GetComponent<MagicBall>().SetInit(direction.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100), false,0);
+            _nowTenAttackSkillAttackCount = 0;
+        }
         else
         {
-            proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
+            if (isUpgradeTenAttackSkillAttack)
+            {
+                _nowTenAttackSkillAttackCount += 1;
+            }
+            proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), false, 0);
         }
 
         SoundManager.Instance.PlaySFX("MagicianAttack");
@@ -77,12 +89,11 @@ public class Magician : Character
 
         if (target != null)
         {
-            mb.SetInit((target.position - firePoint.position).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100));
+            mb.SetInit((target.position - firePoint.position).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100), isUpgradeSkillExplosionAttack, SkillExplosionAttackTime);
         }
         else
         {
-            mb.SetInit((Random.insideUnitSphere).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100));
-
+            mb.SetInit((Random.insideUnitSphere).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100), isUpgradeSkillExplosionAttack, SkillExplosionAttackTime);
         }
     }
 

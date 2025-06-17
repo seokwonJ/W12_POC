@@ -73,6 +73,9 @@ MonoBehaviour:
   - clipName: MagicianSkill
     clip: {fileID: 8300000, guid: 6aa5a46cb179dc7499daa890fc9b3553, type: 3}
     volume: 1
+  - clipName: MagicianExplosion
+    clip: {fileID: 8300000, guid: 9e60eeb691f67c54287838c067f3357d, type: 3}
+    volume: 1
   - clipName: PirateAttack
     clip: {fileID: 8300000, guid: fb9b05e4c3716f241b043e9044964687, type: 3}
     volume: 1
