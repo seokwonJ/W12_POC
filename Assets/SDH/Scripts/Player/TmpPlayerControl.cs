@@ -2,7 +2,6 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.Rendering;
-using UnityEngine.TextCore.Text;
 
 public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 컨트롤하는 스크립트
 {
@@ -19,14 +18,14 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
     {
         DontDestroyOnLoad(gameObject);
 
-        SetStartPosition();
+        SetFieldPosition();
 
         Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;
     }
 
     public void SetPlayer() // 고용할 때마다 호출하는 함수 (상점 씬에서 호출된다는 점을 명심)
     {
-        SetStartPosition();
+        SetFieldPosition();
 
         foreach (GameObject character in Managers.PlayerControl.Characters)
         {
@@ -151,7 +150,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         yield break;
     }
 
-    public void SetStartPosition() // 씬이 시작할 때 비행체와 캐릭터 위치 보정 + 레이어 순서 변경
+    public void SetFieldPosition() // 전투가 시작할 때 비행체와 캐릭터 위치 보정 + 레이어 순서 변경
     {
         transform.position = Vector3.zero;
 
@@ -165,6 +164,11 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         }
 
         SetOrderInLayer(null);
+    }
+
+    public void SetShopPosition() // 상점이 시작할 때 비행체를 숨기기
+    {
+        Managers.PlayerControl.NowPlayer.SetActive(false);
     }
 
     public void SetOrderInLayer(Transform character) // 캐릭터들이 점프하거나 착지할 때마다 레이어 순서 변경

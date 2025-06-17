@@ -18,7 +18,7 @@ MonoBehaviour:
   enemyWave:
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
   - {fileID: 11400000, guid: 45054d53ea14bb740b1f6ad9afeac3e6, type: 2}
-  waveCount: 0200000002000000
+  waveCount: 0100000001000000
   wavePreparationTime:
   - 1
   - 1

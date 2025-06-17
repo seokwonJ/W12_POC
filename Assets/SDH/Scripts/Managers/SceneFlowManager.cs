@@ -6,7 +6,6 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 {
     public Canvas FadeOutCanvas;
     public Canvas GameOverCanvas;
-    public SetUpgradeCanvas SetUpgradeCanvasCS;
 
     public void Init()
     {
@@ -23,14 +22,15 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 
     private void FieldSceneLoaded() // 필드 씬이 시작될 때 실행
     {
-        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetStartPosition();
+        Managers.PlayerControl.NowPlayer.SetActive(true);
+        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetFieldPosition();
 
         Managers.Stage.Stage++;
     }
 
     private void ShopSceneLoaded() // 상점 씬이 시작될 때 실행
     {
-        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetStartPosition();
+        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetShopPosition();
 
         Managers.Status.Gold += 200;
     }
