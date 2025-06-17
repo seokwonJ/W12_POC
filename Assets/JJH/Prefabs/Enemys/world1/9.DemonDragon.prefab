@@ -185,7 +185,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: -4}
-  m_SizeDelta: {x: 6.6, y: 0.3}
+  m_SizeDelta: {x: 6.6, y: 0.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &7230823132008248138
 Canvas:
@@ -357,6 +357,7 @@ MonoBehaviour:
   editorNote: 6
   movementSO: {fileID: 11400000, guid: 025b4df3d1e01bd48a77e19e3a05a499, type: 2}
   attackSO: {fileID: 11400000, guid: c33670cdff8d6554b9e63d15e4886934, type: 2}
+  isBoss: 1
   speed: 5
   minPlayerDistance: 0
   isKnockbackable: 0
