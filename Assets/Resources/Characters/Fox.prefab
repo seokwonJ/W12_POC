@@ -4128,7 +4128,7 @@ MonoBehaviour:
   projectileSpeed: 10
   criticalProbability: 0
   criticalDamage: 0
-  knockbackPower: 50
+  knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 4116809875839684467}
   playerTransform: {fileID: 0}
