@@ -25,7 +25,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
     public void SetPlayer() // 고용할 때마다 호출하는 함수 (상점 씬에서 호출된다는 점을 명심)
     {
-        SetFieldPosition();
+        //SetFieldPosition();
 
         foreach (GameObject character in Managers.PlayerControl.Characters)
         {
@@ -56,7 +56,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         if (Managers.Stage.OnField) // 필드 돌입
         {
-             yield return StartCoroutine(ShopEnd());
+             //yield return StartCoroutine(ShopEnd());
         }
         else // 상점 돌입
         {
@@ -168,7 +168,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
     public void SetShopPosition() // 상점이 시작할 때 비행체를 숨기기
     {
-        Managers.PlayerControl.NowPlayer.SetActive(false);
+        Managers.PlayerControl.NowPlayer.transform.position = new(0f, -5000f, 0f);
     }
 
     public void SetOrderInLayer(Transform character) // 캐릭터들이 점프하거나 착지할 때마다 레이어 순서 변경

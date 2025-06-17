@@ -33,7 +33,7 @@ public class ShopCharacterCanavs : MonoBehaviour
     {
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
-            GameObject shopIcon = Instantiate(Managers.Asset.CharacterIcons[Managers.PlayerControl.CharactersIdx[i]], Managers.Shop.characterCanvas.transform);
+            GameObject shopIcon = Instantiate(Managers.Asset.CharacterIcons[Managers.PlayerControl.CharactersIdx[i]], transform);
             shopIcon.transform.localPosition = new(150f - 150f * i, -200f, 0f);
         }
     }
@@ -45,7 +45,7 @@ public class ShopCharacterCanavs : MonoBehaviour
 
         if(nowShopSelectIdx< Managers.PlayerControl.Characters.Count)
         {
-            select.transform.localPosition = new(150f - 150f * nowShopSelectIdx, -200f, 0f);
+            select.transform.localPosition = new(300f - 150f * (Managers.PlayerControl.Characters.Count - nowShopSelectIdx), -200f, 0f);
         }
         else if (nowShopSelectIdx == Managers.PlayerControl.Characters.Count)
         {
