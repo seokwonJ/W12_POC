@@ -1,43 +1,76 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 using UnityEngine.UI;
 
 public class SetUpgradeCanvas : MonoBehaviour
 {
+    [SerializeField] private Transform selectCursor;
     [SerializeField] private Image icon0;
     [SerializeField] private TextMeshProUGUI name0;
     [SerializeField] private TextMeshProUGUI description0;
-    [SerializeField] private Button button0;
     [SerializeField] private Image icon1;
     [SerializeField] private TextMeshProUGUI name1;
     [SerializeField] private TextMeshProUGUI description1;
-    [SerializeField] private Button button1;
     [SerializeField] private Image icon2;
     [SerializeField] private TextMeshProUGUI name2;
     [SerializeField] private TextMeshProUGUI description2;
-    [SerializeField] private Button button2;
+    private GameObject nowCharacter;
+    private List<CharacterUpgrade> nowUpgrades;
+    private int nowUpgradeSelectIdx;
 
-    public void SetUpgrades(GameObject character)
+    private void Start()
     {
-        Debug.Log("업그레이드 시작");
-        List<CharacterUpgrade> upgrades = character.GetComponent<UpgradeController>().ShowUpgradeChoices();
+        SetNowUpgradeSelect(1); // 기본값은 가운데
+    }
 
-        GetComponent<Canvas>().enabled = true;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            ActNowUpgradeSelect();
+        }
+        else if (Input.GetKeyDown(KeyCode.LeftArrow))
+        {
+            SetNowUpgradeSelect(nowUpgradeSelectIdx - 1); // 인덱스 상 다른 것들과 음양이 반대임에 유의
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            SetNowUpgradeSelect(nowUpgradeSelectIdx + 1);
+        }
+    }
 
-        icon0.sprite = upgrades[0].icon;
-        name0.text = upgrades[0].name;
-        description0.text = upgrades[0].description;
-        button0.onClick.AddListener(() => { upgrades[0].ApplyUpgrade(character); GetComponent<Canvas>().enabled = false; });
+    private void SetNowUpgradeSelect(int newIdx)
+    {
+        if (newIdx < 0 || newIdx > 2) return; // 고정값이라는 점에 유의
 
-        icon1.sprite = upgrades[1].icon;
-        name1.text = upgrades[1].name;
-        description1.text = upgrades[1].description;
-        button1.onClick.AddListener(() => { upgrades[1].ApplyUpgrade(character); GetComponent<Canvas>().enabled = false; });
+        nowUpgradeSelectIdx = newIdx;
+        selectCursor.transform.localPosition = new(-600f + newIdx * 600f, 315f, 0f);
+    }
 
-        icon2.sprite = upgrades[2].icon;
-        name2.text = upgrades[2].name;
-        description2.text = upgrades[2].description;
-        button2.onClick.AddListener(() => { upgrades[2].ApplyUpgrade(character); GetComponent<Canvas>().enabled = false; });
+    private void ActNowUpgradeSelect()
+    {
+        nowUpgrades[nowUpgradeSelectIdx].ApplyUpgrade(nowCharacter);
+
+        gameObject.SetActive(false);
+    }
+
+    public void SetUpgrades(GameObject character) // 입력받은 동료(GameObject)의 업그레이드 기능 추가
+    {
+        nowCharacter = character;
+        nowUpgrades = character.GetComponent<UpgradeController>().ShowUpgradeChoices();
+
+        icon0.sprite = nowUpgrades[0].icon;
+        name0.text = nowUpgrades[0].name;
+        description0.text = nowUpgrades[0].description;
+
+        icon1.sprite = nowUpgrades[1].icon;
+        name1.text = nowUpgrades[1].name;
+        description1.text = nowUpgrades[1].description;
+
+        icon2.sprite = nowUpgrades[2].icon;
+        name2.text = nowUpgrades[2].name;
+        description2.text = nowUpgrades[2].description;
     }
 }
