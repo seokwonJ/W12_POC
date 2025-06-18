@@ -1,26 +1,25 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "FoxUpgrade", menuName = "Upgrades/FoxUpgrade")]
 public class FoxUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp ,            // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp ,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
 
-        TenAttackSkillDamageUp,                     // ±âº»°ø°İÀ» 10È¸ ÈÄ ´ÙÀ½ ½ºÅ³ÀÇ ´ë¹ÌÁö°¡ ´ëÆø Áõ°¡ÇÕ´Ï´Ù
-        AttackEnemyDefenseDown,                     // ¿©¿ìÀÇ °ø°İÀÌ ÀûÀÇ ¹æ¾î·ÂÀ» °¨¼Ò½ÃÅµ´Ï´Ù
-        AttackEnemySpeedDown,                       // ¿©¿ìÀÇ °ø°İÀ» ¸ÂÀ»¶§¸¶´Ù ÀûÀÇ ÀÌµ¿¼Óµµ°¡´À·ÁÁü
-        AttackMoreFarAway,                          // ¿øÈ¥±¸½½ ÀÌ ´õ ¸Ö¸® ³ª°£´Ù
+        TenAttackSkillDamageUp,                     // ê¸°ë³¸ê³µê²©ì„ 10íšŒ í›„ ë‹¤ìŒ ìŠ¤í‚¬ì˜ ëŒ€ë¯¸ì§€ê°€ ëŒ€í­ ì¦ê°€í•©ë‹ˆë‹¤
+        AttackEnemyDefenseDown,                     // ì—¬ìš°ì˜ ê³µê²©ì´ ì ì˜ ë°©ì–´ë ¥ì„ ê°ì†Œì‹œí‚µë‹ˆë‹¤
+        AttackEnemySpeedDown,                       // ì—¬ìš°ì˜ ê³µê²©ì„ ë§ì„ë•Œë§ˆë‹¤ ì ì˜ ì´ë™ì†ë„ê°€ëŠë ¤ì§
+        AttackMoreFarAway,                          // ì›í˜¼êµ¬ìŠ¬ ì´ ë” ë©€ë¦¬ ë‚˜ê°„ë‹¤
     }
 
     public UpgradeType type;
@@ -30,77 +29,77 @@ public class FoxUpgrade : CharacterUpgrade
         Fox fox = character.GetComponent<Fox>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                fox.attackPowerUpNum += attackPowerUpPercent;                                       // ±âº» µ¥¹ÌÁö »ó½Â
+                fox.attackPowerUpNum += attackPowerUpPercent;                                       // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 fox");
                 break;
             case UpgradeType.AttackSpeedUp:
-                fox.attackSpeedUpNum += attackSpeedUpPercent;                                       // ÆòÅ¸ °£°İ
+                fox.attackSpeedUpNum += attackSpeedUpPercent;                                       // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 fox");
                 fox.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 fox.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 fox");
                 fox.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 fox.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 fox");
                 fox.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 fox.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 fox");
                 fox.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 fox.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 fox");
                 fox.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 fox.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 fox");
                 fox.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 fox.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 fox");
                 fox.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
                 fox.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 fox.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 fox");
                 fox.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
                 fox.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
                 fox.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 fox");
                 fox.upgradeNum = 9;
                 break;
 
-            //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
 
-            case UpgradeType.TenAttackSkillDamageUp:                                                    // ±âº»°ø°İÀ» 10È¸ ÈÄ ´ÙÀ½ ½ºÅ³ÀÇ ´ë¹ÌÁö°¡ ´ëÆø Áõ°¡ÇÕ´Ï´Ù
+            case UpgradeType.TenAttackSkillDamageUp:                                                    // ê¸°ë³¸ê³µê²©ì„ 10íšŒ í›„ ë‹¤ìŒ ìŠ¤í‚¬ì˜ ëŒ€ë¯¸ì§€ê°€ ëŒ€í­ ì¦ê°€í•©ë‹ˆë‹¤
                 fox.isUpgradeTenAttackSkillDamageUp = true;
                 Debug.Log("Debug10 archer");
                 fox.upgradeNum = 10;
                 break;
-            case UpgradeType.AttackEnemyDefenseDown:                                                    // ¿©¿ìÀÇ °ø°İÀÌ ÀûÀÇ ¹æ¾î·ÂÀ» °¨¼Ò½ÃÅµ´Ï´Ù
+            case UpgradeType.AttackEnemyDefenseDown:                                                    // ì—¬ìš°ì˜ ê³µê²©ì´ ì ì˜ ë°©ì–´ë ¥ì„ ê°ì†Œì‹œí‚µë‹ˆë‹¤
                 fox.isUpgradeAttackEnemyDefenseDown = true;
                 Debug.Log("Debug11 archer");
                 fox.upgradeNum = 11;
                 break;
-            case UpgradeType.AttackEnemySpeedDown:                                                      // ¿©¿ìÀÇ °ø°İÀ» ¸ÂÀ»¶§¸¶´Ù ÀûÀÇ ÀÌµ¿¼Óµµ°¡´À·ÁÁü
+            case UpgradeType.AttackEnemySpeedDown:                                                      // ì—¬ìš°ì˜ ê³µê²©ì„ ë§ì„ë•Œë§ˆë‹¤ ì ì˜ ì´ë™ì†ë„ê°€ëŠë ¤ì§
                 fox.isUpgradeAttackEnemySpeedDown = true;
                 Debug.Log("Debug12 archer");
                 fox.upgradeNum = 12;
                 break;
-            case UpgradeType.AttackMoreFarAway:                                                         // ¿øÈ¥±¸½½ ÀÌ ´õ ¸Ö¸® ³ª°£´Ù
+            case UpgradeType.AttackMoreFarAway:                                                         // ì›í˜¼êµ¬ìŠ¬ ì´ ë” ë©€ë¦¬ ë‚˜ê°„ë‹¤
                 fox.attackDuration += 0.5f;
                 Debug.Log("Debug13 archer");
                 fox.upgradeNum = 13;
@@ -108,6 +107,6 @@ public class FoxUpgrade : CharacterUpgrade
 
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

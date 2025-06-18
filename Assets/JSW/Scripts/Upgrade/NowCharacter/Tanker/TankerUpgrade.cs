@@ -1,5 +1,4 @@
-﻿using UnityEditor.Searcher;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(fileName = "TankerUpgrade", menuName = "Upgrades/TankerUpgrade")]
 public class TankerUpgrade : CharacterUpgrade

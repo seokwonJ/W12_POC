@@ -1,26 +1,25 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "MagicianUpgrade", menuName = "Upgrades/MagicianUpgrade")]
 public class MagicianUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp,             // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp,             // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
 
-        TenAttackSkillAttack,                       // ±âº»°ø°İÀ» 10È¸ ÈÄ ÆòÅ¸·Î ½ºÅ³ Åõ»çÃ¼¸¦ ¹ß»çÇÑ´Ù
-        SkillAttackCountUp,                         // ½ºÅ³À» 1È¸ ´õ ½ÃÀüÇÕ´Ï´Ù
-        SkillAttackSizeUp,                          // ½ºÅ³ Åõ»çÃ¼ÀÇ Å©±â°¡ Áõ°¡ÇÕ´Ï´Ù
-        SkillExplosionAttack,                         // Áö¼Ó½Ã°£ÀÌ ³¡³ª¸é ÅÍÁö¸ç ´ë¹ÌÁö¸¦ ÁØ´Ù
+        TenAttackSkillAttack,                       // ê¸°ë³¸ê³µê²©ì„ 10íšŒ í›„ í‰íƒ€ë¡œ ìŠ¤í‚¬ íˆ¬ì‚¬ì²´ë¥¼ ë°œì‚¬í•œë‹¤
+        SkillAttackCountUp,                         // ìŠ¤í‚¬ì„ 1íšŒ ë” ì‹œì „í•©ë‹ˆë‹¤
+        SkillAttackSizeUp,                          // ìŠ¤í‚¬ íˆ¬ì‚¬ì²´ì˜ í¬ê¸°ê°€ ì¦ê°€í•©ë‹ˆë‹¤
+        SkillExplosionAttack,                         // ì§€ì†ì‹œê°„ì´ ëë‚˜ë©´ í„°ì§€ë©° ëŒ€ë¯¸ì§€ë¥¼ ì¤€ë‹¤
     }
 
     public UpgradeType type;
@@ -30,83 +29,83 @@ public class MagicianUpgrade : CharacterUpgrade
         Magician magician = character.GetComponent<Magician>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                magician.attackPowerUpNum += attackPowerUpPercent;                                    // ±âº» µ¥¹ÌÁö »ó½Â
+                magician.attackPowerUpNum += attackPowerUpPercent;                                    // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 magician");
                 break;
             case UpgradeType.AttackSpeedUp:
-                magician.attackSpeedUpNum += attackSpeedUpPercent;                                    // ÆòÅ¸ °£°İ
+                magician.attackSpeedUpNum += attackSpeedUpPercent;                                    // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 magician");
                 magician.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 magician.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 magician");
                 magician.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 magician.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 magician");
                 magician.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 magician.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 magician");
                 magician.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 magician.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 magician");
                 magician.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 magician.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 magician");
                 magician.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 magician.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 magician");
                 magician.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
                 magician.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 magician.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 magician");
                 magician.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
                 magician.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
                 magician.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 magician");
                 magician.upgradeNum = 9;
                 break;
 
-            //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
 
-            case UpgradeType.TenAttackSkillAttack:                                                  // ±âº»°ø°İÀ» 10È¸ ÈÄ ÆòÅ¸·Î ½ºÅ³ Åõ»çÃ¼¸¦ ¹ß»çÇÑ´Ù
+            case UpgradeType.TenAttackSkillAttack:                                                  // ê¸°ë³¸ê³µê²©ì„ 10íšŒ í›„ í‰íƒ€ë¡œ ìŠ¤í‚¬ íˆ¬ì‚¬ì²´ë¥¼ ë°œì‚¬í•œë‹¤
                 magician.isUpgradeTenAttackSkillAttack = true;
                 Debug.Log("Debug10 magician");
                 magician.upgradeNum = 10;
                 break;
-            case UpgradeType.SkillAttackCountUp:                                                    // ½ºÅ³À» 1È¸ ´õ ½ÃÀüÇÕ´Ï´Ù
+            case UpgradeType.SkillAttackCountUp:                                                    // ìŠ¤í‚¬ì„ 1íšŒ ë” ì‹œì „í•©ë‹ˆë‹¤
                 magician.skillCount += 1;
                 Debug.Log("Debug11 magician");
                 magician.upgradeNum = 11;
                 break;
-            case UpgradeType.SkillAttackSizeUp:                                                     // ½ºÅ³ Åõ»çÃ¼ÀÇ Å©±â°¡ Áõ°¡ÇÕ´Ï´Ù
+            case UpgradeType.SkillAttackSizeUp:                                                     // ìŠ¤í‚¬ íˆ¬ì‚¬ì²´ì˜ í¬ê¸°ê°€ ì¦ê°€í•©ë‹ˆë‹¤
                 magician.skillSize += 1;
                 Debug.Log("Debug12 magician");
                 magician.upgradeNum = 12;
                 break;
-            case UpgradeType.SkillExplosionAttack:                                                  // Áö¼Ó½Ã°£ÀÌ ³¡³ª¸é ÅÍÁö¸ç ´ë¹ÌÁö¸¦ ÁØ´Ù
+            case UpgradeType.SkillExplosionAttack:                                                  // ì§€ì†ì‹œê°„ì´ ëë‚˜ë©´ í„°ì§€ë©° ëŒ€ë¯¸ì§€ë¥¼ ì¤€ë‹¤
                 magician.isUpgradeSkillExplosionAttack = true;
                 Debug.Log("Debug13 magician");
                 magician.upgradeNum = 13;
                 break;
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }
