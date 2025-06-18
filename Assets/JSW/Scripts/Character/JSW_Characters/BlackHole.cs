@@ -17,7 +17,8 @@ public class BlackHole : Character
     public bool isUpgradeSkillSizeDownExplosion;
     public float explosionDamagePercent = 150;
     public bool isUpgradeSkillEnemyDenfenseDown;
-    public float SkillEnemyDenfenseDownNum;
+    public float skillEnemyDenfenseDownPercent;
+    public float skillEnemyDenfenseDownDuration;
 
     public int upgradeNum;
 
@@ -45,7 +46,7 @@ public class BlackHole : Character
 
         float totalAttackDamage = TotalAttackDamage();
 
-        proj.GetComponent<BlackHoleAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
+        proj.GetComponent<BlackHoleAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100) );
 
         SoundManager.Instance.PlaySFX("BlackHoleAttack");
     }
@@ -73,7 +74,7 @@ public class BlackHole : Character
         float explosionDamage = 0;
         if (isUpgradeSkillSizeDownExplosion) explosionDamage = attackBase * abilityPower * explosionDamagePercent / 100;
 
-        mb.SetInit(skillSize, totalSkillDamage, knockbackPower, skillDuration, skillPullInterval, isUpgradeSkillSizeDownExplosion, explosionDamage, isUpgradeSkillEnemyDenfenseDown, SkillEnemyDenfenseDownNum);
+        mb.SetInit(skillSize, totalSkillDamage, knockbackPower, skillDuration, skillPullInterval, isUpgradeSkillSizeDownExplosion, explosionDamage, isUpgradeSkillEnemyDenfenseDown, skillEnemyDenfenseDownPercent, skillEnemyDenfenseDownDuration);
     }
 
     private Transform FindClusteredEnemy()

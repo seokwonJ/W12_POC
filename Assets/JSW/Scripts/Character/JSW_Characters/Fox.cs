@@ -19,10 +19,14 @@ public class Fox : Character
     public bool isUpgradeTenAttackSkillDamageUp;
     public int tenAttackSkillDamageUpCount;
     public float tenAttackSkillDamageUpPercent;
+
     public bool isUpgradeAttackEnemyDefenseDown;
-    public float attackEnemyDefenseDownpercnet;
+    public float attackEnemyDefenseDownPercnet;
     public float attackEnemyDefenseDownDuration;
 
+    public bool isUpgradeAttackEnemySpeedDown;
+    public float attackEnemySpeedDownPercnet;
+    public float attackEnemySpeedDownDuration;
 
     [Header("¿Ã∆Â∆Æ")]
     public GameObject skillActiveEffect;
@@ -47,17 +51,17 @@ public class Fox : Character
             tenAttackSkillDamageUpCount += 1;
             if (tenAttackSkillDamageUpCount == 10)
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage * tenAttackSkillDamageUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage * tenAttackSkillDamageUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
                 tenAttackSkillDamageUpCount = 0;
             }
             else
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
             }
         }
         else
         {
-            proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
+            proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
         }
 
         SoundManager.Instance.PlaySFX("FoxAttack");
@@ -94,7 +98,7 @@ public class Fox : Character
 
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
             FoxAttack mb = proj.GetComponent<FoxAttack>();
-            mb.SetInit(dir.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, true, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
+            mb.SetInit(dir.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, true, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
             mb.speed = 5;
         }
     }

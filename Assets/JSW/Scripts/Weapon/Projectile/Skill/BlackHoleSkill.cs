@@ -14,7 +14,8 @@ public class BlackHoleSkill : MonoBehaviour
     private bool _isUpgradeSkillSizeDownExplosion;
     private float _explosionDamage;
     private bool _isUpgradeSkillEnemyDenfenseDown;
-    private float _SkillEnemyDenfenseDownNum;
+    private float _skillEnemyDenfenseDownPercent;
+    private float _skillEnemyDenfenseDownDuration;
 
     private List<Transform> enemiesInRange = new List<Transform>();
     private Coroutine pullCoroutine;
@@ -27,7 +28,7 @@ public class BlackHoleSkill : MonoBehaviour
         StartCoroutine(DestroyAfterDuration());
     }
 
-    public void SetInit(float scaleNum, float damageNum, float pullForce, float duration, float pullInterval, bool isUpgradeSkillSizeDownExplosion, float explosionDamage, bool isUpgradeSkillEnemyDenfenseDown, float SkillEnemyDenfenseDownNum)
+    public void SetInit(float scaleNum, float damageNum, float pullForce, float duration, float pullInterval, bool isUpgradeSkillSizeDownExplosion, float explosionDamage, bool isUpgradeSkillEnemyDenfenseDown, float skillEnemyDenfenseDownPercent, float skillEnemyDenfenseDownDuration)
     {
         transform.localScale = Vector3.one * scaleNum;
         _damage = damageNum;
@@ -37,7 +38,8 @@ public class BlackHoleSkill : MonoBehaviour
         _isUpgradeSkillSizeDownExplosion = isUpgradeSkillSizeDownExplosion;
         _explosionDamage = explosionDamage;
         _isUpgradeSkillEnemyDenfenseDown = isUpgradeSkillEnemyDenfenseDown;
-        _SkillEnemyDenfenseDownNum = SkillEnemyDenfenseDownNum;
+        _skillEnemyDenfenseDownPercent = skillEnemyDenfenseDownPercent;
+        _skillEnemyDenfenseDownDuration = skillEnemyDenfenseDownDuration;
 
         if (_isUpgradeSkillSizeDownExplosion) transform.localScale /= 2;
     }
@@ -114,15 +116,6 @@ public class BlackHoleSkill : MonoBehaviour
             {
                 enemyKnockback.ApplyKnockback(dirToCenter, _pullForce);
             }
-
-            /*
-             *  방어력 감소 구현되면 넣어줄게!!!!!!!
-             */
-            if (_isUpgradeSkillEnemyDenfenseDown)
-            {
-                // 방어력감소 구현되면 넣기
-                //_SkillEnemyDenfenseDownNum
-            }
         }
     }
 
@@ -132,7 +125,13 @@ public class BlackHoleSkill : MonoBehaviour
         {
             if (enemy == null) continue;
 
+            if (_isUpgradeSkillEnemyDenfenseDown)
+            {
+                 enemy.GetComponent<EnemyHP>().ReduceArmor((int)_skillEnemyDenfenseDownPercent, _skillEnemyDenfenseDownDuration);
+            }
+
             EnemyHP hp = enemy.GetComponent<EnemyHP>();
+
             if (hp != null)
             {
                 hp.TakeDamage((int)_damage, ECharacterType.BlackHole);

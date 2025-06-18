@@ -11,9 +11,15 @@ public class FoxAttack : ProjectileBase
     private float minSpeed = 3f;
     private float goMaxSpeed = 20f;
     private float returnMaxSpeed = 60f;
+
     private bool _isUpgradeAttackEnemyDefenseDown;
     private float _attackEnemyDefenseDownPercnet;
     private float _attackEnemyDefenseDownDuration;
+
+    private bool _isUpgradeAttackEnemySpeedDown;
+    private float _attackEnemySpeedDownPercnet;
+    private float _attackEnemySpeedDownDuration;
+
     private Fox _characterFox;
 
     public bool isSkill;
@@ -68,13 +74,14 @@ public class FoxAttack : ProjectileBase
         base.Update();
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, Transform ownerTransform, float totalTravelTimeNum, Fox characterFox, bool isSkill, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercnet, float attackEnemyDefenseDownDuration)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, Transform ownerTransform, float totalTravelTimeNum, Fox characterFox, bool isSkill, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercnet, float attackEnemyDefenseDownDuration, bool isUpgradeAttackEnemySpeedDown, float attackEnemySpeedDownPercnet, float attackEnemySpeedDownDuration)
     {
         owner = ownerTransform;
 
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+
         damage = damageNum;
         speed = speedNum;
         this.knockbackPower = knockbackPowerNum;
@@ -82,9 +89,14 @@ public class FoxAttack : ProjectileBase
         totalTravelTime = totalTravelTimeNum;
         _characterFox = characterFox;
         this.isSkill = isSkill;
+
         _isUpgradeAttackEnemyDefenseDown = isUpgradeAttackEnemyDefenseDown;
         _attackEnemyDefenseDownPercnet = attackEnemyDefenseDownPercnet;
         _attackEnemyDefenseDownDuration = attackEnemyDefenseDownDuration;
+
+        _isUpgradeAttackEnemySpeedDown = isUpgradeAttackEnemySpeedDown;
+        _attackEnemySpeedDownPercnet = attackEnemySpeedDownPercnet;
+        _attackEnemySpeedDownDuration = attackEnemySpeedDownDuration;
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -95,6 +107,7 @@ public class FoxAttack : ProjectileBase
             GameObject enemy = other.gameObject;
 
             if (_isUpgradeAttackEnemyDefenseDown) enemy.GetComponent<EnemyHP>().ReduceArmor((int)_attackEnemyDefenseDownPercnet, _attackEnemyDefenseDownDuration);
+            if (_isUpgradeAttackEnemySpeedDown) enemy.GetComponent<Enemy>().ApplySlow((int)_attackEnemySpeedDownPercnet, _attackEnemySpeedDownDuration);
 
             if (!isReturning)
             {

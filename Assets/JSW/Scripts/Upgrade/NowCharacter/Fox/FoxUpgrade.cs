@@ -91,14 +91,14 @@ public class FoxUpgrade : CharacterUpgrade
                 fox.upgradeNum = 10;
                 break;
             case UpgradeType.AttackEnemyDefenseDown:                                                    // 여우의 공격이 적의 방어력을 감소시킵니다
-                //fox.isUpgradeTenAttackSkillDamageUp = true;
+                fox.isUpgradeAttackEnemyDefenseDown = true;
                 Debug.Log("Debug11 archer");
-                //archer.upgradeNum = 11;
+                fox.upgradeNum = 11;
                 break;
             case UpgradeType.AttackEnemySpeedDown:                                                      // 여우의 공격을 맞을때마다 적의 이동속도가느려짐
-                //archer.isUpgradeDieInstantly = true;
+                fox.isUpgradeAttackEnemySpeedDown = true;
                 Debug.Log("Debug12 archer");
-                //archer.upgradeNum = 12;
+                fox.upgradeNum = 12;
                 break;
             case UpgradeType.AttackMoreFarAway:                                                         // 원혼구슬 이 더 멀리 나간다
                 fox.attackDuration += 0.5f;
