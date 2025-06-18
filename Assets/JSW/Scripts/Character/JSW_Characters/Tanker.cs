@@ -50,7 +50,7 @@ public class Tanker : Character
         }
         if (!isGround) return;
 
-        currentMP += Time.deltaTime * mpPerSecond;
+        currentMP += Time.deltaTime * (mpPerSecond * (manaRegenSpeedUpNum / 100));
         currentMP = Mathf.Min(currentMP, maxMP);
         if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
 
