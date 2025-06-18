@@ -102,17 +102,17 @@ public class Priest : Character
 
         nowCharactersEffects = new List<GameObject>();
 
+        float nowSkillUpNum = TotalSkillDamage();
+        if (isUpgradeSkillCharacterAttackUp) nowSkillUpNum += SkillCharacterAttackUpNum;
+        skillUpNum = nowSkillUpNum;
+
         foreach (GameObject ridingCharacter in nowCharacters)
         {
             print("데미지 파워 업!!!!");
             Instantiate(priestSkillAllActiveEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform);
             nowCharactersEffects.Add(Instantiate(priestSkillDurationEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform));
-            float nowSkillUpNum = TotalSkillDamage();
-
-            if (isUpgradeSkillCharacterAttackUp) nowSkillUpNum += SkillCharacterAttackUpNum;
 
             ridingCharacter.GetComponent<Character>().attackBase += nowSkillUpNum;
-            skillUpNum = nowSkillUpNum;
         }
 
         if (isUpgradeSkillPlayerSpeedUp) Managers.PlayerControl.NowPlayer.GetComponent<PlayerStatus>().speed *= (skillPlayerSpeedUpPercent / 100);
