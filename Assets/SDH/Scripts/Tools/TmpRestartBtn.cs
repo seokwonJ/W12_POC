@@ -10,11 +10,11 @@ public class TmpRestartBtn : MonoBehaviour
         Time.timeScale = 1;
         Managers.SceneFlow.GameOverCanvas.enabled = false;
 
-        Destroy(Managers.PlayerControl.NowPlayer);
+        /*Destroy(Managers.PlayerControl.NowPlayer);
         Managers.PlayerControl.Reset();
         Managers.Status.StartGame();
         //Managers.Stage.StartGame();
-        Managers.Stage.Stage--; //임시로 이어하기 가능하게 변경
+        Managers.Stage.Stage--; //임시로 이어하기 가능하게 변경*/
 
         Destroy(Managers.PlayerControl.NowPlayer);
         Managers.PlayerControl.NowPlayer = null;
