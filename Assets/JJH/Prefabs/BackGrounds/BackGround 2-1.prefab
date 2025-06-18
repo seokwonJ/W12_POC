@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5040712632471818232}
   m_Layer: 0
-  m_Name: MountainsStage3
+  m_Name: BackGround 2-1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -65,8 +65,8 @@ Transform:
   m_GameObject: {fileID: 3614862102699678414}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5040712632471818232}
@@ -134,8 +134,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3614862102699678414}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1981083829
+  m_SortingLayer: -1
   m_SortingOrder: 1
   m_SortAtRoot: 1
 --- !u!114 &5836579476685379003
@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3e3bbaf94c85647873e2ef6b8602c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.1
+  moveSpeed: 1
   scrollLeft: 1
 --- !u!1 &4791134071911625703
 GameObject:
@@ -163,7 +163,7 @@ GameObject:
   - component: {fileID: 9009391497705294585}
   - component: {fileID: 8740830464845586746}
   m_Layer: 0
-  m_Name: Square
+  m_Name: dim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -179,7 +179,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 50, y: 35, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5040712632471818232}
@@ -229,7 +229,7 @@ SpriteRenderer:
   m_SortingLayer: -1
   m_SortingOrder: 100
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0.5882353}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -267,8 +267,8 @@ Transform:
   m_GameObject: {fileID: 5302966678990210073}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.19999999, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5040712632471818232}
@@ -336,8 +336,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5302966678990210073}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1981083829
+  m_SortingLayer: -1
   m_SortingOrder: 2
   m_SortAtRoot: 1
 --- !u!114 &2804776193597443460
@@ -352,7 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3e3bbaf94c85647873e2ef6b8602c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.15
+  moveSpeed: 2
   scrollLeft: 1
 --- !u!1 &7773664132604278265
 GameObject:
@@ -382,8 +382,8 @@ Transform:
   m_GameObject: {fileID: 7773664132604278265}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.049999982, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5040712632471818232}
@@ -451,8 +451,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7773664132604278265}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1981083829
+  m_SortingLayer: -1
   m_SortingOrder: 3
   m_SortAtRoot: 1
 --- !u!114 &2661682514078366207
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3e3bbaf94c85647873e2ef6b8602c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.2
+  moveSpeed: 2.8
   scrollLeft: 1
 --- !u!1 &8626850313483355065
 GameObject:
@@ -497,8 +497,8 @@ Transform:
   m_GameObject: {fileID: 8626850313483355065}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5040712632471818232}
@@ -566,8 +566,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8626850313483355065}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1981083829
+  m_SortingLayer: -1
   m_SortingOrder: 4
   m_SortAtRoot: 1
 --- !u!114 &749728802239524701
@@ -582,7 +582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a3e3bbaf94c85647873e2ef6b8602c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 0.25
+  moveSpeed: 5
   scrollLeft: 1
 --- !u!1 &9214215357754306309
 GameObject:
@@ -612,8 +612,8 @@ Transform:
   m_GameObject: {fileID: 9214215357754306309}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.45, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 4.5, z: 0}
+  m_LocalScale: {x: 12, y: 12, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 5040712632471818232}
@@ -681,8 +681,8 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9214215357754306309}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1981083829
+  m_SortingLayer: -1
   m_SortingOrder: 0
   m_SortAtRoot: 1
 --- !u!114 &5167966446170900133
