@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
-  m_Name: new temp 1-4
+  m_Name: 2-2
   m_EditorClassIdentifier: 
-  world: 1
-  stage: 4
+  world: 2
+  stage: 2
   isBossStage: 0
   enemyWave:
-  - {fileID: 11400000, guid: 3fce02339ea731f46840dd7d722752b3, type: 2}
-  - {fileID: 11400000, guid: 8baf237430014d24b8d9ce7f938ea72e, type: 2}
-  - {fileID: 11400000, guid: 2a6b9577ee0ad0348a775282a452ff3b, type: 2}
-  waveCount: 040000000400000004000000
+  - {fileID: 11400000, guid: 2b74a1d62cc73a348816ade2374a071f, type: 2}
+  - {fileID: 11400000, guid: 618477ace0c1a984eb39328a7ae05bbd, type: 2}
+  - {fileID: 11400000, guid: e9fd361dddab4a24cbd3cb0b6512063b, type: 2}
+  waveCount: 040000000400000003000000
   wavePreparationTime:
   - 0.5
   - 1
