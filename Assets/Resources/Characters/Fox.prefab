@@ -4081,16 +4081,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allUpgrades:
-  - {fileID: 11400000, guid: a0075395157727944b854aa87d0f930c, type: 2}
-  - {fileID: 11400000, guid: 753c48979fcbd5249958fa8ee153bc49, type: 2}
-  - {fileID: 11400000, guid: 9a4e8e2fb400dac41895ef6f6ffd44f0, type: 2}
-  - {fileID: 11400000, guid: 9744f275a84b8584bb3f7e3c82b01361, type: 2}
-  - {fileID: 11400000, guid: 7b0c6100758fe5a42a7173c9cfd553b3, type: 2}
-  - {fileID: 11400000, guid: d0fca4ebf9d7a664fb2e35b1438d9306, type: 2}
-  - {fileID: 11400000, guid: 1233355f183118046a4f1d7105c94031, type: 2}
-  - {fileID: 11400000, guid: 3245f24d51a01794e9dc6d357aed01f0, type: 2}
-  - {fileID: 11400000, guid: b8b9e5fc944fecc4b925d05f5675f552, type: 2}
-  - {fileID: 11400000, guid: fe982710373cb594da7fa0c8cdab64dd, type: 2}
+  - {fileID: 11400000, guid: b21889380f099ee42ab9a48a07c23c46, type: 2}
+  - {fileID: 11400000, guid: 4139b9142c317974eaa7d33ed2858188, type: 2}
+  - {fileID: 11400000, guid: 9d0b73c1e7952084b8ed9f1a25b128b3, type: 2}
+  - {fileID: 11400000, guid: 2bf64362fbf97264bb3aa1817fe78f7e, type: 2}
+  - {fileID: 11400000, guid: 447d8ae67ddaeae43843e92389821d88, type: 2}
+  - {fileID: 11400000, guid: caf60bc947e647a42bea20e59aedeaba, type: 2}
+  - {fileID: 11400000, guid: 2e5b47422c888f0479ec22243a20d04e, type: 2}
+  - {fileID: 11400000, guid: 26a7b2cb33d900049a20d6db41abf50c, type: 2}
+  - {fileID: 11400000, guid: b5939b408e7aa04489e01222bc49a41b, type: 2}
+  - {fileID: 11400000, guid: d6a553d7db0d7424b933d3abd63c062c, type: 2}
 --- !u!114 &1280781568330686410
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4145,8 +4145,11 @@ MonoBehaviour:
   tenAttackSkillDamageUpCount: 0
   tenAttackSkillDamageUpPercent: 0
   isUpgradeAttackEnemyDefenseDown: 1
-  attackEnemyDefenseDownpercnet: 50
+  attackEnemyDefenseDownPercnet: 0
   attackEnemyDefenseDownDuration: 3
+  isUpgradeAttackEnemySpeedDown: 0
+  attackEnemySpeedDownPercnet: 0
+  attackEnemySpeedDownDuration: 0
   skillActiveEffect: {fileID: 4364950318276030470, guid: 4cb948122f0aa364796ec1259280af73, type: 3}
   upgradeNum: 0
 --- !u!114 &3843504183935493478

@@ -99,16 +99,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allUpgrades:
-  - {fileID: 11400000, guid: 3c8a2535867aaf74e81aec89ca3c54fa, type: 2}
-  - {fileID: 11400000, guid: ed3375fc0621c06468531536173f695f, type: 2}
-  - {fileID: 11400000, guid: dde567e73eac80748bca94d1e994d01d, type: 2}
-  - {fileID: 11400000, guid: e960af11858125749b3bfa26f0199339, type: 2}
-  - {fileID: 11400000, guid: 7a876c688314ced419d2a78bbe5d76d1, type: 2}
-  - {fileID: 11400000, guid: c8a748b414febfa4ebd262e846e00608, type: 2}
-  - {fileID: 11400000, guid: 71cb9fa17eab4924e9310f85ca561750, type: 2}
-  - {fileID: 11400000, guid: ae69e222f62cb8e4fba6ddbc1be753fd, type: 2}
-  - {fileID: 11400000, guid: 6f459227082382246b83e6aff855802f, type: 2}
-  - {fileID: 11400000, guid: 3fa383511c12bc74fae65887af01b22b, type: 2}
+  - {fileID: 11400000, guid: f77b4bae22570e4479ba8945d836aff0, type: 2}
+  - {fileID: 11400000, guid: 25842099dc066fd4cb823cf18ebb4cfc, type: 2}
+  - {fileID: 11400000, guid: 997ea69c65819c54d8a790c7292025f7, type: 2}
+  - {fileID: 11400000, guid: 65bef5a0797d437448592555bd2193c1, type: 2}
+  - {fileID: 11400000, guid: fe2b30037a4252d439fdc1b878aa1b11, type: 2}
+  - {fileID: 11400000, guid: 30a2515d02d835443b9320ea5efcd3da, type: 2}
+  - {fileID: 11400000, guid: ffd80e9b6c595bc4cb659af1c3f5246e, type: 2}
+  - {fileID: 11400000, guid: 87c236dcd9a969243a2332cccc3ee8ed, type: 2}
+  - {fileID: 11400000, guid: 72e3399f1a895dd4390ef7d21ed68b41, type: 2}
+  - {fileID: 11400000, guid: bd46901fe3a522f4a8cba9446b955957, type: 2}
 --- !u!114 &8158726512124471703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,20 +153,17 @@ MonoBehaviour:
   skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
   skillJumpEffect: {fileID: 0}
   fallingAfterImageSpawner: {fileID: 1806835876949059928}
+  attackNum: 2
   dobleAttackCoolTime: 0.05
   NormalAttackProjectileDuration: 0.5
+  attackPerDamageMinus: 5
   skillTargetCount: 5
   skillInterval: 0
   skillDashSpeed: 120
   trail: {fileID: 5258655469011329452}
-  isAttackWhileFalling: 0
-  isGainPowerFromSkillDamage: 0
-  GainPowerFromSkillDamageCount: 0
-  GainPowerFromSkillDamageDuration: 3
-  isManaOnLandingBasedOnTimeAway: 0
-  ManaOnLandingBasedOnTime: 0
-  isAttackSpeedBoostAfterQuickReboard: 0
-  isMoreSkillDamageWithJumpPower: 0
+  isSkillEndPlusSkillCountUp: 0
+  isAttackWhileSkillUpgrade: 0
+  maximumSkillEndPlusSkillCountUp: 10
   upgradeNum: 1
   skillDashStartEffect: {fileID: 7783791973953442425, guid: ea0a5a82b7fa0f94998cc959c089444b, type: 3}
   skillActiveEffect: {fileID: 6238808282390516260, guid: 9d500f4f38cde9247bc454e3b761b2da, type: 3}

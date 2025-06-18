@@ -186,16 +186,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allUpgrades:
-  - {fileID: 11400000, guid: a0075395157727944b854aa87d0f930c, type: 2}
-  - {fileID: 11400000, guid: 753c48979fcbd5249958fa8ee153bc49, type: 2}
-  - {fileID: 11400000, guid: 9a4e8e2fb400dac41895ef6f6ffd44f0, type: 2}
-  - {fileID: 11400000, guid: 9744f275a84b8584bb3f7e3c82b01361, type: 2}
-  - {fileID: 11400000, guid: 7b0c6100758fe5a42a7173c9cfd553b3, type: 2}
-  - {fileID: 11400000, guid: d0fca4ebf9d7a664fb2e35b1438d9306, type: 2}
-  - {fileID: 11400000, guid: 1233355f183118046a4f1d7105c94031, type: 2}
-  - {fileID: 11400000, guid: 3245f24d51a01794e9dc6d357aed01f0, type: 2}
-  - {fileID: 11400000, guid: b8b9e5fc944fecc4b925d05f5675f552, type: 2}
-  - {fileID: 11400000, guid: fe982710373cb594da7fa0c8cdab64dd, type: 2}
+  - {fileID: 11400000, guid: 175c5b0e9b6ab3849a36888cc68358e1, type: 2}
+  - {fileID: 11400000, guid: 2558da61067111b4dbe13e5b1e8cfbe3, type: 2}
+  - {fileID: 11400000, guid: 7cb0254789150904c84f000a5b508fb1, type: 2}
+  - {fileID: 11400000, guid: 0a8dea4dbf7da7b4fa4dfe8f3f4fad50, type: 2}
+  - {fileID: 11400000, guid: 59d46a7842c134c4fa1955e978bb5290, type: 2}
+  - {fileID: 11400000, guid: e6ea4674f5843e04f84333e2db21cbfa, type: 2}
+  - {fileID: 11400000, guid: d051c5c34432fcc4b902774fac756f20, type: 2}
+  - {fileID: 11400000, guid: 84ad4b9b56a2fed4e9e95146bbb6a0e7, type: 2}
+  - {fileID: 11400000, guid: 8d31e85d5a7481641b6ec2513b9cdccc, type: 2}
+  - {fileID: 11400000, guid: dab298fcb454c45458ace58695188af4, type: 2}
 --- !u!61 &1354129338059981449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -323,10 +323,12 @@ MonoBehaviour:
   isUpgradeSkillCharacterAttackUp: 0
   SkillCharacterAttackUpNum: 10
   isUpgradeSkillPlayerSpeedUp: 0
-  SkillPlayerSpeedUp: 150
+  skillPlayerSpeedUpPercent: 130
+  isUpgradeAttackEnemyDefenseDown: 0
+  attackEnemyDefenseDownPercent: 30
+  attackEnemyDefenseDownDuration: 3
   upgradeNum: 0
   player: {fileID: 0}
-  skillActiveEffect: {fileID: 0}
   priestSkillAllActiveEffect: {fileID: 6079483160803917597, guid: 13c8f3fbfa1907948af2571f2927489a, type: 3}
   priestSkillActiveEffect: {fileID: 5030123063063868698, guid: 5bde2ab17581f0941818cf223382ced0, type: 3}
   priestSkillDurationEffect: {fileID: 2592063396896696007, guid: 259b31fce6427f04bb5dc5272c7eb699, type: 3}
