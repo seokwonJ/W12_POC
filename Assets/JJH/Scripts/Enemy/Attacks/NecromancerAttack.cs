@@ -41,9 +41,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
     public GameObject explosionPrefab; // 폭발 프리팹
     private int explosionCount = 6; // 큰 크기 발사 횟수
     private WaitForSeconds explosionWait = new WaitForSeconds(1.5f);
-
-
-
+    List<List<EExplosionPosType>> explsionTypeList;
 
     public void Init(Enemy enemy)
     {
@@ -59,6 +57,16 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
         mediumProjectileWait = new WaitForSeconds(mediumProjectileCoolDown);
         mediumOneProjectileWait = new WaitForSeconds(mediumOneProjectileCoolDown);
         beforeMediumProjectileWait = new WaitForSeconds(beforeMeidiumProjectileCoolDown);
+
+        explsionTypeList = new List<List<EExplosionPosType>>()
+        {
+            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Up, EExplosionPosType.Left },
+            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Up, EExplosionPosType.Right },
+            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Down, EExplosionPosType.Left },
+            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Down, EExplosionPosType.Right },
+            new List<EExplosionPosType>() { EExplosionPosType.LittleUp, EExplosionPosType.LittleDown, EExplosionPosType.Left},
+            new List<EExplosionPosType>() { EExplosionPosType.LittleUp, EExplosionPosType.LittleDown, EExplosionPosType.Right}
+        };
     }
 
     public void Attack()
@@ -142,16 +150,6 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
 
     IEnumerator CoExplosion()
     {
-        List<List<EExplosionPosType>> explsionTypeList = new List<List<EExplosionPosType>>()
-        {
-            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Up, EExplosionPosType.Left },
-            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Up, EExplosionPosType.Right },
-            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Down, EExplosionPosType.Left },
-            new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Down, EExplosionPosType.Right },
-            new List<EExplosionPosType>() { EExplosionPosType.LittleUp, EExplosionPosType.LittleDown, EExplosionPosType.Left},
-            new List<EExplosionPosType>() { EExplosionPosType.LittleUp, EExplosionPosType.LittleDown, EExplosionPosType.Right}
-        };
-
         for (int i = 0; i < explosionCount; i++)
         {
             int randomIndex = Random.Range(0, explsionTypeList.Count);
