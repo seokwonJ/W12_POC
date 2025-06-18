@@ -227,7 +227,7 @@ MonoBehaviour:
   enemyDetectRadius: 30
   jumpForce: 10
   maxFallSpeed: 10
-  attackBase: 5
+  attackBase: 50
   attackDamage: 100
   abilityPower: 200
   projectileSpeed: 20
