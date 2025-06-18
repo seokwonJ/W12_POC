@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEditor;
 using UnityEngine;
@@ -53,10 +54,18 @@ public class Ninja : Character
             float distance = Vector2.Distance(targetPos, transform.position);
             totalAttackDamage += distance * longAttackDamageUpPercent / 100;
         }
-        proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-
-        if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage * nomalAttackFiveUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0; }
-        else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
+        if (isSkilling)
+        {
+            proj = Instantiate(skillKunai, firePoint.position, Quaternion.identity);
+            proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, skillProjectileSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0;
+        }
+        else
+        {
+            proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage * nomalAttackFiveUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0; }
+            else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
+        }
+        
 
         SoundManager.Instance.PlaySFX("NinjaAttack");
     }
@@ -114,6 +123,8 @@ public class Ninja : Character
 
     private GameObject activeParticle;
 
+    private float upNum;
+
     IEnumerator PowerUp(int power)
     {
         SoundManager.Instance.PlaySFX("NinjaSkillActive");
@@ -121,7 +132,8 @@ public class Ninja : Character
 
         activeParticle = Instantiate(skillLandingActive, transform.position, Quaternion.identity, transform);
         isSkilling = true;
-        attackBase += (TotalSkillDamage() + skillDamageUp);
+        upNum = TotalSkillDamage() + skillDamageUp;
+        attackBase += upNum;
         normalFireInterval /= skillAttackSpeed;
 
         if (isSkillCriticalDamageUp) criticalDamage += SkillCriticalDamageUpNum;
@@ -131,7 +143,7 @@ public class Ninja : Character
         yield return new WaitForSeconds(skillPowerDuration);
 
         Debug.Log("공격속도 돌아옴");
-        attackBase -= (TotalSkillDamage() + skillDamageUp);
+        attackBase -= upNum;
         normalFireInterval *= skillAttackSpeed;
 
         if (isSkillCriticalDamageUp) criticalDamage -= SkillCriticalDamageUpNum;
@@ -147,7 +159,7 @@ public class Ninja : Character
         if (isSkilling == true)
         {
             Debug.Log("공격속도 돌아옴");
-            attackBase -= TotalSkillDamage();
+            attackBase -= upNum;
             normalFireInterval *= skillAttackSpeed;
             if (isSkillCriticalDamageUp) criticalDamage -= SkillCriticalDamageUpNum;
             isSkilling = false;

@@ -186,16 +186,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allUpgrades:
-  - {fileID: 11400000, guid: a0075395157727944b854aa87d0f930c, type: 2}
-  - {fileID: 11400000, guid: 753c48979fcbd5249958fa8ee153bc49, type: 2}
-  - {fileID: 11400000, guid: 9a4e8e2fb400dac41895ef6f6ffd44f0, type: 2}
-  - {fileID: 11400000, guid: 9744f275a84b8584bb3f7e3c82b01361, type: 2}
-  - {fileID: 11400000, guid: 7b0c6100758fe5a42a7173c9cfd553b3, type: 2}
-  - {fileID: 11400000, guid: d0fca4ebf9d7a664fb2e35b1438d9306, type: 2}
-  - {fileID: 11400000, guid: 1233355f183118046a4f1d7105c94031, type: 2}
-  - {fileID: 11400000, guid: 3245f24d51a01794e9dc6d357aed01f0, type: 2}
-  - {fileID: 11400000, guid: b8b9e5fc944fecc4b925d05f5675f552, type: 2}
-  - {fileID: 11400000, guid: fe982710373cb594da7fa0c8cdab64dd, type: 2}
+  - {fileID: 11400000, guid: 909ebbc851f5d9a4ea0fffe9c920cdd3, type: 2}
+  - {fileID: 11400000, guid: 92e91bdd958dace4da0107dbc1e42952, type: 2}
+  - {fileID: 11400000, guid: b97135103099fb6469525da9b2416846, type: 2}
+  - {fileID: 11400000, guid: 544f505b0de32d64a8ad879115ea8b19, type: 2}
+  - {fileID: 11400000, guid: d376253abd874f045802d9d2435b86d7, type: 2}
+  - {fileID: 11400000, guid: 7b1eee4ee72019d46983a6a770c59ff5, type: 2}
+  - {fileID: 11400000, guid: e78a0a32f24dc3a4d94e88b77bcc8697, type: 2}
+  - {fileID: 11400000, guid: 1883d93e59c900041bae4efcaba48745, type: 2}
+  - {fileID: 11400000, guid: 8d0c82c59406166408f94bf7f4bef4f3, type: 2}
+  - {fileID: 11400000, guid: f27a644507adfe94696ff801d44b5705, type: 2}
 --- !u!114 &3609538008976467063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,20 +219,20 @@ MonoBehaviour:
   manaRegenSpeedUpNum: 100
   abilityPowerUpNum: 100
   maxMP: 100
-  mpPerSecond: 20
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: c05fcadff8e056842917c38b6e7458f3, type: 3}
   firePoint: {fileID: 455397532922092977}
   normalFireInterval: 1
-  enemyDetectRadius: 50
+  enemyDetectRadius: 25
   jumpForce: 10
   maxFallSpeed: 10
   attackBase: 10
   attackDamage: 90
-  abilityPower: 80
+  abilityPower: 50
   projectileSpeed: 35
-  criticalProbability: 0
-  criticalDamage: 0
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 10
   projectileSize: 1
   animator: {fileID: 4734810267593038290}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fced047d3783d344aa52eafa24e11f2e, type: 3}
   m_Name: BlackHoleUpgrade 5
   m_EditorClassIdentifier: 
-  upgradeName: b5
-  description: b5
+  upgradeName: "\uCE58\uBA85\uD0C0 \uD655\uB960 \uC99D\uAC00"
+  description: "\uCE58\uBA85\uD0C0 \uD655\uB960 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 5

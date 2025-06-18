@@ -171,7 +171,7 @@ public class EnemyHP : MonoBehaviour
         int resultArmor = defaultArmor - resultValue;
         if (resultArmor <= currentArmor)
         {
-            StopCoroutine(co);
+            if (co != null)  StopCoroutine(co);
             co = StartCoroutine(CoReduceArmor(resultArmor, durationTime));
         }
     }

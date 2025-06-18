@@ -231,8 +231,8 @@ MonoBehaviour:
   attackDamage: 100
   abilityPower: 200
   projectileSpeed: 20
-  criticalProbability: 5
-  criticalDamage: 5
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 98201350519021881}

@@ -152,7 +152,7 @@ public class Enemy : MonoBehaviour
         float resultSpeed = defaultSpeed - resultValue;
         if (resultSpeed <= speed)
         {
-            StopCoroutine(co);
+            if (co != null) StopCoroutine(co);
             StartCoroutine(CoApplySlow(resultSpeed, durationTime));
         }
     }

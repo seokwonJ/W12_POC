@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96aafbf49a84e9418c81fb2cdb2b7e6, type: 3}
   m_Name: FoxUpgrade 0
   m_EditorClassIdentifier: 
-  upgradeName: AttackSpeed
-  description: AttackSpeed
+  upgradeName: "\uAE30\uBCF8 \uACF5\uACA9 \uB300\uBBF8\uC9C0 \uC99D\uAC00"
+  description: "\uAE30\uBCF8 \uACF5\uACA9 \uB300\uBBF8\uC9C0 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 0
-  value: 0

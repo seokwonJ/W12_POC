@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dadd844d4c3efa84da6966a91dc64d72, type: 3}
   m_Name: PirateUpgrade 8
   m_EditorClassIdentifier: 
-  upgradeName: p8
-  description: p8
+  upgradeName: "\uB9C8\uB098 \uD68C\uBCF5 \uC18D\uB3C4 \uAC10\uC18C + \uACF5\uACA9\uB825
+    \uC99D\uAC00"
+  description: "\uB9C8\uB098 \uD68C\uBCF5 \uC18D\uB3C4 \uAC10\uC18C + \uACF5\uACA9\uB825
+    \uC99D\uAC00"
   icon: {fileID: 0}
   type: 8
