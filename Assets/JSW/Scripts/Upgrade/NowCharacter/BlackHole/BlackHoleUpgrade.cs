@@ -16,7 +16,12 @@ public class BlackHoleUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp,             // 마나 회복 속도 증가 + 스킬 대미지 증가
+
+        SkillDurationUp,                            // 스킬의 지속시간 증가.
+        SkillAttackDlaySpeedUp,                     // 블랙홀이 대미지를 주는 주기가 더 빨라진다
+        SkillSizeDownExplosion,                     // 블랙홀의 사이즈가 1/2로 줄어드는 대신 블랙홀이 사라지기 전에 폭발해서 대미지를 준다
+        SkillDenfenseDown,                          // 블랙홀의 공격이 방어력을 감소 시킵니다
     }
 
     public UpgradeType type;
@@ -78,8 +83,29 @@ public class BlackHoleUpgrade : CharacterUpgrade
                 Debug.Log("Debug9 blackHole");
                 blackHole.upgradeNum = 9;
                 break;
-                //-------------- 특수 업그레이드 --------------
 
+            //-------------- 특수 업그레이드 --------------
+
+            case UpgradeType.SkillDurationUp:                                                       // 스킬의 지속시간 증가.
+                blackHole.skillDuration += 2;
+                Debug.Log("Debug10 blackHole");
+                blackHole.upgradeNum = 10;
+                break;
+            case UpgradeType.SkillAttackDlaySpeedUp:                                                // 블랙홀이 대미지를 주는 주기가 더 빨라진다
+                blackHole.skillPullInterval -= 0.1f;
+                Debug.Log("Debug11 blackHole");
+                blackHole.upgradeNum = 11;
+                break;
+            case UpgradeType.SkillSizeDownExplosion:                                                // 블랙홀의 사이즈가 1/2로 줄어드는 대신 블랙홀이 사라지기 전에 폭발해서 대미지를 준다
+                blackHole.isUpgradeSkillSizeDownExplosion = true;
+                Debug.Log("Debug12 blackHole");
+                blackHole.upgradeNum = 12;
+                break;
+            case UpgradeType.SkillDenfenseDown:                                                     // 블랙홀의 공격이 방어력을 감소 시킵니다
+                blackHole.isUpgradeSkillEnemyDenfenseDown = true;
+                Debug.Log("Debug13 blackHole");
+                blackHole.upgradeNum = 13;
+                break;
         }
 
         Debug.Log("업그레이드 성공");

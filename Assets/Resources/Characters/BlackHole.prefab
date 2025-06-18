@@ -303,7 +303,7 @@ MonoBehaviour:
   maxFallSpeed: 10
   attackBase: 10
   attackDamage: 100
-  abilityPower: 120
+  abilityPower: 100
   projectileSpeed: 5
   criticalProbability: 0
   criticalDamage: 0
@@ -319,9 +319,9 @@ MonoBehaviour:
   skillInterval: 0.3
   skillFireDelay: 0.1
   skillSize: 3
-  isAddAttackDamage: 0
-  isnomalAttackSizePerMana: 0
-  isCanTeleport: 0
+  skillDuration: 5
+  skillPullInterval: 0.2
+  isUpgradeSkillSizeDownExplosion: 0
   upgradeNum: 0
   player: {fileID: 0}
   skillActiveEffect: {fileID: 8450041876755101773, guid: 0723e72f978adcb4981bf66cf4161654, type: 3}

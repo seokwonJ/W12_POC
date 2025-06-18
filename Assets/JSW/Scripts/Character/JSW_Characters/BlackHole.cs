@@ -10,11 +10,15 @@ public class BlackHole : Character
     public float skillInterval = 0.3f;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
+    public float skillDuration = 5f;
+    public float skillPullInterval = 0.2f;
 
     [Header("°­È­")]
-    public bool isAddAttackDamage;
-    public bool isnomalAttackSizePerMana;
-    public bool isCanTeleport;
+    public bool isUpgradeSkillSizeDownExplosion;
+    public float explosionDamagePercent = 150;
+    public bool isUpgradeSkillEnemyDenfenseDown;
+    public float SkillEnemyDenfenseDownNum;
+
     public int upgradeNum;
 
     public GameObject player;
@@ -66,15 +70,10 @@ public class BlackHole : Character
         BlackHoleSkill mb = proj.GetComponent<BlackHoleSkill>();
 
         float totalSkillDamage = TotalSkillDamage();
+        float explosionDamage = 0;
+        if (isUpgradeSkillSizeDownExplosion) explosionDamage = attackBase * abilityPower * explosionDamagePercent / 100;
 
-        if (target != null)
-        {
-            mb.SetInit(skillSize, totalSkillDamage);
-        }
-        else
-        {
-            mb.SetInit(skillSize, totalSkillDamage);
-        }
+        mb.SetInit(skillSize, totalSkillDamage, knockbackPower, skillDuration, skillPullInterval, isUpgradeSkillSizeDownExplosion, explosionDamage, isUpgradeSkillEnemyDenfenseDown, SkillEnemyDenfenseDownNum);
     }
 
     private Transform FindClusteredEnemy()

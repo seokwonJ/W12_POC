@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor.Searcher;
+using UnityEngine;
 
 [CreateAssetMenu(fileName = "TankerUpgrade", menuName = "Upgrades/TankerUpgrade")]
 public class TankerUpgrade : CharacterUpgrade
@@ -14,7 +15,14 @@ public class TankerUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp,             // 마나 회복 속도 증가 + 스킬 대미지 증가
+
+        FallingSpeedMaxUp,                          // 떨어지는 속도 최대치 증가
+        SkillRangeUp,                               // 궁극기 범위 증가
+        FallingSpeedPerSkillDamageUp,               // 떨어지는 속도가 빠를수록 궁극기 대미지 증가
+        RidingDefenseUp,                            // 배에 타고 있으면 방어력이 증가
+        SkillNearKnockbackDamageUp,                 // 스킬이 가까운 대상일수록 넉백과 대미지가 증가
+        SkillEnemySpeedDown                         // 맞은 대상의 이동속도를 N% 감소
     }
 
     public UpgradeType type;
@@ -76,7 +84,39 @@ public class TankerUpgrade : CharacterUpgrade
                 Debug.Log("Debug9 tanker");
                 tanker.upgradeNum = 9;
                 break;
-                //-------------- 특수 업그레이드 --------------
+
+            //-------------- 특수 업그레이드 --------------
+
+            case UpgradeType.FallingSpeedMaxUp:                                                    // 떨어지는 속도 최대치 증가
+                tanker.maxFallSpeed += 10;
+                Debug.Log("Debug10 tanker");
+                tanker.upgradeNum = 10;
+                break;
+            case UpgradeType.SkillRangeUp:                                                         // 궁극기 범위 증가
+                tanker.skillRange += 2;
+                Debug.Log("Debug11 tanker");
+                tanker.upgradeNum = 11;
+                break;
+            case UpgradeType.FallingSpeedPerSkillDamageUp:                                         // 떨어지는 속도가 빠를수록 궁극기 대미지 증가
+                tanker.isUpgradeFallingSpeedToSkillDamage = true;
+                Debug.Log("Debug12 tanker");
+                tanker.upgradeNum = 12;
+                break;
+            case UpgradeType.RidingDefenseUp:                                                      // 배에 타고 있으면 방어력이 증가
+                tanker.isUpgradeRidingDefenseUp = true;
+                Debug.Log("Debug13 tanker");
+                tanker.upgradeNum = 13;
+                break;
+            case UpgradeType.SkillNearKnockbackDamageUp:                                           // 스킬이 가까운 대상일수록 넉백과 대미지가 증가
+                tanker.isCloserMoreDamage = true;
+                Debug.Log("Debug14 tanker");
+                tanker.upgradeNum = 14;
+                break;
+            case UpgradeType.SkillEnemySpeedDown:                                                  // 맞은 대상의 이동속도를 N% 감소
+                tanker.isSkillEnemySpeedDown = true;
+                Debug.Log("Debug14 tanker");
+                tanker.upgradeNum = 15;
+                break;
 
         }
 
