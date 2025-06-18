@@ -340,7 +340,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 50
+  enemyHP: 500
+  defaultArmor: 0
+  currentArmor: 0
   playerHP_Image: {fileID: 4981368077165404448}
   isSpawning: 1
   isDead: 0
@@ -360,9 +362,11 @@ MonoBehaviour:
   editorNote: 4
   movementSO: {fileID: 11400000, guid: 241e92c636ab4214a9f7cff11edf27db, type: 2}
   attackSO: {fileID: 0}
+  isBoss: 0
   speed: 5
   minPlayerDistance: 0
   isKnockbackable: 1
+  isSlowable: 1
   isKnockback: 0
   isFilpping: 1
   damage: 15
