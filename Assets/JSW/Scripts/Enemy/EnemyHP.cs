@@ -178,7 +178,7 @@ public class EnemyHP : MonoBehaviour
 
     IEnumerator CoReduceArmor(int resultArmor, float durationTime)
     {
-        currentArmor = resultArmor;
+        currentArmor = Mathf.Max(resultArmor, 0);
         Debug.Log($"{gameObject.name} 적의 방어력 감소, 현재 방어력: {currentArmor}");
         yield return new WaitForSeconds(durationTime);
         currentArmor = defaultArmor; // 방어력 회복
