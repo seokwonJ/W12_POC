@@ -13,6 +13,7 @@ public class PlayerHP : MonoBehaviour
     public GameObject hpBarPrefab;
     public Transform canvasTransform;
     public Vector3 hpBarOffset;
+    public bool isEndFieldNoDamage;
 
     private PlayerStatus _playerStatus;
     private Coroutine flashCoroutine;
@@ -33,9 +34,6 @@ public class PlayerHP : MonoBehaviour
     private void Awake()
     {
         spriteRendererCore = GetComponent<SpriteRenderer>();
-
-
-
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
@@ -61,10 +59,13 @@ public class PlayerHP : MonoBehaviour
     {
         if (playerHP_Image != null)
             playerHP_Image.fillAmount = Managers.Status.Hp / Managers.Status.MaxHp;
+        isEndFieldNoDamage = false;     // 비행체 무적 해제
     }
 
     public virtual void TakeDamage(int damage)
     {
+        if (isEndFieldNoDamage) return;
+
         Managers.Status.Hp -= (damage - _playerStatus.defensePower);
         SoundManager.Instance.PlaySFX("PlayerHitSound");
 
@@ -92,6 +93,8 @@ public class PlayerHP : MonoBehaviour
 
     public virtual void TakeHeal(int Num)
     {
+        if (isEndFieldNoDamage) return;
+
         if (Managers.Status.Hp + (Num) >= Managers.Status.MaxHp) Managers.Status.Hp = Managers.Status.MaxHp;
         else { Managers.Status.Hp += (Num); }
 
