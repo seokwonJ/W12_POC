@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4dcb6e721b80047bbdf5faf962862a, type: 3}
   m_Name: LeviUpgrade 6
   m_EditorClassIdentifier: 
-  upgradeName: GainPowerFromSkillDamage
-  description: GainPowerFromSkillDamage
+  upgradeName: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uC99D\uAC00"
+  description: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 6
-  value: 0

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class SetUpgradeCanvas : MonoBehaviour
 {
+    [SerializeField] private ShopCharacterCanavs shopCharacterCanavs;
     [SerializeField] private Transform selectCursor;
     [SerializeField] private Image icon0;
     [SerializeField] private TextMeshProUGUI name0;
@@ -30,6 +31,7 @@ public class SetUpgradeCanvas : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ActNowUpgradeSelect();
+            shopCharacterCanavs.StartGetInput();
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {

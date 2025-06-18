@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 8020143640844766479, guid: 3f6533d93f9aaa24ea46f2743d8fc865, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -201,7 +201,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ec24a100a55974795638e5d385126a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  duration: 5
-  pullForce: 8
-  pullInterval: 0.15
-  damage: 8
+  explosionEffect: {fileID: 3343192510784344320, guid: 690890b6317466a49b410b37f4b7208e, type: 3}

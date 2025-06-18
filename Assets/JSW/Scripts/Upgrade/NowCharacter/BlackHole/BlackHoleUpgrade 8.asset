@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fced047d3783d344aa52eafa24e11f2e, type: 3}
   m_Name: BlackHoleUpgrade 8
   m_EditorClassIdentifier: 
-  upgradeName: b8
-  description: b8
+  upgradeName: "\uB9C8\uB098 \uD68C\uBCF5 \uC18D\uB3C4 \uAC10\uC18C + \uACF5\uACA9\uB825
+    \uC99D\uAC00"
+  description: "\uB9C8\uB098 \uD68C\uBCF5 \uC18D\uB3C4 \uAC10\uC18C + \uACF5\uACA9\uB825
+    \uC99D\uAC00"
   icon: {fileID: 0}
   type: 8

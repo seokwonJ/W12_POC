@@ -70,12 +70,12 @@ MonoBehaviour:
   enemyDetectRadius: 20
   jumpForce: 13
   maxFallSpeed: 15
-  attackBase: 5
+  attackBase: 50
   attackDamage: 100
-  abilityPower: 150
+  abilityPower: 100
   projectileSpeed: 15
-  criticalProbability: 1
-  criticalDamage: 200
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 0.1
   projectileSize: 1
   animator: {fileID: 5282197696764482722}
@@ -89,12 +89,18 @@ MonoBehaviour:
   skillPower: 5
   skillAttackSpeed: 2.5
   skillPowerDuration: 4
-  skillProjectileSpeed: 2.5
+  skillProjectileSpeed: 35
   skillInterval: 0.15
+  skillDamageUp: 0
+  isSkillCriticalDamageUp: 0
+  SkillCriticalDamageUpNum: 50
   isNomalAttackFive: 0
+  nomalAttackFiveUpPercent: 0
   nomalAttackCount: 0
-  isFirstLowHPEnemy: 0
-  isAttackSpeedPerMana: 0
+  isLongAttackDamageUp: 0
+  longAttackDamageUpPercent: 100
+  isManaPerDamageUp: 0
+  ManaPerDamageUpPercent: 80
   upgradeNum: 0
   skillLandingActive: {fileID: 4843983985677134281, guid: b5e7ba5802db8c04bb8a7ca8b064e5c9, type: 3}
 --- !u!50 &7162487334415280215

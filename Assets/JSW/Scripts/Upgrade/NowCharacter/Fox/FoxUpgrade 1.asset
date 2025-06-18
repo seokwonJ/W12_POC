@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96aafbf49a84e9418c81fb2cdb2b7e6, type: 3}
   m_Name: FoxUpgrade 1
   m_EditorClassIdentifier: 
-  upgradeName: Ability Power
-  description: Ability Power
+  upgradeName: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
+  description: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 1
-  value: 0

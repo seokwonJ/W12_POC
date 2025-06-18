@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a55b26c0b9fe3504581530e80c941d2b, type: 3}
   m_Name: SniperUpgrade 0
   m_EditorClassIdentifier: 
-  upgradeName: s0
-  description: s0
+  upgradeName: "\uAE30\uBCF8 \uACF5\uACA9 \uB300\uBBF8\uC9C0 \uC99D\uAC00"
+  description: "\uAE30\uBCF8 \uACF5\uACA9 \uB300\uBBF8\uC9C0 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 0

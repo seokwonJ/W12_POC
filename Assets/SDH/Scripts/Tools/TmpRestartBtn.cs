@@ -16,6 +16,8 @@ public class TmpRestartBtn : MonoBehaviour
         //Managers.Stage.StartGame();
         Managers.Stage.Stage--; //임시로 이어하기 가능하게 변경
 
-        SceneManager.LoadScene("Layover");
+        Destroy(Managers.PlayerControl.NowPlayer);
+        Managers.PlayerControl.NowPlayer = null;
+        SceneManager.LoadScene("Select");
     }
 }

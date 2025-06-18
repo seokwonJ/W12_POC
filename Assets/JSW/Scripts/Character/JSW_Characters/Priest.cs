@@ -21,13 +21,13 @@ public class Priest : Character
     public bool isUpgradeSkillPlayerSpeedUp;
     public float skillPlayerSpeedUpPercent = 130;
     public bool isUpgradeAttackEnemyDefenseDown;
-    public float attackEnemyDefenseDownNum = 5;
+    public float attackEnemyDefenseDownPercent = 30;
+    public float attackEnemyDefenseDownDuration = 3;
 
     public int upgradeNum;
     public GameObject player;
 
     [Header("이펙트")]
-    public GameObject skillActiveEffect;
     public GameObject priestSkillAllActiveEffect;
     public GameObject priestSkillActiveEffect;
     public GameObject priestSkillDurationEffect;
@@ -55,7 +55,7 @@ public class Priest : Character
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
 
 
-       proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownNum, enemyTarget);
+       proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercent, attackEnemyDefenseDownDuration, enemyTarget);
         
 
         SoundManager.Instance.PlaySFX("PriestAttack");
@@ -87,10 +87,6 @@ public class Priest : Character
         {
             skillCoroutine = StartCoroutine(CharactersAttackPowerUp());
         }
-
-        //Instantiate(skillActiveEffect, transform.position, Quaternion.identity, transform);
-        //SoundManager.Instance.PlaySFX("MagicianSkill");
-
         yield return new WaitForSeconds(skillInterval);
     }
 
@@ -106,17 +102,17 @@ public class Priest : Character
 
         nowCharactersEffects = new List<GameObject>();
 
+        float nowSkillUpNum = TotalSkillDamage();
+        if (isUpgradeSkillCharacterAttackUp) nowSkillUpNum += SkillCharacterAttackUpNum;
+        skillUpNum = nowSkillUpNum;
+
         foreach (GameObject ridingCharacter in nowCharacters)
         {
             print("데미지 파워 업!!!!");
             Instantiate(priestSkillAllActiveEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform);
             nowCharactersEffects.Add(Instantiate(priestSkillDurationEffect, ridingCharacter.transform.position, Quaternion.identity, ridingCharacter.transform));
-            float nowSkillUpNum = TotalSkillDamage();
-
-            if (isUpgradeSkillCharacterAttackUp) nowSkillUpNum += SkillCharacterAttackUpNum;
 
             ridingCharacter.GetComponent<Character>().attackBase += nowSkillUpNum;
-            skillUpNum = nowSkillUpNum;
         }
 
         if (isUpgradeSkillPlayerSpeedUp) Managers.PlayerControl.NowPlayer.GetComponent<PlayerStatus>().speed *= (skillPlayerSpeedUpPercent / 100);
@@ -165,8 +161,6 @@ public class Priest : Character
             Managers.PlayerControl.NowPlayer.GetComponentInChildren<PlayerHP>().TakeHeal(skillHealAmount);
         }
     }
-
-
 
     public override void EndFieldAct() // 필드전투가 종료될 때 실행
     {
