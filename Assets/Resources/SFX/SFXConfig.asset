@@ -127,3 +127,6 @@ MonoBehaviour:
   - clipName: BlackHoleSkillExplosion
     clip: {fileID: 8300000, guid: 2a8683e45ad7c684db8e74cec1b5093e, type: 3}
     volume: 1
+  - clipName: NecromancerSkull
+    clip: {fileID: 8300000, guid: 58b46ed28b92dff4e8396f30f70f16d6, type: 3}
+    volume: 0.7

@@ -14,7 +14,7 @@ public class Parallax : MonoBehaviour
         if(scrollLeft) moveSpeed = -moveSpeed;
         if (Managers.Stage.NowStage.isBossStage)
         {
-            StartCoroutine(CoStopMove(2f)); // 보스 스테이지에서는 스크롤 멈춤
+            //StartCoroutine(CoStopMove(2f)); // 보스 스테이지에서는 스크롤 멈춤
         }
     }
 
