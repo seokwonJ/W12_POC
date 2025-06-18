@@ -1,18 +1,20 @@
 ﻿using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.UI;
 
 public class EnemyHP : MonoBehaviour
 {
     public int enemyHP;
     private int maxEnemyHP;
+    public int defaultArmor; // 방어력
+    public int currentArmor; // 현재 방어력
     public Image playerHP_Image; // 적 HP바 프리팹
     public bool isSpawning = true;
     public bool isDead = false;
 
     private SpriteRenderer spriteRenderer;
-    private Collider2D collider;
+    private Collider2D col;
     private Animator animator;
     public Rigidbody2D rb;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
@@ -23,7 +25,7 @@ public class EnemyHP : MonoBehaviour
     private void OnEnable()
     {
         Managers.Stage.CurEnemyCount++;
-        collider.enabled = false;
+        col.enabled = false;
         spriteRenderer.color = new Color(spriteRenderer.color.r, spriteRenderer.color.g, spriteRenderer.color.b, 0f);
         StartCoroutine(CoAlphaChange(1f, 0.2f)); // 활성화 시 알파값을 1로 변경
     }
@@ -40,7 +42,7 @@ public class EnemyHP : MonoBehaviour
             yield return null;
         }
         spriteRenderer.color = targetColor; // 최종 색상 적용
-        collider.enabled = true;
+        col.enabled = true;
         isSpawning = false;
     }
     private void OnDisable()
@@ -50,7 +52,7 @@ public class EnemyHP : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        collider = GetComponent<Collider2D>();
+        col = GetComponent<Collider2D>();
         animator = GetComponent<Animator>();
         if (animator == null)
         {
@@ -64,23 +66,23 @@ public class EnemyHP : MonoBehaviour
             rb = GetComponentInParent<Rigidbody2D>();
         }
         maxEnemyHP = enemyHP; // 최대 HP 저장
-
+        currentArmor = defaultArmor; // 현재 방어력 초기화
         if (GetComponent<Boss>() != null)
         {
             dieDelay = 2f; // 보스의 경우 사망 딜레이를 늘림
         }
     }
 
-    public void TakeDamage(int hp, ECharacterType attacker = ECharacterType.None)
+    public void TakeDamage(int damage, ECharacterType attacker = ECharacterType.None)
     {
         if (isDead) return;
 
+        int finalDamage = Mathf.Max(damage - currentArmor, 1); // 데미지에 방어력을 깎아 최종 데미지 계산
+        finalDamage = finalDamage > enemyHP ? enemyHP : finalDamage; // 적의 HP보다 큰 데미지는 적의 HP로 제한
 
-        // 딜로그에 기록
-        int damage = hp > enemyHP ? enemyHP : hp; // 적의 HP보다 큰 데미지는 적의 HP로 제한
-        Managers.Record.AddStageDamgeRecord(attacker, damage);
+        Managers.Record.AddStageDamgeRecord(attacker, finalDamage); // 딜로그에 기록
 
-        enemyHP -= hp;
+        enemyHP -= finalDamage;
         if (playerHP_Image != null)
         {
             playerHP_Image.fillAmount = (float)enemyHP / maxEnemyHP; // HP바 갱신
@@ -118,7 +120,7 @@ public class EnemyHP : MonoBehaviour
         }
 
         isDead = true;
-        if (collider != null) collider.enabled = false; // 사망시 콜라이더 비활성화
+        if (col != null) col.enabled = false; // 사망시 콜라이더 비활성화
         if (animator != null) animator.StopPlayback(); // 사망시 애니메이션 정지
         gameObject.tag = "Untagged"; // 사망시 태그 제거
         rb.linearVelocity = Vector2.zero; // 죽을 때 속도 초기화
@@ -160,5 +162,26 @@ public class EnemyHP : MonoBehaviour
             yield return null;
         }
         Destroy(gameObject);
+    }
+
+    public void ReduceArmor(int value, float durationTime, bool isPercent=true)
+    {
+        Coroutine co = null;
+        int resultValue = isPercent ? Mathf.CeilToInt(defaultArmor * (value / 100f)) : value;
+        int resultArmor = defaultArmor - resultValue;
+        if (resultArmor <= currentArmor)
+        {
+            StopCoroutine(co);
+            co = StartCoroutine(CoReduceArmor(resultArmor, durationTime));
+        }
+    }
+
+    IEnumerator CoReduceArmor(int resultArmor, float durationTime)
+    {
+        currentArmor = Mathf.Max(resultArmor, 0);
+        Debug.Log($"{gameObject.name} 적의 방어력 감소, 현재 방어력: {currentArmor}");
+        yield return new WaitForSeconds(durationTime);
+        currentArmor = defaultArmor; // 방어력 회복
+        Debug.Log($"{gameObject.name} 적의 방어력 다시 회복, 현재 방어력: {currentArmor}");
     }
 }

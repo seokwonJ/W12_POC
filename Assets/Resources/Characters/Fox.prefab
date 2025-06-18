@@ -4139,7 +4139,7 @@ MonoBehaviour:
   skillCount: 10
   skillFireDelay: 1
   skillSize: 1
-  skillDamage: 1
+  skillDamage: 1.2
   skillTime: 0.7
   isReturnDamageScalesWithHitCount: 0
   isEmpoweredAttackEvery3Hits: 0

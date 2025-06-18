@@ -117,7 +117,7 @@ MonoBehaviour:
   jumpForce: 10
   maxFallSpeed: 15
   attackBase: 10
-  attackDamage: 100
+  attackDamage: 120
   abilityPower: 150
   projectileSpeed: 30
   criticalProbability: 0
@@ -141,6 +141,7 @@ MonoBehaviour:
   isUpgradeSameEnemyDamage: 0
   attackedEnemy: {fileID: 0}
   sameEnemyCount: 0
+  sameEnemyCountLimit: 20
   sameEnemyDamageDuration: 5
   nowSameEnemyDamageDuration: 0
   skillActiveEffect: {fileID: 4984979348290971514, guid: a54ec04446debd948b043903fccedaf8, type: 3}

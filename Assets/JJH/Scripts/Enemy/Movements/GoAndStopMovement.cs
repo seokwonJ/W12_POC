@@ -7,11 +7,13 @@ using UnityEngine;
 public class GoAndStopMovement : ScriptableObject, IMovementPattern
 {
     private Enemy enemy;
+    private Animator animator;
     public float goDurationTime;
 
     public void Init(Enemy enemy)
     {
         this.enemy = enemy;
+        animator = enemy.GetComponent<Animator>();
         enemy.StartCoroutine(CoMove());
     }
 
@@ -40,6 +42,7 @@ public class GoAndStopMovement : ScriptableObject, IMovementPattern
             yield return null;
         }
         enemy.rb.linearVelocity = Vector2.zero; // 이동이 끝나면 속도를 0으로 설정
+        animator.SetTrigger("Stop");
     }
 }
 

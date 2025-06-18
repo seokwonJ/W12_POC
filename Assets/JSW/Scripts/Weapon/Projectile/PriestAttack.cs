@@ -4,6 +4,9 @@ using static UnityEngine.GraphicsBuffer;
 public class PriestAttack : ProjectileBase
 {
     public Transform target;
+    private bool _isUpgradeAttackEnemyDefenseDown;
+    private float _attackEnemyDefenseDownNum;
+
 
     protected override void Update()
     {
@@ -24,7 +27,7 @@ public class PriestAttack : ProjectileBase
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum, Transform target = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownNum, Transform target = null)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -33,6 +36,8 @@ public class PriestAttack : ProjectileBase
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
         knockbackPower = knockbackPowerNum;
+        _isUpgradeAttackEnemyDefenseDown = isUpgradeAttackEnemyDefenseDown;
+        _attackEnemyDefenseDownNum = attackEnemyDefenseDownNum;
 
         if (target != null)
         {
@@ -48,6 +53,11 @@ public class PriestAttack : ProjectileBase
             if (enemy != null)
                 enemy.TakeDamage((int)damage, ECharacterType.Priest);
 
+            /*
+             * 디펜스 다운 3들어가면 추가 
+             *
+             */
+            //if (_isUpgradeAttackEnemyDefenseDown) attackEnemyDefenseDownNum
 
             // 넉백
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
