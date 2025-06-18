@@ -65,7 +65,7 @@ public class FoxAttack : ProjectileBase
         base.Update();
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, Transform ownerTransform, bool isReturnDamageScalesWithHitCountResult, float totalTravelTimeNum, bool isOrbPausesBeforeReturningResult, Fox characterFox, bool isSkill)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, Transform ownerTransform, float totalTravelTimeNum, Fox characterFox, bool isSkill)
     {
         owner = ownerTransform;
 
@@ -76,9 +76,7 @@ public class FoxAttack : ProjectileBase
         speed = speedNum;
         this.knockbackPower = knockbackPowerNum;
         transform.localScale = Vector3.one * scaleNum;
-        isReturnDamageScalesWithHitCount = isReturnDamageScalesWithHitCountResult;
         totalTravelTime = totalTravelTimeNum;
-        isOrbPausesBeforeReturning = isOrbPausesBeforeReturningResult;
         _characterFox = characterFox;
         this.isSkill = isSkill;
     }
