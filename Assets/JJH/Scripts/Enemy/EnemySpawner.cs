@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
     private void Start()
     {
-        Managers.Stage.enemySpawner = this;
+        Managers.Stage.EnemySpawner = this;
         Managers.Stage.StartStage(); // nowStage 재설정
         StartCoroutine(CoSpawnEnemyRoutine(Managers.Stage.NowStage));
     }
