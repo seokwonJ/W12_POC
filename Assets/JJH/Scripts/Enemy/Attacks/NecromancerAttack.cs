@@ -30,6 +30,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
     private WaitForSeconds mediumOneProjectileWait;
     private float beforeMeidiumProjectileCoolDown = 1f; // 중간 크기 발사체 생성 전 애니메이션만 바뀌는 시간
     private WaitForSeconds beforeMediumProjectileWait;
+    private WaitForSeconds mediumProjectileSoundWait = new WaitForSeconds(0.36f); // 중간 크기 발사체 사운드 간격
 
     [Header("해골 발사체 발사하는 패턴 관련")]
     public EnemyWaveSO skullProjectileWave; // 해골 발사 웨이브
@@ -87,7 +88,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             }
 
             int randomNum = Random.Range(0, 3);
-
+            randomNum = 0; // 테스트용으로 무조건 중간 크기 발사체로 설정
             switch (randomNum)
             {
                 case 0:
@@ -98,6 +99,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
                     // 해골 미사일 발사체를 소환
                     anim.SetTrigger("Skull"); // 해골 발사 애니메이션 시작
                     yield return beforeSkullProjectileWait;
+                    SoundManager.Instance.PlaySFX("NecromancerSkull");
                     enemySpawner.SpawnEnemys(skullProjectileWave, skullProjectileCount);
                     yield return afterSkullProjectileWait;
                     break;
@@ -131,7 +133,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
         // 각각의 발사체가 360도 방향으로 균등한 각도로 날아가도록 설정
 
         float randomAngle = Random.Range(0f, 360f);
-        SoundManager.Instance.PlaySFX("BlueDragonShootProjectile");
+        enemy.StartCoroutine(CoPlayMediumProejctileSFX()); // 발사체 사운드 재생
         int dir = Random.Range(0, 2) == 0 ? 1 : -1;
         for (int i = 0; i < projectileCount; i++)
         { 
@@ -146,6 +148,15 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             yield return mediumOneProjectileWait;
         }
         yield return null; // 프레임 대기
+    }
+
+    IEnumerator CoPlayMediumProejctileSFX()
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            SoundManager.Instance.PlaySFX("BlueDragonShootProjectile");
+            yield return mediumProjectileSoundWait; // 발사체 간격 대기
+        }
     }
 
     IEnumerator CoExplosion()

@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90aaf7d435c85cd469826e2f7d8421bb, type: 3}
   m_Name: 2-4
   m_EditorClassIdentifier: 
-  world: 2
-  stage: 4
+  world: 1
+  stage: 1
   isBossStage: 1
   enemyWave:
   - {fileID: 11400000, guid: a6fdd062440aed14293b8b4aa7667f3b, type: 2}
