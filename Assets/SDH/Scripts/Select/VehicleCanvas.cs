@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 public class VehicleCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject vehicleCanvas;
+    [SerializeField] private SelectCanavs selectCanavs;
     [SerializeField] private Transform thumbnail;
 
     public int NowSelectedIdx => nowSelectedIdx;
@@ -23,30 +25,43 @@ public class VehicleCanvas : MonoBehaviour
         SetThumbnail();
         vehicleCanvas.SetActive(false);
     }
-
-    private void Update()
+    
+    public void StartGetInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        StartCoroutine(GetInput());
+    }
+
+    private IEnumerator GetInput()
+    {
+        yield return null;
+
+        while (true)
         {
-            Managers.PlayerControl.IsSelecting = false;
-            SetThumbnail();
-            vehicleCanvas.SetActive(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx - 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx + 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx - 5);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx + 5);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StopAllCoroutines();
+                SetThumbnail();
+                selectCanavs.StartGetInput();
+                vehicleCanvas.SetActive(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx - 1);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx + 1);
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx - 5);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx + 5);
+            }
+
+            yield return null;
         }
     }
 
@@ -65,6 +80,6 @@ public class VehicleCanvas : MonoBehaviour
 
         GameObject thumbnailIcon = Instantiate(Managers.Asset.VehicleIcons[nowSelectedIdx], thumbnail);
         SortingGroup sortingGroup = thumbnailIcon.AddComponent<SortingGroup>();
-        sortingGroup.sortingLayerName = "BackGround";
+        sortingGroup.sortingLayerName = "FrontGround";
     }
 }

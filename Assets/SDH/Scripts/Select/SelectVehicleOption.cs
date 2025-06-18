@@ -2,10 +2,12 @@ using UnityEngine;
 
 public class SelectVehicleOption : SelectOption
 {
-    [SerializeField] private GameObject vehicleCanvas;
+    [SerializeField] private GameObject vehicleCanvasObj;
+    [SerializeField] private VehicleCanvas vehicleCanvas;
 
     public override void ChooseOption()
     {
-        vehicleCanvas.SetActive(true);
+        vehicleCanvasObj.SetActive(true);
+        vehicleCanvas.StartGetInput();
     }
 }

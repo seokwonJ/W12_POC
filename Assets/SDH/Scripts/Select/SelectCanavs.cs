@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,18 @@ public class SelectCanavs : MonoBehaviour // 선택창 캔버스 메인
     private ScrollRect scrollRect;
     private int nowSelectedIdx; // 지금 선택한 시작옵션
     private float step; // 아이템 하나가 차지하는 스크롤 거리 비율
+    public bool IsOn
+    {
+        get
+        {
+            return isOn;
+        }
+        set
+        {
+            isOn = value;
+        }
+    }
+    private bool isOn; // 현재 옵션을 설정 중인지 확인 (false면 동작 안함)
 
     private void Awake()
     {
@@ -17,33 +30,45 @@ public class SelectCanavs : MonoBehaviour // 선택창 캔버스 메인
 
     private void Start()
     {
-        Managers.PlayerControl.IsSelecting = false;
+        isOn = true;
 
         scrollRect.horizontalNormalizedPosition = 0f; // 스크롤을 0f로 초기화하지 않거나 계산을 Awake에 넣으면 scrollRect.content.rect.width가 설정되지 않아 터짐
         step = (scrollRect.content.GetChild(0).GetComponent<RectTransform>().rect.width + scrollRect.content.GetComponent<HorizontalLayoutGroup>().spacing) / (scrollRect.content.rect.width - scrollRect.viewport.rect.width);
+
+        StartGetInput();
     }
 
-    private void Update()
+    public void StartGetInput()
     {
-        if (Managers.PlayerControl.IsSelecting) return;
+        StartCoroutine(GetInput());
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+    private IEnumerator GetInput()
+    {
+        yield return null;
+
+        while (true)
         {
-            SelectNowSelected();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            MinusNowSelectedIdx();
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            PlusNowSelectedIdx();
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                SelectNowSelected();
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                MinusNowSelectedIdx();
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                PlusNowSelectedIdx();
+            }
+
+            yield return null;
         }
     }
 
     private void SelectNowSelected() // 현재 선택한 옵션을 실행
     {
-        Managers.PlayerControl.IsSelecting = true;
+        StopAllCoroutines();
         scrollRect.content.GetChild(nowSelectedIdx).GetComponent<SelectOption>().ChooseOption();
     }
 
