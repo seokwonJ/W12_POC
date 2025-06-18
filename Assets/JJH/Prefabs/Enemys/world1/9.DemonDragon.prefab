@@ -384,6 +384,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 2200
+  defaultArmor: 30
+  currentArmor: 0
   playerHP_Image: {fileID: 2284735236592308728}
   isSpawning: 1
   isDead: 0
