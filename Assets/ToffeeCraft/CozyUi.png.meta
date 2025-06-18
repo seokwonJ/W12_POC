@@ -18917,10 +18917,10 @@ TextureImporter:
       name: CozyUi_627
       rect:
         serializedVersion: 2
-        x: 930
-        y: 687
-        width: 90
-        height: 94
+        x: 931
+        y: 688
+        width: 88
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -23141,10 +23141,10 @@ TextureImporter:
       name: CozyUi_819
       rect:
         serializedVersion: 2
-        x: 930
-        y: 607
-        width: 90
-        height: 82
+        x: 931
+        y: 608
+        width: 88
+        height: 80
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
