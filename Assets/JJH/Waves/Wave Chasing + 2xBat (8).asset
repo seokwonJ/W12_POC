@@ -16,6 +16,6 @@ MonoBehaviour:
   - {fileID: 2971542310015680529, guid: 5381e033cadd8124eb0e2e27d93ffb42, type: 3}
   - {fileID: 7272904772713194245, guid: 3dc17a9bf44eaa64e99ab9ceaee5fbf0, type: 3}
   - {fileID: 7272904772713194245, guid: 3dc17a9bf44eaa64e99ab9ceaee5fbf0, type: 3}
-  spawnPositionType: 010000000000000000000000
+  spawnPositionType: 000000000000000000000000
   waveInterval: 1
   isBossWave: 0

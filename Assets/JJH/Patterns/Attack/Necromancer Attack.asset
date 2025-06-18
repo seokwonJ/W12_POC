@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Necromancer Attack
   m_EditorClassIdentifier: 
   mediumProjectilePrefab: {fileID: 1478908389578142060, guid: 6875300baa20d7342925f1ec08f0f691, type: 3}
-  largeProjectilePrefab: {fileID: 1478908389578142060, guid: 1b3323c6fe98fd84e917682dd45026bf, type: 3}
   skullProjectileWave: {fileID: 11400000, guid: f1e045f6447a3bd46908f15312d19200, type: 2}
+  explosionPrefab: {fileID: 2731194587295128986, guid: bef207ee55ec73a4fa537e08699152e0, type: 3}
