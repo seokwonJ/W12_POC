@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9115df6ca1f1834d80763db84d57c09, type: 3}
   m_Name: NinjaUpgrade 6
   m_EditorClassIdentifier: 
-  upgradeName: n6
-  description: n6
+  upgradeName: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uC99D\uAC00"
+  description: "\uCE58\uBA85\uD0C0 \uD53C\uD574 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 6
