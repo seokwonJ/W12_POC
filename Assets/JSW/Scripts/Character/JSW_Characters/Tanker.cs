@@ -23,7 +23,8 @@ public class Tanker : Character
     public bool isCloserMoreDamage;
     public float closerMoreDamagePercent = 20;
     public bool isSkillEnemySpeedDown;
-    public float skillEnemySpeedDonwPercent;
+    public float skillEnemySpeedDonwPercent = 70;
+    public float skillEnemySpeedDonwDuration = 3;
 
     public int upgradeNum;
 
@@ -139,14 +140,9 @@ public class Tanker : Character
                     enemy.ApplyKnockback(knockbackDirection.normalized, skillknockbackPower / Vector2.Distance(hit.transform.position, transform.position));
                 }
 
-
-                /*
-                 * 슬로우 추가되면 슬로운 관련 것들 추가!
-                 *  꼭!
-                 */
                 if (isSkillEnemySpeedDown)
                 {
-                    // 적들 슬로우 함수 호출!!!!!!!!!!!!!
+                    enemy.GetComponent<Enemy>().ApplySlow((int)skillEnemySpeedDonwPercent, skillEnemySpeedDonwDuration);
                 }
             }
         }

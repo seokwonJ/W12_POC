@@ -5,8 +5,8 @@ public class PriestAttack : ProjectileBase
 {
     public Transform target;
     private bool _isUpgradeAttackEnemyDefenseDown;
-    private float _attackEnemyDefenseDownNum;
-
+    private float _attackEnemyDefenseDownPercent;
+    private float _attackEnemyDefenseDownDuration;
 
     protected override void Update()
     {
@@ -27,7 +27,7 @@ public class PriestAttack : ProjectileBase
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownNum, Transform target = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercent,float attackEnemyDefenseDownDuration, Transform target = null)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -37,7 +37,8 @@ public class PriestAttack : ProjectileBase
         transform.localScale = Vector3.one * scaleNum;
         knockbackPower = knockbackPowerNum;
         _isUpgradeAttackEnemyDefenseDown = isUpgradeAttackEnemyDefenseDown;
-        _attackEnemyDefenseDownNum = attackEnemyDefenseDownNum;
+        _attackEnemyDefenseDownPercent = attackEnemyDefenseDownPercent;
+        _attackEnemyDefenseDownDuration = attackEnemyDefenseDownDuration;
 
         if (target != null)
         {
@@ -53,11 +54,7 @@ public class PriestAttack : ProjectileBase
             if (enemy != null)
                 enemy.TakeDamage((int)damage, ECharacterType.Priest);
 
-            /*
-             * 디펜스 다운 3들어가면 추가 
-             *
-             */
-            //if (_isUpgradeAttackEnemyDefenseDown) attackEnemyDefenseDownNum
+            if (_isUpgradeAttackEnemyDefenseDown) enemy.GetComponent<EnemyHP>().ReduceArmor((int)_attackEnemyDefenseDownPercent, _attackEnemyDefenseDownDuration);
 
             // 넉백
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
