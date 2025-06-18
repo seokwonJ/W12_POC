@@ -37,6 +37,7 @@ public class PlayerControlManager // 플레이어 관리
     {
         nowPlayer = null;
         characters = new();
+        charactersIdx = new();
     }
 
     public bool IsOnRightSide() // 현재 플레이어가 화면 오른쪽에 있는지 확인
