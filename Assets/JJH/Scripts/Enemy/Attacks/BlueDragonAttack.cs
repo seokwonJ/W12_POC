@@ -15,7 +15,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     private WaitForSeconds attackWait;
     private float easyTime = 25f; // 공격 패턴 사이 간격이 늘어나는 간격
     private bool isOnRight = true;
-
+    
     [Header("중간 크기의 발사체 입에서 발사하는 패턴 관련")]
     public GameObject mediumProjectilePrefab; // 중간 크기 발사체 프리팹
     private int mediumProjectileCount = 6; // 중간 크기 발사 횟수
@@ -167,7 +167,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
         for (int i = 0; i < projectileCount; i++)
         {
             float angle = Mathf.Lerp(0f, 360f, (float)i / (projectileCount - 1)) + randomAngle;
-            Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.left; // 위쪽 방향과 곱해서 Vector2로 변경
+            Vector2 direction = Quaternion.Euler(0, 0, angle) * Vector2.left; // 왼쪽 방향과 곱해서 Vector2로 변경
             GameObject proj = Instantiate(mediumProjectilePrefab, enemy.firePoint.position, Quaternion.Euler(0, 0, angle + 180));
             proj.GetComponent<Rigidbody2D>().linearVelocity = direction * mediumProjectileSpeed;
         }
