@@ -1,27 +1,26 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "LeviUpgrade", menuName = "Upgrades/LeviUpgrade")]
 public class LeviUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp,             // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp,             // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
 
-        AttackNumPlusSkillDamageDown,               // 1¹øÀÇ °ø°İ¿¡ 1¹ø °ø°İÀ» Ãß°¡ÇÕ´Ï´Ù ½ºÅ³ ´ë¹ÌÁö°¡ ´ëÆø °¨¼ÒÇÕ´Ï´Ù
-        SkillEndPlusSkillCountUp,                   // ÂøÁö¸¦ ÇÒ ¶§ ¸¶´Ù ½ºÅ³ ´ë»óÀ» 1È¸ Ãß°¡ÇÕ´Ï´Ù ÃÖ´ë nÈ¸±îÁö Áõ°¡ÇÕ´Ï´Ù.(¾÷±×·¹ÀÌµå ÇÒ¶§ ¸¶´Ù ÃÖ´ëÄ¡ Áõ°¡ )
-        AttackDurationUp,                           // °Ë±â°¡ ´õ ¸Ö¸® ³ª°£´Ù (½ÇÁ¦ : °ø°İÀÇ Áö¼Ó½Ã°£ÀÌ Áõ°¡ÇÑ´Ù )
-        AttackPerDamageMinusNumMinus,               // °üÅë µÉ ¶§ ¸¶´Ù °¨¼ÒÇÏ´Â ´ë¹ÌÁö°¡ ÁÙ¾îµç´Ù
-        SkillingHitAttack                           // ½ºÅ³·Î Áö³ª°¡´Â µ¿¼±¿¡µµ ´ë¹ÌÁö¸¦ ÁØ´Ù
+        AttackNumPlusSkillDamageDown,               // 1ë²ˆì˜ ê³µê²©ì— 1ë²ˆ ê³µê²©ì„ ì¶”ê°€í•©ë‹ˆë‹¤ ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ê°€ ëŒ€í­ ê°ì†Œí•©ë‹ˆë‹¤
+        SkillEndPlusSkillCountUp,                   // ì°©ì§€ë¥¼ í•  ë•Œ ë§ˆë‹¤ ìŠ¤í‚¬ ëŒ€ìƒì„ 1íšŒ ì¶”ê°€í•©ë‹ˆë‹¤ ìµœëŒ€ níšŒê¹Œì§€ ì¦ê°€í•©ë‹ˆë‹¤.(ì—…ê·¸ë ˆì´ë“œ í• ë•Œ ë§ˆë‹¤ ìµœëŒ€ì¹˜ ì¦ê°€ )
+        AttackDurationUp,                           // ê²€ê¸°ê°€ ë” ë©€ë¦¬ ë‚˜ê°„ë‹¤ (ì‹¤ì œ : ê³µê²©ì˜ ì§€ì†ì‹œê°„ì´ ì¦ê°€í•œë‹¤ )
+        AttackPerDamageMinusNumMinus,               // ê´€í†µ ë  ë•Œ ë§ˆë‹¤ ê°ì†Œí•˜ëŠ” ëŒ€ë¯¸ì§€ê°€ ì¤„ì–´ë“ ë‹¤
+        SkillingHitAttack                           // ìŠ¤í‚¬ë¡œ ì§€ë‚˜ê°€ëŠ” ë™ì„ ì—ë„ ëŒ€ë¯¸ì§€ë¥¼ ì¤€ë‹¤
     }
 
     public UpgradeType type;
@@ -31,83 +30,83 @@ public class LeviUpgrade : CharacterUpgrade
         Levi levi = character.GetComponent<Levi>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                levi.attackPowerUpNum += attackPowerUpPercent;                                    // ±âº» µ¥¹ÌÁö »ó½Â
+                levi.attackPowerUpNum += attackPowerUpPercent;                                    // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 levi");
                 break;
             case UpgradeType.AttackSpeedUp:
-                levi.attackSpeedUpNum += attackSpeedUpPercent;                                    // ÆòÅ¸ °£°İ
+                levi.attackSpeedUpNum += attackSpeedUpPercent;                                    // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 levi");
                 levi.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 levi.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 levi");
                 levi.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 levi.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 levi");
                 levi.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 levi.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 levi");
                 levi.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 levi.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 levi");
                 levi.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 levi.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 levi");
                 levi.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 levi.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 levi");
                 levi.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
                 levi.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 levi.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 levi");
                 levi.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
                 levi.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
                 levi.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 levi");
                 levi.upgradeNum = 9;
                 break;
 
-            //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
 
-            case UpgradeType.AttackNumPlusSkillDamageDown:                                          // 1¹øÀÇ °ø°İ¿¡ 1¹ø °ø°İÀ» Ãß°¡ÇÕ´Ï´Ù ½ºÅ³ ´ë¹ÌÁö°¡ ´ëÆø °¨¼ÒÇÕ´Ï´Ù
+            case UpgradeType.AttackNumPlusSkillDamageDown:                                          // 1ë²ˆì˜ ê³µê²©ì— 1ë²ˆ ê³µê²©ì„ ì¶”ê°€í•©ë‹ˆë‹¤ ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ê°€ ëŒ€í­ ê°ì†Œí•©ë‹ˆë‹¤
                 levi.attackNum += 1;
                 levi.abilityPower -= 100;
                 Debug.Log("Debug10 archer");
                 levi.upgradeNum = 10;
                 break;
-            case UpgradeType.SkillEndPlusSkillCountUp:                                               // ÂøÁö¸¦ ÇÒ ¶§ ¸¶´Ù ½ºÅ³ ´ë»óÀ» 1È¸ Ãß°¡ÇÕ´Ï´Ù ÃÖ´ë nÈ¸±îÁö Áõ°¡ÇÕ´Ï´Ù.(¾÷±×·¹ÀÌµå ÇÒ¶§ ¸¶´Ù ÃÖ´ëÄ¡ Áõ°¡ )
+            case UpgradeType.SkillEndPlusSkillCountUp:                                               // ì°©ì§€ë¥¼ í•  ë•Œ ë§ˆë‹¤ ìŠ¤í‚¬ ëŒ€ìƒì„ 1íšŒ ì¶”ê°€í•©ë‹ˆë‹¤ ìµœëŒ€ níšŒê¹Œì§€ ì¦ê°€í•©ë‹ˆë‹¤.(ì—…ê·¸ë ˆì´ë“œ í• ë•Œ ë§ˆë‹¤ ìµœëŒ€ì¹˜ ì¦ê°€ )
                 levi.isSkillEndPlusSkillCountUp = true;
                 Debug.Log("Debug11 archer");
                 levi.upgradeNum = 11;
                 break;
-            case UpgradeType.AttackDurationUp:                                                       // °Ë±â°¡ ´õ ¸Ö¸® ³ª°£´Ù (½ÇÁ¦ : °ø°İÀÇ Áö¼Ó½Ã°£ÀÌ Áõ°¡ÇÑ´Ù )
+            case UpgradeType.AttackDurationUp:                                                       // ê²€ê¸°ê°€ ë” ë©€ë¦¬ ë‚˜ê°„ë‹¤ (ì‹¤ì œ : ê³µê²©ì˜ ì§€ì†ì‹œê°„ì´ ì¦ê°€í•œë‹¤ )
                 levi.NormalAttackProjectileDuration += 1;
                 Debug.Log("Debug12 archer");
                 levi.upgradeNum = 12;
                 break;
-            case UpgradeType.AttackPerDamageMinusNumMinus:                                           // °üÅë µÉ ¶§ ¸¶´Ù °¨¼ÒÇÏ´Â ´ë¹ÌÁö°¡ ÁÙ¾îµç´Ù
+            case UpgradeType.AttackPerDamageMinusNumMinus:                                           // ê´€í†µ ë  ë•Œ ë§ˆë‹¤ ê°ì†Œí•˜ëŠ” ëŒ€ë¯¸ì§€ê°€ ì¤„ì–´ë“ ë‹¤
                 levi.attackPerDamageMinus -= 3;
                 Debug.Log("Debug13 archer");
                 levi.upgradeNum = 13;
                 break;
-            case UpgradeType.SkillingHitAttack:                                                      // ½ºÅ³·Î Áö³ª°¡´Â µ¿¼±¿¡µµ ´ë¹ÌÁö¸¦ ÁØ´Ù
+            case UpgradeType.SkillingHitAttack:                                                      // ìŠ¤í‚¬ë¡œ ì§€ë‚˜ê°€ëŠ” ë™ì„ ì—ë„ ëŒ€ë¯¸ì§€ë¥¼ ì¤€ë‹¤
                 levi.isAttackWhileSkillUpgrade = true;
                 Debug.Log("Debug14 archer");
                 levi.upgradeNum = 14;
@@ -115,6 +114,6 @@ public class LeviUpgrade : CharacterUpgrade
 
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

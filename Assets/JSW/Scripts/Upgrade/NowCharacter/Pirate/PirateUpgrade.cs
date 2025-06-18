@@ -1,26 +1,25 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "PirateUpgrade", menuName = "Upgrades/PirateUpgrade")]
 public class PirateUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp,             // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp,             // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
 
-        SkillProjectileCountUp,                     // ½ºÅ³ÀÇ Åõ»çÃ¼ +3
-        AttackPerMana,                              // ±âº» °ø°İ ÀûÁß½Ã ¸¶³ª¸¦ n% Ã¤¿öÁØ´Ù
-        ManaMultipleSkillProjectileMultiple,        // ÃÖ´ë ¸¶³ª·® 2¹è ÇØÀûÀÇ ½ºÅ³ Åõ»çÃ¼°¡ 2¹è
-        NoMoreExplosionAttackDamageUp,              // ´õ ÀÌ»ó ´ëÆ÷°¡ ÅÍÁö¸é¼­ ¹üÀ§ ´ë¹ÌÁö¸¦ ÁÖÁö ¾ÊÀ½ °ø°İ·ÂÀÌ ´ëÆø Áõ°¡ÇÑ´Ù
+        SkillProjectileCountUp,                     // ìŠ¤í‚¬ì˜ íˆ¬ì‚¬ì²´ +3
+        AttackPerMana,                              // ê¸°ë³¸ ê³µê²© ì ì¤‘ì‹œ ë§ˆë‚˜ë¥¼ n% ì±„ì›Œì¤€ë‹¤
+        ManaMultipleSkillProjectileMultiple,        // ìµœëŒ€ ë§ˆë‚˜ëŸ‰ 2ë°° í•´ì ì˜ ìŠ¤í‚¬ íˆ¬ì‚¬ì²´ê°€ 2ë°°
+        NoMoreExplosionAttackDamageUp,              // ë” ì´ìƒ ëŒ€í¬ê°€ í„°ì§€ë©´ì„œ ë²”ìœ„ ëŒ€ë¯¸ì§€ë¥¼ ì£¼ì§€ ì•ŠìŒ ê³µê²©ë ¥ì´ ëŒ€í­ ì¦ê°€í•œë‹¤
     }
 
     public UpgradeType type;
@@ -30,77 +29,77 @@ public class PirateUpgrade : CharacterUpgrade
         Pirate pirate = character.GetComponent<Pirate>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                pirate.attackPowerUpNum += attackPowerUpPercent;                                    // ±âº» µ¥¹ÌÁö »ó½Â
+                pirate.attackPowerUpNum += attackPowerUpPercent;                                    // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 pirate");
                 break;
             case UpgradeType.AttackSpeedUp:
-                pirate.attackSpeedUpNum += attackSpeedUpPercent;                                    // ÆòÅ¸ °£°İ
+                pirate.attackSpeedUpNum += attackSpeedUpPercent;                                    // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 pirate");
                 pirate.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 pirate.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 pirate");
                 pirate.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 pirate.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 pirate");
                 pirate.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 pirate.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 pirate");
                 pirate.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 pirate.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 pirate");
                 pirate.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 pirate.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 pirate");
                 pirate.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 pirate.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 pirate");
                 pirate.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
                 pirate.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 pirate.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 pirate");
                 pirate.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
                 pirate.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
                 pirate.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 pirate");
                 pirate.upgradeNum = 9;
                 break;
-            //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
 
 
-            case UpgradeType.SkillProjectileCountUp:                                                // ½ºÅ³ÀÇ Åõ»çÃ¼ +3
+            case UpgradeType.SkillProjectileCountUp:                                                // ìŠ¤í‚¬ì˜ íˆ¬ì‚¬ì²´ +3
                 pirate.skillShotCount += 3;
                 Debug.Log("Debug10 pirate");
                 pirate.upgradeNum = 10;
                 break;
-            case UpgradeType.AttackPerMana:                                                         // ±âº» °ø°İ ÀûÁß½Ã ¸¶³ª¸¦ n% Ã¤¿öÁØ´Ù
+            case UpgradeType.AttackPerMana:                                                         // ê¸°ë³¸ ê³µê²© ì ì¤‘ì‹œ ë§ˆë‚˜ë¥¼ n% ì±„ì›Œì¤€ë‹¤
                 pirate.isAttackPerMana = true;
                 Debug.Log("Debug11 pirate");
                 pirate.upgradeNum = 11;
                 break;
-            case UpgradeType.ManaMultipleSkillProjectileMultiple:                                   // ÃÖ´ë ¸¶³ª·® 2¹è ÇØÀûÀÇ ½ºÅ³ Åõ»çÃ¼°¡ 2¹è
+            case UpgradeType.ManaMultipleSkillProjectileMultiple:                                   // ìµœëŒ€ ë§ˆë‚˜ëŸ‰ 2ë°° í•´ì ì˜ ìŠ¤í‚¬ íˆ¬ì‚¬ì²´ê°€ 2ë°°
                 pirate.isManaMultipleSkillProjectileMultiple = true;
                 Debug.Log("Debug12 pirate");
                 pirate.upgradeNum = 12;
                 break;
-            case UpgradeType.NoMoreExplosionAttackDamageUp:                                         // ´õ ÀÌ»ó ´ëÆ÷°¡ ÅÍÁö¸é¼­ ¹üÀ§ ´ë¹ÌÁö¸¦ ÁÖÁö ¾ÊÀ½ °ø°İ·ÂÀÌ ´ëÆø Áõ°¡ÇÑ´Ù
+            case UpgradeType.NoMoreExplosionAttackDamageUp:                                         // ë” ì´ìƒ ëŒ€í¬ê°€ í„°ì§€ë©´ì„œ ë²”ìœ„ ëŒ€ë¯¸ì§€ë¥¼ ì£¼ì§€ ì•ŠìŒ ê³µê²©ë ¥ì´ ëŒ€í­ ì¦ê°€í•œë‹¤
                 pirate.isManaMultipleSkillProjectileMultiple = true;
                 pirate.attackBase += 100;
                 Debug.Log("Debug13 pirate");
@@ -109,6 +108,6 @@ public class PirateUpgrade : CharacterUpgrade
 
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

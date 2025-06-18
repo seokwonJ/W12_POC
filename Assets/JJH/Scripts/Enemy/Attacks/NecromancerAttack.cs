@@ -16,7 +16,6 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
     private float prevSpawnMoveTime = 3f;
     private float attackCooldown = 3.5f; // 공격 패턴 사이 간격
     private WaitForSeconds attackWait;
-    private bool isOnRight = true;
     
     [Header("중간 크기의 발사체 지팡이에서 발사하는 패턴 관련")]
     public GameObject mediumProjectilePrefab; // 중간 크기 발사체 프리팹
@@ -88,7 +87,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             }
 
             int randomNum = Random.Range(0, 3);
-            randomNum = 0; // 테스트용으로 무조건 중간 크기 발사체로 설정
+
             switch (randomNum)
             {
                 case 0:
