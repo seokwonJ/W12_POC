@@ -24,7 +24,15 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
     {
         Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetFieldPosition();
 
-        Managers.Stage.Stage++;
+        if (Managers.Stage.NowStage.isBossStage)
+        {
+            Managers.Stage.World++;
+            Managers.Stage.Stage = 1;
+        }
+        else
+        {
+            Managers.Stage.Stage++;
+        }
     }
 
     private void ShopSceneLoaded() // 상점 씬이 시작될 때 실행
