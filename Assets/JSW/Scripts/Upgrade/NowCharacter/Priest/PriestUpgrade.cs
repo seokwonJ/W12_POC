@@ -71,14 +71,14 @@ public class PriestUpgrade : CharacterUpgrade
                 priest.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                priest.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                priest.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 priest.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 priest");
                 priest.upgradeNum = 8;
                 break;
             case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
-                priest.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                priest.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+                priest.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                priest.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 priest");
                 priest.upgradeNum = 9;
                 break;

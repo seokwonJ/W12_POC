@@ -73,14 +73,14 @@ public class NinjaUpgrade : CharacterUpgrade
                 ninja.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                ninja.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                ninja.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 ninja.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 ninja");
                 ninja.upgradeNum = 8;
                 break;
             case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // 마나 회복 속도 증가 + 스킬 대미지 증가
-                ninja.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                ninja.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+                ninja.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                ninja.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 ninja");
                 ninja.upgradeNum = 9;
                 break;

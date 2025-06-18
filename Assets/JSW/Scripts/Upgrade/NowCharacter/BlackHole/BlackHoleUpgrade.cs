@@ -72,14 +72,14 @@ public class BlackHoleUpgrade : CharacterUpgrade
                 blackHole.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                blackHole.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                blackHole.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 blackHole.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 blackHole");
                 blackHole.upgradeNum = 8;
                 break;
             case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
-                blackHole.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                blackHole.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+                blackHole.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                blackHole.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 blackHole");
                 blackHole.upgradeNum = 9;
                 break;

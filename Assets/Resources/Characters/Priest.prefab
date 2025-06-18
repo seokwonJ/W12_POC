@@ -293,20 +293,20 @@ MonoBehaviour:
   manaRegenSpeedUpNum: 100
   abilityPowerUpNum: 100
   maxMP: 100
-  mpPerSecond: 30
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: 38447bfa727c3854d8797fd06bb61d1a, type: 3}
   firePoint: {fileID: 91693443383765436}
   normalFireInterval: 1
-  enemyDetectRadius: 30
+  enemyDetectRadius: 25
   jumpForce: 10
   maxFallSpeed: 10
   attackBase: 5
   attackDamage: 100
   abilityPower: 100
   projectileSpeed: 10
-  criticalProbability: 1
-  criticalDamage: 1
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 2446937254519426269}

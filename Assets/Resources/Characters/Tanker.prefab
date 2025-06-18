@@ -139,13 +139,13 @@ MonoBehaviour:
   normalFireInterval: 1.5
   enemyDetectRadius: 20
   jumpForce: 10
-  maxFallSpeed: 15
+  maxFallSpeed: 17
   attackBase: 10
   attackDamage: 100
   abilityPower: 100
   projectileSpeed: 10
-  criticalProbability: 0
-  criticalDamage: 0
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 677551384205977037}

@@ -303,10 +303,10 @@ MonoBehaviour:
   maxFallSpeed: 10
   attackBase: 15
   attackDamage: 100
-  abilityPower: 100
+  abilityPower: 200
   projectileSpeed: 200
-  criticalProbability: 0
-  criticalDamage: 0
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 3907605951427573454}

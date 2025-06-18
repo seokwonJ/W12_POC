@@ -73,14 +73,14 @@ public class TankerUpgrade : CharacterUpgrade
                 tanker.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                tanker.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                tanker.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 tanker.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 tanker");
                 tanker.upgradeNum = 8;
                 break;
             case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
-                tanker.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                tanker.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+                tanker.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                tanker.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 tanker");
                 tanker.upgradeNum = 9;
                 break;

@@ -71,14 +71,14 @@ public class FoxUpgrade : CharacterUpgrade
                 fox.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                fox.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                fox.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 fox.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 fox");
                 fox.upgradeNum = 8;
                 break;
             case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // 마나 회복 속도 증가 + 스킬 대미지 증가
-                fox.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                fox.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+                fox.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                fox.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 fox");
                 fox.upgradeNum = 9;
                 break;

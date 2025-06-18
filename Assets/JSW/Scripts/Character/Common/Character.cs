@@ -114,7 +114,7 @@ public abstract class Character : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(normalFireInterval);
+            yield return new WaitForSeconds(normalFireInterval / (attackSpeedUpNum / 100));
             if (!isGround) continue;
 
             Transform target = FindNearestEnemy();
@@ -255,11 +255,11 @@ public abstract class Character : MonoBehaviour
     {
         float totalDamage;
 
-        totalDamage = attackBase * (attackPowerUpNum/100) * (attackDamage/100);
+        totalDamage = (attackBase * (attackPowerUpNum/100)) * (attackDamage/100);
 
         bool isCritical = IsCriticalHit();
 
-        if (isCritical) totalDamage *= (criticalDamage / 100);
+        if (isCritical) totalDamage *= ((criticalDamage * criticalDamageUpNum/100) / 100);
 
 
 
@@ -271,7 +271,7 @@ public abstract class Character : MonoBehaviour
     {
         float totalDamage;
 
-        totalDamage = attackBase * (abilityPowerUpNum / 100) * (abilityPower / 100);
+        totalDamage = (attackBase * (attackPowerUpNum / 100)) * ((abilityPowerUpNum / 100) * (abilityPower / 100));
 
         bool isCritical = IsCriticalHit();
 

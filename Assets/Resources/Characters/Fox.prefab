@@ -4114,7 +4114,7 @@ MonoBehaviour:
   manaRegenSpeedUpNum: 100
   abilityPowerUpNum: 100
   maxMP: 150
-  mpPerSecond: 30
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: c2f01c89bf474dd4aaba5612582d0136, type: 3}
   firePoint: {fileID: 2203849580821667185}
@@ -4126,8 +4126,8 @@ MonoBehaviour:
   attackDamage: 100
   abilityPower: 150
   projectileSpeed: 10
-  criticalProbability: 0
-  criticalDamage: 0
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 4116809875839684467}
@@ -4144,7 +4144,7 @@ MonoBehaviour:
   isUpgradeTenAttackSkillDamageUp: 0
   tenAttackSkillDamageUpCount: 0
   tenAttackSkillDamageUpPercent: 0
-  isUpgradeAttackEnemyDefenseDown: 1
+  isUpgradeAttackEnemyDefenseDown: 0
   attackEnemyDefenseDownPercnet: 0
   attackEnemyDefenseDownDuration: 3
   isUpgradeAttackEnemySpeedDown: 0
