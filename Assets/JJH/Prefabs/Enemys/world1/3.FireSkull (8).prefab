@@ -134,7 +134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57976cfb9ea115a4d8fef0d7edd20a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyHP: 1100
+  enemyHP: 900
   defaultArmor: 0
   currentArmor: 0
   playerHP_Image: {fileID: 1371279748141704963}
