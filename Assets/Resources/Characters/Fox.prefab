@@ -4135,18 +4135,18 @@ MonoBehaviour:
   skillReadyEffect: {fileID: 7492839888253209772, guid: 306cce5ee7626ab409c11a4b5fa6deb4, type: 3}
   skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
   fallingAfterImageSpawner: {fileID: 3843504183935493478}
+  attackDuration: 0.7
   skillProjectile: {fileID: 7373925757434712426, guid: c2f01c89bf474dd4aaba5612582d0136, type: 3}
   skillCount: 10
   skillFireDelay: 1
   skillSize: 1
   skillDamage: 1
-  skillTime: 0.7
-  isReturnDamageScalesWithHitCount: 0
-  isEmpoweredAttackEvery3Hits: 0
-  EmpoweredAttackEveryCount: 0
-  isMoreDamageBasedOnOnboardAllies: 0
-  isOrbPausesBeforeReturning: 0
-  isAutoReturnAfterSeconds: 0
+  isUpgradeTenAttackSkillDamageUp: 0
+  tenAttackSkillDamageUpCount: 0
+  tenAttackSkillDamageUpPercent: 0
+  isUpgradeAttackEnemyDefenseDown: 1
+  attackEnemyDefenseDownpercnet: 50
+  attackEnemyDefenseDownDuration: 3
   skillActiveEffect: {fileID: 4364950318276030470, guid: 4cb948122f0aa364796ec1259280af73, type: 3}
   upgradeNum: 0
 --- !u!114 &3843504183935493478

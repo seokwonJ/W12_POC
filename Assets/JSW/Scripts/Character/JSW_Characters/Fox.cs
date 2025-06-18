@@ -19,6 +19,10 @@ public class Fox : Character
     public bool isUpgradeTenAttackSkillDamageUp;
     public int tenAttackSkillDamageUpCount;
     public float tenAttackSkillDamageUpPercent;
+    public bool isUpgradeAttackEnemyDefenseDown;
+    public float attackEnemyDefenseDownpercnet;
+    public float attackEnemyDefenseDownDuration;
+
 
     [Header("¿Ã∆Â∆Æ")]
     public GameObject skillActiveEffect;
@@ -43,17 +47,17 @@ public class Fox : Character
             tenAttackSkillDamageUpCount += 1;
             if (tenAttackSkillDamageUpCount == 10)
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage * tenAttackSkillDamageUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false);
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage * tenAttackSkillDamageUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
                 tenAttackSkillDamageUpCount = 0;
             }
             else
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false);
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
             }
         }
         else
         {
-            proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false);
+            proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
         }
 
         SoundManager.Instance.PlaySFX("FoxAttack");
@@ -90,7 +94,7 @@ public class Fox : Character
 
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
             FoxAttack mb = proj.GetComponent<FoxAttack>();
-            mb.SetInit(dir.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, true);
+            mb.SetInit(dir.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, attackDuration, this, true, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownpercnet, attackEnemyDefenseDownDuration);
             mb.speed = 5;
         }
     }
