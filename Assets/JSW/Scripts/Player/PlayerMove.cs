@@ -1,11 +1,11 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     public float moveSpeed = 5f;
-    public float dashSpeed = 10f;      // ´ë½Ã ¼Óµµ
-    public float dashDuration = 0.2f;  // ´ë½Ã Áö¼Ó ½Ã°£
-    public float dashCooldown = 1f;    // ´ë½Ã Àç»ç¿ë ´ë±â ½Ã°£
+    public float dashSpeed = 10f;      // ëŒ€ì‹œ ì†ë„
+    public float dashDuration = 0.2f;  // ëŒ€ì‹œ ì§€ì† ì‹œê°„
+    public float dashCooldown;    // ëŒ€ì‹œ ì¬ì‚¬ìš© ëŒ€ê¸° ì‹œê°„
 
     private Rigidbody2D rb;
     private Vector2 moveInput;
@@ -40,7 +40,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         moveSpeed = _playerStatus.speed;
-        // ´ë½Ã ÁßÀÌ ¾Æ´Ï¸é ÀÔ·Â ¹Ş±â
+        // ëŒ€ì‹œ ì¤‘ì´ ì•„ë‹ˆë©´ ì…ë ¥ ë°›ê¸°
         if (!isDashing)
         {
             moveInput.x = Input.GetAxisRaw("Horizontal");
@@ -48,7 +48,7 @@ public class PlayerMove : MonoBehaviour
             moveInput = moveInput.normalized;
         }
 
-        // ´ë½Ã ÄğÅ¸ÀÓ °¨¼Ò
+        // ëŒ€ì‹œ ì¿¨íƒ€ì„ ê°ì†Œ
 
         
         if (!isCanDashing)
@@ -76,7 +76,7 @@ public class PlayerMove : MonoBehaviour
         }
        
 
-        // ½ºÆäÀÌ½º ´©¸£¸é ´ë½Ã ½ÃÀÛ
+        // ìŠ¤í˜ì´ìŠ¤ ëˆ„ë¥´ë©´ ëŒ€ì‹œ ì‹œì‘
         if (Input.GetKeyDown(KeyCode.Space) && !isDashing && dashCooldownTimer <= 0)
         {
             DashAfterImageSpawner.enabled = true;
