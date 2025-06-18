@@ -4118,13 +4118,13 @@ MonoBehaviour:
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: c2f01c89bf474dd4aaba5612582d0136, type: 3}
   firePoint: {fileID: 2203849580821667185}
-  normalFireInterval: 1
+  normalFireInterval: 1.5
   enemyDetectRadius: 25
   jumpForce: 10
   maxFallSpeed: 15
   attackBase: 100
-  attackDamage: 100
-  abilityPower: 150
+  attackDamage: 150
+  abilityPower: 180
   projectileSpeed: 10
   criticalProbability: 10
   criticalDamage: 175
