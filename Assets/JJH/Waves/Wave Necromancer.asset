@@ -10,12 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1556d8410d346b44e9918f1fed5879c9, type: 3}
-  m_Name: Wave Chasing + 2xBat (8)
+  m_Name: Wave Necromancer
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 2971542310015680529, guid: 5381e033cadd8124eb0e2e27d93ffb42, type: 3}
-  - {fileID: 7272904772713194245, guid: 3dc17a9bf44eaa64e99ab9ceaee5fbf0, type: 3}
-  - {fileID: 7272904772713194245, guid: 3dc17a9bf44eaa64e99ab9ceaee5fbf0, type: 3}
-  spawnPositionType: 000000000000000000000000
+  - {fileID: 2971542310015680529, guid: 807d03cae4dd432439f52639eadcaa08, type: 3}
+  spawnPositionType: 03000000
   waveInterval: 1
-  isBossWave: 0
+  isBossWave: 1
