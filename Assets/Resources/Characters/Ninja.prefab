@@ -72,7 +72,7 @@ MonoBehaviour:
   maxFallSpeed: 15
   attackBase: 5
   attackDamage: 100
-  abilityPower: 150
+  abilityPower: 100
   projectileSpeed: 15
   criticalProbability: 10
   criticalDamage: 175
