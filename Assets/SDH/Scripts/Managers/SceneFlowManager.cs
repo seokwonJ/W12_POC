@@ -24,14 +24,14 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
     {
         Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetFieldPosition();
 
-        if (Managers.Stage.NowStage.isBossStage)
+        if (Managers.Stage.NowStage == null || !Managers.Stage.NowStage.isBossStage)
         {
-            Managers.Stage.World++;
-            Managers.Stage.Stage = 1;
+            Managers.Stage.Stage++;
         }
         else
         {
-            Managers.Stage.Stage++;
+            Managers.Stage.World++;
+            Managers.Stage.Stage = 1;
         }
     }
 
