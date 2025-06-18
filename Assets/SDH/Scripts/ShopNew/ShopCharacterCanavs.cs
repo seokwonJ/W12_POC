@@ -90,6 +90,7 @@ public class ShopCharacterCanavs : MonoBehaviour
 
             Managers.Status.Gold -= 200;
 
+            StopAllCoroutines();
             setUpgradeCanvas.gameObject.SetActive(true);
             setUpgradeCanvas.SetUpgrades(Managers.PlayerControl.Characters[nowShopSelectIdx - 2]);
         }
