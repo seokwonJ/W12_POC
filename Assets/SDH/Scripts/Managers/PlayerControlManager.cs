@@ -3,18 +3,6 @@ using UnityEngine;
 
 public class PlayerControlManager // 플레이어 관리
 {
-    public bool IsSelecting
-    {
-        get
-        {
-            return isSelecting;
-        }
-        set
-        {
-            isSelecting = value;
-        }
-    }
-    private bool isSelecting; // (시작 전 선택창에서) 특정 옵션을 건드리고 있는지 여부
     public GameObject NowPlayer
     {
         get

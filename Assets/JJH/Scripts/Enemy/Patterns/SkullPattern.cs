@@ -106,13 +106,13 @@ public class SkullPattern : MonoBehaviour
         float elapsedTime = 0f;
         while (elapsedTime < dashDuration)
         {
-            elapsedTime += Time.deltaTime;
+            elapsedTime += Time.fixedDeltaTime;
             if (isChasingDash)
             {
                 directionToPlayer = (player.transform.position - enemyHP.transform.position).normalized; // IsChasingDash이면 대쉬를 하면서 플레이어를 계속 쫓아감
             }
             enemyHP.rb.linearVelocity = directionToPlayer * dashSpeed;
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }
     }
 

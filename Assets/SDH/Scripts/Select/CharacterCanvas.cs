@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
@@ -5,6 +6,7 @@ using UnityEngine.UI;
 public class CharacterCanvas : MonoBehaviour
 {
     [SerializeField] private GameObject characterCanvas;
+    [SerializeField] private SelectCanavs selectCanavs;
     [SerializeField] private Transform thumbnail;
 
     public int NowSelectedIdx => nowSelectedIdx;
@@ -24,29 +26,42 @@ public class CharacterCanvas : MonoBehaviour
         characterCanvas.SetActive(false);
     }
 
-    private void Update()
+    public void StartGetInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        StartCoroutine(GetInput());
+    }
+
+    private IEnumerator GetInput()
+    {
+        yield return null;
+
+        while (true)
         {
-            Managers.PlayerControl.IsSelecting = false;
-            SetThumbnail();
-            characterCanvas.SetActive(false);
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx - 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx + 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx - 10);
-        }
-        else if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx + 10);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StopAllCoroutines();
+                SetThumbnail();
+                selectCanavs.StartGetInput();
+                characterCanvas.SetActive(false);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx - 1);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx + 1);
+            }
+            else if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx - 5);
+            }
+            else if (Input.GetKeyDown(KeyCode.DownArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx + 5);
+            }
+
+            yield return null;
         }
     }
 
@@ -65,6 +80,6 @@ public class CharacterCanvas : MonoBehaviour
 
         GameObject thumbnailIcon = Instantiate(Managers.Asset.CharacterIcons[nowSelectedIdx], thumbnail);
         SortingGroup sortingGroup = thumbnailIcon.AddComponent<SortingGroup>();
-        sortingGroup.sortingLayerName = "BackGround";
+        sortingGroup.sortingLayerName = "FrontGround";
     }
 }

@@ -341,7 +341,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyHP: 20
-  defaultArmor: 10
+  defaultArmor: 0
   currentArmor: 0
   playerHP_Image: {fileID: 4981368077165404448}
   isSpawning: 1
@@ -366,6 +366,7 @@ MonoBehaviour:
   speed: 6
   minPlayerDistance: 0
   isKnockbackable: 1
+  isSlowable: 1
   isKnockback: 0
   isFilpping: 1
   damage: 20

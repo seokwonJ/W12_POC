@@ -228,8 +228,8 @@ MonoBehaviour:
   jumpForce: 10
   maxFallSpeed: 10
   attackBase: 10
-  attackDamage: 100
-  abilityPower: 150
+  attackDamage: 90
+  abilityPower: 80
   projectileSpeed: 35
   criticalProbability: 10
   criticalDamage: 175

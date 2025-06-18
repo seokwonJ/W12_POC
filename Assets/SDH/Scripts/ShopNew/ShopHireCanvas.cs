@@ -1,9 +1,10 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class ShopHireCanvas : MonoBehaviour
 {
-    [SerializeField] private GameObject shopwCharacterCanavas;
+    [SerializeField] private ShopCharacterCanavs shopwCharacterCanavas;
     [SerializeField] private Transform[] characterOptions;
     private int[] characterOptionsIdx = new int[3];
     private int nowSelectedIdx;
@@ -12,28 +13,40 @@ public class ShopHireCanvas : MonoBehaviour
     {
         if (Managers.PlayerControl.Characters.Count >= 4) // 동료가 다 차면 고용하지 않음 (해고나 동료 최대치 변경이 있다면 이 부분 수정 필요)
         {
-            shopwCharacterCanavas.SetActive(true);
+            shopwCharacterCanavas.StartGetInput();
             Destroy(gameObject);
             return;
         }
 
         SetIcon();
         SetNowSelectedIdx(1); // 기본값은 가운데
+        GetComponent<Canvas>().enabled = true;
+        StartCoroutine(GetInput());
     }
 
-    private void Update()
+    private IEnumerator GetInput()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        yield return null; // 얘는 상점 시작할 때 한 번 띄우고 다시는 안 띄우는 코드라 이 함수가 필요없으나 일단은 똑같이 해둠
+
+        while (true)
         {
-            HireCharacter();
-        }
-        else if (Input.GetKeyDown(KeyCode.LeftArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx - 1);
-        }
-        else if (Input.GetKeyDown(KeyCode.RightArrow))
-        {
-            SetNowSelectedIdx(nowSelectedIdx + 1);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                StopAllCoroutines(); // 이것도 마찬가지
+                HireCharacter();
+                shopwCharacterCanavas.StartGetInput();
+                Destroy(gameObject);
+            }
+            else if (Input.GetKeyDown(KeyCode.LeftArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx - 1);
+            }
+            else if (Input.GetKeyDown(KeyCode.RightArrow))
+            {
+                SetNowSelectedIdx(nowSelectedIdx + 1);
+            }
+
+            yield return null;
         }
     }
 
@@ -75,14 +88,11 @@ public class ShopHireCanvas : MonoBehaviour
         characterOptions[nowSelectedIdx].GetComponent<Image>().color = Color.green; // 새로 선택한 옵션 강조 설정
     }
 
-    public void HireCharacter() // 동료 고용
+    private void HireCharacter() // 동료 고용
     {
         Managers.PlayerControl.Characters.Add(Instantiate(Managers.Asset.Characters[characterOptionsIdx[nowSelectedIdx]], Managers.PlayerControl.NowPlayer.transform));
         Managers.PlayerControl.CharactersIdx.Add(characterOptionsIdx[nowSelectedIdx]);
         Managers.PlayerControl.CharactersCheck[characterOptionsIdx[nowSelectedIdx]] = true;
         Managers.PlayerControl.SetPlayer();
-
-        shopwCharacterCanavas.SetActive(true);
-        Destroy(gameObject);
     }
 }
