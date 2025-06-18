@@ -281,8 +281,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: WarningIndicator_0
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6855449549806904812, guid: 09d576207df846545bc10c7b844b306a, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []

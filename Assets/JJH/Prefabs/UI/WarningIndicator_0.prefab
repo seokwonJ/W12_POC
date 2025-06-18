@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2313764071124090219}
   - component: {fileID: 6444699197923848895}
-  - component: {fileID: 6855449549806904812}
   m_Layer: 0
   m_Name: WarningIndicator_0
   m_TagString: Untagged
@@ -88,16 +87,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6855449549806904812
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7762078447414160682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c410f0885cd3514db3e01507c30a8bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeed: 20
