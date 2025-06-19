@@ -15,11 +15,10 @@ MonoBehaviour:
   world: 1
   stage: 2
   isBossStage: 0
-  enemyNumLimit: 6
   enemyWave:
   - {fileID: 11400000, guid: 5bcef2225c5082b459824c556608e324, type: 2}
   - {fileID: 11400000, guid: 57037657184d6db4bb1ab4c4fec21168, type: 2}
-  waveCount: 0300000003000000
+  waveCount: 0200000002000000
   wavePreparationTime:
   - 0.5
   - 1

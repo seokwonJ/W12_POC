@@ -2,13 +2,13 @@
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class AddForceToPlayerAttack : EnemyAttack1
+public class AccelerationToPlayerAttack : EnemyAttack1
 {
     private GameObject player;
     private Rigidbody2D rb;
 
     private float acceleration = 3.5f;   // 가속도 (초당 속도 증가량)
-    private float maxSpeed = 12f;      // 최대 속도
+    private float maxSpeed = 15f;      // 최대 속도
     private float turnSpeed = 100f;    // 회전 속도 (Degrees per second)
     private float currentSpeed = 0f;  // 현재 속도
 

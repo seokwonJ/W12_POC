@@ -1346,8 +1346,8 @@
     "m_ObjectId": "86989d8d02e044319db960d95660210c",
     "m_Title": "Damage Effect Group",
     "m_Position": {
-        "x": -598.0,
-        "y": -1366.0
+        "x": -597.9998779296875,
+        "y": -1365.9998779296875
     }
 }
 
@@ -1445,7 +1445,7 @@
     "m_ObjectId": "9c08a3832afc437f9f17cd344f62fd79",
     "m_Title": "Die Effect Group",
     "m_Position": {
-        "x": -479.0,
+        "x": -478.9998779296875,
         "y": -567.0
     }
 }

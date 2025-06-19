@@ -114,7 +114,7 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log($"{gameObject.name} 적이 플레이어와 충돌해서 {damage} 데미지");
             collision.GetComponent<PlayerHP>().TakeDamage(damage);
-            OnPlayerCollided();
+            //OnPlayerCollided();
         }
         else if (collision.CompareTag("Wall"))
         {

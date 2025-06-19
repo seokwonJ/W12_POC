@@ -87,6 +87,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             }
 
             int randomNum = Random.Range(0, 3);
+            randomNum = 1; // 테스트용으로 해골 발사체만 사용
 
             switch (randomNum)
             {
