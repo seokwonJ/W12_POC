@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: 1-6
   m_EditorClassIdentifier: 
   world: 1
-  stage: 1
+  stage: 6
   isBossStage: 1
   enemyWave:
   - {fileID: 11400000, guid: 13a9dab26c3b53146b1b707cecca7bbd, type: 2}
