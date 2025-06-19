@@ -7,10 +7,18 @@ public class FindAnyFieldCanvas : MonoBehaviour
     [SerializeField] private CurtainFadeOut panelCanvasGroup;
     public SetClearTxt ClearTxt => clearTxt;
     [SerializeField] private SetClearTxt clearTxt;
+    public ActStartDirect StartDirect => startDirect;
+    [SerializeField] private ActStartDirect startDirect;
 
-    private void Start()
+    private void Awake()
     {
         Managers.SceneFlow.FieldCanvas = this;
+    }
+
+    public void StartStartDirect(float waitTime, float maxTime)
+    {
+        startDirect.gameObject.SetActive(true);
+        startDirect.StartFadeOut(waitTime, maxTime);
     }
 
     public void StartFadeOut(float maxTime)

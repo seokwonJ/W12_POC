@@ -18,8 +18,6 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
     {
         DontDestroyOnLoad(gameObject);
 
-        SetFieldPosition();
-
         Managers.Status.RiderCount = Managers.PlayerControl.Characters.Count;
     }
 
@@ -70,7 +68,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
     private IEnumerator FieldEnd() // 필드 스테이지가 끝난 뒤 연출
     {
         Managers.SceneFlow.ClearTxt();
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.8f);
 
         float nowTime, maxTime; // 이동시간용 변수
         Vector3 startPlayerPos; // 현재 위치용 변수
@@ -132,20 +130,44 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         yield break;
     }
 
-    public void SetFieldPosition() // 전투가 시작할 때 비행체와 캐릭터 위치 보정 + 레이어 순서 변경
+    public void StartFieldDirect() // 필드 시작할 때 연출
     {
-        transform.position = Vector3.zero;
+        StartCoroutine(FieldDirect());
+    }
 
+    public IEnumerator FieldDirect() // 전투가 시작할 때 연출 + 비행체와 캐릭터 위치 보정 + 레이어 순서 변경
+    {
+        transform.position = Vector3.left * 40f;
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
             Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f);
             Managers.PlayerControl.Characters[i].GetComponent<Character>().EndFieldAct();
             Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = false;
-            Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = true; // 껐다 켜서 OnEnable 실행되게 하기
             Managers.PlayerControl.Characters[i].transform.SetAsLastSibling();
         }
 
-        SetOrderInLayer(null);
+        float nowTime = 0f, maxTime = 2f; // maxTime 시간동안 앞으로 이동
+        Vector3 startPlayerPos = transform.position;
+        Managers.SceneFlow.StartDirect(1f, 1f);
+        while (nowTime <= maxTime)
+        {
+            transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
+
+            nowTime += Time.deltaTime;
+            yield return null;
+        }
+
+        rb.bodyType = RigidbodyType2D.Dynamic; // 다시 움직일 수 있도록 설정
+        playerMove.enabled = true;
+
+        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
+        {
+            Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = true;
+        }
+
+        Managers.Stage.StartStage();
+
+        yield break;
     }
 
     public void SetShopPosition() // 상점이 시작할 때 비행체를 숨기기
