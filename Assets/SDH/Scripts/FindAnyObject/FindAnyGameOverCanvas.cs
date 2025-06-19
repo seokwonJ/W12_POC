@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class FindAnyGameOverCanvas : MonoBehaviour
 {
-    private void Start()
+    private void Awake()
     {
         Managers.SceneFlow.GameOverCanvas = GetComponent<Canvas>();
     }
