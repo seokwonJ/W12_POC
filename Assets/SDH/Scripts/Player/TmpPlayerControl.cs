@@ -69,6 +69,9 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
     private IEnumerator FieldEnd() // 필드 스테이지가 끝난 뒤 연출
     {
+        Managers.SceneFlow.ClearTxt();
+        yield return new WaitForSeconds(1f);
+
         float nowTime, maxTime; // 이동시간용 변수
         Vector3 startPlayerPos; // 현재 위치용 변수
 
@@ -99,7 +102,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         Managers.Stage.EnemySpawner.DeleteField(); // 코드 실행 뒤 투사체가 생기면 남는 문제 해결을 위해 여러 번 발동
 
-        StartCoroutine(Managers.SceneFlow.FadeOut(0.8f)); // 기본값 = 뒤로이동maxTime+앞으로이동maxTime+대기시간
+        Managers.SceneFlow.FadeOut(0.8f); // 기본값 = 뒤로이동maxTime+앞으로이동maxTime+대기시간
 
         nowTime = 0f; maxTime = 0.2f; // maxTime 시간동안 뒤로 이동
         while (nowTime <= maxTime)

@@ -49,6 +49,6 @@ public class Managers : MonoBehaviour
 
     private void OnDestroy() // 초기화
     {
-        sceneFlow.Clear();
+        sceneFlow.ClearOnSceneLoaded();
     }
 }

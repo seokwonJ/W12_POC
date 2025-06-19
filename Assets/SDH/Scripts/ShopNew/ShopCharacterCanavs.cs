@@ -86,6 +86,7 @@ public class ShopCharacterCanavs : MonoBehaviour
         }
         else
         {
+            if (Managers.PlayerControl.Characters[nowShopSelectIdx - 2].GetComponent<UpgradeController>().UpgradeNum >= 5) return; // 업그레이드를 이미 5회 했다면 더 이상 업그레이드 불가
             if (Managers.Status.Gold < 200) return;
 
             Managers.Status.Gold -= 200;
