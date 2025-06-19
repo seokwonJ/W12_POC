@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 4098594958328118943}
   - component: {fileID: 4048457046020219944}
   - component: {fileID: 7328938593562880701}
+  - component: {fileID: 2889314935634242886}
   m_Layer: 7
   m_Name: Basic
   m_TagString: Flyer
@@ -450,6 +451,19 @@ MonoBehaviour:
   Durability: 100
   defensePower: 5
   speed: 10
+--- !u!114 &2889314935634242886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738716690033967867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91546c5c7f3a5e4787897318a3f157b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  criticalEffect: {fileID: 5344747107156892833, guid: b150c41a05c86ff4a84f825e138796fc, type: 3}
 --- !u!1 &5298924088431605087
 GameObject:
   m_ObjectHideFlags: 0
@@ -557,6 +571,7 @@ MonoBehaviour:
   hpBarPrefab: {fileID: 676647053238153101, guid: 6289e1d088d9dde4f8250890a19fd071, type: 3}
   canvasTransform: {fileID: 2925869386017404920}
   hpBarOffset: {x: 0, y: 0, z: 0}
+  isEndFieldNoDamage: 0
 --- !u!58 &8500205352661480715
 CircleCollider2D:
   m_ObjectHideFlags: 0

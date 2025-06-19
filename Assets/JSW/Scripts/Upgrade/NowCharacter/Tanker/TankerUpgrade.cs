@@ -28,6 +28,8 @@ public class TankerUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Tanker tanker = character.GetComponent<Tanker>();
         switch (type)
         {

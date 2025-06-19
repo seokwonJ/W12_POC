@@ -62,15 +62,15 @@ public class ShopCharacterCanavs : MonoBehaviour
 
         if (nowShopSelectIdx == 0)
         {
-            selectCursor.localPosition = new(840f, -339f, 0f);
+            selectCursor.localPosition = new(840f, 150f, 0f);
         }
         else if (nowShopSelectIdx == 1)
         {
-            selectCursor.localPosition = new(400f, 40f, 0f);
+            selectCursor.localPosition = new(400f, 450f, 0f);
         }
         else
         {
-            selectCursor.localPosition = new(150f - 150f * (nowShopSelectIdx - 2), -60f, 0f);
+            selectCursor.localPosition = new(150f - 150f * (nowShopSelectIdx - 2), 390f, 0f);
         }
     }
 
@@ -86,6 +86,7 @@ public class ShopCharacterCanavs : MonoBehaviour
         }
         else
         {
+            if (Managers.PlayerControl.Characters[nowShopSelectIdx - 2].GetComponent<UpgradeController>().UpgradeNum >= 5) return; // 업그레이드를 이미 5회 했다면 더 이상 업그레이드 불가
             if (Managers.Status.Gold < 200) return;
 
             Managers.Status.Gold -= 200;

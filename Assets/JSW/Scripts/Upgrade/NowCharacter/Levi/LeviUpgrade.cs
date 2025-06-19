@@ -27,6 +27,8 @@ public class LeviUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Levi levi = character.GetComponent<Levi>();
         switch (type)
         {

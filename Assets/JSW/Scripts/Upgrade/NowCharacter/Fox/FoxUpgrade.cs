@@ -26,6 +26,8 @@ public class FoxUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Fox fox = character.GetComponent<Fox>();
         switch (type)
         {

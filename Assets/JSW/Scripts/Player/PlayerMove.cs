@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
     private Vector2 moveInput;
 
     private bool isDashing = false;
-    private bool isCanDashing;
+    public  bool isCanDashing;
     private bool isDashInvinvible = false;
     private float dashTimer = 0f;
     private float dashCooldownTimer = 0f;

@@ -40,8 +40,10 @@ public class Levi : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
-        proj.GetComponent<LeviAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), NormalAttackProjectileDuration, attackPerDamageMinus);
+        proj.GetComponent<LeviAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, NormalAttackProjectileDuration, attackPerDamageMinus);
 
         SoundManager.Instance.PlaySFX("LeviAttack");
     }
@@ -61,7 +63,7 @@ public class Levi : Character
                 Vector3 targetpos = target.position;
                 animator.Play("ATTACK", -1, 0f);
 
-                for (int i = 0; i < attackNum;i++)
+                for (int i = 0; i < attackNum; i++)
                 {
                     FireNormalProjectile(targetpos);
                     yield return new WaitForSeconds(dobleAttackCoolTime);
@@ -219,7 +221,7 @@ public class Levi : Character
 
         // 조건 만족 안 하면 아무것도 안 하고 리턴 (부모에서 이미 isGround 처리됨)
         if (!isGround) return;
-        
+
         if (isSkillEndPlusSkillCountUp && _nowskillTargetCount < maximumSkillEndPlusSkillCountUp)
         {
             _nowskillTargetCount += 1;
