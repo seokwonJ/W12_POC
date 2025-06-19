@@ -35,7 +35,7 @@ public class SetUpgradeCanvas : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            SetNowUpgradeSelect(nowUpgradeSelectIdx - 1); // 인덱스 상 다른 것들과 음양이 반대임에 유의
+            SetNowUpgradeSelect(nowUpgradeSelectIdx - 1);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
