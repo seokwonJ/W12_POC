@@ -223,16 +223,16 @@ MonoBehaviour:
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: 9689313b650133447a3e4427bd84e020, type: 3}
   firePoint: {fileID: 91693443383765436}
-  normalFireInterval: 1
+  normalFireInterval: 2.5
   enemyDetectRadius: 30
   jumpForce: 10
   maxFallSpeed: 10
-  attackBase: 5
-  attackDamage: 100
-  abilityPower: 200
+  attackBase: 75
+  attackDamage: 150
+  abilityPower: 300
   projectileSpeed: 20
-  criticalProbability: 5
-  criticalDamage: 5
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 98201350519021881}
@@ -246,9 +246,11 @@ MonoBehaviour:
   skillFireDelay: 0.1
   skillSize: 4
   skillProjectileSpeed: 15
-  isAddAttackDamage: 0
-  isnomalAttackSizePerMana: 0
   upgradeNum: 0
+  isUpgradeTenAttackSkillAttack: 0
+  tenAttackSkillAttackCountMax: 10
+  isUpgradeSkillExplosionAttack: 0
+  SkillExplosionAttackTime: 0.8
   player: {fileID: 0}
   skillActiveEffect: {fileID: 1956634884848028283, guid: c769fa4c3128f3b448f853ad0cefe357, type: 3}
 --- !u!61 &1354129338059981449

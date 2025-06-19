@@ -2,6 +2,8 @@
 
 public class Kunai : ProjectileBase
 {
+    private bool _isCritical;
+
     protected override void Update()
     {
         base.Update(); // 이동
@@ -25,11 +27,18 @@ public class Kunai : ProjectileBase
                 enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
             }
 
+            if (_isCritical)
+            {
+                Vector2 contactPoint = other.ClosestPoint(transform.position);
+                Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
+            }
+
+
             DestroyProjectile(gameObject);
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isCritical)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -38,6 +47,7 @@ public class Kunai : ProjectileBase
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
         knockbackPower = knockbackPowerNum;
+        _isCritical = isCritical;
     }
 
 }

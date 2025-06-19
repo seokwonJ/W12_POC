@@ -13,10 +13,15 @@ public class PlayerHP : MonoBehaviour
     public GameObject hpBarPrefab;
     public Transform canvasTransform;
     public Vector3 hpBarOffset;
+    public bool isEndFieldNoDamage;
 
     private PlayerStatus _playerStatus;
+    private PlayerMove _playerMove;
+    private CircleCollider2D hitCollider;
+
     private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
+    private WaitForSeconds hitNoDamageDuration = new WaitForSeconds(0.5f);
     private SpriteRenderer spriteRendererCore;
 
 
@@ -33,14 +38,13 @@ public class PlayerHP : MonoBehaviour
     private void Awake()
     {
         spriteRendererCore = GetComponent<SpriteRenderer>();
-
-
-
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     protected virtual void Start()
     {
         _playerStatus = Managers.PlayerControl.NowPlayer.GetComponent<PlayerStatus>();
+        _playerMove = Managers.PlayerControl.NowPlayer.GetComponent<PlayerMove>();
+        hitCollider = GetComponent<CircleCollider2D>();
 
         // HPBar 프리팹을 직접 생성하고 연결
         //if (hpBarPrefab != null && canvasTransform != null)
@@ -61,10 +65,13 @@ public class PlayerHP : MonoBehaviour
     {
         if (playerHP_Image != null)
             playerHP_Image.fillAmount = Managers.Status.Hp / Managers.Status.MaxHp;
+        isEndFieldNoDamage = false;     // 비행체 무적 해제
     }
 
     public virtual void TakeDamage(int damage)
     {
+        if (isEndFieldNoDamage) return;
+
         Managers.Status.Hp -= (damage - _playerStatus.defensePower);
         SoundManager.Instance.PlaySFX("PlayerHitSound");
 
@@ -92,6 +99,8 @@ public class PlayerHP : MonoBehaviour
 
     public virtual void TakeHeal(int Num)
     {
+        if (isEndFieldNoDamage) return;
+
         if (Managers.Status.Hp + (Num) >= Managers.Status.MaxHp) Managers.Status.Hp = Managers.Status.MaxHp;
         else { Managers.Status.Hp += (Num); }
 
@@ -104,7 +113,7 @@ public class PlayerHP : MonoBehaviour
             Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
 
             if (flashCoroutine != null) StopCoroutine(flashCoroutine);
-            flashCoroutine = StartCoroutine(CoDamagedEffect());
+            flashCoroutine = StartCoroutine(CoHealEffect());
         }
         else
         {
@@ -122,8 +131,32 @@ public class PlayerHP : MonoBehaviour
     IEnumerator CoDamagedEffect()
     {
         spriteRendererCore.color = Color.red; // 코어 색상을 빨간색으로 변경
-        yield return flashDuration;
-        spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
+        hitCollider.enabled = false;
+
+        yield return hitNoDamageDuration;
+        
+        hitCollider.enabled = true;
+        if (_playerMove.isCanDashing)
+        {
+            spriteRendererCore.color = Color.green; // 코어 색상을 원래대로 되돌림
+        }
+        else
+        {
+            spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
+        }
     }
 
+    IEnumerator CoHealEffect()
+    {
+        spriteRendererCore.color = Color.magenta; // 코어 색상을 빨간색으로 변경
+        yield return flashDuration;
+        if (_playerMove.isCanDashing)
+        {
+            spriteRendererCore.color = Color.green; // 코어 색상을 원래대로 되돌림
+        }
+        else
+        {
+            spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
+        }
+    }
 }

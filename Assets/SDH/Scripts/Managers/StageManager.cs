@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StageManager // 씬 전환 관리 (전투-상점 등)
 {
-    public EnemySpawner enemySpawner;
+    public EnemySpawner EnemySpawner;
 
     public int World
     {
@@ -49,7 +49,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
             else // 스테이지 끝나고 상점으로
             {
                 Debug.Log("현재 스테이지 끝");
-                enemySpawner.DeleteField();
+                Managers.PlayerControl.NowPlayer.GetComponentInChildren<PlayerHP>().isEndFieldNoDamage = true;
                 Managers.Record.AddTotalDamageRecord(); // 스테이지 끝나고 총 데미지 레코드에 기록을 더하기
                 Managers.Record.PrintAllDamageRecord(isStage:true); // 스테이지에서 가한 피해량 출력
                 Managers.Record.PrintAllDamageRecord(isStage:false); // 총 가한 피해량 출력

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4dcb6e721b80047bbdf5faf962862a, type: 3}
   m_Name: LeviUpgrade 3
   m_EditorClassIdentifier: 
-  upgradeName: AttackWhileFalling
-  description: AttackWhileFalling
+  upgradeName: "\uD0C4 \uD06C\uAE30 \uC99D\uAC00"
+  description: "\uD0C4 \uD06C\uAE30 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 3
-  value: 0

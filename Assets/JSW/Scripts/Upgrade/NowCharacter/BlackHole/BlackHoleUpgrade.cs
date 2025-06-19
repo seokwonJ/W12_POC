@@ -1,5 +1,4 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 
 [CreateAssetMenu(fileName = "BlackHoleUpgrade", menuName = "Upgrades/BlackHoleUpgrade")]
@@ -7,81 +6,109 @@ public class BlackHoleUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp             // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp,             // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+
+        SkillDurationUp,                            // ìŠ¤í‚¬ì˜ ì§€ì†ì‹œê°„ ì¦ê°€.
+        SkillAttackDlaySpeedUp,                     // ë¸”ë™í™€ì´ ëŒ€ë¯¸ì§€ë¥¼ ì£¼ëŠ” ì£¼ê¸°ê°€ ë” ë¹¨ë¼ì§„ë‹¤
+        SkillSizeDownExplosion,                     // ë¸”ë™í™€ì˜ ì‚¬ì´ì¦ˆê°€ 1/2ë¡œ ì¤„ì–´ë“œëŠ” ëŒ€ì‹  ë¸”ë™í™€ì´ ì‚¬ë¼ì§€ê¸° ì „ì— í­ë°œí•´ì„œ ëŒ€ë¯¸ì§€ë¥¼ ì¤€ë‹¤
+        SkillDenfenseDown,                          // ë¸”ë™í™€ì˜ ê³µê²©ì´ ë°©ì–´ë ¥ì„ ê°ì†Œ ì‹œí‚µë‹ˆë‹¤
     }
 
     public UpgradeType type;
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         BlackHole blackHole = character.GetComponent<BlackHole>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                blackHole.attackPowerUpNum += attackPowerUpPercent;                                    // ±âº» µ¥¹ÌÁö »ó½Â
+                blackHole.attackPowerUpNum += attackPowerUpPercent;                                    // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 blackHole");
                 break;
             case UpgradeType.AttackSpeedUp:
-                blackHole.attackSpeedUpNum += attackSpeedUpPercent;                                    // ÆòÅ¸ °£°İ
+                blackHole.attackSpeedUpNum += attackSpeedUpPercent;                                    // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 blackHole");
                 blackHole.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 blackHole.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 blackHole");
                 blackHole.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 blackHole.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 blackHole");
                 blackHole.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 blackHole.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 blackHole");
                 blackHole.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 blackHole.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 blackHole");
                 blackHole.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 blackHole.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 blackHole");
                 blackHole.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 blackHole.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 blackHole");
                 blackHole.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-                blackHole.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+                blackHole.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 blackHole.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 blackHole");
                 blackHole.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
-                blackHole.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                blackHole.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+                blackHole.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                blackHole.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 blackHole");
                 blackHole.upgradeNum = 9;
                 break;
-                //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
 
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
+
+            case UpgradeType.SkillDurationUp:                                                       // ìŠ¤í‚¬ì˜ ì§€ì†ì‹œê°„ ì¦ê°€.
+                blackHole.skillDuration += 2;
+                Debug.Log("Debug10 blackHole");
+                blackHole.upgradeNum = 10;
+                break;
+            case UpgradeType.SkillAttackDlaySpeedUp:                                                // ë¸”ë™í™€ì´ ëŒ€ë¯¸ì§€ë¥¼ ì£¼ëŠ” ì£¼ê¸°ê°€ ë” ë¹¨ë¼ì§„ë‹¤
+                blackHole.skillPullInterval -= 0.1f;
+                Debug.Log("Debug11 blackHole");
+                blackHole.upgradeNum = 11;
+                break;
+            case UpgradeType.SkillSizeDownExplosion:                                                // ë¸”ë™í™€ì˜ ì‚¬ì´ì¦ˆê°€ 1/2ë¡œ ì¤„ì–´ë“œëŠ” ëŒ€ì‹  ë¸”ë™í™€ì´ ì‚¬ë¼ì§€ê¸° ì „ì— í­ë°œí•´ì„œ ëŒ€ë¯¸ì§€ë¥¼ ì¤€ë‹¤
+                blackHole.isUpgradeSkillSizeDownExplosion = true;
+                Debug.Log("Debug12 blackHole");
+                blackHole.upgradeNum = 12;
+                break;
+            case UpgradeType.SkillDenfenseDown:                                                     // ë¸”ë™í™€ì˜ ê³µê²©ì´ ë°©ì–´ë ¥ì„ ê°ì†Œ ì‹œí‚µë‹ˆë‹¤
+                blackHole.isUpgradeSkillEnemyDenfenseDown = true;
+                Debug.Log("Debug13 blackHole");
+                blackHole.upgradeNum = 13;
+                break;
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

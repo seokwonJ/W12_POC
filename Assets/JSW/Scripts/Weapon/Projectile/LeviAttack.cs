@@ -2,9 +2,12 @@
 
 public class LeviAttack : ProjectileBase
 {
+    private float _attackPerDamageMinus;
+    private bool _isCritical;
+
+
     protected override void Start()
     {
-        
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -22,10 +25,18 @@ public class LeviAttack : ProjectileBase
                 enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
             }
 
+            if (_isCritical)
+            {
+                Vector2 contactPoint = other.ClosestPoint(transform.position);
+                Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
+            }
+
+            if (damage - _attackPerDamageMinus > 5) damage -= _attackPerDamageMinus;
+            else damage = 5;
         }
     }
 
-    public  void SetInit(Vector2 dir, float damageNum, float speedNum, float sizeNum, float knockbackPowerNum, float lifeTimeNum)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float sizeNum, float knockbackPowerNum, bool isCritical, float lifeTimeNum, float attackPerDamageMinus)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -33,6 +44,9 @@ public class LeviAttack : ProjectileBase
         damage = damageNum;
         speed = speedNum;
         knockbackPower = knockbackPowerNum;
+        _isCritical = isCritical;
+
+        _attackPerDamageMinus = attackPerDamageMinus;
         Destroy(gameObject, lifeTimeNum);
     }
 

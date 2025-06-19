@@ -22,7 +22,9 @@ public class Sniper : Character
     public float realoadTime;
 
     [Header("강화")]
-    public float nomalAttackSize;
+    public bool isNoMorePenetrationAttackUp;
+    public bool isPenetrationPerDamageUp;
+    public float penetrationPerDamageUpPercent = 110;
 
     public int upgradeNum;
 
@@ -71,7 +73,7 @@ public class Sniper : Character
 
             if (_AttackCurrentCount <= 0)
             {
-                animator.SetBool("isEndTReload", false);
+                animator.SetBool("isEndReload", false);
                 animator.Play("Reload", -1, 0.1f);
 
                 Debug.Log("스나이퍼 장전 중");
@@ -84,7 +86,7 @@ public class Sniper : Character
                 yield return new WaitForSeconds(1);
 
                 _AttackCurrentCount = AttackMaxCount;
-                animator.SetBool("isEndTReload", true);
+                animator.SetBool("isEndReload", true);
             }
 
             if (!isGround) continue;
@@ -121,12 +123,12 @@ public class Sniper : Character
         yield return new WaitForSeconds(skillInterval);
         SoundManager.Instance.PlaySFX("SniperSkillActive");
         animator.Play("SKILL", -1, 0f);
-        Instantiate(sniperSkillActive2, transform.position, Quaternion.identity,transform);
+        Instantiate(sniperSkillActive2, transform.position, Quaternion.identity, transform);
 
         _isSkillReady = true;
         _beforeSkillVelocity = rb.linearVelocity;
-        dimDarking = StartCoroutine(FadeAlphaTo(dim,0.8f,0.3f));
-    
+        //dimDarking = StartCoroutine(FadeAlphaTo(dim, 0.8f, 0.3f));
+
         yield return new WaitForSeconds(skillSlowDelay);
         Instantiate(sniperSkillActive1, transform.position, Quaternion.identity, transform);
 
@@ -138,8 +140,8 @@ public class Sniper : Character
             yield return new WaitForSeconds(skillFireDelay);
         }
 
-        StopCoroutine(dimDarking);
-        StartCoroutine(FadeAlphaTo(dim, dimOriginAlpha, 0.5f));
+        //StopCoroutine(dimDarking);
+        //StartCoroutine(FadeAlphaTo(dim, dimOriginAlpha, 0.5f));
         _AttackCurrentCount = AttackMaxCount;
         _isSkillReady = false;
     }
@@ -177,25 +179,13 @@ public class Sniper : Character
         if (isSkillActive) skillTargetList.Add(newTargetPos);
 
         if (newTargetPos == null) return;
-        
+
         Vector2 direction = (newTargetPos.position - firePoint.position).normalized;
 
         // 시각적으로 보일 투사체
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
         Instantiate(sniperActiveShot, transform.position, Quaternion.identity);
 
-        if (_isSkillReady)
-        {
-            proj.GetComponent<SniperAttack>().SetInit(direction, skillProjectileSpeed, skillSize);
-
-            SoundManager.Instance.PlaySFX("SniperSkillAttack");
-        }
-        else
-        {
-            proj.GetComponent<SniperAttack>().SetInit(direction, projectileSpeed, nomalAttackSize);
-
-            SoundManager.Instance.PlaySFX("SniperAttack");
-        }
 
         // 캐릭터 스프라이트 방향 반전
         if (direction.x > 0)
@@ -207,7 +197,24 @@ public class Sniper : Character
         float maxDistance = 100f; // 원하는 사거리 설정
         RaycastHit2D[] hits = Physics2D.RaycastAll(firePoint.position, direction, maxDistance, LayerMask.GetMask("Enemy")); // "Enemy" 레이어는 적에게만 설정되어야 함
 
+        if (_isSkillReady)
+        {
+            proj.GetComponent<SniperAttack>().SetInit(direction, skillProjectileSpeed, skillSize, isNoMorePenetrationAttackUp, hits[0].transform.position);
+
+            SoundManager.Instance.PlaySFX("SniperSkillAttack");
+        }
+        else
+        {
+            proj.GetComponent<SniperAttack>().SetInit(direction, projectileSpeed, projectileSize, isNoMorePenetrationAttackUp, hits[0].transform.position);
+
+            SoundManager.Instance.PlaySFX("SniperAttack");
+        }
+
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
+
+
         float totalSkillDamage = TotalSkillDamage();
 
         foreach (var hit in hits)
@@ -222,8 +229,16 @@ public class Sniper : Character
                 else
                 {
                     enemy.TakeDamage((int)totalAttackDamage, ECharacterType.Sniper);
+
+                    if (isCritical)
+                    {
+                        Vector2 contactPoint = hit.point;
+                        Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
+                    }
                 }
-                totalAttackDamage *= 0.9f; // 10% 감소
+
+                if (isPenetrationPerDamageUp) totalAttackDamage *= penetrationPerDamageUpPercent / 100; // 퍼센트 증가
+                else totalAttackDamage *= 0.9f; // 10% 감소
 
                 // 넉백
                 Vector2 knockbackDirection = (enemy.transform.position - transform.position).normalized;
@@ -234,11 +249,11 @@ public class Sniper : Character
                     enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower * (knockbackPowerUpNum / 100));
                 }
 
+                if (isNoMorePenetrationAttackUp) break;
                 print("현재 데미지 : " + totalAttackDamage);
             }
+
         }
-
-
     }
 
 

@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96aafbf49a84e9418c81fb2cdb2b7e6, type: 3}
   m_Name: FoxUpgrade 2
   m_EditorClassIdentifier: 
-  upgradeName: ManaRegan
-  description: ManaRegan
+  upgradeName: "\uD22C\uC0AC\uCCB4 \uC18D\uB3C4 \uC99D\uAC00"
+  description: "\uD22C\uC0AC\uCCB4 \uC18D\uB3C4 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 2
-  value: 0

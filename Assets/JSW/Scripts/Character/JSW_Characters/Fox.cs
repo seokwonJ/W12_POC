@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class Fox : Character
 {
+    [Header("여우 공격")]
+    public float attackDuration = 0.7f;
+
     [Header("스킬")]
     public GameObject skillProjectile;
     public int skillCount = 10;
     public float skillFireDelay = 0.1f;
     public float skillSize = 1f;
     public float skillDamage = 1f;
-    public float skillTime = 0.7f;
     public Dictionary<GameObject, int> hitEnemies;
 
     [Header("강화")]
-    public bool isReturnDamageScalesWithHitCount;
-    public bool isEmpoweredAttackEvery3Hits;
-    public int EmpoweredAttackEveryCount;
-    public bool isMoreDamageBasedOnOnboardAllies;
-    public bool isOrbPausesBeforeReturning;
-    public bool isAutoReturnAfterSeconds;
+    public bool isUpgradeTenAttackSkillDamageUp;
+    public int tenAttackSkillDamageUpCount;
+    public float tenAttackSkillDamageUpPercent;
+
+    public bool isUpgradeAttackEnemyDefenseDown;
+    public float attackEnemyDefenseDownPercnet;
+    public float attackEnemyDefenseDownDuration;
+
+    public bool isUpgradeAttackEnemySpeedDown;
+    public float attackEnemySpeedDownPercnet;
+    public float attackEnemySpeedDownDuration;
 
     [Header("이펙트")]
     public GameObject skillActiveEffect;
@@ -38,31 +45,25 @@ public class Fox : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
-
-        //<<<<<<< HEAD
-
-
-        //        if (isMoreDamageBasedOnOnboardAllies) totalAttackDamage += Managers.Rider.riderCount;
-
-        //=======
-        //>>>>>>> main
-        if (isEmpoweredAttackEvery3Hits)
+        if (isUpgradeTenAttackSkillDamageUp)
         {
-            EmpoweredAttackEveryCount += 1;
-            if (EmpoweredAttackEveryCount == 3)
+            tenAttackSkillDamageUpCount += 1;
+            if (tenAttackSkillDamageUpCount == 10)
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage * 2, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
-                EmpoweredAttackEveryCount = 0;
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage * tenAttackSkillDamageUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
+                tenAttackSkillDamageUpCount = 0;
             }
             else
             {
-                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
+                proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
             }
         }
         else
         {
-            proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, false);
+            proj.GetComponent<FoxAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, transform, attackDuration, this, false, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
         }
 
         SoundManager.Instance.PlaySFX("FoxAttack");
@@ -78,8 +79,6 @@ public class Fox : Character
 
         FireSkillProjectiles();
         Instantiate(skillActiveEffect, transform.position, Quaternion.identity);
-
-        if (isAutoReturnAfterSeconds) StartCoroutine(TeleportToPlayer());
 
         SoundManager.Instance.PlaySFX("FoxSkill");
     }
@@ -101,14 +100,8 @@ public class Fox : Character
 
             GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
             FoxAttack mb = proj.GetComponent<FoxAttack>();
-            mb.SetInit(dir.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), transform, isReturnDamageScalesWithHitCount, skillTime, isOrbPausesBeforeReturning, this, true);
+            mb.SetInit(dir.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100),false, transform, attackDuration, this, true, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercnet, attackEnemyDefenseDownDuration, isUpgradeAttackEnemySpeedDown, attackEnemySpeedDownPercnet, attackEnemySpeedDownDuration);
             mb.speed = 5;
         }
-    }
-
-    IEnumerator TeleportToPlayer()
-    {
-        yield return new WaitForSeconds(7f);
-        if (!isGround) transform.position = playerTransform.position + Vector3.up;
     }
 }

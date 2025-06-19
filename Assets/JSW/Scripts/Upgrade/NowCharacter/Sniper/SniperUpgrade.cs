@@ -1,85 +1,121 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "SniperUpgrade", menuName = "Upgrades/SniperUpgrade")]
 public class SniperUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp             // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp,             // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+
+        SkillCountUp,                               // ìŠ¤í‚¬ì˜ íˆ¬ì‚¬ì²´ + 1
+        ReloadTimeDown,                             // ë¬´í•œíƒ„ì°½ : ì¥ì „ ì‹œê°„ì´ N% ì¤„ì–´ë“ ë‹¤
+        NoMoreSkill,                                // ë” ì´ìƒ ìŠ¤í‚¬ì„ ì‚¬ìš© í•  ìˆ˜ ì—†ë‹¤(ë§ˆë‚˜ ì¬ìƒëŸ‰ì´ 0ì´ ëœë‹¤ )
+        NoMorePenetrationAttackUp,                  // ë” ì´ìƒ ê´€í†µì´ ë˜ì§€ ì•Šì§€ë§Œ ê³µê²©ë ¥ì´ ë¹„ì•½ì ìœ¼ë¡œ ì¦ê°€í•œë‹¤
+        PenetrationPerDamageUp                      // ê´€í†µ ë  ë•Œë§ˆë‹¤ ëŒ€ë¯¸ì§€ê°€ ì¦ê°€í•œë‹¤
     }
 
     public UpgradeType type;
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Sniper sniper = character.GetComponent<Sniper>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                sniper.attackPowerUpNum += attackPowerUpPercent;                                    // ±âº» µ¥¹ÌÁö »ó½Â
+                sniper.attackPowerUpNum += attackPowerUpPercent;                                    // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 sniper");
                 break;
             case UpgradeType.AttackSpeedUp:
-                sniper.attackSpeedUpNum += attackSpeedUpPercent;                                    // ÆòÅ¸ °£°İ
+                sniper.attackSpeedUpNum += attackSpeedUpPercent;                                    // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 sniper");
                 sniper.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 sniper.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 sniper");
                 sniper.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 sniper.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 sniper");
                 sniper.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 sniper.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 sniper");
                 sniper.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 sniper.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 sniper");
                 sniper.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 sniper.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 sniper");
                 sniper.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 sniper.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 sniper");
                 sniper.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-                sniper.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+                sniper.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 sniper.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 sniper");
                 sniper.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
-                sniper.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                sniper.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+                sniper.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                sniper.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 sniper");
                 sniper.upgradeNum = 9;
                 break;
-                //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
 
+
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
+
+            case UpgradeType.SkillCountUp:                                                          // ìŠ¤í‚¬ì˜ íˆ¬ì‚¬ì²´ + 1
+                sniper.skillCount += 1;
+                Debug.Log("Debug10 archer");
+                sniper.upgradeNum = 10;
+                break;
+            case UpgradeType.ReloadTimeDown:                                                        // ë¬´í•œíƒ„ì°½ : ì¥ì „ ì‹œê°„ì´ N% ì¤„ì–´ë“ ë‹¤
+                sniper.realoadTime -= sniper.realoadTime * 0.3f;
+                Debug.Log("Debug11 archer");
+                sniper.upgradeNum = 11;
+                break;
+            case UpgradeType.NoMoreSkill:                                                           // ë” ì´ìƒ ìŠ¤í‚¬ì„ ì‚¬ìš© í•  ìˆ˜ ì—†ë‹¤(ë§ˆë‚˜ ì¬ìƒëŸ‰ì´ 0ì´ ëœë‹¤ )
+                sniper.mpPerSecond = 0;
+                Debug.Log("Debug12 archer");
+                sniper.upgradeNum = 12;
+                break;
+            case UpgradeType.NoMorePenetrationAttackUp:                                             // ë” ì´ìƒ ê´€í†µì´ ë˜ì§€ ì•Šì§€ë§Œ ê³µê²©ë ¥ì´ ë¹„ì•½ì ìœ¼ë¡œ ì¦ê°€í•œë‹¤
+                sniper.isNoMorePenetrationAttackUp = true;
+                sniper.attackBase += 30;
+                Debug.Log("Debug13 archer");
+                sniper.upgradeNum = 13;
+                break;
+            case UpgradeType.PenetrationPerDamageUp:                                                // ê´€í†µ ë  ë•Œë§ˆë‹¤ ëŒ€ë¯¸ì§€ê°€ ì¦ê°€í•œë‹¤
+                sniper.isPenetrationPerDamageUp = true;
+                Debug.Log("Debug13 archer");
+                sniper.upgradeNum = 13;
+                break;
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

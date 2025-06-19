@@ -82,7 +82,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 8020143640844766479, guid: 3f6533d93f9aaa24ea46f2743d8fc865, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.69803923}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -204,5 +204,6 @@ MonoBehaviour:
   speed: 10
   lifetime: 5
   damage: 10
+  knockbackPower: 1
   pullDelay: 0.3
   pullForce: 10

@@ -1,85 +1,113 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "PriestUpgrade", menuName = "Upgrades/PriestUpgrade")]
 public class PriestUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp             // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp,             // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+
+        SkillDurationUp,                            // ìŠ¤í‚¬ì˜ ì§€ì†ì‹œê°„ ì¦ê°€
+        SkillCharacterAttackUp,                     // ìŠ¤í‚¬ ì‹œì „ ì‹œ ì•„êµ° ì „ì²´ ê³µê²©ë ¥ ì¦ê°€
+        SkillPlayerSpeedUp,                         // ìŠ¤í‚¬ ì‹œì „ ì‹œ ë¹„í–‰ì²´ì˜ ì´ì†ì„ % ì¦ê°€ì‹œí‚´
+        AttackEnemyDefenseDown,                     // ì‚¬ì œì˜ ê³µê²©ì´ ë°©ì–´ë ¥ì„ ê°ì†Œ ì‹œí‚µë‹ˆë‹¤
     }
 
     public UpgradeType type;
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Priest priest = character.GetComponent<Priest>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                priest.attackPowerUpNum += attackPowerUpPercent;                                    // ±âº» µ¥¹ÌÁö »ó½Â
+                priest.attackPowerUpNum += attackPowerUpPercent;                                    // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 priest");
                 break;
             case UpgradeType.AttackSpeedUp:
-                priest.attackSpeedUpNum += attackSpeedUpPercent;                                    // ÆòÅ¸ °£°İ
+                priest.attackSpeedUpNum += attackSpeedUpPercent;                                    // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 priest");
                 priest.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 priest.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 priest");
                 priest.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 priest.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 priest");
                 priest.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 priest.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 priest");
                 priest.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 priest.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 priest");
                 priest.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 priest.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 priest");
                 priest.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 priest.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 priest");
                 priest.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-                priest.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+                priest.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 priest.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 priest");
                 priest.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
-                priest.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                priest.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+                priest.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                priest.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 priest");
                 priest.upgradeNum = 9;
                 break;
-                //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
 
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
+
+            case UpgradeType.SkillDurationUp:                                                          // ìŠ¤í‚¬ì˜ ì§€ì†ì‹œê°„ ì¦ê°€
+                priest.skillDuration += 2;
+                Debug.Log("Debug10 priest");
+                priest.upgradeNum = 10;
+                break;
+            case UpgradeType.SkillCharacterAttackUp:                                                   // ìŠ¤í‚¬ ì‹œì „ ì‹œ ì•„êµ° ì „ì²´ ê³µê²©ë ¥ ì¦ê°€
+                priest.isUpgradeSkillCharacterAttackUp = true;
+                Debug.Log("Debug11 priest");
+                priest.upgradeNum = 11;
+                break;
+            case UpgradeType.SkillPlayerSpeedUp:                                                       // ìŠ¤í‚¬ ì‹œì „ ì‹œ ë¹„í–‰ì²´ì˜ ì´ì†ì„ % ì¦ê°€ì‹œí‚´
+                priest.isUpgradeSkillPlayerSpeedUp = true;
+                Debug.Log("Debug12 priest");
+                priest.upgradeNum = 12;
+                break;
+            case UpgradeType.AttackEnemyDefenseDown:                                                   // ì‚¬ì œì˜ ê³µê²©ì´ ë°©ì–´ë ¥ì„ ê°ì†Œ ì‹œí‚µë‹ˆë‹¤
+                priest.isUpgradeAttackEnemyDefenseDown = true;
+                Debug.Log("Debug13 priest");
+                priest.upgradeNum = 13;
+                break;
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

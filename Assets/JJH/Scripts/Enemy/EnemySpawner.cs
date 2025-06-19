@@ -17,7 +17,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
 
     private void Start()
     {
-        Managers.Stage.enemySpawner = this;
+        Managers.Stage.EnemySpawner = this;
         Managers.Stage.StartStage(); // nowStage 재설정
         StartCoroutine(CoSpawnEnemyRoutine(Managers.Stage.NowStage));
     }
@@ -94,6 +94,12 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
         }
         yield break;
     }
+
+    public void SpawnEnemys(EnemyWaveSO wave, int waveCount) // 외부에서 EnemySpawner를 통해 적을 소환할 때 사용되는 메서드
+    {
+        StartCoroutine(SpawnWaveRoutine(wave, waveCount));
+    }
+
 
     private IEnumerator DelayedSpawn(GameObject prefab, Vector3 position, float delay)
     {

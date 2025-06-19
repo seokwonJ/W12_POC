@@ -3,18 +3,30 @@
 public class Arrow : ProjectileBase
 {
     private Archer _characterArcher;
-    private bool isSkill;
+    private bool _isSkill;
+    private bool _isDieInstantly;
+    private bool _isSameEnemyDamage;
+    private bool _isCritical;
+
     protected override void OnTriggerEnter2D(Collider2D other)
     {
-
-
         if (other.CompareTag("Enemy"))
         {
             GameObject enemy = other.gameObject;
 
-            if (!isSkill)
+            if (!_isSkill)
             {
-                enemy.GetComponent<EnemyHP>().TakeDamage((int)damage, ECharacterType.Archer);
+                if (_isSameEnemyDamage)
+                {
+                    float bonusDamage = _characterArcher.SameEnemyTotalDamage(enemy);
+                    damage *= bonusDamage;
+                }
+
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+
+                if (_isDieInstantly && !enemyComponent.isBoss) enemy.GetComponent<EnemyHP>().TakeDamage(9999, ECharacterType.Archer);
+                else enemy.GetComponent<EnemyHP>().TakeDamage((int)(damage), ECharacterType.Archer);
+
             }
             else
             {
@@ -31,8 +43,11 @@ public class Arrow : ProjectileBase
                 }
 
                 float nowdamage = Mathf.Max(2f, damage - 2f * (hitCount - 1));
-                enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Archer);
 
+                Enemy enemyComponent = enemy.GetComponent<Enemy>();
+
+                if (_isDieInstantly && !enemyComponent.isBoss) enemy.GetComponent<EnemyHP>().TakeDamage(9999, ECharacterType.Archer);
+                else enemy.GetComponent<EnemyHP>().TakeDamage((int)nowdamage, ECharacterType.Archer);
             }
 
             // 넉백
@@ -44,11 +59,17 @@ public class Arrow : ProjectileBase
                 enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
             }
 
+            if (_isCritical)
+            {
+                Vector2 contactPoint = other.ClosestPoint(transform.position);
+                Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
+            }
+
             Destroy(gameObject);
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float knockbackPowerNum, float scaleNum, Archer archer, bool isSkill)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isCritical, Archer archer, bool isSkill, bool isUpgradeDieInstantly, bool isUpgradeSameEnemyDamage)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -58,7 +79,10 @@ public class Arrow : ProjectileBase
         knockbackPower = knockbackPowerNum;
         transform.localScale = Vector3.one * scaleNum;
         _characterArcher = archer;
-        this.isSkill = isSkill;
+        this._isSkill = isSkill;
+        _isDieInstantly = isUpgradeDieInstantly;
+        _isSameEnemyDamage = isUpgradeSameEnemyDamage;
+        _isCritical = isCritical;
     }
 
 }

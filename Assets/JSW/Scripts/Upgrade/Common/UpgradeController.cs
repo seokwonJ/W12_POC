@@ -4,9 +4,10 @@ using System.Linq;
 
 public class UpgradeController : MonoBehaviour
 {
+    public int UpgradeNum = 0;
     public List<CharacterUpgrade> allUpgrades;
     private List<CharacterUpgrade> _availableUpgrades;
-    private List<CharacterUpgrade> _acquiredUpgrades = new();
+    public List<CharacterUpgrade> _acquiredUpgrades = new();
 
     public List<CharacterUpgrade> ShowUpgradeChoices()
     {
@@ -18,7 +19,7 @@ public class UpgradeController : MonoBehaviour
 
     public void ApplyUpgrade(CharacterUpgrade upgrade, GameObject character)
     {
-        upgrade.ApplyUpgrade(character);
         _acquiredUpgrades.Add(upgrade);
+        UpgradeNum += 1;
     }
 }

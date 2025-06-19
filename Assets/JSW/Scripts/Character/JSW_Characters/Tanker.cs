@@ -6,7 +6,7 @@ public class Tanker : Character
 {
     [Header("스킬")]
     public bool isSkillLanding;
-    public int skillDamage;
+
     public float skillknockbackPower;
     public float skillInterval = 0.3f;
     public float skillRange;
@@ -18,10 +18,13 @@ public class Tanker : Character
     public float knockBackpower = 1;
 
     [Header("강화")]
-    public bool isFallingSpeedToSkillDamage;
-    public bool isShieldFlyer;
-    public bool isHitSkillPerGetMana;
+    public bool isUpgradeFallingSpeedToSkillDamage;
+    public bool isUpgradeRidingDefenseUp;
     public bool isCloserMoreDamage;
+    public float closerMoreDamagePercent = 20;
+    public bool isSkillEnemySpeedDown;
+    public float skillEnemySpeedDonwPercent = 70;
+    public float skillEnemySpeedDonwDuration = 3;
 
     public int upgradeNum;
 
@@ -47,9 +50,8 @@ public class Tanker : Character
         }
         if (!isGround) return;
 
-        currentMP += Time.deltaTime * mpPerSecond;
+        currentMP += Time.deltaTime * (mpPerSecond * (manaRegenSpeedUpNum / 100));
         currentMP = Mathf.Min(currentMP, maxMP);
-        if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
 
         if (currentMP >= maxMP && !isSkillActive)
         {
@@ -73,16 +75,18 @@ public class Tanker : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
-        proj.GetComponent<TankerAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), nomalAttackLifetime, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+        proj.GetComponent<TankerAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, nomalAttackLifetime); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
 
-    // 스킬: 커다란 직진형 투사체 3발 연속 발사
+    // 스킬: 착지시 밀어냄 
     protected override IEnumerator FireSkill()
     {
         yield return new WaitForSeconds(skillInterval);
 
-        if (isShieldFlyer) _playerStatus.defensePower -= 5;
+        if (isUpgradeRidingDefenseUp) _playerStatus.defensePower -= 5;
         isSkillLanding = true;
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
@@ -94,18 +98,18 @@ public class Tanker : Character
 
         if (!isGround) return;
 
-        if (isShieldFlyer) _playerStatus.defensePower += 5;
+        if (isUpgradeRidingDefenseUp) _playerStatus.defensePower += 5;
 
         if (isSkillLanding)
         {
             isSkillLanding = false;
             SoundManager.Instance.PlaySFX("TankerLandingSkillEffect");
-            LandingSkill(skillDamage);
+            LandingSkill();
         }
     }
 
     // 착지했을 경우 주위의 투사체 사라지고 적들은 넉백
-    void LandingSkill(int skillDamageNum)
+    void LandingSkill()
     {
         GameObject landingSkillEffectObject = Instantiate(landingSkillEffect, transform.position, Quaternion.identity);
 
@@ -113,25 +117,22 @@ public class Tanker : Character
 
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, skillRange);
 
-        int hitEnemyCount = 0;
-
         foreach (var hit in hits)
         {
             if (hit.CompareTag("Enemy"))
             {
-                hitEnemyCount += 1;
 
                 Enemy enemy = hit.GetComponent<Enemy>();
                 EnemyHP enemyHP = hit.GetComponent<EnemyHP>();
 
                 float totalSkillDamage = TotalSkillDamage();
 
-                if (isCloserMoreDamage) totalSkillDamage += (int)(skillDamage / Vector2.Distance(hit.transform.position, transform.position));
+                if (isCloserMoreDamage) totalSkillDamage += (int)(closerMoreDamagePercent / Vector2.Distance(hit.transform.position, transform.position));
 
-                if (isFallingSpeedToSkillDamage) {enemyHP.TakeDamage((int)(totalSkillDamage + rb.linearVelocity.magnitude), ECharacterType.Tanker);}
+                if (isUpgradeFallingSpeedToSkillDamage) { enemyHP.TakeDamage((int)(totalSkillDamage + rb.linearVelocity.magnitude), ECharacterType.Tanker); }
                 else enemyHP.TakeDamage((int)totalSkillDamage, ECharacterType.Tanker);
 
-                if (enemyHP != null && enemyHP.enemyHP <= 0)  continue;
+                if (enemyHP != null && enemyHP.enemyHP <= 0) continue;
 
                 Vector3 knockbackDirection = hit.transform.position - transform.position;
 
@@ -139,15 +140,13 @@ public class Tanker : Character
                 {
                     enemy.ApplyKnockback(knockbackDirection.normalized, skillknockbackPower / Vector2.Distance(hit.transform.position, transform.position));
                 }
+
+                if (isSkillEnemySpeedDown)
+                {
+                    enemy.GetComponent<Enemy>().ApplySlow((int)skillEnemySpeedDonwPercent, skillEnemySpeedDonwDuration);
+                }
             }
-
-            //if (hit.CompareTag("EnemyAttack"))
-            //{
-            //    Destroy(hit.gameObject);
-            //}
         }
-
-        if (isHitSkillPerGetMana) currentMP += 2 * hitEnemyCount;
 
         landingSkillEffectObject.transform.localScale = Vector3.one * skillRange * 0.5f;
     }
@@ -158,6 +157,7 @@ public class Tanker : Character
 
         if (isSkillLanding == true)
         {
+            if (isUpgradeRidingDefenseUp) _playerStatus.defensePower -= 5;
             Debug.Log("공격력 돌아옴");
             isSkillLanding = false;
         }

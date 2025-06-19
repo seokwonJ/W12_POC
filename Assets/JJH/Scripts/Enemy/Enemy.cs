@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,8 +16,10 @@ public class Enemy : MonoBehaviour
 
     [Header("움직임 관련")]
     public float speed;
+    private float defaultSpeed; // 원래 속도
     public float minPlayerDistance;
     public bool isKnockbackable; // 넉백 가능 여부
+    public bool isSlowable = true; // 느려짐 가능 여부
     public bool isKnockback = false; // 넉백 상태인지 여부
     public bool isFilpping; // 스프라이트 뒤집기 여부
 
@@ -47,6 +50,8 @@ public class Enemy : MonoBehaviour
 
     protected void Init()
     {
+        defaultSpeed = speed; // 원래 속도를 저장
+
         player = Managers.PlayerControl.NowPlayer;
         rb = GetComponent<Rigidbody2D>();
         if (rb == null)
@@ -137,6 +142,28 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(knockbackTime);
             isKnockback = false; // 넉백 상태 해제
         }
+    }
+
+    public void ApplySlow(int value, float durationTime, bool isPercent = true)
+    {
+        if (!isSlowable) return;
+        Coroutine co = null;
+        float resultValue = isPercent ? defaultSpeed * (value / 100f) : value;
+        float resultSpeed = defaultSpeed - resultValue;
+        if (resultSpeed <= speed)
+        {
+            if (co != null) StopCoroutine(co);
+            StartCoroutine(CoApplySlow(resultSpeed, durationTime));
+        }
+    }
+
+    IEnumerator CoApplySlow(float finalSpeed, float durationTime)
+    {
+        speed = Mathf.Max(finalSpeed, 1f); // 속도가 1 이하로 내려가지 않도록 제한
+        Debug.Log($"{gameObject.name} 적의 속도 감소, 현재 속도: {speed}");
+        yield return new WaitForSeconds(durationTime);
+        speed = defaultSpeed; // 원래 속도로 복원
+        Debug.Log($"{gameObject.name} 적의 속도 복원, 원래 속도: {defaultSpeed}");
     }
 }
 

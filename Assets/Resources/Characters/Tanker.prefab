@@ -99,16 +99,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allUpgrades:
-  - {fileID: 11400000, guid: a9206c53fab673d4ca4c5e5746abc253, type: 2}
-  - {fileID: 11400000, guid: 6e95b04ad12561d40aaa7605cc5cb217, type: 2}
-  - {fileID: 11400000, guid: 581276d04cb70e243b6b32fe3eb2e5a0, type: 2}
-  - {fileID: 11400000, guid: 20ca7d3b5819aa44fbc34bf543fd5026, type: 2}
-  - {fileID: 11400000, guid: 58cf548828f090a4db4185c43ddc481e, type: 2}
-  - {fileID: 11400000, guid: 7efe68af92d7bd643af670524e430556, type: 2}
-  - {fileID: 11400000, guid: 78d276cbc2ff928418f3752962a23766, type: 2}
-  - {fileID: 11400000, guid: 3474bef7ba634c64aa4d8796a85204b2, type: 2}
-  - {fileID: 11400000, guid: 448601b8aebed8240a246700c5b2478f, type: 2}
-  - {fileID: 11400000, guid: bdd85ffd656e4d94e911dd015a5bc2fb, type: 2}
+  - {fileID: 11400000, guid: c943876361156d041807279b820bc284, type: 2}
+  - {fileID: 11400000, guid: 6efc9e9d8e986d14888c265ddbcb3cd5, type: 2}
+  - {fileID: 11400000, guid: 37b2be99d40359049904205077420a87, type: 2}
+  - {fileID: 11400000, guid: 68f2f8ed424d55b4886a952533e33f6f, type: 2}
+  - {fileID: 11400000, guid: d04737e0bfbb61a48ba125f37ee9a5ee, type: 2}
+  - {fileID: 11400000, guid: dd90b525c2cde084cb88a6b8cf6a8707, type: 2}
+  - {fileID: 11400000, guid: ffbe50400ee1ac34fa8ad636d79e5259, type: 2}
+  - {fileID: 11400000, guid: 275e75bdc6be5cd428476afbcd0b5fab, type: 2}
+  - {fileID: 11400000, guid: a91a228e5094daf4683cd1ddbdf12565, type: 2}
+  - {fileID: 11400000, guid: 30aeef91bad9e2143a9ae2a47a8e1b07, type: 2}
 --- !u!114 &652484068037350524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -139,13 +139,13 @@ MonoBehaviour:
   normalFireInterval: 1.5
   enemyDetectRadius: 20
   jumpForce: 10
-  maxFallSpeed: 15
-  attackBase: 10
+  maxFallSpeed: 17
+  attackBase: 100
   attackDamage: 100
-  abilityPower: 100
+  abilityPower: 150
   projectileSpeed: 10
-  criticalProbability: 0
-  criticalDamage: 0
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 1
   projectileSize: 1
   animator: {fileID: 677551384205977037}
@@ -154,7 +154,6 @@ MonoBehaviour:
   skillJumpEffect: {fileID: 2083975929127168455, guid: dc07603a723c3db49ab1acee75845293, type: 3}
   fallingAfterImageSpawner: {fileID: 8854602819872341005}
   isSkillLanding: 0
-  skillDamage: 30
   skillknockbackPower: 200
   skillInterval: 0.3
   skillRange: 10
@@ -162,10 +161,13 @@ MonoBehaviour:
   nomalAttackSize: 1
   nomalAttackLifetime: 1
   knockBackpower: 50
-  isFallingSpeedToSkillDamage: 0
-  isShieldFlyer: 0
-  isHitSkillPerGetMana: 0
+  isUpgradeFallingSpeedToSkillDamage: 0
+  isUpgradeRidingDefenseUp: 0
   isCloserMoreDamage: 0
+  closerMoreDamagePercent: 20
+  isSkillEnemySpeedDown: 0
+  skillEnemySpeedDonwPercent: 70
+  skillEnemySpeedDonwDuration: 3
   upgradeNum: 0
 --- !u!114 &8854602819872341005
 MonoBehaviour:

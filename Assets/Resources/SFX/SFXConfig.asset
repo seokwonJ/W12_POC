@@ -73,6 +73,9 @@ MonoBehaviour:
   - clipName: MagicianSkill
     clip: {fileID: 8300000, guid: 6aa5a46cb179dc7499daa890fc9b3553, type: 3}
     volume: 1
+  - clipName: MagicianExplosion
+    clip: {fileID: 8300000, guid: 9e60eeb691f67c54287838c067f3357d, type: 3}
+    volume: 1
   - clipName: PirateAttack
     clip: {fileID: 8300000, guid: fb9b05e4c3716f241b043e9044964687, type: 3}
     volume: 1
@@ -121,3 +124,9 @@ MonoBehaviour:
   - clipName: BlackHoleSkillDuration
     clip: {fileID: 8300000, guid: a2233964e7aefd346aeafc036b2b30df, type: 3}
     volume: 0.5
+  - clipName: BlackHoleSkillExplosion
+    clip: {fileID: 8300000, guid: 2a8683e45ad7c684db8e74cec1b5093e, type: 3}
+    volume: 1
+  - clipName: NecromancerSkull
+    clip: {fileID: 8300000, guid: 58b46ed28b92dff4e8396f30f70f16d6, type: 3}
+    volume: 0.7

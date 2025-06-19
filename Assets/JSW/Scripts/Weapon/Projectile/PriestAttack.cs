@@ -4,7 +4,10 @@ using static UnityEngine.GraphicsBuffer;
 public class PriestAttack : ProjectileBase
 {
     public Transform target;
-
+    private bool _isUpgradeAttackEnemyDefenseDown;
+    private float _attackEnemyDefenseDownPercent;
+    private float _attackEnemyDefenseDownDuration;
+    private bool _isCritical;
     protected override void Update()
     {
         if (target != null)
@@ -24,7 +27,7 @@ public class PriestAttack : ProjectileBase
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum, Transform target = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum,bool isCritical, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercent,float attackEnemyDefenseDownDuration, Transform target = null)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -33,6 +36,10 @@ public class PriestAttack : ProjectileBase
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
         knockbackPower = knockbackPowerNum;
+        _isUpgradeAttackEnemyDefenseDown = isUpgradeAttackEnemyDefenseDown;
+        _attackEnemyDefenseDownPercent = attackEnemyDefenseDownPercent;
+        _attackEnemyDefenseDownDuration = attackEnemyDefenseDownDuration;
+        _isCritical = isCritical;
 
         if (target != null)
         {
@@ -48,6 +55,7 @@ public class PriestAttack : ProjectileBase
             if (enemy != null)
                 enemy.TakeDamage((int)damage, ECharacterType.Priest);
 
+            if (_isUpgradeAttackEnemyDefenseDown) enemy.GetComponent<EnemyHP>().ReduceArmor((int)_attackEnemyDefenseDownPercent, _attackEnemyDefenseDownDuration);
 
             // ³Ë¹é
             Vector2 knockbackDirection = (other.transform.position - transform.position).normalized;
@@ -56,6 +64,12 @@ public class PriestAttack : ProjectileBase
             if (enemyComponenet != null)
             {
                 enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
+            }
+
+            if (_isCritical)
+            {
+                Vector2 contactPoint = other.ClosestPoint(transform.position);
+                Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
             }
 
             DestroyProjectile(gameObject);

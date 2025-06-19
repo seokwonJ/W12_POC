@@ -21,8 +21,8 @@ public abstract class Character : MonoBehaviour
     [Header("MP 시스템")]
     public float maxMP = 100f;            // 최대 마나량
     public float mpPerSecond = 7;         // 초당 마나회복량
-    protected float currentMP = 0f;       
-    public Image mpImage;
+    protected float currentMP = 0f;
+    //public Image mpImage;
 
     [Header("일반 공격")]
     public GameObject normalProjectile;         // 기본 공격 투사체
@@ -54,7 +54,6 @@ public abstract class Character : MonoBehaviour
     public GameObject skillReadyEffect;
     public GameObject skillJumpEffect;
     public AfterImageSpawner fallingAfterImageSpawner;
-    
 
     protected Rigidbody2D rb;
     protected FixedJoint2D fixedJoint;
@@ -100,8 +99,6 @@ public abstract class Character : MonoBehaviour
         currentMP += Time.deltaTime * (mpPerSecond * (manaRegenSpeedUpNum / 100));
         currentMP = Mathf.Min(currentMP, maxMP);
 
-        if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
-
         if (currentMP >= maxMP && !isSkillActive)
         {
             StartCoroutine(ActiveSkill());
@@ -114,7 +111,7 @@ public abstract class Character : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(normalFireInterval);
+            yield return new WaitForSeconds(normalFireInterval / (attackSpeedUpNum / 100));
             if (!isGround) continue;
 
             Transform target = FindNearestEnemy();
@@ -148,13 +145,12 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount--;
 
         currentMP = 0;
-        if (mpImage != null) mpImage.fillAmount = 0;
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
         SoundManager.Instance.PlaySFX("Jump");
 
-        if (skillJumpEffect != null) Instantiate(skillJumpEffect,transform.position - Vector3.up * 0.45f,Quaternion.identity, playerTransform);
+        if (skillJumpEffect != null) Instantiate(skillJumpEffect, transform.position - Vector3.up * 0.45f, Quaternion.identity, playerTransform);
 
         yield return StartCoroutine(FireSkill());
 
@@ -221,7 +217,7 @@ public abstract class Character : MonoBehaviour
     protected virtual void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, enemyDetectRadius/2);
+        Gizmos.DrawWireSphere(transform.position, enemyDetectRadius / 2);
     }
 
     public virtual void EndFieldAct() // 필드전투가 종료될 때 실행
@@ -255,14 +251,8 @@ public abstract class Character : MonoBehaviour
     {
         float totalDamage;
 
-        totalDamage = attackBase * (attackPowerUpNum/100) * (attackDamage/100);
-
-        bool isCritical = IsCriticalHit();
-
-        if (isCritical) totalDamage *= (criticalDamage / 100);
-
-
-
+        totalDamage = (attackBase * (attackPowerUpNum / 100)) * (attackDamage / 100);
+        ;
         print("평타 데미지 !!!!! + " + totalDamage);
         return totalDamage;
     }
@@ -271,12 +261,11 @@ public abstract class Character : MonoBehaviour
     {
         float totalDamage;
 
-        totalDamage = attackBase * (abilityPowerUpNum / 100) * (abilityPower / 100);
+        totalDamage = (attackBase * (attackPowerUpNum / 100)) * ((abilityPowerUpNum / 100) * (abilityPower / 100));
 
         bool isCritical = IsCriticalHit();
 
         //if (isCritical) totalDamage *= (criticalDamage / 100);
-
 
         print("스킬 데미지 !!!!! + " + totalDamage);
         return totalDamage;
@@ -285,8 +274,9 @@ public abstract class Character : MonoBehaviour
 
     public bool IsCriticalHit()
     {
-        return Random.value < (criticalProbability * criticalProbabilityUpNum/100) / 100;
+        return Random.value < (criticalProbability * criticalProbabilityUpNum / 100) / 100;
     }
+
 }
 
 public enum ECharacterType

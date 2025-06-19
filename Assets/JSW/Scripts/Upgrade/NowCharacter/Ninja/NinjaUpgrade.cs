@@ -1,86 +1,125 @@
-using UnityEditor.Searcher;
-using UnityEngine;
+ï»¿using UnityEngine;
 
 [CreateAssetMenu(fileName = "NinjaUpgrade", menuName = "Upgrades/NinjaUpgrade")]
 public class NinjaUpgrade : CharacterUpgrade
 {
     public enum UpgradeType
     {
-        AttackPowerUp,                              // ±âº» µ¥¹ÌÁö »ó½Â
-        AttackSpeedUp,                              // ÆòÅ¸ °£°İ
-        ProjectileSpeedUp,                          // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
-        ProjectileSizeUp,                           // Åº Å©±â Áõ°¡
-        KnockbackPowerUp,                           // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
-        CriticalProbabilityUp,                      // Å©¸® È®·ü »ó½Â
-        CriticalDamageUp,                           // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
-        AttackRangeUp,                              // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
-        ManaRegenSpeedDownAttackPowerUp,            // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-        ManaRegenSpeedUPAbilityPowerUp             // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
+        AttackPowerUp,                              // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
+        AttackSpeedUp,                              // í‰íƒ€ ê°„ê²©
+        ProjectileSpeedUp,                          // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
+        ProjectileSizeUp,                           // íƒ„ í¬ê¸° ì¦ê°€
+        KnockbackPowerUp,                           // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
+        CriticalProbabilityUp,                      // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
+        CriticalDamageUp,                           // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
+        AttackRangeUp,                              // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
+        ManaRegenSpeedDownAttackPowerUp,            // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+        ManaRegenSpeedUPAbilityPowerUp,             // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+
+        SkillDurationUp,                            // ìŠ¤í‚¬ì˜ ì§€ì†ì‹œê°„ì´ ì¦ê°€í•©ë‹ˆë‹¤.
+        SkillDamageUp,                              // ìŠ¤í‚¬ë¡œ ìƒìŠ¹í•˜ëŠ” ê³µê²©ë ¥ ì¦ê°€ëŸ‰ì´ ì¦ê°€í•©ë‹ˆë‹¤.
+        SkillCriticalDamageUp,                      // ìŠ¤í‚¬ ì‚¬ìš©ì‹œ ì¹˜ëª…íƒ€ í”¼í•´ìœ¨ì´ ì¦ê°€í•©ë‹ˆë‹¤.
+        AttackFiveDamageUp,                         // í‰íƒ€ 5ë²ˆì§¸ ê¸°ë³¸ê³µê²©ì˜ ë°ë¯¸ì§€ê°€ ê°•í™”ë©ë‹ˆë‹¤.
+        LongAttackDamageUp,                         // ê±°ë¦¬ê°€ ë©€ ìˆ˜ë¡ ê¸°ë³¸ê³µê²©ì˜ ë°ë¯¸ì§€ê°€ ì¦ê°€í•©ë‹ˆë‹¤ 
+        ManaPerDamageUp                             // ì†Œëª¨í•œ ë§ˆë‚˜ëŸ‰ì— ë”°ë¼ ë°ë¯¸ì§€ê°€ ì¦ê°€í•©ë‹ˆë‹¤.
     }
 
     public UpgradeType type;
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Ninja ninja = character.GetComponent<Ninja>();
         switch (type)
         {
-            //-------------- ±âº» ¾÷±×·¹ÀÌµå --------------
+            //-------------- ê¸°ë³¸ ì—…ê·¸ë ˆì´ë“œ --------------
             case UpgradeType.AttackPowerUp:
-                ninja.attackPowerUpNum += attackPowerUpPercent;                                    // ±âº» µ¥¹ÌÁö »ó½Â
+                ninja.attackPowerUpNum += attackPowerUpPercent;                                    // ê¸°ë³¸ ë°ë¯¸ì§€ ìƒìŠ¹
                 Debug.Log("Debug0 ninja");
                 break;
             case UpgradeType.AttackSpeedUp:
-                ninja.attackSpeedUpNum += attackSpeedUpPercent;                                    // ÆòÅ¸ °£°İ
+                ninja.attackSpeedUpNum += attackSpeedUpPercent;                                    // í‰íƒ€ ê°„ê²©
                 Debug.Log("Debug1 ninja");
                 ninja.upgradeNum = 1;
                 break;
-            case UpgradeType.ProjectileSpeedUp:                                                     // Åõ»çÃ¼ ÀÌµ¿¼Óµµ Áõ°¡
+            case UpgradeType.ProjectileSpeedUp:                                                     // íˆ¬ì‚¬ì²´ ì´ë™ì†ë„ ì¦ê°€
                 ninja.projectileSpeedUpNum += ProjectileSpeedUpPercent;
                 Debug.Log("Debug2 ninja");
                 ninja.upgradeNum = 2;
                 break;
-            case UpgradeType.ProjectileSizeUp:                                                      // Åº Å©±â Áõ°¡
+            case UpgradeType.ProjectileSizeUp:                                                      // íƒ„ í¬ê¸° ì¦ê°€
                 ninja.projectileSizeUpNum += ProjectileSizeUpPercent;
                 Debug.Log("Debug3 ninja");
                 ninja.upgradeNum = 3;
                 break;
-            case UpgradeType.KnockbackPowerUp:                                                      // Àû ¹Ğ¾î³»±â È¿À² Áõ°¡
+            case UpgradeType.KnockbackPowerUp:                                                      // ì  ë°€ì–´ë‚´ê¸° íš¨ìœ¨ ì¦ê°€
                 ninja.knockbackPowerUpNum += KnockbackPowerUpPercent;
                 Debug.Log("Debug4 ninja");
                 ninja.upgradeNum = 4;
                 break;
-            case UpgradeType.CriticalProbabilityUp:                                                 // Å©¸® È®·ü »ó½Â
+            case UpgradeType.CriticalProbabilityUp:                                                 // í¬ë¦¬ í™•ë¥  ìƒìŠ¹
                 ninja.criticalProbabilityUpNum += CriticalProbabilityUpPercent;
                 Debug.Log("Debug5 ninja");
                 ninja.upgradeNum = 5;
                 break;
-            case UpgradeType.CriticalDamageUp:                                                      // Å©¸® ÇÇÇØ ¹è¼ö Áõ°¡
+            case UpgradeType.CriticalDamageUp:                                                      // í¬ë¦¬ í”¼í•´ ë°°ìˆ˜ ì¦ê°€
                 ninja.criticalDamageUpNum += CriticalDamageUpPercent;
                 Debug.Log("Debug6 ninja");
                 ninja.upgradeNum = 6;
                 break;
-            case UpgradeType.AttackRangeUp:                                                         // Àû °¨Áö/°ø°İ °¡´É °Å¸® È®´ë
+            case UpgradeType.AttackRangeUp:                                                         // ì  ê°ì§€/ê³µê²© ê°€ëŠ¥ ê±°ë¦¬ í™•ëŒ€
                 ninja.attackRangeUpNum += AttackRangeUpPercent;
                 Debug.Log("Debug7 ninja");
                 ninja.upgradeNum = 7;
                 break;
-            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ °¨¼Ò + °ø°İ·Â Áõ°¡
-                ninja.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+            case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // ë§ˆë‚˜ íšŒë³µ ì†ë„ ê°ì†Œ + ê³µê²©ë ¥ ì¦ê°€
+                ninja.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 ninja.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 ninja");
                 ninja.upgradeNum = 8;
                 break;
-            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // ¸¶³ª È¸º¹ ¼Óµµ Áõ°¡ + ½ºÅ³ ´ë¹ÌÁö Áõ°¡
-                ninja.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                ninja.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+            case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                        // ë§ˆë‚˜ íšŒë³µ ì†ë„ ì¦ê°€ + ìŠ¤í‚¬ ëŒ€ë¯¸ì§€ ì¦ê°€
+                ninja.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                ninja.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 ninja");
                 ninja.upgradeNum = 9;
                 break;
-                //-------------- Æ¯¼ö ¾÷±×·¹ÀÌµå --------------
+
+            //-------------- íŠ¹ìˆ˜ ì—…ê·¸ë ˆì´ë“œ --------------
+
+            case UpgradeType.SkillDurationUp:                                                        // ìŠ¤í‚¬ì˜ ì§€ì†ì‹œê°„ì´ ì¦ê°€í•©ë‹ˆë‹¤.
+                ninja.skillPowerDuration += 3;
+                Debug.Log("Debug10 ninja");
+                ninja.upgradeNum = 10;
+                break; 
+            case UpgradeType.SkillDamageUp:                                                         // ìŠ¤í‚¬ë¡œ ìƒìŠ¹í•˜ëŠ” ê³µê²©ë ¥ ì¦ê°€ëŸ‰ì´ ì¦ê°€í•©ë‹ˆë‹¤.
+                ninja.skillDamageUp = 10;
+                Debug.Log("Debug11 ninja");
+                ninja.upgradeNum = 11;
+                break;
+            case UpgradeType.SkillCriticalDamageUp:                                                 // ìŠ¤í‚¬ ì‚¬ìš©ì‹œ ì¹˜ëª…íƒ€ í”¼í•´ìœ¨ì´ ì¦ê°€í•©ë‹ˆë‹¤.
+                ninja.isSkillCriticalDamageUp = true;
+                Debug.Log("Debug12 ninja");
+                ninja.upgradeNum = 12;
+                break;
+            case UpgradeType.AttackFiveDamageUp:                                                    // í‰íƒ€ 5ë²ˆì§¸ ê¸°ë³¸ê³µê²©ì˜ ë°ë¯¸ì§€ê°€ ê°•í™”ë©ë‹ˆë‹¤.
+                ninja.isNomalAttackFive = true;
+                ninja.upgradeNum = 13;
+                break;
+            case UpgradeType.LongAttackDamageUp:                                                    // ê±°ë¦¬ê°€ ë©€ ìˆ˜ë¡ ê¸°ë³¸ê³µê²©ì˜ ë°ë¯¸ì§€ê°€ ì¦ê°€í•©ë‹ˆë‹¤ 
+                ninja.isLongAttackDamageUp = true;
+                Debug.Log("Debug14 ninja");
+                ninja.upgradeNum = 14;
+                break;
+            case UpgradeType.ManaPerDamageUp:                                                       // ì†Œëª¨í•œ ë§ˆë‚˜ëŸ‰ì— ë”°ë¼ ë°ë¯¸ì§€ê°€ ì¦ê°€í•©ë‹ˆë‹¤.
+                ninja.isManaPerDamageUp = true;
+                Debug.Log("Debug14 ninja");
+                ninja.upgradeNum = 15;
+                break;
 
         }
 
-        Debug.Log("¾÷±×·¹ÀÌµå ¼º°ø");
+        Debug.Log("ì—…ê·¸ë ˆì´ë“œ ì„±ê³µ");
     }
 }

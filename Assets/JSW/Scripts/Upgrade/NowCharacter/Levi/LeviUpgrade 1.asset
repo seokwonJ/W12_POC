@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d4dcb6e721b80047bbdf5faf962862a, type: 3}
   m_Name: LeviUpgrade 1
   m_EditorClassIdentifier: 
-  upgradeName: AttackPower
-  description: AttackPower
+  upgradeName: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
+  description: "\uACF5\uACA9\uC18D\uB3C4 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 1
-  value: 0

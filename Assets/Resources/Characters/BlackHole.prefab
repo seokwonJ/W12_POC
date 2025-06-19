@@ -186,16 +186,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allUpgrades:
-  - {fileID: 11400000, guid: a0075395157727944b854aa87d0f930c, type: 2}
-  - {fileID: 11400000, guid: 753c48979fcbd5249958fa8ee153bc49, type: 2}
-  - {fileID: 11400000, guid: 9a4e8e2fb400dac41895ef6f6ffd44f0, type: 2}
-  - {fileID: 11400000, guid: 9744f275a84b8584bb3f7e3c82b01361, type: 2}
-  - {fileID: 11400000, guid: 7b0c6100758fe5a42a7173c9cfd553b3, type: 2}
-  - {fileID: 11400000, guid: d0fca4ebf9d7a664fb2e35b1438d9306, type: 2}
-  - {fileID: 11400000, guid: 1233355f183118046a4f1d7105c94031, type: 2}
-  - {fileID: 11400000, guid: 3245f24d51a01794e9dc6d357aed01f0, type: 2}
-  - {fileID: 11400000, guid: b8b9e5fc944fecc4b925d05f5675f552, type: 2}
-  - {fileID: 11400000, guid: fe982710373cb594da7fa0c8cdab64dd, type: 2}
+  - {fileID: 11400000, guid: 29beb0a2cd2648446b4566fd4922f20b, type: 2}
+  - {fileID: 11400000, guid: 464aaec15d176374fa037c2b487253f0, type: 2}
+  - {fileID: 11400000, guid: 25bc6e9044094c44b999b5f8316ad35f, type: 2}
+  - {fileID: 11400000, guid: aa473332ebdaa9a4bb1c9df19ed51b0d, type: 2}
+  - {fileID: 11400000, guid: 47d81c588bac59845bc9635c6b7074c6, type: 2}
+  - {fileID: 11400000, guid: ec10eb3119ee7ca4fae9e301082ea989, type: 2}
+  - {fileID: 11400000, guid: 9fdaf28a4faa807478396a0b465edbdd, type: 2}
+  - {fileID: 11400000, guid: fbff88a1067005e4c90ce6c5f162f137, type: 2}
+  - {fileID: 11400000, guid: e195d33aca772fb4d8196ec0ece8e8a6, type: 2}
+  - {fileID: 11400000, guid: 9ad5c283aaf6de1459c1e412ad8591a2, type: 2}
 --- !u!61 &1354129338059981449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -293,20 +293,20 @@ MonoBehaviour:
   manaRegenSpeedUpNum: 100
   abilityPowerUpNum: 100
   maxMP: 100
-  mpPerSecond: 30
+  mpPerSecond: 10
   mpImage: {fileID: 0}
   normalProjectile: {fileID: 2401018389404660828, guid: 29f7f19ec4ff39c499a210806016fee6, type: 3}
   firePoint: {fileID: 91693443383765436}
   normalFireInterval: 1
-  enemyDetectRadius: 10
+  enemyDetectRadius: 20
   jumpForce: 10
   maxFallSpeed: 10
-  attackBase: 10
+  attackBase: 100
   attackDamage: 100
-  abilityPower: 120
+  abilityPower: 20
   projectileSpeed: 5
-  criticalProbability: 0
-  criticalDamage: 0
+  criticalProbability: 10
+  criticalDamage: 175
   knockbackPower: 10
   projectileSize: 1
   animator: {fileID: 5070156826295206834}
@@ -319,9 +319,13 @@ MonoBehaviour:
   skillInterval: 0.3
   skillFireDelay: 0.1
   skillSize: 3
-  isAddAttackDamage: 0
-  isnomalAttackSizePerMana: 0
-  isCanTeleport: 0
+  skillDuration: 5
+  skillPullInterval: 0.2
+  isUpgradeSkillSizeDownExplosion: 0
+  explosionDamagePercent: 150
+  isUpgradeSkillEnemyDenfenseDown: 0
+  skillEnemyDenfenseDownPercent: 0
+  skillEnemyDenfenseDownDuration: 0
   upgradeNum: 0
   player: {fileID: 0}
   skillActiveEffect: {fileID: 8450041876755101773, guid: 0723e72f978adcb4981bf66cf4161654, type: 3}

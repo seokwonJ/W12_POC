@@ -76,6 +76,8 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         Vector3[] startCharacterPos = Enumerable.Range(0, Managers.PlayerControl.Characters.Count).Select(i => Managers.PlayerControl.Characters[i].transform.localPosition).ToArray();
         startPlayerPos = transform.position;
 
+        Managers.Stage.EnemySpawner.DeleteField(); // 코드 실행 뒤 투사체가 생기면 남는 문제 해결을 위해 여러 번 발동
+
         while (nowTime <= maxTime)
         {
             for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
@@ -95,6 +97,8 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         yield return new WaitForSeconds(0.1f); // 대기시간
 
+        Managers.Stage.EnemySpawner.DeleteField(); // 코드 실행 뒤 투사체가 생기면 남는 문제 해결을 위해 여러 번 발동
+
         StartCoroutine(Managers.SceneFlow.FadeOut(0.8f)); // 기본값 = 뒤로이동maxTime+앞으로이동maxTime+대기시간
 
         nowTime = 0f; maxTime = 0.2f; // maxTime 시간동안 뒤로 이동
@@ -105,6 +109,9 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
             nowTime += Time.deltaTime;
             yield return null;
         }
+
+        Managers.Stage.EnemySpawner.DeleteField(); // 코드 실행 뒤 투사체가 생기면 남는 문제 해결을 위해 여러 번 발동
+
         nowTime = 0f; maxTime = 0.5f; // maxTime 시간동안 앞으로 이동
         startPlayerPos = transform.position;
         while (nowTime <= maxTime)
@@ -118,34 +125,6 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         yield return new WaitForSeconds(0.2f); // 대기시간
 
         Managers.SceneFlow.GotoScene("Shop");
-
-        yield break;
-    }
-
-    private IEnumerator ShopEnd() // 상점이 끝난 뒤 연출. 지금은 임시로 FieldEnd와 비슷한 코드 사용 중
-    {
-        float nowTime = 0f, maxTime = 0.3f; // maxTime 시간동안 끝나는 연출
-        Vector3[] startCharacterPos = Enumerable.Range(0, Managers.PlayerControl.Characters.Count).Select(i => Managers.PlayerControl.Characters[i].transform.localPosition).ToArray();
-        Vector3 startPlayerPos = transform.position;
-
-        while (nowTime <= maxTime)
-        {
-            for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
-            {
-                Managers.PlayerControl.Characters[i].transform.localPosition = Vector3.Lerp(startCharacterPos[i], new(1.5f - i, 1f, 0f), nowTime / maxTime);
-            }
-            transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
-
-            nowTime += Time.deltaTime;
-            yield return null;
-        }
-
-        for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
-        {
-            Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = true;
-        }
-
-        Managers.SceneFlow.GotoScene("Field");
 
         yield break;
     }

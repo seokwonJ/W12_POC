@@ -14,13 +14,21 @@ public class ArcherUpgrade : CharacterUpgrade
         CriticalDamageUp,                           // 크리 피해 배수 증가
         AttackRangeUp,                              // 적 감지/공격 가능 거리 확대
         ManaRegenSpeedDownAttackPowerUp,            // 마나 회복 속도 감소 + 공격력 증가
-        ManaRegenSpeedUPAbilityPowerUp             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        ManaRegenSpeedUPAbilityPowerUp,             // 마나 회복 속도 증가 + 스킬 대미지 증가
+        
+        SkillCountUp,                               // 스킬을 1회 더 시전합니다.
+        AttackProjectileUp,                         // 기본 공격이 투사체 1개를 더 발사합니다.(기존 3 갈래 화살 )
+        DieInstantly,                               // 보스를 제외한 몬스터 타격 시 일정 확률로 즉사 시킵니다
+        SameEnemyDamageUp,                          // 같은 대상을 공격 할 시 일정시간 대미지가 증가합니다. 지속시간 : N초
+        SkillProjectileCountUp                      // 스킬 투사체 갯수 증가
     }
 
     public UpgradeType type;
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Archer archer = character.GetComponent<Archer>();
         switch (type)
         {
@@ -65,19 +73,45 @@ public class ArcherUpgrade : CharacterUpgrade
                 archer.upgradeNum = 7;
                 break;
             case UpgradeType.ManaRegenSpeedDownAttackPowerUp:                                       // 마나 회복 속도 감소 + 공격력 증가
-                archer.manaRegenSpeedUpNum += ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
+                archer.manaRegenSpeedUpNum -= ManaRegenSpeedDownAttackPowerUp_ManaRegenPercent;
                 archer.attackPowerUpNum += ManaRegenSpeedDownAttackPowerUp_AttackPowerPercent;
                 Debug.Log("Debug8 archer");
                 archer.upgradeNum = 8;
                 break;
             case UpgradeType.ManaRegenSpeedUPAbilityPowerUp:                                       // 마나 회복 속도 증가 + 스킬 대미지 증가
-                archer.manaRegenSpeedUpNum += ManaRegenSpeedUPAttackPowerDown_ManaRegenPercent;
-                archer.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerDown_AbilityPowerPercent;
+                archer.manaRegenSpeedUpNum += ManaRegenSpeedUPAbilityPowerUp_ManaRegenPercent;
+                archer.abilityPowerUpNum += ManaRegenSpeedUPAbilityPowerUp_AbilityPowerPercent;
                 Debug.Log("Debug9 archer");
                 archer.upgradeNum = 9;
                 break;
+
             //-------------- 특수 업그레이드 --------------
 
+            case UpgradeType.SkillCountUp:                                                          // 스킬을 1회 더 시전합니다.
+                archer.skillCount += 1;
+                Debug.Log("Debug10 archer");
+                archer.upgradeNum = 10;
+                break;
+            case UpgradeType.AttackProjectileUp:                                                    // 기본 공격이 투사체 1개를 더 발사합니다.(기존 3 갈래 화살 )
+                archer.isUpgradeTwoShot = true;
+                Debug.Log("Debug11 archer");
+                archer.upgradeNum = 11;
+                break;
+            case UpgradeType.DieInstantly:                                                          // 보스를 제외한 몬스터 타격 시 일정 확률로 즉사 시킵니다
+                archer.isUpgradeDieInstantly = true;
+                Debug.Log("Debug12 archer");
+                archer.upgradeNum = 12;
+                break;
+            case UpgradeType.SameEnemyDamageUp:                                                     // 같은 대상을 공격 할 시 일정시간 대미지가 증가합니다. 지속시간 : N초
+                archer.isUpgradeSameEnemyDamage = true;
+                Debug.Log("Debug13 archer");
+                archer.upgradeNum = 13;
+                break;
+            case UpgradeType.SkillProjectileCountUp:                                                // 스킬 투사체 갯수 증가
+                archer.skillProjectileCount += 6;
+                Debug.Log("Debug14 archer");
+                archer.upgradeNum = 14;
+                break;
         }
 
         Debug.Log("업그레이드 성공");

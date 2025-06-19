@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d96aafbf49a84e9418c81fb2cdb2b7e6, type: 3}
   m_Name: FoxUpgrade 3
   m_EditorClassIdentifier: 
-  upgradeName: MoreSkillOrbs
-  description: MoreSkillOrbs
+  upgradeName: "\uD0C4 \uD06C\uAE30 \uC99D\uAC00"
+  description: "\uD0C4 \uD06C\uAE30 \uC99D\uAC00"
   icon: {fileID: 0}
   type: 3
-  value: 0
