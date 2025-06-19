@@ -4,8 +4,9 @@ using UnityEngine;
 public class MagicBall : ProjectileBase
 {
     public GameObject exlosionEffect;
+    private bool _isCritical;
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isUpgradeSkillExplosionAttack, float skillExplosionAttackTime)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isCritical, bool isUpgradeSkillExplosionAttack, float skillExplosionAttackTime)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -14,6 +15,7 @@ public class MagicBall : ProjectileBase
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
         knockbackPower = knockbackPowerNum;
+        _isCritical = isCritical;
 
         if (isUpgradeSkillExplosionAttack) StartCoroutine(explosionAttack(skillExplosionAttackTime));
     }
@@ -33,6 +35,12 @@ public class MagicBall : ProjectileBase
             if (enemyComponenet != null)
             {
                 enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
+            }
+
+            if (_isCritical)
+            {
+                Vector2 contactPoint = other.ClosestPoint(transform.position);
+                Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
             }
 
             DestroyProjectile(gameObject);

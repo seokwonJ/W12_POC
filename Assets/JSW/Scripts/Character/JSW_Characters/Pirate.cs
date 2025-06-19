@@ -50,19 +50,17 @@ public class Pirate : Character
 
         currentMP = Mathf.Min(currentMP, currentMaxMp);
 
-        if (mpImage != null) mpImage.fillAmount = currentMP / currentMaxMp;
-
         if (currentMP >= currentMaxMp && !isSkillActive)
         {
             StartCoroutine(ActiveSkill());
             isSkillActive = true;
+
         }
     }
 
     // 일반 공격: 대포알 한발씩 발사 대포알 경우 광역 넉백
     protected override void FireNormalProjectile(Vector3 targetPos)
     {
-
         Vector2 direction = (targetPos + Vector3.up - firePoint.position).normalized;
 
         // 방향에 따라 캐릭터 스프라이트 좌우 반전
@@ -72,12 +70,13 @@ public class Pirate : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
-        proj.GetComponent<PirateAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isNoMoreExplosionAttackDamageUp, false, isAttackPerMana, this, enemyTarget);
+        proj.GetComponent<PirateAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, isNoMoreExplosionAttackDamageUp, false, isAttackPerMana, this, enemyTarget);
 
         SoundManager.Instance.PlaySFX("PirateAttack");
-
     }
 
     // 스킬: 점프 후 공중에 대포알들 여러발 발사
@@ -100,7 +99,7 @@ public class Pirate : Character
 
         animator.Play("SKILL", -1, 0f);
 
-        int currentSkillShotCount = skillShotCount;                                 
+        int currentSkillShotCount = skillShotCount;
 
         if (isManaMultipleSkillProjectileMultiple) currentSkillShotCount *= 2;                   // 해적만 2배를 위해 특별히 들어감
 
@@ -126,18 +125,18 @@ public class Pirate : Character
             if (target != null)
             {
                 Vector3 dir = target.position - proj.transform.position;
-                mb.SetInit(dir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isNoMoreExplosionAttackDamageUp, true,false,this, target);
+                mb.SetInit(dir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100),false, isNoMoreExplosionAttackDamageUp, true, false, this, target);
             }
             else
             {
                 // 유효한 타겟이 없으면 랜덤 방향 발사
                 float randomAngle = Random.Range(0f, 360f);
                 Vector2 randomDir = Quaternion.Euler(0, 0, randomAngle) * Vector2.right;
-                mb.SetInit(randomDir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isNoMoreExplosionAttackDamageUp, true, false, this, null);
+                mb.SetInit(randomDir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), false, isNoMoreExplosionAttackDamageUp, true, false, this, null);
             }
 
-            
-        yield return new WaitForSeconds(skillFireDelay);
+
+            yield return new WaitForSeconds(skillFireDelay);
         }
     }
 

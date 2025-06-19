@@ -7,8 +7,9 @@ public class BlackHoleAttack : ProjectileBase
     private List<Transform> enemiesInRange = new List<Transform>();
     public float pullDelay = 0.3f;
     public float pullForce = 10f;
+    private bool _isCritical;
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float nockbackPower)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float nockbackPower, bool isCritical)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -17,7 +18,7 @@ public class BlackHoleAttack : ProjectileBase
         speed = speedNum;
         transform.localScale = Vector3.one * scaleNum;
         pullForce = nockbackPower;
-
+        _isCritical = isCritical;
 
         // 블랙홀 활성화 즉시 타이머 시작
         StartCoroutine(DelayedPull());
@@ -63,6 +64,12 @@ public class BlackHoleAttack : ProjectileBase
                 if (hp != null)
                 {
                     hp.TakeDamage((int)damage, ECharacterType.Magician);
+                }
+
+                if (_isCritical)
+                {
+                    Vector2 contactPoint = enemy.transform.position;
+                    Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
                 }
             }
         }

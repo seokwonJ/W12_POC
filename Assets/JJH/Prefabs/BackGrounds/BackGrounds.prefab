@@ -49,13 +49,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   backgrounds1:
-  - {fileID: 0}
   - {fileID: 4898459466738020187}
   - {fileID: 4898459466738020187}
-  - {fileID: 4898459466738020187}
-  - {fileID: 4898459466738020187}
-  - {fileID: 5582993345807950347, guid: 86ad1c8ce4721a04f82132fc4053bd45, type: 3}
   - {fileID: 3466780255582982288}
+  - {fileID: 5611252450465324699}
+  - {fileID: 4898459466738020187}
+  - {fileID: 3466780255582982288}
+  - {fileID: 5611252450465324699}
   backgrounds2:
   - {fileID: 5611252450465324699}
   - {fileID: 5611252450465324699}

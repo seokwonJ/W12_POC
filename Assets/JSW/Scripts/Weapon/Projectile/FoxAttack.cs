@@ -19,6 +19,7 @@ public class FoxAttack : ProjectileBase
     private bool _isUpgradeAttackEnemySpeedDown;
     private float _attackEnemySpeedDownPercnet;
     private float _attackEnemySpeedDownDuration;
+    private bool _isCritical;
 
     private Fox _characterFox;
 
@@ -74,7 +75,7 @@ public class FoxAttack : ProjectileBase
         base.Update();
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, Transform ownerTransform, float totalTravelTimeNum, Fox characterFox, bool isSkill, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercnet, float attackEnemyDefenseDownDuration, bool isUpgradeAttackEnemySpeedDown, float attackEnemySpeedDownPercnet, float attackEnemySpeedDownDuration)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isCritical, Transform ownerTransform, float totalTravelTimeNum, Fox characterFox, bool isSkill, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercnet, float attackEnemyDefenseDownDuration, bool isUpgradeAttackEnemySpeedDown, float attackEnemySpeedDownPercnet, float attackEnemySpeedDownDuration)
     {
         owner = ownerTransform;
 
@@ -90,6 +91,8 @@ public class FoxAttack : ProjectileBase
         _characterFox = characterFox;
         this.isSkill = isSkill;
 
+        _isCritical = isCritical;
+
         _isUpgradeAttackEnemyDefenseDown = isUpgradeAttackEnemyDefenseDown;
         _attackEnemyDefenseDownPercnet = attackEnemyDefenseDownPercnet;
         _attackEnemyDefenseDownDuration = attackEnemyDefenseDownDuration;
@@ -97,6 +100,7 @@ public class FoxAttack : ProjectileBase
         _isUpgradeAttackEnemySpeedDown = isUpgradeAttackEnemySpeedDown;
         _attackEnemySpeedDownPercnet = attackEnemySpeedDownPercnet;
         _attackEnemySpeedDownDuration = attackEnemySpeedDownDuration;
+        
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -124,6 +128,12 @@ public class FoxAttack : ProjectileBase
             if (!isSkill)
             {
                 enemy.GetComponent<EnemyHP>().TakeDamage((int)damage, ECharacterType.Fox);
+
+                if (_isCritical)
+                {
+                    Vector2 contactPoint = other.ClosestPoint(transform.position);
+                    Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
+                }
                 return;
             }
 

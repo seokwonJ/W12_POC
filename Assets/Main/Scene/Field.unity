@@ -3737,6 +3737,14 @@ PrefabInstance:
       value: BackGrounds
       objectReference: {fileID: 0}
     - target: {fileID: 4304269556945434631, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
+      propertyPath: 'backgrounds1.Array.data[2]'
+      value: 
+      objectReference: {fileID: 3610785911999877983}
+    - target: {fileID: 4304269556945434631, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
+      propertyPath: 'backgrounds1.Array.data[3]'
+      value: 
+      objectReference: {fileID: 3610785911999877983}
+    - target: {fileID: 4304269556945434631, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
       propertyPath: 'backgrounds1.Array.data[5]'
       value: 
       objectReference: {fileID: 3610785911999877983}
@@ -3751,12 +3759,12 @@ PrefabInstance:
   m_SourcePrefab: {fileID: 100100000, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
 --- !u!1 &3610785911999877982 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5611252450465324699, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3466780255582982288, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
   m_PrefabInstance: {fileID: 3610785911999877981}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &3610785911999877983 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 3466780255582982288, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
+  m_CorrespondingSourceObject: {fileID: 4898459466738020187, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
   m_PrefabInstance: {fileID: 3610785911999877981}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3695823149925530539

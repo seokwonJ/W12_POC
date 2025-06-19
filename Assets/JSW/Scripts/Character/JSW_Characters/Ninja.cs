@@ -47,6 +47,8 @@ public class Ninja : Character
         GameObject proj;
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
         if (isManaPerDamageUp) totalAttackDamage *= maxMP / ManaPerDamageUpPercent;
         if (isLongAttackDamageUp)
@@ -57,15 +59,15 @@ public class Ninja : Character
         if (isSkilling)
         {
             proj = Instantiate(skillKunai, firePoint.position, Quaternion.identity);
-            proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, skillProjectileSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0;
+            proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, skillProjectileSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical); nomalAttackCount = 0;
         }
         else
         {
             proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage * nomalAttackFiveUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); nomalAttackCount = 0; }
-            else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100));
+            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage * nomalAttackFiveUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical); nomalAttackCount = 0; }
+            else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical);
         }
-        
+
 
         SoundManager.Instance.PlaySFX("NinjaAttack");
     }
