@@ -146,7 +146,7 @@ public class PlayerHP : MonoBehaviour
 
     IEnumerator CoHealEffect()
     {
-        spriteRendererCore.color = Color.cyan; // 코어 색상을 빨간색으로 변경
+        spriteRendererCore.color = Color.magenta; // 코어 색상을 빨간색으로 변경
         yield return flashDuration;
         if (_playerMove.isCanDashing)
         {
