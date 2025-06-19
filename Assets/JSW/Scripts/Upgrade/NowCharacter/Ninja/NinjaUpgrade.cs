@@ -28,6 +28,8 @@ public class NinjaUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Ninja ninja = character.GetComponent<Ninja>();
         switch (type)
         {

@@ -2,8 +2,8 @@
 
 public class TankerAttack : ProjectileBase
 {
-
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float lifetimeNum, float scaleNum, float KnockBackPowerNum)
+    private bool _isCritical;
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float KnockBackPowerNum, bool isCritical ,float lifetimeNum)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -13,6 +13,7 @@ public class TankerAttack : ProjectileBase
         lifetime = lifetimeNum;
         transform.localScale = Vector3.one * scaleNum;
         knockbackPower = KnockBackPowerNum;
+        _isCritical = isCritical;
     }
 
     public override void DestroyProjectile(GameObject projectile)
@@ -34,6 +35,12 @@ public class TankerAttack : ProjectileBase
             if (enemy != null)
             {
                 enemy.ApplyKnockback(knockbackDirection, knockbackPower);
+            }
+
+            if (_isCritical)
+            {
+                Vector2 contactPoint = other.ClosestPoint(transform.position);
+                Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
             }
         }
     }

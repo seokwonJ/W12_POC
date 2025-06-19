@@ -26,6 +26,8 @@ public class MagicianUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Magician magician = character.GetComponent<Magician>();
         switch (type)
         {

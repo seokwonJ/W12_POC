@@ -26,6 +26,8 @@ public class PirateUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Pirate pirate = character.GetComponent<Pirate>();
         switch (type)
         {

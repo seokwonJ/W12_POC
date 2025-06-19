@@ -27,6 +27,8 @@ public class SniperUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Sniper sniper = character.GetComponent<Sniper>();
         switch (type)
         {

@@ -7,7 +7,7 @@ public class PriestAttack : ProjectileBase
     private bool _isUpgradeAttackEnemyDefenseDown;
     private float _attackEnemyDefenseDownPercent;
     private float _attackEnemyDefenseDownDuration;
-
+    private bool _isCritical;
     protected override void Update()
     {
         if (target != null)
@@ -27,7 +27,7 @@ public class PriestAttack : ProjectileBase
         transform.position += (Vector3)(direction * speed * Time.deltaTime);
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercent,float attackEnemyDefenseDownDuration, Transform target = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum,float knockbackPowerNum,bool isCritical, bool isUpgradeAttackEnemyDefenseDown, float attackEnemyDefenseDownPercent,float attackEnemyDefenseDownDuration, Transform target = null)
     {
         direction = dir.normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
@@ -39,6 +39,7 @@ public class PriestAttack : ProjectileBase
         _isUpgradeAttackEnemyDefenseDown = isUpgradeAttackEnemyDefenseDown;
         _attackEnemyDefenseDownPercent = attackEnemyDefenseDownPercent;
         _attackEnemyDefenseDownDuration = attackEnemyDefenseDownDuration;
+        _isCritical = isCritical;
 
         if (target != null)
         {
@@ -63,6 +64,12 @@ public class PriestAttack : ProjectileBase
             if (enemyComponenet != null)
             {
                 enemyComponenet.ApplyKnockback(knockbackDirection, knockbackPower);
+            }
+
+            if (_isCritical)
+            {
+                Vector2 contactPoint = other.ClosestPoint(transform.position);
+                Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
             }
 
             DestroyProjectile(gameObject);

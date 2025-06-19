@@ -52,7 +52,6 @@ public class Tanker : Character
 
         currentMP += Time.deltaTime * (mpPerSecond * (manaRegenSpeedUpNum / 100));
         currentMP = Mathf.Min(currentMP, maxMP);
-        if (mpImage != null) mpImage.fillAmount = currentMP / maxMP;
 
         if (currentMP >= maxMP && !isSkillActive)
         {
@@ -76,8 +75,10 @@ public class Tanker : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
-        proj.GetComponent<TankerAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), nomalAttackLifetime, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100)); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
+        proj.GetComponent<TankerAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, nomalAttackLifetime); // 이 메서드가 없다면 그냥 방향 저장해서 쓰면 됨
     }
 
     // 스킬: 착지시 밀어냄 
@@ -128,10 +129,10 @@ public class Tanker : Character
 
                 if (isCloserMoreDamage) totalSkillDamage += (int)(closerMoreDamagePercent / Vector2.Distance(hit.transform.position, transform.position));
 
-                if (isUpgradeFallingSpeedToSkillDamage) {enemyHP.TakeDamage((int)(totalSkillDamage + rb.linearVelocity.magnitude), ECharacterType.Tanker);}
+                if (isUpgradeFallingSpeedToSkillDamage) { enemyHP.TakeDamage((int)(totalSkillDamage + rb.linearVelocity.magnitude), ECharacterType.Tanker); }
                 else enemyHP.TakeDamage((int)totalSkillDamage, ECharacterType.Tanker);
 
-                if (enemyHP != null && enemyHP.enemyHP <= 0)  continue;
+                if (enemyHP != null && enemyHP.enemyHP <= 0) continue;
 
                 Vector3 knockbackDirection = hit.transform.position - transform.position;
 

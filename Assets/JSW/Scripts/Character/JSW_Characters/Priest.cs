@@ -14,7 +14,6 @@ public class Priest : Character
     public int skillHealAmount = 10;
     public bool isSkillBuff;
 
-
     [Header("강화")]
     public bool isUpgradeSkillCharacterAttackUp;
     public float SkillCharacterAttackUpNum = 10;
@@ -51,12 +50,12 @@ public class Priest : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
 
-
-       proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercent, attackEnemyDefenseDownDuration, enemyTarget);
-        
+        proj.GetComponent<PriestAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, isUpgradeAttackEnemyDefenseDown, attackEnemyDefenseDownPercent, attackEnemyDefenseDownDuration, enemyTarget);
 
         SoundManager.Instance.PlaySFX("PriestAttack");
     }
@@ -72,7 +71,7 @@ public class Priest : Character
         animator.Play("SKILL", -1, 0f);
 
         Instantiate(priestSkillActiveEffect, transform.position, Quaternion.identity, transform);
-        
+
         isSkillLanding = true;
 
         SoundManager.Instance.PlaySFX("PriestSkillActive");
