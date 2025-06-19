@@ -95,8 +95,6 @@ public class PlayerHP : MonoBehaviour
             Managers.SceneFlow.GameOver();
             if (hpBarObject != null) Destroy(hpBarObject);
         }
-
-        StartCoroutine(HitNoDamageDuration());
     }
 
     public virtual void TakeHeal(int Num)
@@ -133,7 +131,11 @@ public class PlayerHP : MonoBehaviour
     IEnumerator CoDamagedEffect()
     {
         spriteRendererCore.color = Color.red; // 코어 색상을 빨간색으로 변경
-        yield return flashDuration;
+        hitCollider.enabled = false;
+
+        yield return hitNoDamageDuration;
+        
+        hitCollider.enabled = true;
         if (_playerMove.isCanDashing)
         {
             spriteRendererCore.color = Color.green; // 코어 색상을 원래대로 되돌림
@@ -156,15 +158,5 @@ public class PlayerHP : MonoBehaviour
         {
             spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
         }
-    }
-
-
-    IEnumerator HitNoDamageDuration()
-    {
-        hitCollider.enabled = false;
-
-        yield return hitNoDamageDuration;
-
-        hitCollider.enabled = true;
     }
 }
