@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 {
-    public Canvas FadeOutCanvas;
+    public FindAnyFieldCanvas FieldCanvas;
     public Canvas GameOverCanvas;
 
     public void Init()
@@ -47,27 +47,26 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
         SceneManager.LoadScene(sceneName);
     }
 
-    public IEnumerator FadeOut(float maxTime) // 씬 전환 시 연출
+    public void ClearTxt()
     {
-        if (FadeOutCanvas == null)
+        if (FieldCanvas == null)
         {
-            Debug.Log("FadeOutCanvas 못찾음");
-            yield break;
+            Debug.Log("FieldCanvas 못찾음");
+            return;
         }
 
-        FadeOutCanvas.enabled = true;
-        float nowTime = 0f;
+        FieldCanvas.StartClearTxt();
+    }
 
-        while (nowTime <= maxTime)
+    public void FadeOut(float maxTime) // 필드가 끝난 뒤 어두워지는 연출
+    {
+        if (FieldCanvas == null)
         {
-            FadeOutCanvas.GetComponent<CanvasGroup>().alpha = nowTime / maxTime;
-            nowTime += Time.deltaTime;
-            yield return null;
+            Debug.Log("FieldCanvas 못찾음");
+            return;
         }
 
-        FadeOutCanvas.enabled = false;
-
-        yield break;
+        FieldCanvas.StartFadeOut(maxTime);
     }
 
     public void GameOver() // 게임오버
@@ -82,7 +81,7 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
         GameOverCanvas.enabled = true;
     }
 
-    public void Clear() // 에디터용 종료 시 구독 해제
+    public void ClearOnSceneLoaded() // 에디터용 종료 시 구독 해제
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

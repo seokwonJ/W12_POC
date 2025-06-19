@@ -97,6 +97,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
 
     public void StartGame() // 게임 시작. 다른 매니저의 게임 시작도 이곳에서
     {
+        nowStage = null;
         world = 1;
         stage = 0; // 시작할때마다 값을 1씩 더해주므로 0부터 시작할 것
         enemyTotalKill = 0;

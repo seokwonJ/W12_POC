@@ -281,8 +281,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": 550.0,
-            "y": -732.0
+            "x": 1203.0,
+            "y": -718.9999389648438
         },
         "m_Blocks": [
             {
@@ -298,8 +298,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 515.0000610351563,
-            "y": -190.00001525878907
+            "x": 1168.0001220703125,
+            "y": -177.0
         },
         "m_Blocks": [
             {
@@ -547,9 +547,9 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -557.0001220703125,
-            "y": -1215.0,
-            "width": 166.00006103515626,
+            "x": -573.0,
+            "y": -1307.0,
+            "width": 166.0,
             "height": 118.0
         }
     },
@@ -1089,10 +1089,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 45.00001525878906,
-            "y": -401.0,
-            "width": 208.0,
-            "height": 302.00006103515627
+            "x": 125.00013732910156,
+            "y": -451.0000305175781,
+            "width": 207.99989318847657,
+            "height": 302.0001525878906
         }
     },
     "m_Slots": [
@@ -1346,8 +1346,8 @@
     "m_ObjectId": "86989d8d02e044319db960d95660210c",
     "m_Title": "Damage Effect Group",
     "m_Position": {
-        "x": -582.0,
-        "y": -1274.0
+        "x": -597.9998779296875,
+        "y": -1365.9998779296875
     }
 }
 
@@ -1385,10 +1385,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -534.0,
-            "y": -457.99993896484377,
-            "width": 208.0,
-            "height": 335.9999694824219
+            "x": -453.9999084472656,
+            "y": -508.0000305175781,
+            "width": 207.99990844726563,
+            "height": 336.00006103515627
         }
     },
     "m_Slots": [
@@ -1445,8 +1445,8 @@
     "m_ObjectId": "9c08a3832afc437f9f17cd344f62fd79",
     "m_Title": "Die Effect Group",
     "m_Position": {
-        "x": -559.0,
-        "y": -517.0
+        "x": -478.9998779296875,
+        "y": -567.0
     }
 }
 
@@ -1486,7 +1486,7 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": {
-        "m_SerializedTexture": "",
+        "m_SerializedTexture": "{\"texture\":{\"fileID\":2800000,\"guid\":\"16e7c92ac202ac043852e27723cbc473\",\"type\":3}}",
         "m_Guid": ""
     },
     "isMainTexture": false,
@@ -1846,10 +1846,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -238.0,
-            "y": -435.0,
-            "width": 208.00009155273438,
-            "height": 302.00006103515627
+            "x": -158.00001525878907,
+            "y": -484.9999084472656,
+            "width": 208.00022888183595,
+            "height": 302.0
         }
     },
     "m_Slots": [
@@ -2075,10 +2075,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -480.9999694824219,
-            "y": -290.0,
-            "width": 127.00003051757813,
-            "height": 34.00001525878906
+            "x": -401.0000305175781,
+            "y": -339.9999084472656,
+            "width": 152.00015258789063,
+            "height": 33.9998779296875
         }
     },
     "m_Slots": [
