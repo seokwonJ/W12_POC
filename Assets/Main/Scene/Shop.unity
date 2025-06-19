@@ -4639,37 +4639,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BackGrounds
       objectReference: {fileID: 0}
-    - target: {fileID: 4304269556945434631, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
-      propertyPath: 'backgrounds1.Array.data[2]'
-      value: 
-      objectReference: {fileID: 1171889750}
-    - target: {fileID: 4304269556945434631, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
-      propertyPath: 'backgrounds1.Array.data[3]'
-      value: 
-      objectReference: {fileID: 1171889750}
-    - target: {fileID: 4304269556945434631, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
-      propertyPath: 'backgrounds1.Array.data[5]'
-      value: 
-      objectReference: {fileID: 1171889750}
-    - target: {fileID: 4304269556945434631, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
-      propertyPath: 'backgrounds1.Array.data[6]'
-      value: 
-      objectReference: {fileID: 1171889749}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
---- !u!1 &1171889749 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3466780255582982288, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
-  m_PrefabInstance: {fileID: 1171889748}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1171889750 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4898459466738020187, guid: e32aad1346e926945bf695fc3dd66b9c, type: 3}
-  m_PrefabInstance: {fileID: 1171889748}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1179647099 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2263154196561167772, guid: 8ec8ed6cf725c154cb70369fc3b60b1b, type: 3}
