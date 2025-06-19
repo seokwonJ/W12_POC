@@ -16,8 +16,12 @@ public class PlayerHP : MonoBehaviour
     public bool isEndFieldNoDamage;
 
     private PlayerStatus _playerStatus;
+    private PlayerMove _playerMove;
+    private CircleCollider2D hitCollider;
+
     private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
+    private WaitForSeconds hitNoDamageDuration = new WaitForSeconds(0.5f);
     private SpriteRenderer spriteRendererCore;
 
 
@@ -39,6 +43,8 @@ public class PlayerHP : MonoBehaviour
     protected virtual void Start()
     {
         _playerStatus = Managers.PlayerControl.NowPlayer.GetComponent<PlayerStatus>();
+        _playerMove = Managers.PlayerControl.NowPlayer.GetComponent<PlayerMove>();
+        hitCollider = GetComponent<CircleCollider2D>();
 
         // HPBar 프리팹을 직접 생성하고 연결
         //if (hpBarPrefab != null && canvasTransform != null)
@@ -89,6 +95,8 @@ public class PlayerHP : MonoBehaviour
             Managers.SceneFlow.GameOver();
             if (hpBarObject != null) Destroy(hpBarObject);
         }
+
+        StartCoroutine(HitNoDamageDuration());
     }
 
     public virtual void TakeHeal(int Num)
@@ -107,7 +115,7 @@ public class PlayerHP : MonoBehaviour
             Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
 
             if (flashCoroutine != null) StopCoroutine(flashCoroutine);
-            flashCoroutine = StartCoroutine(CoDamagedEffect());
+            flashCoroutine = StartCoroutine(CoHealEffect());
         }
         else
         {
@@ -126,7 +134,37 @@ public class PlayerHP : MonoBehaviour
     {
         spriteRendererCore.color = Color.red; // 코어 색상을 빨간색으로 변경
         yield return flashDuration;
-        spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
+        if (_playerMove.isCanDashing)
+        {
+            spriteRendererCore.color = Color.green; // 코어 색상을 원래대로 되돌림
+        }
+        else
+        {
+            spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
+        }
     }
 
+    IEnumerator CoHealEffect()
+    {
+        spriteRendererCore.color = Color.cyan; // 코어 색상을 빨간색으로 변경
+        yield return flashDuration;
+        if (_playerMove.isCanDashing)
+        {
+            spriteRendererCore.color = Color.green; // 코어 색상을 원래대로 되돌림
+        }
+        else
+        {
+            spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
+        }
+    }
+
+
+    IEnumerator HitNoDamageDuration()
+    {
+        hitCollider.enabled = false;
+
+        yield return hitNoDamageDuration;
+
+        hitCollider.enabled = true;
+    }
 }
