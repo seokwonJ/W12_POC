@@ -43,12 +43,13 @@ public class Magician : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
-        
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
-        if(_nowTenAttackSkillAttackCount >= tenAttackSkillAttackCountMax)
+        if (_nowTenAttackSkillAttackCount >= tenAttackSkillAttackCountMax)
         {
             float totalSkillDamage = TotalSkillDamage();
-            proj.GetComponent<MagicBall>().SetInit(direction.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100), false,0);
+            proj.GetComponent<MagicBall>().SetInit(direction.normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100), false, false, 0);
             _nowTenAttackSkillAttackCount = 0;
         }
         else
@@ -57,7 +58,7 @@ public class Magician : Character
             {
                 _nowTenAttackSkillAttackCount += 1;
             }
-            proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), false, 0);
+            proj.GetComponent<MagicBall>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, false, 0);
         }
 
         SoundManager.Instance.PlaySFX("MagicianAttack");
@@ -89,11 +90,11 @@ public class Magician : Character
 
         if (target != null)
         {
-            mb.SetInit((target.position - firePoint.position).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100), isUpgradeSkillExplosionAttack, SkillExplosionAttackTime);
+            mb.SetInit((target.position - firePoint.position).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100),false, isUpgradeSkillExplosionAttack, SkillExplosionAttackTime);
         }
         else
         {
-            mb.SetInit((Random.insideUnitSphere).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100), isUpgradeSkillExplosionAttack, SkillExplosionAttackTime);
+            mb.SetInit((Random.insideUnitSphere).normalized, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), skillSize, knockbackPower * (knockbackPowerUpNum / 100),false, isUpgradeSkillExplosionAttack, SkillExplosionAttackTime);
         }
     }
 

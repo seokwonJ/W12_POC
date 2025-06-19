@@ -27,6 +27,8 @@ public class ArcherUpgrade : CharacterUpgrade
 
     public override void ApplyUpgrade(GameObject character)
     {
+        UpgradeController upgradeController = character.GetComponent<UpgradeController>();
+        upgradeController.ApplyUpgrade(this, character);
         Archer archer = character.GetComponent<Archer>();
         switch (type)
         {

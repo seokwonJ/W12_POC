@@ -21,6 +21,7 @@ public class PirateAttack : ProjectileBase
     private bool _isAttackPerMana;
     private Pirate _characterPirate;
     private bool _isSkill;
+    private bool _isCritical;
 
     protected override void Update()
     {
@@ -58,7 +59,7 @@ public class PirateAttack : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isNoMoreExplosionAttackDamageUp, bool isSkill, bool isAttackPerMana, Pirate pirate, Transform homingTarget = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isCritical, bool isNoMoreExplosionAttackDamageUp, bool isSkill, bool isAttackPerMana, Pirate pirate, Transform homingTarget = null)
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -69,6 +70,7 @@ public class PirateAttack : ProjectileBase
         transform.localScale = Vector3.one * scaleNum;
         speed = speedNum;
         knockbackPower = knockbackPowerNum;
+        _isCritical = isCritical;
 
         this._isNoMoreExplosionAttackDamageUp = isNoMoreExplosionAttackDamageUp;
 
@@ -119,6 +121,12 @@ public class PirateAttack : ProjectileBase
             if (enemyHp != null && _isNoMoreExplosionAttackDamageUp)
             {
                 enemyHp.TakeDamage((int)(damage), ECharacterType.Pirate);
+
+                if (_isCritical)
+                {
+                    Vector2 contactPoint = other.ClosestPoint(transform.position);
+                    Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
+                }
             }
             else
             {
@@ -134,10 +142,17 @@ public class PirateAttack : ProjectileBase
 
                         otherEnemyHP.TakeDamage((int)damage, ECharacterType.Pirate);
 
+
                         Vector3 knockbackDirection = hit.transform.position - transform.position;
                         if (enemy != null && otherEnemyHP.enemyHP > 0)
                         {
                             enemy.ApplyKnockback(knockbackDirection, knockbackPower);
+                        }
+
+                        if (_isCritical)
+                        {
+                            Vector2 contactPoint = other.ClosestPoint(other.transform.position);
+                            Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
                         }
                     }
                 }

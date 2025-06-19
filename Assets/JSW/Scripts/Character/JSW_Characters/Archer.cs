@@ -27,8 +27,6 @@ public class Archer : Character
     [Header("¿Ã∆Â∆Æ")]
     public GameObject skillActiveEffect;
 
-
-
     protected override void Update()
     {
         base.Update();
@@ -62,12 +60,14 @@ public class Archer : Character
         GameObject proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
         bool instantlyDie = false;
         if (isUpgradeDieInstantly && Random.value < dieInstantlyProbability / 100) instantlyDie = true;
         else instantlyDie = false;
 
-        proj.GetComponent<Arrow>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false, instantlyDie, isUpgradeSameEnemyDamage);
+        proj.GetComponent<Arrow>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, this, false, instantlyDie, isUpgradeSameEnemyDamage);
 
         if (isUpgradeTwoShot)
         {
@@ -75,7 +75,7 @@ public class Archer : Character
             else instantlyDie = false;
 
             GameObject proj2 = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 5) * direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, false, instantlyDie, isUpgradeSameEnemyDamage);
+            proj2.GetComponent<Arrow>().SetInit(Quaternion.Euler(0, 0, 5) * direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, this, false, instantlyDie, isUpgradeSameEnemyDamage);
         }
 
         SoundManager.Instance.PlaySFX("ArcherAttack");
@@ -113,7 +113,7 @@ public class Archer : Character
             float angle = i * angleStep + 10 * skillCount;
             Quaternion rotation = Quaternion.Euler(0, 0, angle);
             GameObject proj = Instantiate(skillProjectile, startPos, rotation);
-            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), projectileSize * (projectileSizeUpNum / 100), this, true, false, false);
+            proj.GetComponent<Arrow>().SetInit(rotation * Vector2.right, totalSkillDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100),false, this, true, false, false);
         }
     }
 

@@ -45,8 +45,10 @@ public class BlackHole : Character
         GameObject proj = Instantiate(normalProjectile, targetPos, Quaternion.identity);
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
-        proj.GetComponent<BlackHoleAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100) );
+        proj.GetComponent<BlackHoleAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical);
 
         SoundManager.Instance.PlaySFX("BlackHoleAttack");
     }

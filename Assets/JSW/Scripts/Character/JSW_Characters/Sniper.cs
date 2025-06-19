@@ -123,12 +123,12 @@ public class Sniper : Character
         yield return new WaitForSeconds(skillInterval);
         SoundManager.Instance.PlaySFX("SniperSkillActive");
         animator.Play("SKILL", -1, 0f);
-        Instantiate(sniperSkillActive2, transform.position, Quaternion.identity,transform);
+        Instantiate(sniperSkillActive2, transform.position, Quaternion.identity, transform);
 
         _isSkillReady = true;
         _beforeSkillVelocity = rb.linearVelocity;
-        dimDarking = StartCoroutine(FadeAlphaTo(dim,0.8f,0.3f));
-    
+        //dimDarking = StartCoroutine(FadeAlphaTo(dim, 0.8f, 0.3f));
+
         yield return new WaitForSeconds(skillSlowDelay);
         Instantiate(sniperSkillActive1, transform.position, Quaternion.identity, transform);
 
@@ -140,8 +140,8 @@ public class Sniper : Character
             yield return new WaitForSeconds(skillFireDelay);
         }
 
-        StopCoroutine(dimDarking);
-        StartCoroutine(FadeAlphaTo(dim, dimOriginAlpha, 0.5f));
+        //StopCoroutine(dimDarking);
+        //StartCoroutine(FadeAlphaTo(dim, dimOriginAlpha, 0.5f));
         _AttackCurrentCount = AttackMaxCount;
         _isSkillReady = false;
     }
@@ -179,7 +179,7 @@ public class Sniper : Character
         if (isSkillActive) skillTargetList.Add(newTargetPos);
 
         if (newTargetPos == null) return;
-        
+
         Vector2 direction = (newTargetPos.position - firePoint.position).normalized;
 
         // 시각적으로 보일 투사체
@@ -211,6 +211,10 @@ public class Sniper : Character
         }
 
         float totalAttackDamage = TotalAttackDamage();
+        bool isCritical = IsCriticalHit();
+        if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
+
+
         float totalSkillDamage = TotalSkillDamage();
 
         foreach (var hit in hits)
@@ -225,9 +229,15 @@ public class Sniper : Character
                 else
                 {
                     enemy.TakeDamage((int)totalAttackDamage, ECharacterType.Sniper);
+
+                    if (isCritical)
+                    {
+                        Vector2 contactPoint = hit.point;
+                        Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
+                    }
                 }
 
-                if (isPenetrationPerDamageUp) totalAttackDamage *= penetrationPerDamageUpPercent/100; // 퍼센트 증가
+                if (isPenetrationPerDamageUp) totalAttackDamage *= penetrationPerDamageUpPercent / 100; // 퍼센트 증가
                 else totalAttackDamage *= 0.9f; // 10% 감소
 
                 // 넉백
