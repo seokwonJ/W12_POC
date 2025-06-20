@@ -1,10 +1,9 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 {
-    public Canvas FadeOutCanvas;
+    public FindAnyFieldCanvas FieldCanvas;
     public Canvas GameOverCanvas;
 
     public void Init()
@@ -22,17 +21,7 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 
     private void FieldSceneLoaded() // 필드 씬이 시작될 때 실행
     {
-        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetFieldPosition();
-
-        if (Managers.Stage.NowStage == null || !Managers.Stage.NowStage.isBossStage)
-        {
-            Managers.Stage.Stage++;
-        }
-        else
-        {
-            Managers.Stage.World++;
-            Managers.Stage.Stage = 1;
-        }
+        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().StartFieldDirect();
     }
 
     private void ShopSceneLoaded() // 상점 씬이 시작될 때 실행
@@ -47,27 +36,37 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
         SceneManager.LoadScene(sceneName);
     }
 
-    public IEnumerator FadeOut(float maxTime) // 씬 전환 시 연출
+    public void ClearTxt()
     {
-        if (FadeOutCanvas == null)
+        if (FieldCanvas == null)
         {
-            Debug.Log("FadeOutCanvas 못찾음");
-            yield break;
+            Debug.Log("FieldCanvas 못찾음");
+            return;
         }
 
-        FadeOutCanvas.enabled = true;
-        float nowTime = 0f;
+        FieldCanvas.StartClearTxt();
+    }
 
-        while (nowTime <= maxTime)
+    public void StartDirect(float waitTime, float maxTime) // 필드 시작 연출
+    {
+        if (FieldCanvas == null)
         {
-            FadeOutCanvas.GetComponent<CanvasGroup>().alpha = nowTime / maxTime;
-            nowTime += Time.deltaTime;
-            yield return null;
+            Debug.Log("FieldCanvas 못찾음");
+            return;
         }
 
-        FadeOutCanvas.enabled = false;
+        FieldCanvas.StartStartDirect(waitTime, maxTime);
+    }
 
-        yield break;
+    public void FadeOut(float maxTime) // 필드가 끝난 뒤 어두워지는 연출
+    {
+        if (FieldCanvas == null)
+        {
+            Debug.Log("FieldCanvas 못찾음");
+            return;
+        }
+
+        FieldCanvas.StartFadeOut(maxTime);
     }
 
     public void GameOver() // 게임오버
@@ -82,7 +81,7 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
         GameOverCanvas.enabled = true;
     }
 
-    public void Clear() // 에디터용 종료 시 구독 해제
+    public void ClearOnSceneLoaded() // 에디터용 종료 시 구독 해제
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }

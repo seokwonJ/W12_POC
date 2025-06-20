@@ -35,7 +35,7 @@ public class SetUpgradeCanvas : MonoBehaviour
         }
         else if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            SetNowUpgradeSelect(nowUpgradeSelectIdx - 1); // 인덱스 상 다른 것들과 음양이 반대임에 유의
+            SetNowUpgradeSelect(nowUpgradeSelectIdx - 1);
         }
         else if (Input.GetKeyDown(KeyCode.RightArrow))
         {
@@ -48,7 +48,7 @@ public class SetUpgradeCanvas : MonoBehaviour
         if (newIdx < 0 || newIdx > 2) return; // 고정값이라는 점에 유의
 
         nowUpgradeSelectIdx = newIdx;
-        selectCursor.transform.localPosition = new(-600f + newIdx * 600f, 315f, 0f);
+        selectCursor.transform.localPosition = new(-600f + newIdx * 600f, 250f, 0f);
     }
 
     private void ActNowUpgradeSelect()

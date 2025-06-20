@@ -7,7 +7,7 @@ public class PlayerHP : MonoBehaviour
     public Image playerHP_Image;
     [HideInInspector]
     public GameObject hpBarObject;
-    public Renderer rendererFlyer;
+    public SpriteRenderer rendererFlyer;
 
     // 추가: HPBar 프리팹과 캔버스 Transform을 Inspector에서 할당
     public GameObject hpBarPrefab;
@@ -21,7 +21,7 @@ public class PlayerHP : MonoBehaviour
 
     private Coroutine flashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
-    private WaitForSeconds hitNoDamageDuration = new WaitForSeconds(0.5f);
+    private float hitNoDamageDuration = 1f;
     private SpriteRenderer spriteRendererCore;
 
 
@@ -130,20 +130,50 @@ public class PlayerHP : MonoBehaviour
 
     IEnumerator CoDamagedEffect()
     {
-        spriteRendererCore.color = Color.red; // 코어 색상을 빨간색으로 변경
+        float elapsed = 0f;
+        float blinkInterval = 0.3f; // 깜빡이는 간격
+        float duration = hitNoDamageDuration; // 시간 추출
+
         hitCollider.enabled = false;
 
-        yield return hitNoDamageDuration;
-        
+        Color colorBody = rendererFlyer.color;
+
+        while (elapsed < duration)
+        {
+            // 투명
+            Color color = spriteRendererCore.color;
+            color.a = 0.3f;
+            spriteRendererCore.color = color;
+
+            colorBody = rendererFlyer.color;
+            colorBody.a = 0.3f;
+            rendererFlyer.color = colorBody;
+
+            yield return new WaitForSeconds(blinkInterval / 2f);
+
+            // 불투명
+            color.a = 1f;
+            spriteRendererCore.color = color;
+
+            colorBody.a = 1f;
+            rendererFlyer.color = colorBody;
+
+            yield return new WaitForSeconds(blinkInterval / 2f);
+            elapsed += blinkInterval;
+        }
+
+        // 깜빡임 끝나고 최종 색상 설정
         hitCollider.enabled = true;
+
+        Color finalColor = Color.white;
         if (_playerMove.isCanDashing)
-        {
-            spriteRendererCore.color = Color.green; // 코어 색상을 원래대로 되돌림
-        }
-        else
-        {
-            spriteRendererCore.color = Color.white; // 코어 색상을 원래대로 되돌림
-        }
+            finalColor = Color.green;
+
+        finalColor.a = 1f;
+        spriteRendererCore.color = finalColor;
+
+        colorBody.a = 1f;
+        rendererFlyer.color = colorBody;
     }
 
     IEnumerator CoHealEffect()

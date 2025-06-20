@@ -97,8 +97,9 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
 
     public void StartGame() // 게임 시작. 다른 매니저의 게임 시작도 이곳에서
     {
+        nowStage = null;
         world = 1;
-        stage = 0; // 시작할때마다 값을 1씩 더해주므로 0부터 시작할 것
+        stage = 1; // 상점에서 값을 1씩 추가하므로 1부터 시작
         enemyTotalKill = 0;
         onField = true;
 
@@ -112,6 +113,21 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         enemyKill = 0;
         curEnemyCount = 0;
         nowStage = Array.Find(Managers.Asset.StageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
+
+        EnemySpawner.StartSpawnEnemy();
+    }
+
+    public void GoNextStage()
+    {
+        if (Managers.Stage.NowStage == null || !Managers.Stage.NowStage.isBossStage) // 이 코드는 상점이 끝날 때 실행되니 1-1전투 1-1상점 1-2전투... 식으로 진행됨
+        {
+            Managers.Stage.Stage++;
+        }
+        else
+        {
+            Managers.Stage.World++;
+            Managers.Stage.Stage = 1;
+        }
     }
 
     public void PlusEnemyKill(Vector3 position) // 적 처치 수 증가

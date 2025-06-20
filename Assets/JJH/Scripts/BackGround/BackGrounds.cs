@@ -27,6 +27,7 @@ public class BackGrounds : MonoBehaviour
 
         int world = Managers.Stage.World;
         int stage = Managers.Stage.Stage;
+        Debug.Log("현재 월드: " + world + ", 현재 스테이지: " + stage);
         // 현재 스테이지에 해당하는 배경 활성화
         ref GameObject[] selectedBackgrounds = ref backgrounds1;
 
@@ -47,7 +48,7 @@ public class BackGrounds : MonoBehaviour
         }
         if (stage >= 1 && stage < selectedBackgrounds.Length)
         {
-            backgrounds1[stage].SetActive(true); // 현재 스테이지에 해당하는 배경 활성화
+            selectedBackgrounds[stage].SetActive(true); // 현재 스테이지에 해당하는 배경 활성화
         }
         else
         {

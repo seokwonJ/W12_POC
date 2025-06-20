@@ -2,13 +2,13 @@
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 
-public class AddForceToPlayerAttack : EnemyAttack1
+public class AccelerationToPlayerAttack : EnemyAttack1
 {
     private GameObject player;
     private Rigidbody2D rb;
 
-    private float acceleration = 3.5f;   // 가속도 (초당 속도 증가량)
-    private float maxSpeed = 12f;      // 최대 속도
+    private float acceleration = 3f;   // 가속도 (초당 속도 증가량)
+    private float maxSpeed = 15f;      // 최대 속도
     private float turnSpeed = 100f;    // 회전 속도 (Degrees per second)
     private float currentSpeed = 0f;  // 현재 속도
 
@@ -43,7 +43,7 @@ public class AddForceToPlayerAttack : EnemyAttack1
         // 5) 회전 속도 감소
         if (turnSpeed > 0)
         {
-            turnSpeed -= 10f * Time.fixedDeltaTime; // 속도를 감소시켜서 부드러운 감속 효과
+            turnSpeed -= 8f * Time.fixedDeltaTime; // 회전 속도를 점차 감소시켜서 갈수록 방향전환이 어렵게
         }
     }
 }
