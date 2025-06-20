@@ -109,7 +109,6 @@ MonoBehaviour:
   abilityPowerUpNum: 100
   maxMP: 150
   mpPerSecond: 12
-  mpImage: {fileID: 0}
   normalProjectile: {fileID: 2330834722853355751, guid: 9914ce075cf9e494b896960b580e9d12, type: 3}
   firePoint: {fileID: 2263154196561167772}
   normalFireInterval: 0.8
@@ -137,7 +136,7 @@ MonoBehaviour:
   upgradeNum: 0
   isUpgradeTwoShot: 0
   isUpgradeDieInstantly: 0
-  dieInstantlyProbability: 1
+  dieInstantlyProbability: 5
   isUpgradeSameEnemyDamage: 0
   attackedEnemy: {fileID: 0}
   sameEnemyCount: 0
@@ -157,6 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225d7a7746a759e4b85b56c4565646b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeNum: 0
   allUpgrades:
   - {fileID: 11400000, guid: 95dd2578bdd95624bb055730aaa8a0a0, type: 2}
   - {fileID: 11400000, guid: c67ab6fa6f6cd6648b6e4d9f4a54ca1b, type: 2}
@@ -168,6 +168,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6a4843e8245175644bb5745aee9144a4, type: 2}
   - {fileID: 11400000, guid: ee338130bda04714191b7b881fb526ef, type: 2}
   - {fileID: 11400000, guid: b986f9280edb7ee4d98f7708f77c9e8b, type: 2}
+  - {fileID: 11400000, guid: f7525e0348aba0b4fac90afeeb0d3492, type: 2}
+  - {fileID: 11400000, guid: b9aeac4767b2c6843a8cb6a2122c2d37, type: 2}
+  - {fileID: 11400000, guid: 4c55490573eddfa42a94adc75cd62f7a, type: 2}
+  - {fileID: 11400000, guid: e3a2657d5e52b594682918a7d1c5dd82, type: 2}
+  - {fileID: 11400000, guid: df75e85ca3e407441981d9d712ecc14e, type: 2}
+  _acquiredUpgrades: []
 --- !u!114 &6600013392549901474
 MonoBehaviour:
   m_ObjectHideFlags: 0

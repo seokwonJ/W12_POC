@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1556d8410d346b44e9918f1fed5879c9, type: 3}
+  m_Name: Wave 2xFireSkull + 2xEyeDemon (24)
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 2971542310015680529, guid: 6f04bb04aaa06f743b9ca5338544cd29, type: 3}
+  - {fileID: 2971542310015680529, guid: 6f04bb04aaa06f743b9ca5338544cd29, type: 3}
+  - {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
+  - {fileID: 7272904772713194245, guid: 74c068480fc6e9147b7ce30b8d8b5a6a, type: 3}
+  spawnPositionType: 00000000000000000000000000000000
+  waveInterval: 1
+  isBossWave: 0

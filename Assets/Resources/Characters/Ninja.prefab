@@ -63,7 +63,6 @@ MonoBehaviour:
   abilityPowerUpNum: 100
   maxMP: 150
   mpPerSecond: 8
-  mpImage: {fileID: 0}
   normalProjectile: {fileID: 6537457085924451293, guid: 9b656dfe2bb050f48b58b7c7a95bcf44, type: 3}
   firePoint: {fileID: 2195331686744385332}
   normalFireInterval: 0.25
@@ -95,12 +94,12 @@ MonoBehaviour:
   isSkillCriticalDamageUp: 0
   SkillCriticalDamageUpNum: 50
   isNomalAttackFive: 0
-  nomalAttackFiveUpPercent: 0
+  nomalAttackFiveUpPercent: 200
   nomalAttackCount: 0
   isLongAttackDamageUp: 0
   longAttackDamageUpPercent: 100
   isManaPerDamageUp: 0
-  ManaPerDamageUpPercent: 80
+  ManaPerDamageUpPercent: 30
   upgradeNum: 0
   skillLandingActive: {fileID: 4843983985677134281, guid: b5e7ba5802db8c04bb8a7ca8b064e5c9, type: 3}
 --- !u!50 &7162487334415280215
@@ -161,6 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225d7a7746a759e4b85b56c4565646b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeNum: 0
   allUpgrades:
   - {fileID: 11400000, guid: 3c8a2535867aaf74e81aec89ca3c54fa, type: 2}
   - {fileID: 11400000, guid: ed3375fc0621c06468531536173f695f, type: 2}
@@ -172,6 +172,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ae69e222f62cb8e4fba6ddbc1be753fd, type: 2}
   - {fileID: 11400000, guid: 6f459227082382246b83e6aff855802f, type: 2}
   - {fileID: 11400000, guid: 3fa383511c12bc74fae65887af01b22b, type: 2}
+  - {fileID: 11400000, guid: f534fd49e9a27a8478f1aa39c5b95de8, type: 2}
+  - {fileID: 11400000, guid: 3bbef57c64029a74083766efca6cc74e, type: 2}
+  - {fileID: 11400000, guid: 8b039f2bbfaf5864e83a406c35580d43, type: 2}
+  - {fileID: 11400000, guid: b7fa50046ac7a884cac3b28d3fc124e6, type: 2}
+  - {fileID: 11400000, guid: d6e77fabb73e5f946b3fc886ad4c8943, type: 2}
+  - {fileID: 11400000, guid: 7c34784e84aa6a740a3df12ccbf4beee, type: 2}
+  _acquiredUpgrades: []
 --- !u!114 &302522663227774237
 MonoBehaviour:
   m_ObjectHideFlags: 0

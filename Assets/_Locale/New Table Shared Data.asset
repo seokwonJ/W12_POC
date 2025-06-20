@@ -23,6 +23,42 @@ MonoBehaviour:
     m_Key: UI-Title
     m_Metadata:
       m_Items: []
+  - m_Id: 999776492253184
+    m_Key: 'HowToPlay_Description1
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 999864912375808
+    m_Key: HowToPlay_Description2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 999897942519808
+    m_Key: 'HowToPlay_Description3
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1000406799675392
+    m_Key: How to Play_TitleName
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1001896004087808
+    m_Key: Main_HowToPlay
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1001990900215808
+    m_Key: Main_Option
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1001996390559744
+    m_Key: Main_Exit
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1002415460249600
+    m_Key: Main_NewGame
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

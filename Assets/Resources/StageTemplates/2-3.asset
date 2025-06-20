@@ -19,7 +19,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e9fd361dddab4a24cbd3cb0b6512063b, type: 2}
   - {fileID: 11400000, guid: 4ddbd74c94ef94b4bb2f683689db0746, type: 2}
   - {fileID: 11400000, guid: 686e0bffec563c943906333cb6ce7d3e, type: 2}
-  waveCount: 030000000300000004000000
+  waveCount: 030000000300000003000000
   wavePreparationTime:
   - 0.5
   - 1

@@ -50,7 +50,6 @@ public class Ninja : Character
         bool isCritical = IsCriticalHit();
         if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
-        if (isManaPerDamageUp) totalAttackDamage *= maxMP / ManaPerDamageUpPercent;
         if (isLongAttackDamageUp)
         {
             float distance = Vector2.Distance(targetPos, transform.position);
@@ -63,9 +62,16 @@ public class Ninja : Character
         }
         else
         {
-            proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
-            if (isNomalAttackFive && nomalAttackCount == 5) { proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage * nomalAttackFiveUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical); nomalAttackCount = 0; }
-            else proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical);
+            if (isNomalAttackFive && nomalAttackCount >= 5)
+            {
+                proj = Instantiate(skillKunai, firePoint.position, Quaternion.identity);
+                proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage * nomalAttackFiveUpPercent / 100, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical); nomalAttackCount = 0;
+            }
+            else
+            {
+                proj = Instantiate(normalProjectile, firePoint.position, Quaternion.identity);
+                proj.GetComponent<Kunai>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical);
+            }
         }
 
 
@@ -139,6 +145,7 @@ public class Ninja : Character
         normalFireInterval /= skillAttackSpeed;
 
         if (isSkillCriticalDamageUp) criticalDamage += SkillCriticalDamageUpNum;
+        if (isManaPerDamageUp) attackBase += maxMP * (ManaPerDamageUpPercent / 100);
 
         Debug.Log("공격속도 업!");
 
@@ -149,6 +156,7 @@ public class Ninja : Character
         normalFireInterval *= skillAttackSpeed;
 
         if (isSkillCriticalDamageUp) criticalDamage -= SkillCriticalDamageUpNum;
+        if (isManaPerDamageUp) attackBase -= maxMP * (ManaPerDamageUpPercent / 100);
 
         isSkilling = false;
         Destroy(activeParticle);
@@ -164,6 +172,8 @@ public class Ninja : Character
             attackBase -= upNum;
             normalFireInterval *= skillAttackSpeed;
             if (isSkillCriticalDamageUp) criticalDamage -= SkillCriticalDamageUpNum;
+            if (isManaPerDamageUp) attackBase -= maxMP * (ManaPerDamageUpPercent / 100);
+
             isSkilling = false;
         }
         if (activeParticle != null)

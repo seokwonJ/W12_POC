@@ -62,7 +62,7 @@ public class BlackHoleSkill : MonoBehaviour
         if (_isUpgradeSkillSizeDownExplosion)    // 폭발
         {
             GameObject explosion = Instantiate(explosionEffect, transform.position, Quaternion.identity);
-            explosion.transform.localScale = transform.localScale + Vector3.one * 2;
+            explosion.transform.localScale = transform.localScale + Vector3.one * 3;
             SoundManager.Instance.PlaySFX("BlackHoleSkillExplosion");
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, explosion.transform.localScale.magnitude);
@@ -80,16 +80,12 @@ public class BlackHoleSkill : MonoBehaviour
                     {
                         enemy.ApplyKnockback(knockbackDirection, _pullForce);
                     }
-
-                    print("데미지 주나요?! + " + transform.localScale.magnitude);
                 }
             }
-
         }
 
         if (pullCoroutine != null) StopCoroutine(pullCoroutine);
         _animator.SetBool("isBlackHole", true);
-
     }
 
     private IEnumerator PullLoop()

@@ -91,7 +91,7 @@ public class Sniper : Character
 
             if (!isGround) continue;
 
-            Transform target = FindMuchHPEnemy();
+            Transform target = FindMuchHPEnemy(enemyDetectRadius * (attackRangeUpNum / 100));
             if (target != null)
             {
                 animator.Play("ATTACK", -1, 0f);
@@ -174,7 +174,9 @@ public class Sniper : Character
 
     void FireSniper()
     {
-        Transform newTargetPos = FindMuchHPEnemy();
+        Transform newTargetPos;
+        if (isSkillActive) newTargetPos = FindMuchHPEnemy(enemyDetectRadius * 2 * (attackRangeUpNum / 100));
+        else newTargetPos = FindMuchHPEnemy(enemyDetectRadius * (attackRangeUpNum / 100));
 
         if (isSkillActive) skillTargetList.Add(newTargetPos);
 
@@ -257,7 +259,7 @@ public class Sniper : Character
     }
 
 
-    protected Transform FindMuchHPEnemy()
+    protected Transform FindMuchHPEnemy(float enemyDetectRadius)
     {
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, enemyDetectRadius, LayerMask.GetMask("Enemy"));
 
