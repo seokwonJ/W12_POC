@@ -130,3 +130,6 @@ MonoBehaviour:
   - clipName: NecromancerSkull
     clip: {fileID: 8300000, guid: 58b46ed28b92dff4e8396f30f70f16d6, type: 3}
     volume: 0.7
+  - clipName: NecromancerExplosion
+    clip: {fileID: 8300000, guid: 5a88bb08179a09b4f96989cc335bb18b, type: 3}
+    volume: 0.5
