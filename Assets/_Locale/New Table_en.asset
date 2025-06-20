@@ -16,26 +16,16 @@ MonoBehaviour:
     m_Code: en
   m_SharedData: {fileID: 11400000, guid: 3b322ac904b2f48429d9c2cee48ee93e, type: 2}
   m_Metadata:
-    m_Items:
-    - rid: 2889916045140951342
+    m_Items: []
   m_TableData:
   - m_Id: 600920879104
     m_Localized: Language Settings
     m_Metadata:
-      m_Items:
-      - rid: 2889916045140951342
+      m_Items: []
   - m_Id: 171231211520
     m_Localized: E-World
     m_Metadata:
-      m_Items:
-      - rid: 2889916045140951342
+      m_Items: []
   references:
     version: 2
-    RefIds:
-    - rid: 2889916045140951342
-      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
-      data:
-        m_Entries: 
-        m_SharedEntries:
-        - id: 600920879104
-        - id: 171231211520
+    RefIds: []
