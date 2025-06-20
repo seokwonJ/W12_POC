@@ -394,9 +394,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3522934648679186784}
   - component: {fileID: 2547726117004197558}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: 1.Bat (2)
-  m_TagString: Enemy
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
