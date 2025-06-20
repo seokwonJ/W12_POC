@@ -94,7 +94,7 @@ MonoBehaviour:
   isSkillCriticalDamageUp: 0
   SkillCriticalDamageUpNum: 50
   isNomalAttackFive: 0
-  nomalAttackFiveUpPercent: 0
+  nomalAttackFiveUpPercent: 200
   nomalAttackCount: 0
   isLongAttackDamageUp: 0
   longAttackDamageUpPercent: 100

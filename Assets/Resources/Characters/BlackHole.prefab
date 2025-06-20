@@ -329,8 +329,8 @@ MonoBehaviour:
   isUpgradeSkillSizeDownExplosion: 0
   explosionDamagePercent: 150
   isUpgradeSkillEnemyDenfenseDown: 0
-  skillEnemyDenfenseDownPercent: 0
-  skillEnemyDenfenseDownDuration: 0
+  skillEnemyDenfenseDownPercent: 50
+  skillEnemyDenfenseDownDuration: 3
   upgradeNum: 0
   player: {fileID: 0}
   skillActiveEffect: {fileID: 8450041876755101773, guid: 0723e72f978adcb4981bf66cf4161654, type: 3}

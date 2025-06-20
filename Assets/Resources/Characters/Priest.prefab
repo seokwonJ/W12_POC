@@ -330,7 +330,7 @@ MonoBehaviour:
   isUpgradeSkillPlayerSpeedUp: 0
   skillPlayerSpeedUpPercent: 130
   isUpgradeAttackEnemyDefenseDown: 0
-  attackEnemyDefenseDownPercent: 30
+  attackEnemyDefenseDownPercent: 50
   attackEnemyDefenseDownDuration: 3
   upgradeNum: 0
   player: {fileID: 0}

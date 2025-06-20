@@ -136,7 +136,7 @@ MonoBehaviour:
   upgradeNum: 0
   isUpgradeTwoShot: 0
   isUpgradeDieInstantly: 0
-  dieInstantlyProbability: 1
+  dieInstantlyProbability: 5
   isUpgradeSameEnemyDamage: 0
   attackedEnemy: {fileID: 0}
   sameEnemyCount: 0
