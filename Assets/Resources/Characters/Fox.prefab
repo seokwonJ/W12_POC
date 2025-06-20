@@ -4147,14 +4147,14 @@ MonoBehaviour:
   skillSize: 1
   skillDamage: 1
   isUpgradeTenAttackSkillDamageUp: 0
-  tenAttackSkillDamageUpCount: 0
-  tenAttackSkillDamageUpPercent: 0
+  tenAttackSkillDamageUpCount: 10
+  tenAttackSkillDamageUpPercent: 200
   isUpgradeAttackEnemyDefenseDown: 0
-  attackEnemyDefenseDownPercnet: 0
+  attackEnemyDefenseDownPercnet: 50
   attackEnemyDefenseDownDuration: 3
   isUpgradeAttackEnemySpeedDown: 0
-  attackEnemySpeedDownPercnet: 0
-  attackEnemySpeedDownDuration: 0
+  attackEnemySpeedDownPercnet: 50
+  attackEnemySpeedDownDuration: 3
   skillActiveEffect: {fileID: 4364950318276030470, guid: 4cb948122f0aa364796ec1259280af73, type: 3}
   upgradeNum: 0
 --- !u!114 &3843504183935493478

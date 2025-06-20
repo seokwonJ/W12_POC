@@ -34,7 +34,7 @@ public class TankerAttack : ProjectileBase
             Enemy enemy = other.GetComponent<Enemy>();
             if (enemy != null)
             {
-                enemy.ApplyKnockback(knockbackDirection, knockbackPower);
+                enemy.ApplyKnockback(knockbackDirection, knockbackPower);                       // tanker니까 *2 추가함
             }
 
             if (_isCritical)

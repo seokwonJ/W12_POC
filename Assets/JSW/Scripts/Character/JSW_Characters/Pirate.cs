@@ -15,8 +15,9 @@ public class Pirate : Character
     public bool isAttackPerMana;
     public float attackPerManaPercent = 15;
     public bool isNoMoreExplosionAttackDamageUp;
-    public bool isManaMultipleSkillProjectileMultiple;
+    public float noMoreExplosionAttackDamageUpPercent = 300;
 
+    public bool isManaMultipleSkillProjectileMultiple;
 
     public int upgradeNum;
 
@@ -74,7 +75,7 @@ public class Pirate : Character
         if (isCritical) totalAttackDamage *= ((criticalDamage * criticalDamageUpNum / 100) / 100);
 
         Transform enemyTarget = FindNearestEnemy(); // 타겟 추적하는 메서드 필요
-        proj.GetComponent<PirateAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, isNoMoreExplosionAttackDamageUp, false, isAttackPerMana, this, enemyTarget);
+        proj.GetComponent<PirateAttack>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, isNoMoreExplosionAttackDamageUp, noMoreExplosionAttackDamageUpPercent, false, isAttackPerMana, this, enemyTarget);
 
         SoundManager.Instance.PlaySFX("PirateAttack");
     }
@@ -103,7 +104,7 @@ public class Pirate : Character
 
         if (isManaMultipleSkillProjectileMultiple) currentSkillShotCount *= 2;                   // 해적만 2배를 위해 특별히 들어감
 
-        for (int i = 0; i < skillShotCount; i++)
+        for (int i = 0; i < currentSkillShotCount; i++)
         {
             rb.linearVelocity = Vector3.zero;
 
@@ -125,14 +126,14 @@ public class Pirate : Character
             if (target != null)
             {
                 Vector3 dir = target.position - proj.transform.position;
-                mb.SetInit(dir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100),false, isNoMoreExplosionAttackDamageUp, true, false, this, target);
+                mb.SetInit(dir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100),false, isNoMoreExplosionAttackDamageUp, noMoreExplosionAttackDamageUpPercent,true, false, this, target);
             }
             else
             {
                 // 유효한 타겟이 없으면 랜덤 방향 발사
                 float randomAngle = Random.Range(0f, 360f);
                 Vector2 randomDir = Quaternion.Euler(0, 0, randomAngle) * Vector2.right;
-                mb.SetInit(randomDir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), false, isNoMoreExplosionAttackDamageUp, true, false, this, null);
+                mb.SetInit(randomDir.normalized, totalSkillDamage, skillSpeed, projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), false, isNoMoreExplosionAttackDamageUp, noMoreExplosionAttackDamageUpPercent, true, false, this, null);
             }
 
 

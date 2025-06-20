@@ -97,7 +97,7 @@ public class MagicianUpgrade : CharacterUpgrade
                 magician.upgradeNum = 11;
                 break;
             case UpgradeType.SkillAttackSizeUp:                                                     // 스킬 투사체의 크기가 증가합니다
-                magician.skillSize += 1;
+                magician.skillSize += 2;
                 Debug.Log("Debug12 magician");
                 magician.upgradeNum = 12;
                 break;

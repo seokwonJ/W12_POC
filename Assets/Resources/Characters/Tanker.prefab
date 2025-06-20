@@ -153,7 +153,7 @@ MonoBehaviour:
   projectileSpeed: 10
   criticalProbability: 10
   criticalDamage: 175
-  knockbackPower: 1
+  knockbackPower: 5
   projectileSize: 1
   animator: {fileID: 677551384205977037}
   playerTransform: {fileID: 0}
@@ -167,14 +167,15 @@ MonoBehaviour:
   landingSkillEffect: {fileID: 4462792705112818740, guid: 4ab5fd21f69c0eb4fa8f57b97f2a45a0, type: 3}
   nomalAttackSize: 1
   nomalAttackLifetime: 1
-  knockBackpower: 50
   isUpgradeFallingSpeedToSkillDamage: 0
+  fallingSpeedToSkillDamagePercent: 500
   isUpgradeRidingDefenseUp: 0
+  ridingDefenseUpNum: 5
   isCloserMoreDamage: 0
-  closerMoreDamagePercent: 20
-  isSkillEnemySpeedDown: 0
-  skillEnemySpeedDonwPercent: 70
-  skillEnemySpeedDonwDuration: 3
+  closerMoreDamageNum: 100
+  isSkillEnemySpeedDown: 1
+  skillEnemySpeedDownPercent: 70
+  skillEnemySpeedDownDuration: 3
   upgradeNum: 0
 --- !u!114 &8854602819872341005
 MonoBehaviour:

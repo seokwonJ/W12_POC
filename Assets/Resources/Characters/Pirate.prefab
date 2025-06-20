@@ -253,6 +253,7 @@ MonoBehaviour:
   isAttackPerMana: 0
   attackPerManaPercent: 15
   isNoMoreExplosionAttackDamageUp: 0
+  noMoreExplosionAttackDamageUpPercent: 200
   isManaMultipleSkillProjectileMultiple: 0
   upgradeNum: 0
   player: {fileID: 0}

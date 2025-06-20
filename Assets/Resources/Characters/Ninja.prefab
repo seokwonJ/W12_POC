@@ -99,7 +99,7 @@ MonoBehaviour:
   isLongAttackDamageUp: 0
   longAttackDamageUpPercent: 100
   isManaPerDamageUp: 0
-  ManaPerDamageUpPercent: 80
+  ManaPerDamageUpPercent: 30
   upgradeNum: 0
   skillLandingActive: {fileID: 4843983985677134281, guid: b5e7ba5802db8c04bb8a7ca8b064e5c9, type: 3}
 --- !u!50 &7162487334415280215
