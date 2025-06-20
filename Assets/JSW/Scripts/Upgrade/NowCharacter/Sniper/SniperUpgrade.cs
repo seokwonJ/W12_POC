@@ -105,7 +105,7 @@ public class SniperUpgrade : CharacterUpgrade
                 break;
             case UpgradeType.NoMorePenetrationAttackUp:                                             // 더 이상 관통이 되지 않지만 공격력이 비약적으로 증가한다
                 sniper.isNoMorePenetrationAttackUp = true;
-                sniper.attackBase += 30;
+                sniper.attackBase += 50;
                 Debug.Log("Debug13 archer");
                 sniper.upgradeNum = 13;
                 break;

@@ -197,6 +197,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1883d93e59c900041bae4efcaba48745, type: 2}
   - {fileID: 11400000, guid: 8d0c82c59406166408f94bf7f4bef4f3, type: 2}
   - {fileID: 11400000, guid: f27a644507adfe94696ff801d44b5705, type: 2}
+  - {fileID: 11400000, guid: 3d709531c95359749ae009beb882485c, type: 2}
+  - {fileID: 11400000, guid: 9d5132254d2aa804ea788bd5992d5061, type: 2}
+  - {fileID: 11400000, guid: 5562775b46665ad41b19b4cba03690b0, type: 2}
+  - {fileID: 11400000, guid: d725b46b69ae419419dd7424228a398f, type: 2}
   _acquiredUpgrades: []
 --- !u!114 &3609538008976467063
 MonoBehaviour:
@@ -249,6 +253,7 @@ MonoBehaviour:
   isAttackPerMana: 0
   attackPerManaPercent: 15
   isNoMoreExplosionAttackDamageUp: 0
+  noMoreExplosionAttackDamageUpPercent: 200
   isManaMultipleSkillProjectileMultiple: 0
   upgradeNum: 0
   player: {fileID: 0}

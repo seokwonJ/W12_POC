@@ -145,16 +145,16 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    Coroutine co = null;        // 함수 밖에  나왔어야 초기화가 안됨
     public void ApplySlow(int value, float durationTime, bool isPercent = true)
     {
         if (!isSlowable) return;
-        Coroutine co = null;
         float resultValue = isPercent ? defaultSpeed * (value / 100f) : value;
         float resultSpeed = defaultSpeed - resultValue;
         if (resultSpeed <= speed)
         {
             if (co != null) StopCoroutine(co);
-            StartCoroutine(CoApplySlow(resultSpeed, durationTime));
+            co = StartCoroutine(CoApplySlow(resultSpeed, durationTime));
         }
     }
 
