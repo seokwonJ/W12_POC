@@ -198,9 +198,47 @@ public abstract class Character : MonoBehaviour
         if (!collision.gameObject.CompareTag("Flyer")) return;
 
         ContactPoint2D contact = collision.contacts[0];
-        if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
+        Collider2D flyerCol = collision.collider;
+        Bounds flyerBounds = flyerCol.bounds;
 
+        Vector2 contactNormal = contact.normal;
+
+        // 아래에서 위로 부딪혔으면 정상 착지
+        bool isTopHit = Vector2.Dot(contactNormal, Vector2.up) > 0.9f;
+
+        // ❌ 아래에서 부딪히면 무시
+        if (Vector2.Dot(contactNormal, Vector2.down) > 0.9f)
+            return;
+
+        // 옆에서 부딪혔을 경우: Flyer 위쪽 모서리로 위치 보정
+        if (!isTopHit)
+        {
+            Vector3 newPos = transform.position;
+
+            // 왼쪽에서 부딪힌 경우 → Flyer 왼쪽 위로 이동
+            if (Vector2.Dot(contactNormal, Vector2.right) > 0.5f)
+            {
+                newPos.x = flyerBounds.max.x; // 살짝 바깥쪽
+            }
+            // 오른쪽에서 부딪힌 경우 → Flyer 오른쪽 위로 이동
+            else if (Vector2.Dot(contactNormal, Vector2.left) > 0.5f)
+            {
+                newPos.x = flyerBounds.min.x;
+            }
+
+            // 위쪽 Y 위치 고정
+            newPos.y = flyerBounds.max.y + 0.6f;
+
+            transform.position = newPos;
+
+            // 여기서도 isTopHit처럼 착지 처리하게 만들자
+            contactNormal = Vector2.up; // 강제 위에서 부딪힌 걸로 처리
+        }
+
+        // 이제 위든 옆이든 착지 처리
+        if (Vector2.Dot(contactNormal, Vector2.up) < 0.9f) return;
         if (isSkillActive || isGround) return;
+
         isGround = true;
         animator.SetBool("5_Fall", false);
         animator.Play("IDLE", -1, 0f);
@@ -211,6 +249,27 @@ public abstract class Character : MonoBehaviour
         fixedJoint.connectedBody = collision.rigidbody;
         fallingAfterImageSpawner.enabled = false;
         SoundManager.Instance.PlaySFX("Landing");
+
+        /*
+         * 과거 버진
+         */
+
+        //if (!collision.gameObject.CompareTag("Flyer")) return;
+
+        //ContactPoint2D contact = collision.contacts[0];
+        //if (Vector2.Dot(contact.normal, Vector2.up) < 0.9f) return;
+
+        //if (isSkillActive || isGround) return;
+        //isGround = true;
+        //animator.SetBool("5_Fall", false);
+        //animator.Play("IDLE", -1, 0f);
+
+        //Managers.PlayerControl.NowPlayer.GetComponent<TmpPlayerControl>().SetOrderInLayer(transform);
+        //Managers.Status.RiderCount++;
+        //fixedJoint.enabled = true;
+        //fixedJoint.connectedBody = collision.rigidbody;
+        //fallingAfterImageSpawner.enabled = false;
+        //SoundManager.Instance.PlaySFX("Landing");
     }
 
     // 사거리 나타내는 함수
