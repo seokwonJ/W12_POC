@@ -65,7 +65,6 @@ public class Archer : Character
 
         bool instantlyDie = false;
         if (isUpgradeDieInstantly && Random.value < dieInstantlyProbability / 100) instantlyDie = true;
-        else instantlyDie = false;
 
         proj.GetComponent<Arrow>().SetInit(direction, totalAttackDamage, projectileSpeed * (projectileSpeedUpNum / 100), projectileSize * (projectileSizeUpNum / 100), knockbackPower * (knockbackPowerUpNum / 100), isCritical, this, false, instantlyDie, isUpgradeSameEnemyDamage);
 
