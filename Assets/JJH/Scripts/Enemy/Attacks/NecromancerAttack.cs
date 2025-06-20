@@ -88,7 +88,6 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             }
 
             int randomNum = Random.Range(0, 3);
-            randomNum = 2; // 테스트용으로 폭발 패턴만 실행하도록 설정
 
             switch (randomNum)
             {
