@@ -148,7 +148,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         float nowTime = 0f, maxTime = 2f; // maxTime 시간동안 앞으로 이동
         Vector3 startPlayerPos = transform.position;
-        Managers.SceneFlow.StartDirect(1f, 1f);
+        Managers.SceneFlow.StartDirect(1.2f, 0.8f);
         while (nowTime <= maxTime)
         {
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);

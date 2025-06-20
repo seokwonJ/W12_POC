@@ -107,13 +107,16 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
         Managers.Artifact.StartGame();
     }
 
-    public void StartStage() // 현재 스테이지 시작하며 변수를 초기화하고 EnemySpawner에 현재 스테이지 정보 전달
+    public void SetStage() // 현재 스테이지 시작하며 기본 설정
     {
         Managers.Status.Hp = Managers.Status.MaxHp;
         enemyKill = 0;
         curEnemyCount = 0;
         nowStage = Array.Find(Managers.Asset.StageTemplates, stageSO => stageSO.world == world && stageSO.stage == stage);
+    }
 
+    public void StartStage() // 현재 스테이지 시작. 위쪽 SetStage 다음에 실행되어야 함
+    {
         EnemySpawner.StartSpawnEnemy();
     }
 
