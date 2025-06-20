@@ -18,6 +18,7 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
     private void Awake()
     {
         Managers.Stage.EnemySpawner = this;
+        Managers.Stage.SetStage();
     }
 
     public void StartSpawnEnemy()
