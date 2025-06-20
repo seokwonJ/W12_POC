@@ -39,7 +39,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
 
     [Header("폭발 패턴 관련")]
     public GameObject explosionPrefab; // 폭발 프리팹
-    private int explosionCount = 6; // 큰 크기 발사 횟수
+    private int explosionCount = 3; // 폭발 발사 횟수
     private WaitForSeconds explosionWait = new WaitForSeconds(1.5f);
     List<List<EExplosionPosType>> explsionTypeList;
 
