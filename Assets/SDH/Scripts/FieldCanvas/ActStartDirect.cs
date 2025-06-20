@@ -16,7 +16,7 @@ public class ActStartDirect : MonoBehaviour
 
     private IEnumerator Directing(float waitTime, float maxTime) // 필드 시작 연출
     {
-        stageTxt.text = "World" + Managers.Stage.World.ToString();
+        stageTxt.text = "World " + Managers.Stage.World.ToString();
         Debug.Log(Managers.Asset.StageCounts[Managers.Stage.NowStage.world].ToString());
 
         for (int i = 0; i < Managers.Asset.StageCounts[Managers.Stage.NowStage.world]; i++) // 여기부터 스테이지 연출

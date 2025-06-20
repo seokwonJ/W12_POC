@@ -14,6 +14,8 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         rb = GetComponent<Rigidbody2D>();
     }
 
+
+
     public void StartGame() // 게임 시작할 때 불러오는 함수
     {
         DontDestroyOnLoad(gameObject);
@@ -140,10 +142,10 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         transform.position = Vector3.left * 40f;
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
-            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f);
             Managers.PlayerControl.Characters[i].GetComponent<Character>().EndFieldAct();
             Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = false;
             Managers.PlayerControl.Characters[i].transform.SetAsLastSibling();
+            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f);
         }
 
         float nowTime = 0f, maxTime = 2f; // maxTime 시간동안 앞으로 이동
@@ -151,6 +153,10 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
         Managers.SceneFlow.StartDirect(1.2f, 0.8f);
         while (nowTime <= maxTime)
         {
+            for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
+            {
+                Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f); // 왜 움직이는지 모르겠어서 이렇게 강제 고정
+            }
             transform.position = Vector3.Lerp(startPlayerPos, Vector3.zero, nowTime / maxTime);
 
             nowTime += Time.deltaTime;
@@ -162,6 +168,7 @@ public class TmpPlayerControl : MonoBehaviour // 플레이어의 전투-상점 씬 전환을 
 
         for (int i = 0; i < Managers.PlayerControl.Characters.Count; i++)
         {
+            Managers.PlayerControl.Characters[i].transform.localPosition = new(1.5f - i, 1f, 0f);
             Managers.PlayerControl.Characters[i].GetComponent<Character>().enabled = true;
         }
 
