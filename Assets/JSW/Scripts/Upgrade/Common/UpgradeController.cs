@@ -12,7 +12,7 @@ public class UpgradeController : MonoBehaviour
     public List<CharacterUpgrade> ShowUpgradeChoices()
     {
         _availableUpgrades = allUpgrades
-    .Where(upg => !_acquiredUpgrades.Any(acq => acq.upgradeName == upg.upgradeName))
+    .Where(upg => !_acquiredUpgrades.Any(acq => acq.description == upg.description))
     .ToList();
 
         List<CharacterUpgrade> choices = _availableUpgrades.OrderBy(x => Random.value).Take(3).ToList();
