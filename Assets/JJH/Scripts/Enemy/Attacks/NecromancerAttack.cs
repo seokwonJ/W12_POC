@@ -65,7 +65,8 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Down, EExplosionPosType.Left },
             new List<EExplosionPosType>() { EExplosionPosType.Center, EExplosionPosType.Down, EExplosionPosType.Right },
             new List<EExplosionPosType>() { EExplosionPosType.LittleUp, EExplosionPosType.LittleDown, EExplosionPosType.Left},
-            new List<EExplosionPosType>() { EExplosionPosType.LittleUp, EExplosionPosType.LittleDown, EExplosionPosType.Right}
+            new List<EExplosionPosType>() { EExplosionPosType.LittleUp, EExplosionPosType.LittleDown, EExplosionPosType.Right},
+            new List<EExplosionPosType>() { EExplosionPosType.Up, EExplosionPosType.Down, EExplosionPosType.Left, EExplosionPosType.Right },
         };
     }
 
@@ -87,6 +88,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             }
 
             int randomNum = Random.Range(0, 3);
+            randomNum = 2; // 테스트용으로 폭발 패턴만 실행하도록 설정
 
             switch (randomNum)
             {
@@ -162,11 +164,12 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
     {
         for (int i = 0; i < explosionCount; i++)
         {
+            Vector3 explosionDefaultPosition = player.transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f); // 플레이어 주변 랜덤 위치 
             int randomIndex = Random.Range(0, explsionTypeList.Count);
             List<EExplosionPosType> explosionPosTypes = explsionTypeList[randomIndex];
             for (int j = 0; j < explosionPosTypes.Count; j++)
             {
-                Vector3 explosionPosition = player.transform.position; // 플레이어의 현재 위치를 기준으로 폭발 위치 설정
+                Vector3 explosionPosition = explosionDefaultPosition;
                 switch (explosionPosTypes[j])
                 {
                     case EExplosionPosType.Center:
