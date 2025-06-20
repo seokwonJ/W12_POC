@@ -807,7 +807,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -2148,13 +2148,13 @@ TextureImporter:
       name: Retro_58
       rect:
         serializedVersion: 2
-        x: 3
-        y: 239
-        width: 89
-        height: 114
+        x: 6
+        y: 240
+        width: 85
+        height: 112
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 6, y: 7, z: 6, w: 6}
       customData: 
       outline: []
       physicsShape: []
@@ -2940,13 +2940,13 @@ TextureImporter:
       name: Retro_96
       rect:
         serializedVersion: 2
-        x: 416
+        x: 417
         y: 256
-        width: 94
-        height: 48
+        width: 90
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 5, y: 4, z: 5, w: 6}
       customData: 
       outline: []
       physicsShape: []
@@ -3320,7 +3320,7 @@ TextureImporter:
         height: 79
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 9, y: 9, z: 9, w: 12}
       customData: 
       outline: []
       physicsShape: []
@@ -6298,6 +6298,50 @@ TextureImporter:
       bones: []
       spriteID: 6180fe9944736fd60800000000000000
       internalID: 7923581362184849430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Retro_77
+      rect:
+        serializedVersion: 2
+        x: 101
+        y: 162
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cb2f4db459ddf354fb365ee1be8133f7
+      internalID: -6154894539238736113
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Retro_83
+      rect:
+        serializedVersion: 2
+        x: 84
+        y: 162
+        width: 8
+        height: 12
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff58cb3c389312e4f888cefbb69c8c0f
+      internalID: -3391237819993652766
       vertices: []
       indices: 
       edges: []
