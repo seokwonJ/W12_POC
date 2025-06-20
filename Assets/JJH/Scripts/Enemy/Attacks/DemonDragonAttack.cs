@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
-[CreateAssetMenu(menuName = "Patterns/Attack/BlueDragonAttack")]
-public class BlueDragonAttack : ScriptableObject, IAttackPattern
+[CreateAssetMenu(menuName = "Patterns/Attack/DemonDragonAttack")]
+public class DemonDragonAttack : ScriptableObject, IAttackPattern
 {
     private Enemy enemy;
     private EnemyHP enemyHP;
@@ -13,7 +13,6 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     private float prevSpawnMoveTime = 3f;
     private float attackCooldown = 3.5f; // 공격 패턴 사이 간격
     private WaitForSeconds attackWait;
-    private float easyTime = 25f; // 공격 패턴 사이 간격이 늘어나는 간격
     private bool isOnRight = true;
     
     [Header("중간 크기의 발사체 입에서 발사하는 패턴 관련")]
@@ -22,7 +21,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     private float mediumProjectileSpeed = 9f; // 중간 크기 발사체 속도
     private float mediumProjectileCoolDown = 0.5f; // 중간 크기 발사체 생성 간격
     private WaitForSeconds mediumProjectileWait;
-    private float beforeMeidiumProjectileCoolDown = 0.9f; // 중간 크기 발사체 생성 전 애니메이션만 바뀌는 시간
+    private float beforeMeidiumProjectileCoolDown = 0.6f; // 중간 크기 발사체 생성 전 애니메이션만 바뀌는 시간
     private WaitForSeconds beforeMediumProjectileWait;
 
     [Header("큰 크기의 발사체 오른쪽에서 발사하는 패턴 관련")]
@@ -44,7 +43,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     private float dashSpeed = 30f; // 대쉬 속도
     private float beforeDashCoolDown = 1f; // 대쉬 전 애니메이션만 바뀌는 시간
     private WaitForSeconds beforeDashCoolDownWait;
-    private float dashDuration = 2f; // 대쉬 지속 시간
+    private float dashDuration = 2.5f; // 대쉬 지속 시간
     private WaitForSeconds dashDurationWait;
 
     public void Init(Enemy enemy)
@@ -106,7 +105,7 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
                 randomNum = Random.Range(0, 2);
             }
 
-
+            randomNum = 0; // 테스트용, 나중에 주석 해제
             switch (randomNum)
             {
                 case 0:
@@ -221,6 +220,8 @@ public class BlueDragonAttack : ScriptableObject, IAttackPattern
     {
         dashActivateCount++; // 대쉬 패턴을 실행한 횟수 증가
         anim.SetBool("IsOnFast", true); // 대쉬 애니메이션 시작
+        Vector2 backDirection = isOnRight ? Vector2.right : Vector2.left; // 대쉬 하기 전 살짝 뒤로 이동하는 방향
+        enemy.rb.linearVelocity = backDirection * enemy.speed * 0.5f; // 대쉬 하기 전 살짝 뒤로 이동
         yield return beforeDashCoolDownWait;
         anim.SetBool("IsOnFast", false); // 대쉬 애니메이션 끝
 
