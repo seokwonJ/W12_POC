@@ -78,6 +78,7 @@ public class ShopCharacterCanavs : MonoBehaviour
     {
         if (nowShopSelectIdx == 0)
         {
+            Managers.Stage.GoNextStage(); // 상점이 끝날 때 다음 스테이지로 변수 재설정
             Managers.SceneFlow.GotoScene("Field");
         }
         else if (nowShopSelectIdx == 1)

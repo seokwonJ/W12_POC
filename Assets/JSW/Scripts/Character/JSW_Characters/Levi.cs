@@ -78,7 +78,6 @@ public class Levi : Character
         trail.GetComponent<TrailRenderer>().enabled = false;
         trail.transform.SetParent(this.transform);
         trail.transform.position = this.transform.position;
-        //trail.SetActive(true);
         trail.GetComponent<TrailRenderer>().enabled = true;
 
         animator.Play("SKILL", -1, 0f);
@@ -135,10 +134,16 @@ public class Levi : Character
 
         transform.up = Vector3.up;
 
-        rb.linearVelocity = new Vector2(-10, jumpForce);
-        //trail.SetActive(false);
-        trail.transform.SetParent(null);
+        if ((playerTransform.position - transform.position).x < 0)
+        {
+            rb.linearVelocity = new Vector2(-10, jumpForce);
+        }
+        else
+        {
+            rb.linearVelocity = new Vector2(10, jumpForce);
+        }
 
+        trail.transform.SetParent(null);
 
         animator.Play("SKILLEND", -1, 0f);
 
@@ -238,8 +243,6 @@ public class Levi : Character
             collision.GetComponent<EnemyHP>().TakeDamage((int)totalAttackDamage, ECharacterType.Levi);
         }
     }
-
-
 
     public override void EndFieldAct() // 필드전투가 종료될 때 실행
     {

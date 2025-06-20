@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 828e8327dada94645a45af221e3d5139, type: 3}
   m_Name: ArcherUpgrade 0
   m_EditorClassIdentifier: 
-  upgradeName: "\uACF5\uC18D \uC99D\uAC00"
-  description: "\uACF5\uACA9\uC18D\uB3C4\uAC00 \uC99D\uAC00\uD55C\uB2E4."
+  upgradeName: "\uAE30\uBCF8 \uACF5\uACA9 \uB300\uBBF8\uC9C0 \uC99D\uAC00"
+  description: "\uAE30\uBCF8 \uACF5\uACA9 \uB300\uBBF8\uC9C0 \uC99D\uAC00"
   icon: {fileID: 701960432084883088, guid: 83fcbcea135c27644bf6a06756f20b44, type: 3}
   type: 0
-  value: 1

@@ -15,10 +15,14 @@ public class EnemySpawner : MonoBehaviour // 적 스폰을 컨트롤하는 코�
     private float onScreenindicatorDuration = 1.4f; // 인디케이터 표시 시간
     private float offScreenindicatorDuration = 1f; // 인디케이터 표시 시간
 
-    private void Start()
+    private void Awake()
     {
         Managers.Stage.EnemySpawner = this;
-        Managers.Stage.StartStage(); // nowStage 재설정
+        Managers.Stage.SetStage();
+    }
+
+    public void StartSpawnEnemy()
+    {
         StartCoroutine(CoSpawnEnemyRoutine(Managers.Stage.NowStage));
     }
 

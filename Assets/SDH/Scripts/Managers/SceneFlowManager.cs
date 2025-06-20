@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -22,17 +21,9 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
 
     private void FieldSceneLoaded() // 필드 씬이 시작될 때 실행
     {
-        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().SetFieldPosition();
 
-        if (Managers.Stage.NowStage == null || !Managers.Stage.NowStage.isBossStage)
-        {
-            Managers.Stage.Stage++;
-        }
-        else
-        {
-            Managers.Stage.World++;
-            Managers.Stage.Stage = 1;
-        }
+
+        Managers.PlayerControl.NowPlayer?.GetComponent<TmpPlayerControl>().StartFieldDirect();
     }
 
     private void ShopSceneLoaded() // 상점 씬이 시작될 때 실행
@@ -56,6 +47,17 @@ public class SceneFlowManager // 씬 전환 및 sceneLoaded계열 관리
         }
 
         FieldCanvas.StartClearTxt();
+    }
+
+    public void StartDirect(float waitTime, float maxTime) // 필드 시작 연출
+    {
+        if (FieldCanvas == null)
+        {
+            Debug.Log("FieldCanvas 못찾음");
+            return;
+        }
+
+        FieldCanvas.StartStartDirect(waitTime, maxTime);
     }
 
     public void FadeOut(float maxTime) // 필드가 끝난 뒤 어두워지는 연출

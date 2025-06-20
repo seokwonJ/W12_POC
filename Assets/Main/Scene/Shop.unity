@@ -1264,12 +1264,12 @@ MonoBehaviour:
   icon0: {fileID: 1208705259}
   name0: {fileID: 2127886277}
   description0: {fileID: 1934086439}
-  icon1: {fileID: 1479774470}
-  name1: {fileID: 653367495}
-  description1: {fileID: 1858379823}
-  icon2: {fileID: 1307160792}
-  name2: {fileID: 1069991057}
-  description2: {fileID: 752479712}
+  icon1: {fileID: 1307160792}
+  name1: {fileID: 1069991057}
+  description1: {fileID: 752479712}
+  icon2: {fileID: 1479774470}
+  name2: {fileID: 653367495}
+  description2: {fileID: 1858379823}
 --- !u!114 &313136416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6813,15 +6813,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8100,8 +8100,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
