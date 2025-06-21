@@ -102,7 +102,7 @@ public class PirateUpgrade : CharacterUpgrade
                 pirate.upgradeNum = 12;
                 break;
             case UpgradeType.NoMoreExplosionAttackDamageUp:                                         // 더 이상 대포가 터지면서 범위 대미지를 주지 않음 공격력이 대폭 증가한다
-                pirate.isManaMultipleSkillProjectileMultiple = true;
+                pirate.isNoMoreExplosionAttackDamageUp = true;
                 pirate.attackBase += 100;
                 Debug.Log("Debug13 pirate");
                 pirate.upgradeNum = 13;

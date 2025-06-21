@@ -249,7 +249,6 @@ public class Levi : Character
 
         if (!isGround && collision.tag == "Enemy" && (isSkillActive && isAttackWhileSkillUpgrade))            // 스킬을 쓰고 강화되었을 때
         {
-            print("부딫혔니?!!!!!!!!!!!!!!!!!!!");
             collision.GetComponent<EnemyHP>().TakeDamage((int)totalAttackDamage, ECharacterType.Levi);
         }
     }
@@ -259,6 +258,7 @@ public class Levi : Character
         base.EndFieldAct();
         trail.GetComponent<TrailRenderer>().enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Character");
+        if (boxCollider2D == null) boxCollider2D = GetComponent<BoxCollider2D>();
         boxCollider2D.isTrigger = false;
     }
 }
