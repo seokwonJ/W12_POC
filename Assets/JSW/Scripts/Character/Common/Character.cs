@@ -145,6 +145,7 @@ public abstract class Character : MonoBehaviour
         Managers.Status.RiderCount--;
 
         currentMP = 0;
+        ((ArtifactTemplate<Character>)Managers.Artifact.ArtifactLists[3]).effect?.Invoke(this);
 
         //점프
         rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -336,6 +337,10 @@ public abstract class Character : MonoBehaviour
         return Random.value < (criticalProbability * criticalProbabilityUpNum / 100) / 100;
     }
 
+    public void TmpCurrentMPUp(float x)
+    {
+        currentMP += x;
+    }
 }
 
 public enum ECharacterType

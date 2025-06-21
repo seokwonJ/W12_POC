@@ -34,13 +34,16 @@ public class PlayerMove : MonoBehaviour
         _coreCollider = _core.GetComponent<CircleCollider2D>();
         _coreSpriteRenderer = _core.GetComponent<SpriteRenderer>();
         _coreSize = _core.transform.localScale;
-        
+
+        //((ArtifactTemplate)Managers.Artifact.ArtifactLists[0]).Subscribe();
+        //((ArtifactTemplate<PlayerMove>)Managers.Artifact.ArtifactLists[1]).Subscribe();
     }
 
     void Update()
     {
         moveSpeed = _playerStatus.speed;
-        Managers.Artifact.playerAction?.Invoke(this);
+        ((ArtifactTemplate<PlayerMove>)Managers.Artifact.ArtifactLists[1]).effect?.Invoke(this);
+        ((ArtifactTemplate<PlayerMove>)Managers.Artifact.ArtifactLists[2]).effect?.Invoke(this);
         // 대시 중이 아니면 입력 받기
         if (!isDashing)
         {
