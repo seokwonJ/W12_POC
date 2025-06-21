@@ -58,6 +58,14 @@ public class ArtifactManager // 인게임 유물 관리
             case 2:
                 ((ArtifactTemplate<PlayerMove>)Managers.Artifact.ArtifactLists[2]).Subscribe();
                 break;
+            case 3:
+                ((ArtifactTemplate<Character>)Managers.Artifact.ArtifactLists[3]).Subscribe();
+                break;
         }
+    }
+
+    public bool IsArtifactMax() // 아티팩트풀에 아티팩트가 더 이상 없는지 체크
+    {
+        return Managers.Artifact.ArtifactCounts == Managers.Artifact.ArtifactLists.Count;
     }
 }
