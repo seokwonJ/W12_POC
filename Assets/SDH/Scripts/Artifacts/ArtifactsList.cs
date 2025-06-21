@@ -1,7 +1,3 @@
-using System;
-using Unity.VisualScripting;
-using UnityEngine;
-
 // 클래스 순서 섞지 마세요 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 public partial class ArtifactsList // 아티팩트의 효과들
 {
@@ -16,7 +12,6 @@ public partial class ArtifactsList // 아티팩트의 효과들
 
         public override void Effect()
         {
-            Debug.Log("1번실행하기");
             Managers.Status.MaxHp += 5;
         }
     };
