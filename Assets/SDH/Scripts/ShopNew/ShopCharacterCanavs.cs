@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 public class ShopCharacterCanavs : MonoBehaviour
 {
     [SerializeField] private SetUpgradeCanvas setUpgradeCanvas;
+    [SerializeField] private ShopArtifactCanvas shopArtifactCanvas;
     [SerializeField] private Transform selectCursor;
     private int nowShopSelectIdx;
 
@@ -83,7 +84,10 @@ public class ShopCharacterCanavs : MonoBehaviour
         }
         else if (nowShopSelectIdx == 1)
         {
-            Debug.Log("상점주인");
+            if (Managers.Status.Gold < 200) return;
+
+            Managers.Status.Gold -= 200;
+            Managers.Artifact.BuyArtifact(shopArtifactCanvas.ArtifactIdx);
         }
         else
         {

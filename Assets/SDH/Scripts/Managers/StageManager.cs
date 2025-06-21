@@ -109,6 +109,7 @@ public class StageManager // 씬 전환 관리 (전투-상점 등)
 
     public void SetStage() // 현재 스테이지 시작하며 기본 설정
     {
+        ((ArtifactTemplate)Managers.Artifact.ArtifactLists[0]).effect?.Invoke();
         Managers.Status.Hp = Managers.Status.MaxHp;
         enemyKill = 0;
         curEnemyCount = 0;
