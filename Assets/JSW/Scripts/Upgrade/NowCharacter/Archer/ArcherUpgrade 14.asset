@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: "\uC2A4\uD0AC \uD22C\uC0AC\uCCB4 \uAC2F\uC218 \uC99D\uAC00"
   description: "\uC2A4\uD0AC \uD22C\uC0AC\uCCB4 \uAC2F\uC218 \uC99D\uAC00"
-  icon: {fileID: 0}
+  icon: {fileID: -5066230552812137650, guid: f08c1bb577ca8be4e82ef08f8ed4c048, type: 3}
   type: 14

@@ -18,5 +18,5 @@ MonoBehaviour:
   description: "\uAE30\uBCF8 \uACF5\uACA9\uC774 \uD22C\uC0AC\uCCB4 1\uAC1C\uB97C
     \uB354 \uBC1C\uC0AC\uD569\uB2C8\uB2E4.(\uAE30\uC874 3 \uAC08\uB798 \uD654\uC0B4
     )"
-  icon: {fileID: 0}
+  icon: {fileID: -5066230552812137650, guid: f08c1bb577ca8be4e82ef08f8ed4c048, type: 3}
   type: 11
