@@ -25,7 +25,7 @@ public class AfterImageFadeOut : MonoBehaviour
         while (elapsed < fadeDuration)
         {
             elapsed += Time.deltaTime;
-            float alpha = Mathf.Lerp(0.7f, 0f, elapsed / fadeDuration);
+            float alpha = Mathf.Lerp(0.2f, 0f, elapsed / fadeDuration);
 
             foreach (var sr in renderers)
             {
