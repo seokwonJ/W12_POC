@@ -64,15 +64,15 @@ public class SetUpgradeCanvas : MonoBehaviour
         nowUpgrades = character.GetComponent<UpgradeController>().ShowUpgradeChoices();
 
         icon0.sprite = nowUpgrades[0].icon;
-        name0.text = nowUpgrades[0].name;
+        name0.text = nowUpgrades[0].upgradeName;
         description0.text = nowUpgrades[0].description;
 
         icon1.sprite = nowUpgrades[1].icon;
-        name1.text = nowUpgrades[1].name;
+        name1.text = nowUpgrades[1].upgradeName;
         description1.text = nowUpgrades[1].description;
 
         icon2.sprite = nowUpgrades[2].icon;
-        name2.text = nowUpgrades[2].name;
+        name2.text = nowUpgrades[2].upgradeName;
         description2.text = nowUpgrades[2].description;
     }
 }
