@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225d7a7746a759e4b85b56c4565646b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeNum: 0
   allUpgrades:
   - {fileID: 11400000, guid: 29beb0a2cd2648446b4566fd4922f20b, type: 2}
   - {fileID: 11400000, guid: 464aaec15d176374fa037c2b487253f0, type: 2}
@@ -196,6 +197,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fbff88a1067005e4c90ce6c5f162f137, type: 2}
   - {fileID: 11400000, guid: e195d33aca772fb4d8196ec0ece8e8a6, type: 2}
   - {fileID: 11400000, guid: 9ad5c283aaf6de1459c1e412ad8591a2, type: 2}
+  - {fileID: 11400000, guid: cbe7d0a22ed68964885092246f6731b8, type: 2}
+  - {fileID: 11400000, guid: 9fe7daa48fa8fa640bd52fd3e47698a0, type: 2}
+  - {fileID: 11400000, guid: 5f4626065cd088345bcbe0ae556a1f2a, type: 2}
+  - {fileID: 11400000, guid: bfecc5e0e7817c143b3e61bbceb2f1cd, type: 2}
+  _acquiredUpgrades: []
 --- !u!61 &1354129338059981449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -294,7 +300,6 @@ MonoBehaviour:
   abilityPowerUpNum: 100
   maxMP: 100
   mpPerSecond: 10
-  mpImage: {fileID: 0}
   normalProjectile: {fileID: 2401018389404660828, guid: 29f7f19ec4ff39c499a210806016fee6, type: 3}
   firePoint: {fileID: 91693443383765436}
   normalFireInterval: 1
@@ -324,8 +329,8 @@ MonoBehaviour:
   isUpgradeSkillSizeDownExplosion: 0
   explosionDamagePercent: 150
   isUpgradeSkillEnemyDenfenseDown: 0
-  skillEnemyDenfenseDownPercent: 0
-  skillEnemyDenfenseDownDuration: 0
+  skillEnemyDenfenseDownPercent: 50
+  skillEnemyDenfenseDownDuration: 3
   upgradeNum: 0
   player: {fileID: 0}
   skillActiveEffect: {fileID: 8450041876755101773, guid: 0723e72f978adcb4981bf66cf4161654, type: 3}

@@ -88,7 +88,6 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
             }
 
             int randomNum = Random.Range(0, 3);
-            randomNum = 2; // 테스트용으로 폭발 패턴만 실행하도록 설정
 
             switch (randomNum)
             {
@@ -164,7 +163,7 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
     {
         for (int i = 0; i < explosionCount; i++)
         {
-            Vector3 explosionDefaultPosition = player.transform.position + new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f); // 플레이어 주변 랜덤 위치 
+            Vector3 explosionDefaultPosition = player.transform.position + new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f), 0f); // 플레이어 주변 랜덤 위치 
             int randomIndex = Random.Range(0, explsionTypeList.Count);
             List<EExplosionPosType> explosionPosTypes = explsionTypeList[randomIndex];
             for (int j = 0; j < explosionPosTypes.Count; j++)
@@ -175,26 +174,27 @@ public class NecromancerAttack : ScriptableObject, IAttackPattern
                     case EExplosionPosType.Center:
                         break;
                     case EExplosionPosType.Up:
-                        explosionPosition += Vector3.up * 4f; 
+                        explosionPosition += Vector3.up * 4.5f; 
                         break;
                     case EExplosionPosType.Down:
-                        explosionPosition += Vector3.down * 4f; 
+                        explosionPosition += Vector3.down * 4.5f; 
                         break;
                     case EExplosionPosType.Left:
-                        explosionPosition += Vector3.left * 4f;
+                        explosionPosition += Vector3.left * 4.5f;
                         break;
                     case EExplosionPosType.Right:
-                        explosionPosition += Vector3.right * 4f;
+                        explosionPosition += Vector3.right * 4.5f;
                         break;
                     case EExplosionPosType.LittleUp:
-                        explosionPosition += Vector3.up * 2f; 
+                        explosionPosition += Vector3.up * 2.5f; 
                         break;
                     case EExplosionPosType.LittleDown:
-                        explosionPosition += Vector3.down * 2f; 
+                        explosionPosition += Vector3.down * 2.5f; 
                         break;
                 }
                  Instantiate(explosionPrefab, explosionPosition, Quaternion.identity);
             }
+
 
             yield return explosionWait; // 폭발 사이 간격 대기
         }

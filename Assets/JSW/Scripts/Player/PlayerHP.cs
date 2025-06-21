@@ -20,6 +20,7 @@ public class PlayerHP : MonoBehaviour
     private CircleCollider2D hitCollider;
 
     private Coroutine flashCoroutine;
+    private Coroutine healFlashCoroutine;
     private WaitForSeconds flashDuration = new WaitForSeconds(0.1f);
     private float hitNoDamageDuration = 1f;
     private SpriteRenderer spriteRendererCore;
@@ -112,8 +113,8 @@ public class PlayerHP : MonoBehaviour
             playerHP_Image.fillAmount = fill;
             Debug.Log($"[PlayerHP] HP: {Managers.Status.Hp}, MaxHP: {Managers.Status.MaxHp}, fillAmount: {fill}");
 
-            if (flashCoroutine != null) StopCoroutine(flashCoroutine);
-            flashCoroutine = StartCoroutine(CoHealEffect());
+            if (healFlashCoroutine != null) StopCoroutine(healFlashCoroutine);
+            healFlashCoroutine = StartCoroutine(CoHealEffect());
         }
         else
         {

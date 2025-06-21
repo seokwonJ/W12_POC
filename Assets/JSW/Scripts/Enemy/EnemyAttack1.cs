@@ -11,7 +11,6 @@ public class EnemyAttack1 : MonoBehaviour
         if (collision.tag == "Player")
         {
             collision.GetComponent<PlayerHP>().TakeDamage(damage);
-            Destroy(gameObject);
         }
         else if (collision.tag == "Wall")
         {

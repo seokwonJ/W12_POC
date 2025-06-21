@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public enum EArtifacts // 아티팩트 Enum
@@ -18,44 +18,21 @@ public class ArtifactManager // 인게임 유물 관리
     private bool[] artifacts; // 아티팩트 중복 체크
     public bool IsFullArtifact => isFullArtifact;
     private bool isFullArtifact; // 아티팩트를 전부 채웠다면
+    private ArtifactsList artifactsList = new();
+    public Action<PlayerMove> playerAction; // 비행체와 관련된 액션
 
     public void StartGame() // 게임 시작. 루트 함수는 Stage임
     {
         artifacts = new bool[(int)EArtifacts.Length];
+
+        //playerAction += artifactsList.OnAbility;
     }
+}
 
-    public void BuyArtifact(EArtifacts artifactCode)
+public class ArtifactsList // 아티팩트의 효과들
+{
+    public void OnAbility(PlayerMove playerMove) // 아무도 안 타고 있을 시 비행체 속력 2배
     {
-        if (artifacts[(int)artifactCode]) Debug.Log("유물 중복 구매됨");
-        //artifacts[(int)artifactCode] = true; // 등장 시 
-
-        switch (artifactCode)
-        {
-            case EArtifacts.Health10:
-                Managers.Status.MaxHp += 10;
-                break;
-            case EArtifacts.Health11:
-                Managers.Status.MaxHp += 11;
-                break;
-            case EArtifacts.Health12:
-                Managers.Status.MaxHp += 12;
-                break;
-            case EArtifacts.Health13:
-                Managers.Status.MaxHp += 13;
-                break;
-            case EArtifacts.Health14:
-                Managers.Status.MaxHp += 14;
-                break;
-            case EArtifacts.Health15:
-                Managers.Status.MaxHp += 15;
-                break;
-        }
-
-        foreach(bool artifactCheck in artifacts)
-        {
-            if (!artifactCheck) return;
-        }
-
-        isFullArtifact = true; // 모든 유물을 구매했다면 isFullArtifact = true
+        if (Managers.Status.RiderCount == 0) playerMove.moveSpeed *= 2f;
     }
 }

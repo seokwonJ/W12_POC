@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 225d7a7746a759e4b85b56c4565646b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  UpgradeNum: 0
   allUpgrades:
   - {fileID: 11400000, guid: d850aeb94b5e55b4088603d60a5c74fe, type: 2}
   - {fileID: 11400000, guid: a5ad8b1aeb2744c48aa4493946bae472, type: 2}
@@ -196,6 +197,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e927e633499fb0644bd0dcc4a0bdbbe8, type: 2}
   - {fileID: 11400000, guid: ccdfc704fccd57f47ba877c59f986bbb, type: 2}
   - {fileID: 11400000, guid: 78cb7ba1eb51c704bb5d20fc51797652, type: 2}
+  - {fileID: 11400000, guid: 031a1b25aba67844b8b974e694561680, type: 2}
+  - {fileID: 11400000, guid: b10ede664e8f04b4bbd411f79cc09a10, type: 2}
+  - {fileID: 11400000, guid: ce1f73bd51fc94d438401742f3b47c53, type: 2}
+  - {fileID: 11400000, guid: c2a215b353eacc749abd41921765d4f8, type: 2}
+  - {fileID: 11400000, guid: 41c42a7de16d0cc4ba52d74f8c4b9714, type: 2}
+  _acquiredUpgrades: []
 --- !u!61 &1354129338059981449
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -294,7 +301,6 @@ MonoBehaviour:
   abilityPowerUpNum: 100
   maxMP: 100
   mpPerSecond: 10
-  mpImage: {fileID: 0}
   normalProjectile: {fileID: 7373925757434712426, guid: 4a4071a170612074ba140d6f3710ad32, type: 3}
   firePoint: {fileID: 91693443383765436}
   normalFireInterval: 1

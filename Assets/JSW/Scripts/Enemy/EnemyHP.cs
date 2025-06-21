@@ -164,9 +164,9 @@ public class EnemyHP : MonoBehaviour
         Destroy(gameObject);
     }
 
+    Coroutine co = null;        // 함수 밖에  나왔어야 초기화가 안됨
     public void ReduceArmor(int value, float durationTime, bool isPercent=true)
     {
-        Coroutine co = null;
         int resultValue = isPercent ? Mathf.CeilToInt(defaultArmor * (value / 100f)) : value;
         int resultArmor = defaultArmor - resultValue;
         if (resultArmor <= currentArmor)

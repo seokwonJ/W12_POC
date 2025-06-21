@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a55b26c0b9fe3504581530e80c941d2b, type: 3}
+  m_Name: SniperUpgrade 13
+  m_EditorClassIdentifier: 
+  upgradeName: "\uB354 \uC774\uC0C1 \uAD00\uD1B5\uC774 \uB418\uC9C0 \uC54A\uC9C0\uB9CC
+    \uACF5\uACA9\uB825\uC774 \uBE44\uC57D\uC801\uC73C\uB85C \uC99D\uAC00\uD55C\uB2E4"
+  description: "\uB354 \uC774\uC0C1 \uAD00\uD1B5\uC774 \uB418\uC9C0 \uC54A\uC9C0\uB9CC
+    \uACF5\uACA9\uB825\uC774 \uBE44\uC57D\uC801\uC73C\uB85C \uC99D\uAC00\uD55C\uB2E4"
+  icon: {fileID: 0}
+  type: 13

@@ -16,6 +16,7 @@ public class Levi : Character
     public float skillInterval = 0.3f;
     public float skillDashSpeed;
     public GameObject trail;
+    private BoxCollider2D boxCollider2D;
 
     [Header("강화")]
     public bool isSkillEndPlusSkillCountUp;
@@ -26,6 +27,12 @@ public class Levi : Character
     [Header("이펙트")]
     public GameObject skillDashStartEffect;
     public GameObject skillActiveEffect;
+
+    protected override void Start()
+    {
+        base.Start();
+        boxCollider2D = GetComponent<BoxCollider2D>();
+    }
 
 
     // 일반 공격: 연속 두번 관통형 공격 발사
@@ -50,8 +57,7 @@ public class Levi : Character
 
     protected override IEnumerator NormalAttackRoutine()
     {
-
-        _nowskillTargetCount = skillTargetCount;
+        _nowskillTargetCount = skillTargetCount;                // 스킬 타겟 카운트 초기화
         while (true)
         {
             yield return new WaitForSeconds(normalFireInterval);
@@ -97,9 +103,11 @@ public class Levi : Character
         }
 
 
+
         List<Transform> hitEnemies = new List<Transform>();
 
         gameObject.layer = LayerMask.NameToLayer("DoSkill");
+        boxCollider2D.isTrigger = true;
 
         Transform target;
 
@@ -151,6 +159,7 @@ public class Levi : Character
 
         //animator.SetBool("5_FALL", true);
         gameObject.layer = LayerMask.NameToLayer("Character");
+        boxCollider2D.isTrigger = false;
     }
 
     private Transform FindFarestEnemyExcluding(List<Transform> excluded)
@@ -249,5 +258,7 @@ public class Levi : Character
         base.EndFieldAct();
         trail.GetComponent<TrailRenderer>().enabled = false;
         gameObject.layer = LayerMask.NameToLayer("Character");
+        if (boxCollider2D == null) boxCollider2D = GetComponent<BoxCollider2D>();
+        boxCollider2D.isTrigger = false;
     }
 }

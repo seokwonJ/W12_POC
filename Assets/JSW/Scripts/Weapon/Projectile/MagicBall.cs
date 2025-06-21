@@ -76,8 +76,6 @@ public class MagicBall : ProjectileBase
                 {
                     enemy.ApplyKnockback(knockbackDirection, knockbackPower);
                 }
-
-                print("데미지 주나요?! + " + transform.localScale.magnitude);
             }
         }
 

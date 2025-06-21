@@ -14,13 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   world: 1
   stage: 5
-  isBossStage: 0
+  isBossStage: 1
   enemyWave:
-  - {fileID: 11400000, guid: 2a6b9577ee0ad0348a775282a452ff3b, type: 2}
-  - {fileID: 11400000, guid: 9048a7dd496134f4c93498f8cda4d81a, type: 2}
-  - {fileID: 11400000, guid: 50aab2a9b921178409dc6517f5262fa9, type: 2}
-  waveCount: 030000000300000003000000
+  - {fileID: 11400000, guid: 13a9dab26c3b53146b1b707cecca7bbd, type: 2}
+  - {fileID: 11400000, guid: da75aa60349bbf84ba603cf9ac54405d, type: 2}
+  waveCount: 0100000064000000
   wavePreparationTime:
-  - 0.5
   - 1
-  - 1
+  - 15

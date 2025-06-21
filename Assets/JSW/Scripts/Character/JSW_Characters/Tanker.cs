@@ -6,25 +6,28 @@ public class Tanker : Character
 {
     [Header("스킬")]
     public bool isSkillLanding;
-
     public float skillknockbackPower;
     public float skillInterval = 0.3f;
     public float skillRange;
     public GameObject landingSkillEffect;
 
+    [Header("탱커 특수")]
+    private bool _isOnField = false;
+
     [Header("공격")]
     public float nomalAttackSize;
     public float nomalAttackLifetime;
-    public float knockBackpower = 1;
 
     [Header("강화")]
     public bool isUpgradeFallingSpeedToSkillDamage;
+    public float fallingSpeedToSkillDamagePercent;
     public bool isUpgradeRidingDefenseUp;
+    public int ridingDefenseUpNum = 5;
     public bool isCloserMoreDamage;
-    public float closerMoreDamagePercent = 20;
+    public float closerMoreDamageNum = 100;
     public bool isSkillEnemySpeedDown;
-    public float skillEnemySpeedDonwPercent = 70;
-    public float skillEnemySpeedDonwDuration = 3;
+    public float skillEnemySpeedDownPercent = 70;
+    public float skillEnemySpeedDownDuration = 3;
 
     public int upgradeNum;
 
@@ -34,6 +37,25 @@ public class Tanker : Character
     {
         base.Start();
         _playerStatus = FindAnyObjectByType<PlayerStatus>();
+    }
+
+    protected override IEnumerator NormalAttackRoutine()
+    {
+        if (isUpgradeRidingDefenseUp) _playerStatus.defensePower += ridingDefenseUpNum;
+        _isOnField = true;
+
+        while (true)
+        {
+            yield return new WaitForSeconds(normalFireInterval / (attackSpeedUpNum / 100));
+            if (!isGround) continue;
+
+            Transform target = FindNearestEnemy();
+            if (target != null)
+            {
+                animator.Play("ATTACK", -1, 0f);
+                FireNormalProjectile(target.position);
+            }
+        }
     }
 
     protected override void Update()
@@ -86,7 +108,7 @@ public class Tanker : Character
     {
         yield return new WaitForSeconds(skillInterval);
 
-        if (isUpgradeRidingDefenseUp) _playerStatus.defensePower -= 5;
+        if (isUpgradeRidingDefenseUp) _playerStatus.defensePower -= ridingDefenseUpNum;
         isSkillLanding = true;
         transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x), transform.localScale.y, transform.localScale.z);
     }
@@ -98,10 +120,10 @@ public class Tanker : Character
 
         if (!isGround) return;
 
-        if (isUpgradeRidingDefenseUp) _playerStatus.defensePower += 5;
-
         if (isSkillLanding)
         {
+            if (isUpgradeRidingDefenseUp) _playerStatus.defensePower += ridingDefenseUpNum;
+
             isSkillLanding = false;
             SoundManager.Instance.PlaySFX("TankerLandingSkillEffect");
             LandingSkill();
@@ -127,10 +149,11 @@ public class Tanker : Character
 
                 float totalSkillDamage = TotalSkillDamage();
 
-                if (isCloserMoreDamage) totalSkillDamage += (int)(closerMoreDamagePercent / Vector2.Distance(hit.transform.position, transform.position));
+                if (isCloserMoreDamage) totalSkillDamage += (int)(closerMoreDamageNum / Vector2.Distance(hit.transform.position, transform.position));
 
-                if (isUpgradeFallingSpeedToSkillDamage) { enemyHP.TakeDamage((int)(totalSkillDamage + rb.linearVelocity.magnitude), ECharacterType.Tanker); }
-                else enemyHP.TakeDamage((int)totalSkillDamage, ECharacterType.Tanker);
+                if (isUpgradeFallingSpeedToSkillDamage) totalSkillDamage += (int)(rb.linearVelocity.magnitude * fallingSpeedToSkillDamagePercent / 100);
+
+                enemyHP.TakeDamage((int)totalSkillDamage, ECharacterType.Tanker);
 
                 if (enemyHP != null && enemyHP.enemyHP <= 0) continue;
 
@@ -143,7 +166,7 @@ public class Tanker : Character
 
                 if (isSkillEnemySpeedDown)
                 {
-                    enemy.GetComponent<Enemy>().ApplySlow((int)skillEnemySpeedDonwPercent, skillEnemySpeedDonwDuration);
+                    enemy.GetComponent<Enemy>().ApplySlow((int)skillEnemySpeedDownPercent, skillEnemySpeedDownDuration);
                 }
             }
         }
@@ -155,11 +178,17 @@ public class Tanker : Character
     {
         base.EndFieldAct();
 
-        if (isSkillLanding == true)
+        if (_isOnField)
         {
-            if (isUpgradeRidingDefenseUp) _playerStatus.defensePower -= 5;
-            Debug.Log("공격력 돌아옴");
-            isSkillLanding = false;
+            if (isSkillLanding == true)
+            {
+                isSkillLanding = false;
+            }
+            else
+            {
+                if (isUpgradeRidingDefenseUp) _playerStatus.defensePower -= ridingDefenseUpNum;
+            }
         }
+        _isOnField = false;
     }
 }

@@ -40,6 +40,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         moveSpeed = _playerStatus.speed;
+        Managers.Artifact.playerAction?.Invoke(this);
         // 대시 중이 아니면 입력 받기
         if (!isDashing)
         {

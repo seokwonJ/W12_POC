@@ -7,6 +7,8 @@ public class PirateAttack : ProjectileBase
     public Rigidbody2D rb;
     public GameObject explosionEffect;
     private bool _isNoMoreExplosionAttackDamageUp;
+    private float _noMoreExplosionAttackDamageUpPercent;
+
     public float acceleration = 5f;
     private float currentSpeed = 0f;
     private bool isAttack;
@@ -59,7 +61,7 @@ public class PirateAttack : ProjectileBase
         }
     }
 
-    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isCritical, bool isNoMoreExplosionAttackDamageUp, bool isSkill, bool isAttackPerMana, Pirate pirate, Transform homingTarget = null)
+    public void SetInit(Vector2 dir, float damageNum, float speedNum, float scaleNum, float knockbackPowerNum, bool isCritical, bool isNoMoreExplosionAttackDamageUp,float noMoreExplosionAttackDamageUpPercent, bool isSkill, bool isAttackPerMana, Pirate pirate, Transform homingTarget = null)
     {
         rb = GetComponent<Rigidbody2D>();
 
@@ -71,6 +73,7 @@ public class PirateAttack : ProjectileBase
         speed = speedNum;
         knockbackPower = knockbackPowerNum;
         _isCritical = isCritical;
+        _noMoreExplosionAttackDamageUpPercent = noMoreExplosionAttackDamageUpPercent;
 
         this._isNoMoreExplosionAttackDamageUp = isNoMoreExplosionAttackDamageUp;
 
@@ -108,7 +111,7 @@ public class PirateAttack : ProjectileBase
         isAttack = true;
         Instantiate(explosionEffect,transform.position, Quaternion.identity);
         rb.linearVelocity = Vector3.zero;
-        Destroy(projectile, 0.1f);
+        Destroy(projectile);
     }
 
     protected override void OnTriggerEnter2D(Collider2D other)
@@ -120,13 +123,14 @@ public class PirateAttack : ProjectileBase
             EnemyHP enemyHp = other.GetComponent<EnemyHP>();
             if (enemyHp != null && _isNoMoreExplosionAttackDamageUp)
             {
-                enemyHp.TakeDamage((int)(damage), ECharacterType.Pirate);
+                enemyHp.TakeDamage((int)(damage * _noMoreExplosionAttackDamageUpPercent/ 100) , ECharacterType.Pirate);
 
                 if (_isCritical)
                 {
                     Vector2 contactPoint = other.ClosestPoint(transform.position);
                     Instantiate(Managers.PlayerControl.NowPlayer.GetComponent<PlayerEffects>().criticalEffect, contactPoint, Quaternion.identity);
                 }
+                Destroy(gameObject);
             }
             else
             {
@@ -156,11 +160,8 @@ public class PirateAttack : ProjectileBase
                         }
                     }
                 }
+                DestroyProjectile(gameObject);
             }
-
-            
-
-            DestroyProjectile(gameObject);
         }
     }
 }
